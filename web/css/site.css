@@ -1,0 +1,276 @@
+html,
+body {
+    height: 100%;
+}
+
+/* captain */
+iframe {
+    display: block;
+}
+
+ul, li {
+    list-style: none;
+}
+
+.wrap {
+    min-height: 100%;
+    height: auto;
+    /* captain */
+    /*margin: 0 auto -60px;*/
+    /*padding: 0 0 60px;*/
+    margin: 0 auto -50px;
+    padding: 0 0 50px;
+
+    /* captain */
+    background-color: #040a2a;
+}
+
+.wrap > .container {
+    padding: 70px 15px 20px;
+
+    /* captain */
+    background-color: #fff;
+}
+/* captain */
+.wrap > .container.bracket {
+    padding: 51px 0 0;
+}
+@media (min-width: 1200px) {
+    .container.bracket {
+        width: 100%;
+    }
+}
+
+.wrap .site-index .welcome {
+    text-align: center;
+    font-size: 20px;
+    line-height: 20px;
+}
+
+.wrap .steamNews {
+    padding: 10px 0 0;
+}
+
+.wrap .steamNews .bigNews {
+    height: 800px; /* evtl. ueberdenken */
+    max-height: 800px;
+    overflow-y: hidden;
+    cursor: pointer;
+}
+.wrap .steamNews .bigNews:hover,
+.wrap .steamNews .smallNews:hover {
+    background-color: rgba(220, 220, 220, 0.5);
+    text-decoration: none;
+}
+
+.wrap .steamNews .bigNews a,
+.wrap .steamNews .smallNews a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.wrap .steamNews .smallNews {
+    max-height: 400px;
+    overflow-y: hidden;
+    cursor: pointer;
+}
+
+.wrap .steamNews img {
+    width: 100%;
+}
+
+.wrap .container > .welcome > .dclink {
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 20px;
+}
+
+.wrap .container .regeln {
+    width: 100%;
+    height: 650px;
+}
+
+.wrap .LoggingIn {
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+    line-height: 20px;
+}
+
+.wrap .LoggingIn .logbtn {
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 20px;
+}
+
+.footer {
+    /* captain */
+    /*height: 60px;*/
+    /*background-color: #f5f5f5;*/
+    /*border-top: 1px solid #ddd;*/
+    /*height: 50px;*/
+    background-color: #222;
+    border-top: 1px solid #080808;
+    color: #9d9d9d;
+
+    /* captain */
+    /*padding-top: 20px;*/
+}
+
+.footer .left_side {
+    padding: 15px 0 0;
+}
+
+.footer .left_side span {
+    padding: 0 15px;
+}
+
+.footer .left_side span a{
+    color: #9d9d9d;
+}
+
+.footer .middle {
+    padding: 15px 0 0;
+    text-align: center;
+}
+
+.footer .right_side {
+    text-align: right;
+}
+
+/* captain */
+.make-center {
+    text-align: center;
+}
+
+/* captain */
+.fake-submit {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
+
+.jumbotron {
+    text-align: center;
+    background-color: transparent;
+}
+
+.jumbotron .btn {
+    font-size: 21px;
+    padding: 14px 24px;
+}
+
+.not-set {
+    color: #c55;
+    font-style: italic;
+}
+
+/* add sorting icons to gridview sort links */
+a.asc:after, a.desc:after {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    padding-left: 5px;
+}
+
+a.asc:after {
+    content: /*"\e113"*/ "\e151";
+}
+
+a.desc:after {
+    content: /*"\e114"*/ "\e152";
+}
+
+.sort-numerical a.asc:after {
+    content: "\e153";
+}
+
+.sort-numerical a.desc:after {
+    content: "\e154";
+}
+
+.sort-ordinal a.asc:after {
+    content: "\e155";
+}
+
+.sort-ordinal a.desc:after {
+    content: "\e156";
+}
+
+.grid-view th {
+    white-space: nowrap;
+}
+
+.hint-block {
+    display: block;
+    margin-top: 5px;
+    color: #999;
+}
+
+.error-summary {
+    color: #a94442;
+    background: #fdf7f7;
+    border-left: 3px solid #eed3d7;
+    padding: 10px 20px;
+    margin: 0 0 15px 0;
+}
+
+/* align the logout "link" (button in form) of the navbar */
+.nav li > form > button.logout {
+    padding: 15px;
+    border: none;
+}
+
+@media(max-width:767px) {
+    .nav li > form > button.logout {
+        display:block;
+        text-align: left;
+        width: 100%;
+        padding: 10px 15px;
+    }
+}
+
+.nav > li > form > button.logout:focus,
+.nav > li > form > button.logout:hover {
+    text-decoration: none;
+}
+
+.nav > li > form > button.logout:focus {
+    outline: none;
+}
+
+/* captain */
+li.teamName > ul {
+    margin: 0 0 20px;
+}
+
+.team {
+    border: 1px solid #ccc;
+    border-top: 0px;
+    padding: 5px 0;
+}
+.team:first-child {
+    border-top: 1px solid #ccc;
+}
+
+.site-bracket {
+    position: absolute;
+    top: 51px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.site-bracket iframe {
+    height: calc(100% - 50px);
+}
+
+.wrap .rocket-League-news img {
+    width: 100%;
+}

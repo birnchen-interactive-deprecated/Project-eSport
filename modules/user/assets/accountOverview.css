@@ -1,0 +1,96 @@
+.site-account .avatarPanel {
+    text-align: center;
+}
+
+.site-account .avatar-logo {
+    width: 250px;
+}
+
+.site-account .playerPanel {
+    border-top: 1px solid #aaa;
+    margin: 10px 0 0;
+    padding: 5px 15px 0;
+}
+
+@media (min-width: 1200px) {
+    .site-account .playerPanel {
+        border-top: none;
+        margin: 0;
+        padding: 0 15px;
+    }
+}
+
+.site-account .playerPanel .header {
+    border-bottom: 1px solid #aaa;
+    padding: 0 15px 8px;
+}
+
+.site-account .playerPanel .header .nationality-logo {
+    vertical-align: sub;
+    width: 32px;
+}
+
+.site-account .playerPanel .header .username {
+    font-size: 20px;
+    margin: 0 0 0 4px;
+}
+
+.site-account .playerPanel .header .userid {
+    color: #9d9d9d;
+    font-size: 12px;
+    margin: 0 0 0 4px;
+}
+
+.site-account .playerPanel .userBody {
+    border-bottom: 1px solid #aaa;
+    padding: 10px 0;
+}
+
+.site-account .playerPanel .userBody .context {
+    padding: 0 15px 0 30px;
+}
+
+.site-account .playerPanel .userBody .nationality-logo {
+    margin: 0 5px 0 0;
+    vertical-align: sub;
+    width: 24px;
+}
+
+.site-account .playerPanel .gameHeader {
+    border-bottom: 1px solid #aaa;
+    border-top: 1px solid #aaa;
+    font-size: 20px;
+    margin: 4px 0 0;
+    padding: 4px 15px;
+}
+
+..site-account .playerPanel .gameBody {
+    margin: 10px 0 0;
+}
+
+.site-account .playerPanel .gameBody .game-logo {
+    vertical-align: sub;
+    width: 32px;
+}
+
+.site-account .playerPanel .gameBody .platform-logo {
+    vertical-align: sub;
+    width: 32px;
+}
+
+
+.site-account .playerPanel .teamHeader {
+    border-bottom: 1px solid #aaa;
+    border-top: 1px solid #aaa;
+    font-size: 20px;
+    margin: 200px 0 0;
+    padding: 4px 15px;
+}
+
+.site-account .playerPanel .teamBody {
+    margin: 10px 0 0;
+}
+
+.site-account .playerPanel .teamEntry {
+    margin: 3px 0;
+}

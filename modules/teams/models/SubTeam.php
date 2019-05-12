@@ -1,0 +1,252 @@
+<?php
+
+namespace app\modules\teams\models;
+
+use Yii;
+use yii\db\ActiveQuery;
+use yii\db\ActiveRecord;
+
+use app\modules\tournaments\models\TournamentMode;
+
+/**
+ * Class SubTeam
+ * @package app\modules\teams\models
+ *
+ * @property int $id
+ * @property int $main_team_id
+ * @property int $game_id
+ * @property int $tournament_mode_id
+ * @property int $headquater_id
+ * @property int $language_id
+ * @property int $captain_id
+ * @property int $deputy_id
+ * @property int $manager_id
+ * @property int $trainer_id
+ * @property string $name
+ * @property string $short_code
+ * @property bool $mixed
+ * @property string $description
+ * @property bool $disqualified
+ * @property string $twitter_account
+ * @property string $twitter_channel
+ * @property string $discord_server
+ */
+class SubTeam extends ActiveRecord
+{
+	/**
+     * @return string
+     */
+    public static function tableName()
+    {
+        return 'sub_team';
+    }
+
+    /**
+	 * @return int id
+	 */
+	public function getId()
+	{
+		return $this->id;
+	}
+
+    /**
+     * @return int main team id
+     */
+    public function getMainTeamId()
+    {
+        return $this->main_team_id;
+    }
+
+    /**
+     * @return int game id
+     */
+    public function getGameId()
+    {
+        return $this->game_id;
+    }
+
+    /**
+     * @return int tournament mode id
+     */
+    public function getTournamentModeId()
+    {
+        return $this->tournament_mode_id;
+    }
+
+    /**
+     * @return ActiveQuery
+     */
+    public function getTournamentMode()
+    {
+        return $this->hasOne(TournamentMode::className(), ['id' => 'tournament_mode_id']);
+    }
+
+    /**
+     * @return int headquater id
+     */
+    public function getHeadquaterId()
+    {
+        return $this->headquater_id;
+    }
+
+    /**
+     * @return ActiveQuery
+     */
+    public function getHeadquarter()
+    {
+        return $this->hasOne(Nationality::className(), ['id' => 'headquarter_id']);
+    }
+
+    /**
+     * @return int language id
+     */
+    public function getLanguageId()
+    {
+        return $this->language_id;
+    }
+
+    /**
+     * @return ActiveQuery
+     */
+    public function getLanguage()
+    {
+        return $this->hasOne(Language::className(), ['id' => 'language_id']);
+    }
+
+    /**
+     * @return int captain id
+     */
+    public function getTeamCaptainId()
+    {
+        return $this->captain_id;
+    }
+
+	/**
+     * @return ActiveQuery
+     */
+    public function getTeamCaptain()
+    {
+        return $this->hasOne(User::className(), ['id' => 'captain_id']);
+    }
+
+    /**
+     * @return int deputy id
+     */
+    public function getTeamDeputyId()
+    {
+        return $this->deputy_id;
+    }
+
+    /**
+     * @return ActiveQuery
+     */
+    public function getTeamDeputy()
+    {
+        return $this->hasOne(User::className(), ['id' => 'deputy_id']);
+    }
+
+    /**
+     * @return int manager id
+     */
+    public function getTeamManagerId()
+    {
+        return $this->manager_id;
+    }
+
+    /**
+     * @return ActiveQuery
+     */
+    public function getTeamManager()
+    {
+        return $this->hasOne(User::className(), ['id' => 'manager_id']);
+    }
+
+    /**
+     * @return int trainer id
+     */
+    public function getTeamTrainerId()
+    {
+        return $this->trainer_id;
+    }
+
+    /**
+     * @return ActiveQuery
+     */
+    public function getTeamTrainer()
+    {
+        return $this->hasOne(User::className(), ['id' => 'trainer_id']);
+    }
+
+    /**
+     * @return string team name
+     */
+    public function getTeamName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return string short code
+     */
+    public function getTeamShortCode()
+    {
+        return $this->short_code;
+    }
+
+    /**
+     * @return bool mixed Short Code
+     */
+    public function getIsTeamShortCodeMixed()
+    {
+        return $this->mixed;
+    }
+
+    /**
+     * @return string team description
+     */
+    public function getTeamDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @return bool team disqualified
+     */
+    public function getIsTeamDisqualified()
+    {
+        return $this->disqualified;
+    }
+
+    /**
+     * @return string team twitter account
+     */
+    public function getTeamTwitterAccount()
+    {
+        return $this->twitter_account;
+    }
+
+    /**
+     * @return string team twitter channel
+     */
+    public function getTeamTwitterChannel()
+    {
+        return $this->twitter_channel;
+    }
+
+    /**
+     * @return string team discord server
+     */
+    public function getTeamDiscordServer()
+    {
+        return $this->discord_server;
+    }
+
+    /**
+     * @param $userId
+     * @return bool
+     */
+    public function isUserSubstitute($userId)
+    {
+        return $this->hasOne(SubTeamMember::className(), ['sub_team_id' => 'id'])->where(['user_id' => $userId, 'is_sub' => 1])->count() == 1;
+    }
+}
