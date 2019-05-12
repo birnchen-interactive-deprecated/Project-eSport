@@ -100,8 +100,8 @@ $config = [
         'platformgames' => 'app\modules\platformgames\Module',
         'teams' => 'app\modules\teams\Module',
         'tournaments' => 'app\modules\tournaments\Module',
-        //'core' => 'app\modules\core\Module',
-        //'rbac' => 'app\modules\rbac\Module',
+        'core' => 'app\modules\core\Module',
+        'rbac' => 'app\modules\rbac\Module',
     ],
     'params' => $params,
 ];
