@@ -1,5 +1,6 @@
 # phpstorm project files
 .idea
+*.iml
 
 # netbeans project files
 nbproject
@@ -13,10 +14,20 @@ nbproject
 Thumbs.db
 
 # composer vendor dir
-/vendor
+vendor
+
+# components css
+components/animate.css/
+components/bootstrap-switch/
+components/bootswatch/
+components/ekko-lightbox/
+components/flag-icon-css/
+components/holder/
+components/jplayer/
 
 # composer itself is not needed
 composer.phar
+composer.lock
 
 # Mac DS_Store Files
 .DS_Store
@@ -26,8 +37,10 @@ phpunit.phar
 # local phpunit config
 /phpunit.xml
 
-tests/_output/*
-tests/_support/_generated
+# The db configuration file
+#config/db.php
 
-#vagrant folder
-/.vagrant
+#db config
+config/db.php
+composer.lock
+web/.htaccess
