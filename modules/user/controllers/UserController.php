@@ -173,7 +173,7 @@ class UserController extends BaseController
             'gender' => $user->getGender()->one(),
             'language' => ($isMySelfe)? $user->getLanguage()->one() : Language::findByLocale('en-US'),
             'nationality' => $user->getNationality()->one(), /** @todo prüfen wegen gender (Männlich/Weiblich/Divers) */
-            'nationalityImg' => helperClass::checkImage('/images/nationality/', $user->getNationalityId()),
+            'nationalityImg' => Yii::$app->helperClass->checkImage('/images/nationality/', $user->getNationalityId()),
             'playerImage' => helperClass::checkImage('/images/userAvatar/', $user->getId()),
         ];
 
