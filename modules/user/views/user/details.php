@@ -9,11 +9,10 @@
  * @var $subTeams array
  */
 
-use app\modules\miscellaneous\MetaClass;
-
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 
+use app\modules\miscellaneous\MetaClass;
 use app\modules\miscellaneous\HelperClass;
 
 \app\modules\user\assets\UserAsset::register($this);
