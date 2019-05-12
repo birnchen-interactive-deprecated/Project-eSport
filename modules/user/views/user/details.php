@@ -24,7 +24,7 @@ $this->title = $model->username . '\'s Player profile';
 $this->registerLinkTag(['rel' => 'canonical', 'href' => 'https://project-esport.gg' . Yii::$app->request->url]);
 
 /** twitter/facebook/google Metatag */
-MetaClass::writeMetaUser($this, $model, $userInfo['nationality']);
+Yii::$app->metaClass->writeMetaUser($this, $model, $userInfo['nationality']);
 
 /** $synonym = ($gender_id == 1) ? 'synonym_m' : ($gender_id == 2) ? 'synonym_w' : 'synonym_d'; */
 
