@@ -13,7 +13,7 @@ use app\modules\user\models\Gender;
 use app\modules\user\models\Language;
 use app\modules\user\models\Nationality;
 
-use app\modules\miscellaneous\HelperClass;
+use app\modules\miscellaneous\helperClass;
 
 use DateTime;
 
@@ -173,8 +173,8 @@ class UserController extends BaseController
             'gender' => $user->getGender()->one(),
             'language' => ($isMySelfe)? $user->getLanguage()->one() : Language::findByLocale('en-US'),
             'nationality' => $user->getNationality()->one(), /** @todo prüfen wegen gender (Männlich/Weiblich/Divers) */
-            'nationalityImg' => HelperClass::checkImage('/images/nationality/', $user->getNationalityId()),
-            'playerImage' => HelperClass::checkImage('/images/userAvatar/', $user->getId()),
+            'nationalityImg' => helperClass::checkImage('/images/nationality/', $user->getNationalityId()),
+            'playerImage' => helperClass::checkImage('/images/userAvatar/', $user->getId()),
         ];
 
         /** Get all Game Id's from the user */

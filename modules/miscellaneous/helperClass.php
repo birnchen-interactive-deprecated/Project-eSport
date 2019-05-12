@@ -8,7 +8,7 @@ use Yii;
  * Class HelperClass
  * @package app\modules\core\miscellaneous
  */
-class HelperClass
+class helperClass
 {
     /**
      * HelperClass constructor.
