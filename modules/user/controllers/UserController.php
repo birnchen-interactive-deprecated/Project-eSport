@@ -13,8 +13,6 @@ use app\modules\user\models\Gender;
 use app\modules\user\models\Language;
 use app\modules\user\models\Nationality;
 
-use app\modules\miscellaneous\HelperClass;
-
 use DateTime;
 
 use Yii;
@@ -173,8 +171,8 @@ class UserController extends BaseController
             'gender' => $user->getGender()->one(),
             'language' => ($isMySelfe)? $user->getLanguage()->one() : Language::findByLocale('en-US'),
             'nationality' => $user->getNationality()->one(), /** @todo prüfen wegen gender (Männlich/Weiblich/Divers) */
-            'nationalityImg' => helperClass::checkImage('/images/nationality/', $user->getNationalityId()),
-            'playerImage' => helperClass::checkImage('/images/userAvatar/', $user->getId()),
+            'nationalityImg' => Yii::$app->helperClass->checkImage('/images/nationality/', $user->getNationalityId()),
+            'playerImage' => Yii::$app->helperClass->checkImage('/images/userAvatar/', $user->getId()),
         ];
 
         /** Get all Game Id's from the user */
@@ -188,8 +186,8 @@ class UserController extends BaseController
             $games[] = [
                 'gameId' => $userGame->getGameId(),
                 'platformId' => $userGame->getPlatformId(),
-                'gameImg' => helperClass::checkImage('/images/gameLogos/', $userGame->getGameId()),
-                'platform' => helperClass::checkImage('/images/platforms/', $userGame->getPlatformId()),
+                'gameImg' => Yii::$app->helperClass->checkImage('/images/gameLogos/', $userGame->getGameId()),
+                'platform' => Yii::$app->helperClass->checkImage('/images/platforms/', $userGame->getPlatformId()),
                 'playerId' => $userGame->getPlayerId(),
                 'visible' => $userGame->getIsVisible()
             ];
