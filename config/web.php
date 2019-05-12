@@ -88,10 +88,10 @@ $config = [
             'class' => 'yii\rbac\DbManager'
         ],
         'metaClass' => [
-            'class' => 'app\modules\miscellaneous\metaClass',
+            'class' => 'app\modules\miscellaneous\MetaClass',
         ],
         'helperClass' => [
-            'class' => 'app\modules\miscellaneous\helperClass'
+            'class' => 'app\modules\miscellaneous\HelperClass'
         ]
     ],
     'modules' => [
