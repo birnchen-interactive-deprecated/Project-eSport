@@ -6,10 +6,12 @@ use app\components\BaseController;
 use app\modules\platformgames\models\Games;
 use app\modules\platformgames\models\Platforms;
 use app\modules\platformgames\models\UserGames;
+
 use app\modules\user\models\formModels\LoginForm;
 use app\modules\user\models\formModels\ProfilePicForm;
 use app\modules\user\models\formModels\RegisterForm;
 use app\modules\user\models\formModels\UserGameForm;
+
 use app\modules\user\models\Gender;
 use app\modules\user\models\Language;
 use app\modules\user\models\Nationality;

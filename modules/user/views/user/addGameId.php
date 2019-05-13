@@ -1,8 +1,7 @@
 <?php
 
 /* @var $this yii\web\View *
-<<<<<<< HEAD
-/* @var $form yii\bootstrap\ActiveForm
+ * @var $form yii\bootstrap\ActiveForm
  * @var $id int
  * @var $gamesList array
  * @var $platformList array
@@ -10,17 +9,6 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
-=======
- * /* @var $form yii\bootstrap\ActiveForm
- * @var $id int
- * @var $gamesList array
- * @var $platformList array
- * /* @var $model app\modules\platformgames\models\formModel\UserGameForm
- */
-
-use yii\bootstrap\ActiveForm;
-use yii\helpers\Html;
->>>>>>> 4c8595c4549f77ac54ee020e4e3d51f197d37e5b
 
 \app\modules\user\assets\UserAsset::register($this);
 
@@ -62,7 +50,4 @@ use yii\helpers\Html;
         <?= Html::submitButton("Speichern", ['class' => 'btn mediumButton pull-right']) ?>
     </div>
     <?php ActiveForm::end(); ?>
-
-
->>>>>>> 4c8595c4549f77ac54ee020e4e3d51f197d37e5b
 </div>
