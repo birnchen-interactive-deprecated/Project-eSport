@@ -19,7 +19,7 @@ use app\modules\teams\models\MainTeamMember;
  * @property int $id
  * @property int $owner_id
  * @property int $deputy_id
- * @property int $headquarter_id
+ * @property int $headquater_id
  * @property int $language_id
  * @property string $name
  * @property string $description
@@ -89,9 +89,9 @@ use app\modules\teams\models\MainTeamMember;
 	/**
 	 * @return int Headquater id
 	 */
-    public function getHeadquarterId()
+    public function getHeadquaterId()
     {
-        return $this->headquarter_id;
+        return $this->headquater_id;
     }
 
     /**
@@ -129,7 +129,7 @@ use app\modules\teams\models\MainTeamMember;
     /**
 	 * @return string description
 	 */
-    public function getDescription()
+    public function getTeamDescription()
     {
         return $this->description;
     }
@@ -152,10 +152,10 @@ use app\modules\teams\models\MainTeamMember;
     /**
      * @return ActiveQuery
      */
-    /*public function getSubTeamsGroupByTournamentMode($sort = true)
+    public function getSubTeamsGroupByTournamentMode($sort = true)
     {
        
-        $subTeams = $this->hasMany(SubTeam::className(), ['main_team_id' => 'team_id'])->orderBy('tournament_mode_id')->all();
+        $subTeams = $this->hasMany(SubTeam::className(), ['main_team_id' => 'id'])->orderBy('tournament_mode_id')->all();
     
         $subTeamsGrouped = [];
         foreach ($subTeams as $subTeamKey => $subTeam) {
@@ -173,7 +173,27 @@ use app\modules\teams\models\MainTeamMember;
         }
     
         return $subTeamsGrouped;
-    }*/
+    }
+
+    /**
+     * @return array
+     */
+    public function getTeamMemberWithOwner($sort = true)
+    {
+        $members = [];
+        $members[] = $this->hasOne(User::className(), ['id' => 'owner_id'])->one();
+        foreach ($this->getTeamMember()->all() as $teamMemberKey => $teamMember) {
+            $members[] = $teamMember->getUser()->one();
+        }
+
+        if ($sort) {
+            usort($members, function($a, $b) {
+                return $a->getUsername() > $b->getUsername();
+            });
+        }
+
+        return $members;
+    }
 
     /**
 	 * @return string Twitter Account

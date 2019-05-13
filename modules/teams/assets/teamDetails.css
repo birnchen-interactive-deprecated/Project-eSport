@@ -1,0 +1,107 @@
+.site-team-details .avatarPanel,
+.site-sub-team-details .avatarPanel {
+    text-align: center;
+}
+
+.site-team-details .avatar-logo,
+.site-sub-team-details .avatar-logo {
+    width: 250px;
+}
+
+.site-team-details .teamPanel,
+.site-sub-team-details .teamPanel {
+    border-top: 1px solid #aaa;
+    margin: 10px 0 0;
+    padding: 5px 15px 0;
+}
+@media (min-width: 1200px) {
+    .site-team-details .teamPanel,
+    .site-sub-team-details .teamPanel {
+        border-top: none;
+        margin: 0;
+        padding: 0 15px;
+    }
+}
+
+.site-team-details .teamPanel .teamInfos,
+.site-sub-team-details .teamPanel .teamInfos {
+    border-bottom: 1px solid #aaa;
+    padding: 10px 0;
+}
+
+.site-team-details .teamPanel .header,
+.site-sub-team-details .teamPanel .header {
+    border-bottom: 1px solid #aaa;
+    padding: 0 15px 8px;
+}
+
+.site-team-details .teamPanel .header .nationality-logo,
+.site-sub-team-details .teamPanel .header .nationality-logo {
+    vertical-align: sub;
+    width: 32px;
+}
+
+.site-team-details .teamPanel .header .teamname,
+.site-sub-team-details .teamPanel .header .teamname {
+    font-size: 20px;
+    margin: 0 0 0 4px;
+}
+
+.site-team-details .teamPanel .header .teamid,
+.site-sub-team-details .teamPanel .header .teamid {
+    color: #9d9d9d;
+    font-size: 12px;
+    margin: 0 0 0 4px;
+}
+
+.site-team-details .teamPanel .teamBody,
+.site-sub-team-details .teamPanel .teamBody {
+    border-bottom: 1px solid #aaa;
+    padding: 10px 0;
+}
+
+.site-team-details .teamPanel .teamBody .entry,
+.site-sub-team-details .teamPanel .teamBody .entry {
+    padding: 3px 0;
+}
+
+.site-team-details .teamPanel .teamBody .context,
+.site-sub-team-details .teamPanel .teamBody .context {
+    padding: 0 15px 0 30px;
+}
+
+.site-team-details .teamPanel .teamBody .nationality-logo,
+.site-sub-team-details .teamPanel .teamBody .nationality-logo {
+    margin: 0 5px 0 0;
+    vertical-align: sub;
+    width: 24px;
+}
+
+.site-team-details .teamPanel .entryMembers,
+.site-sub-team-details .teamPanel .entryMembers {
+    border-top: 1px solid #aaa;
+    margin-top: 10px;
+}
+
+.site-team-details .teamPanel .teamMembers,
+.site-sub-team-details .teamPanel .teamMembers {
+    padding-left: 0;
+}
+
+.site-team-details .teamPanel .entrySubTeams {
+    border-top: 1px solid #aaa;
+    margin-top: 10px;
+}
+
+.site-team-details .teamPanel .tournamentMode {
+    border-bottom: 1px solid #aaa;
+    border-top: 1px solid #aaa;
+    padding-left: 10px;
+}
+.site-team-details .teamPanel .tournamentMode:nth-child(1) {
+    border-top: 0;
+}
+
+.site-team-details .teamPanel .subTeam {
+    padding-left: 0;
+}

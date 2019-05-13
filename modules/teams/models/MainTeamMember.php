@@ -55,7 +55,7 @@ class MainTeamMember extends ActiveRecord
      */
     public function getMainTeam()
     {
-        return $this->hasOne(MainTeam::className(), ['id' => 'main_team_id'])
+        return $this->hasOne(MainTeam::className(), ['id' => 'main_team_id']);
     }
 
     /**

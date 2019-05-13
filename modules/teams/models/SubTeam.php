@@ -8,6 +8,8 @@ use yii\db\ActiveRecord;
 
 use app\modules\tournaments\models\TournamentMode;
 
+use app\modules\user\models\User;
+
 /**
  * Class SubTeam
  * @package app\modules\teams\models
@@ -248,5 +250,13 @@ class SubTeam extends ActiveRecord
     public function isUserSubstitute($userId)
     {
         return $this->hasOne(SubTeamMember::className(), ['sub_team_id' => 'id'])->where(['user_id' => $userId, 'is_sub' => 1])->count() == 1;
+    }
+
+    /**
+     * @return ActiveQuery
+     */
+    public function getSubTeamMembers()
+    {
+        return $this->hasMany(SubTeamMember::className(), ['sub_team_id' => 'id']);
     }
 }

@@ -123,7 +123,7 @@ class MetaClass
         /* standart meta tags */
         $view->registerMetaTag([
             'name' => 'description',
-            'content' => $teamDetails->getDescription(),
+            'content' => $teamDetails->getTeamDescription(),
         ]);
 
         /* Schema.org markup for Google+ */
@@ -133,7 +133,7 @@ class MetaClass
         ]); // itemprop:name
         $view->registerMetaTag([
             'itemprop' => 'description',
-            'content' => $teamDetails->getDescription(),
+            'content' => $teamDetails->getTeamDescription(),
         ]); // itemprop description
         $view->registerMetaTag([
             'itemprop' => 'image',
@@ -163,7 +163,7 @@ class MetaClass
         ]); // twitter:title
         $view->registerMetaTag([
             'name' => 'twitter:description',
-            'content' => $teamDetails->getDescription(),
+            'content' => $teamDetails->getTeamDescription(),
         ]); // twitter:description - less then 200 characters
         $view->registerMetaTag([
             'name' => 'twitter:creator',
@@ -197,7 +197,7 @@ class MetaClass
         ]); // og:image
         $view->registerMetaTag([
             'property' => 'og:description',
-            'content' => $teamDetails->getDescription(),
+            'content' => $teamDetails->getTeamDescription(),
         ]); // og:description
         $view->registerMetaTag([
             'property' => 'og:site_name',
