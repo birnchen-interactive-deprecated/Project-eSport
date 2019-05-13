@@ -15,10 +15,6 @@ use yii\bootstrap\ActiveForm;
 ?>
 
 <div class="site-addGame">
-<<<<<<< HEAD
-=======
-
-
     <?php $form = ActiveForm::begin([
         'id' => 'user-games-form',
         'options' => ['class' => 'form-vertical']
