@@ -8,7 +8,7 @@ use app\modules\user\models\formModels\ProfilePicForm;
 use app\modules\user\models\formModels\LoginForm;
 use app\modules\user\models\formModels\RegisterForm;
 
-use app\modules\User\models\User;
+use app\modules\user\models\User;
 use app\modules\user\models\Gender;
 use app\modules\user\models\Language;
 use app\modules\user\models\Nationality;
