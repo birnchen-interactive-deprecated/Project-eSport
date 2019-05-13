@@ -94,12 +94,54 @@ Yii::$app->MetaClass->writeMetaUser($this, $model, $userInfo['nationality']);
                     <?= $userInfo['nationality']->getName(); ?>
                 </div>
             </div>
+
             <div class="entry clearfix">
-                <div class="col-xs-5 col-sm-3 col-lg-3"><?= \app\modules\user\Module::t('account', 'city', $userInfo['language']->locale) ?>
-                    :
+                <div class="col-xs-5 col-sm-3 col-lg-3"><?= \app\modules\user\Module::t('account', 'language', $userInfo['language']->locale) ?>:</div>
+                <div class="col-xs-7 col-sm-9 col-lg-9 context">
+                    <img class="nationality-logo" src="<?= $userInfo['nationalityImg']; ?>.webp" alt=""
+                         onerror="this.src='<?= $userInfo['nationalityImg']; ?>.png'">
+                    <?= $userInfo['language']->getName(); ?>
                 </div>
-                <div class="col-xs-7 col-sm-9 col-lg-9 context"><?= $model->city; ?></div>
             </div>
+
+            <?php if(!empty($model->twitter_account)): ?>
+                <div class="entry clearfix">
+                    <div class="col-xs-5 col-sm-3 col-lg-3"><?= \app\modules\user\Module::t('account', 'twitter_account', $userInfo['language']->locale) ?>:</div>
+                    <div class="col-xs-7 col-sm-9 col-lg-9 context">
+                        <?= Html::a('@' . $model->twitter_account, 'https://twitter.com/' . $model->twitter_account, ['target' => '_blank', 'rel' =>'noopener', 'aria-label' => 'twitter', 'label' => 'twitter']); ?>   
+                    </div>
+                </div>
+            <?php endif; ?>
+
+            <?php if(!empty($model->twitter_channel)): ?>
+                <div class="entry clearfix">
+                <div class="col-xs-5 col-sm-3 col-lg-3"><?= \app\modules\user\Module::t('account', 'twitter_channel', $userInfo['language']->locale) ?>:</div>
+                <div class="col-xs-7 col-sm-9 col-lg-9 context">
+                    <?= Html::a('#' . $model->twitter_channel, 'https://twitter.com/hashtag/' . $model->twitter_channel . '?f=tweets&vertical=default', ['target' => '_blank', 'rel' =>'noopener', 'aria-label' => 'twitter', 'label' => 'twitter']); ?>   
+                </div>
+            </div>
+            <?php endif; ?>
+
+            <?php if(!empty($model->discord_id)): ?>
+                <div class="entry clearfix">
+                <div class="col-xs-5 col-sm-3 col-lg-3"><?= \app\modules\user\Module::t('account', 'discord_account', $userInfo['language']->locale) ?>:</div>
+                <div class="col-xs-7 col-sm-9 col-lg-9 context">
+                    <?= $model->discord_id; ?>  
+                </div>
+            </div>
+            <?php endif; ?>
+
+            <?php if(!empty($model->discord_server)): ?>
+                <div class="entry clearfix">
+                <div class="col-xs-5 col-sm-3 col-lg-3"><?= \app\modules\user\Module::t('account', 'discord_server', $userInfo['language']->locale) ?>:</div>
+                <div class="col-xs-7 col-sm-9 col-lg-9 context">
+                    <?= Html::a($model->discord_server, 'https://discordapp.com/invite/' . $model->discord_server, ['target' => '_blank', 'rel' =>'noopener', 'aria-label' => 'twitter', 'label' => 'twitter']); ?>   
+                </div>
+            </div>
+            <?php endif; ?>
+
+            
+
             <!-- User games/Platforms and id's -->
             <div class="clearfix">
                 <div class="col-lg-12 gameHeader">

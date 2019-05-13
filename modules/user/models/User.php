@@ -39,6 +39,10 @@ use app\modules\miscellaneous\HelperClass;
  * @property bool $is_password_change_required
  * @property string $access_token
  * @property string $auth_key
+ * @property string $twitter_account
+ * @property string $twitter_channel
+ * @property string $discord_id
+ * @property string $discord_server
  */
 class User extends AbstractActiveRecord implements IdentityInterface
 {
