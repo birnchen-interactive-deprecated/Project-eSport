@@ -149,7 +149,7 @@ Yii::$app->MetaClass->writeMetaUser($this, $model, $userInfo['nationality']);
                         <div class="teamEntry clearfix">
                             <div class="col-lg-12">
                                 <?= Html::a($mainTeam['team']->getName(), ['/teams/team-details', 'id' => $mainTeam['team']->getId()]); ?>
-                                (<?= ($mainTeam['owner']) ? 'owner' : 'member'; ?>)
+                                <?= ($mainTeam['owner']) ? '(owner)' : '(member)'; ?>
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -160,8 +160,7 @@ Yii::$app->MetaClass->writeMetaUser($this, $model, $userInfo['nationality']);
                     <?php foreach ($subTeams as $key => $subTeam): ?>
                         <div class="teamEntry clearfix">
                             <div class="col-lg-12"><?= Html::a($subTeam['team']->getTeamName(), ['/teams/sub-team-details', 'id' => $subTeam['team']->getId()]) . " (" . $subTeam['team']->getTournamentMode()->one()->getName() . ")"; ?>
-                                (<?= ($subTeam['owner']) ? 'Captain' : (($subTeam['isSub']) ? 'substitute' : 'player'); ?>
-                                )
+                                <?= ($subTeam['owner']) ? '(Captain)' : (($subTeam['isSub']) ? '(substitute)' : '(player)'); ?>
                             </div>
                         </div>
                     <?php endforeach; ?>
