@@ -3,27 +3,21 @@
 namespace app\modules\user\controllers;
 
 use app\components\BaseController;
-
-use app\modules\user\models\formModels\ProfilePicForm;
+use app\modules\platformgames\models\Games;
+use app\modules\platformgames\models\Platforms;
+use app\modules\platformgames\models\UserGames;
 use app\modules\user\models\formModels\LoginForm;
+use app\modules\user\models\formModels\ProfilePicForm;
 use app\modules\user\models\formModels\RegisterForm;
 use app\modules\user\models\formModels\UserGameForm;
-
-use app\modules\user\models\User;
 use app\modules\user\models\Gender;
 use app\modules\user\models\Language;
 use app\modules\user\models\Nationality;
-
-use app\modules\platformgames\models\Games;
-use app\modules\platformgames\models\Platforms;
-
+use app\modules\user\models\User;
 use DateTime;
-
 use Yii;
 use yii\filters\AccessControl;
-use yii\web\Controller;
 use yii\web\Response;
-use yii\filters\VerbFilter;
 
 /**
  * Class UserController
@@ -32,25 +26,25 @@ use yii\filters\VerbFilter;
  */
 class UserController extends BaseController
 {
-	/**
-	 * @inheritdoc
-	 */
-	public function behavior()
-	{
-		return [
-			'access' => [
-				'class' => AccessControl::className(),
-				'rules' => [
-					[
-						'allow' => true,
-						'roles' => ['0'],
-					]
-				]
-			]
-		];
-	}
+    /**
+     * @inheritdoc
+     */
+    public function behavior()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['0'],
+                    ]
+                ]
+            ]
+        ];
+    }
 
-	/**
+    /**
      * {@inheritdoc}
      */
     public function actions()
@@ -66,20 +60,20 @@ class UserController extends BaseController
         ];
     }
 
-	/**
-	 * Display the user dashboard
-	 *
-	 * @return Response|string
-	 * @throws \Exception
-	 * @throws \Throvable
-	 */
-	public function actionIndex()
-	{
-		return $this->goHome();
-		//return $this->redirect(array('index'));
-	}
+    /**
+     * Display the user dashboard
+     *
+     * @return Response|string
+     * @throws \Exception
+     * @throws \Throvable
+     */
+    public function actionIndex()
+    {
+        return $this->goHome();
+        //return $this->redirect(array('index'));
+    }
 
-	/**
+    /**
      * Login action.
      *
      * @return Response|string
@@ -156,13 +150,11 @@ class UserController extends BaseController
         /** @var ProfilePicForm $profilePicModel */
         $profilePicModel = new ProfilePicForm(ProfilePicForm::SCENARIO_USER);
         $profilePicModel->id = $id;
-        
 
-        if($profilePicModel->load(Yii::$app->request->post()))
-        {
+
+        if ($profilePicModel->load(Yii::$app->request->post())) {
             $profilePicModel->file = UploadedFile::getInstance($profilePicModel, 'file');
-            if($profilePicModel->validate())
-            {
+            if ($profilePicModel->validate()) {
                 $profilePicModel->save();
             }
         }
@@ -173,7 +165,7 @@ class UserController extends BaseController
             'memberSince' => DateTime::createFromFormat('Y-m-d H:i:s', $user->dt_created)->format('d.m.y'),
             'age' => (new DateTime($user->birthday))->diff(new DateTime())->y,
             'gender' => $user->getGender()->one(),
-            'language' => ($isMySelfe)? $user->getLanguage()->one() : Language::findByLocale('en-US'),
+            'language' => ($isMySelfe) ? $user->getLanguage()->one() : Language::findByLocale('en-US'),
             'nationality' => $user->getNationality()->one(), /** @todo prüfen wegen gender (Männlich/Weiblich/Divers) */
             'nationalityImg' => Yii::$app->HelperClass->checkImage('/images/nationality/', $user->getNationalityId()),
             'playerImage' => Yii::$app->HelperClass->checkImage('/images/userAvatar/', $user->getId()),
@@ -197,7 +189,7 @@ class UserController extends BaseController
             ];
         }
 
-        usort($games, function($a, $b) {
+        usort($games, function ($a, $b) {
             return [$a['platformId'], $a['gameId']] <=> [$b['platformId'], $b['gameId']];
         });
 
@@ -244,6 +236,17 @@ class UserController extends BaseController
                 'id' => $id,
                 'gamesList' => $gamesList,
                 'platformList' => $platformList,
+                'model' => $model
             ]);
+    }
+
+    public function actionToggleVisibility($gameId, $platformId)
+    {
+        $model = UserGames::find()->where(['game_id' => $gameId, 'platform_id' => $platformId, 'user_id' => Yii::$app->user->identity->getId()])->one();
+
+        $model->visible = !$model->visible;
+        $model->save();
+
+        $this->redirect("details?id=" . Yii::$app->user->identity->getId());
     }
 }
