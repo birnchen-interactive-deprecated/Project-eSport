@@ -220,7 +220,7 @@ class UserController extends BaseController
         $model = new UserGameForm;
 
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->save()) {
-            $this->goHome();
+            $this->redirect("details?id=" . Yii::$app->user->identity->getId());
         }
 
         $gamesList = [];
