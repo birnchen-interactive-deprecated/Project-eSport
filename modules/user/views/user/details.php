@@ -111,6 +111,31 @@ Yii::$app->MetaClass->writeMetaUser($this, $model, $userInfo['nationality']);
             </div>
             
             <div class="gameBody clearfix">
+                <div class="col-lg-12">
+                    <?php foreach ($games as $key => $game) : ?>
+                        <div class="gameRow">
+                            <img class="platform-logo" src="<?= $game['platform']; ?>.webp" alt="" onerror="this.src='<?= $game['platform']; ?>.png'">
+                            <img class="game-logo" src="<?= $game['gameImg']; ?>.webp" alt="" onerror="this.src='<?= $game['gameImg']; ?>.png'">
+                            <?php if ($game['visible'] || $userInfo['isMySelfe']) : ?>
+                                <?= $game['playerId']; ?>
+                            <?php endif; ?>
+                            <?php if ($userInfo['isMySelfe']): ?>
+                                <?php
+                                    echo Html::a('',
+                                        [
+                                            "toggle-visibility",
+                                            "gameId" => $game['gameId'],
+                                            "platformId" => $game['platformId']
+                                        ],
+                                        ['class' => $game['visible'] == 1 ? "glyphicon glyphicon-eye-open" : "glyphicon glyphicon-eye-close",
+                                            'title' => $game['visible'] == 1 ? "Verstecken" : "Sichtbar machen"
+                                        ]
+                                    )
+                                ?>
+                            <?php endif; ?>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
                 <table>
                     <tbody>
                     <?php foreach ($games as $key => $game) : ?>
