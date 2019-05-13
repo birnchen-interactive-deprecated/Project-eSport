@@ -21,10 +21,9 @@ $this->title = $model->username . '\'s Player profile';
 $this->registerLinkTag(['rel' => 'canonical', 'href' => 'https://project-esport.gg' . Yii::$app->request->url]);
 
 /** twitter/facebook/google Metatag */
-Yii::$app->metaClass->writeMetaUser($this, $model, $userInfo['nationality']);
+Yii::$app->MetaClass->writeMetaUser($this, $model, $userInfo['nationality']);
 
 /** $synonym = ($gender_id == 1) ? 'synonym_m' : ($gender_id == 2) ? 'synonym_w' : 'synonym_d'; */
-
 ?>
 
 <div class="site-account">
@@ -90,7 +89,7 @@ Yii::$app->metaClass->writeMetaUser($this, $model, $userInfo['nationality']);
             	<div class="col-lg-12 gameHeader">
                     <?= \app\modules\user\Module::t('account', 'games', $userInfo['language']->locale) ?>
                     <?php if ($userInfo['isMySelfe']) : ?>
-                        <?= Html::a('(add)', ['/platformgames/add-game-id', 'id' => $model->id]); ?>
+                        <?= Html::a('(add)', ['/user/add-game-id', 'id' => $model->id]); ?>
                     <?php endif; ?>
                 </div>
             </div>

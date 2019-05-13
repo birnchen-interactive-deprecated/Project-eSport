@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 4.8.4
+- https://www.phpmyadmin.net
+-
+- Host: localhost:3306
+- Erstellungszeit: 13. Mai 2019 um 09:55
+- Server-Version: 5.7.26-0ubuntu0.16.04.1
+- PHP-Version: 7.1.14
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="https://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Datenbank: 'Project-eSport'
+    -->
+    <database name="Project-eSport">
+        <!-- Tabelle main_team_member -->
+        <table name="main_team_member">
+            <column name="main_team_id">1</column>
+            <column name="user_id">2</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">2</column>
+            <column name="user_id">6</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">8</column>
+            <column name="user_id">8</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">2</column>
+            <column name="user_id">11</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">2</column>
+            <column name="user_id">12</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">2</column>
+            <column name="user_id">13</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">4</column>
+            <column name="user_id">15</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">4</column>
+            <column name="user_id">16</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">4</column>
+            <column name="user_id">30</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">5</column>
+            <column name="user_id">32</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">5</column>
+            <column name="user_id">33</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">4</column>
+            <column name="user_id">35</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">4</column>
+            <column name="user_id">36</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">4</column>
+            <column name="user_id">37</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">4</column>
+            <column name="user_id">38</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">4</column>
+            <column name="user_id">39</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">7</column>
+            <column name="user_id">40</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">13</column>
+            <column name="user_id">43</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">7</column>
+            <column name="user_id">45</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">5</column>
+            <column name="user_id">49</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">6</column>
+            <column name="user_id">52</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">4</column>
+            <column name="user_id">53</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">4</column>
+            <column name="user_id">54</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">4</column>
+            <column name="user_id">57</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">10</column>
+            <column name="user_id">59</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">12</column>
+            <column name="user_id">62</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">12</column>
+            <column name="user_id">63</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">11</column>
+            <column name="user_id">64</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">4</column>
+            <column name="user_id">65</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">9</column>
+            <column name="user_id">66</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">4</column>
+            <column name="user_id">67</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">12</column>
+            <column name="user_id">68</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">1</column>
+            <column name="user_id">69</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">10</column>
+            <column name="user_id">70</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">15</column>
+            <column name="user_id">72</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">15</column>
+            <column name="user_id">73</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">11</column>
+            <column name="user_id">74</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">6</column>
+            <column name="user_id">75</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">6</column>
+            <column name="user_id">76</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">4</column>
+            <column name="user_id">77</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">9</column>
+            <column name="user_id">78</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">4</column>
+            <column name="user_id">80</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">8</column>
+            <column name="user_id">83</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">4</column>
+            <column name="user_id">84</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">1</column>
+            <column name="user_id">85</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">2</column>
+            <column name="user_id">86</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">10</column>
+            <column name="user_id">87</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">4</column>
+            <column name="user_id">92</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">4</column>
+            <column name="user_id">93</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">11</column>
+            <column name="user_id">94</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">4</column>
+            <column name="user_id">95</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">5</column>
+            <column name="user_id">97</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">16</column>
+            <column name="user_id">99</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">5</column>
+            <column name="user_id">100</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">5</column>
+            <column name="user_id">101</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">5</column>
+            <column name="user_id">102</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">4</column>
+            <column name="user_id">103</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">4</column>
+            <column name="user_id">106</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">4</column>
+            <column name="user_id">107</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">21</column>
+            <column name="user_id">109</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">4</column>
+            <column name="user_id">111</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">21</column>
+            <column name="user_id">111</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">21</column>
+            <column name="user_id">115</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">4</column>
+            <column name="user_id">120</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">4</column>
+            <column name="user_id">121</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">17</column>
+            <column name="user_id">122</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">8</column>
+            <column name="user_id">123</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">4</column>
+            <column name="user_id">124</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">20</column>
+            <column name="user_id">125</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">18</column>
+            <column name="user_id">126</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">18</column>
+            <column name="user_id">128</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">18</column>
+            <column name="user_id">129</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">19</column>
+            <column name="user_id">134</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">20</column>
+            <column name="user_id">135</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">19</column>
+            <column name="user_id">137</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">4</column>
+            <column name="user_id">139</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">20</column>
+            <column name="user_id">142</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">16</column>
+            <column name="user_id">143</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">16</column>
+            <column name="user_id">146</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">22</column>
+            <column name="user_id">151</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">16</column>
+            <column name="user_id">152</column>
+        </table>
+        <table name="main_team_member">
+            <column name="main_team_id">17</column>
+            <column name="user_id">153</column>
+        </table>
+    </database>
+</pma_xml_export>

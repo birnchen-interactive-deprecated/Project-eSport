@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 4.8.4
+- https://www.phpmyadmin.net
+-
+- Host: localhost:3306
+- Erstellungszeit: 13. Mai 2019 um 09:47
+- Server-Version: 5.7.26-0ubuntu0.16.04.1
+- PHP-Version: 7.1.14
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="https://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Datenbank: 'Project-eSport'
+    -->
+    <database name="Project-eSport">
+        <!-- Tabelle main_team -->
+        <table name="main_team">
+            <column name="id">1</column>
+            <column name="owner_id">22</column>
+            <column name="headquater_id">1</column>
+            <column name="name">Robotic Elite Clan</column>
+            <column name="short_code">REC</column>
+            <column name="description">REC is a clan made by P1st0lpr0 aka. Robotic Skillz. Atraya is helping to lead the clan. We are currently searching for all ranks.
+We are a multigaming Clan. We don’t bite, so check out our Discord.</column>
+        </table>
+        <table name="main_team">
+            <column name="id">2</column>
+            <column name="owner_id">4</column>
+            <column name="headquater_id">2</column>
+            <column name="name">Captain Viper</column>
+            <column name="short_code">CV</column>
+            <column name="description">Ein lockeres Team, welches Spaß am Spiel hat und trotzdem versucht besser zu werden.</column>
+        </table>
+        <table name="main_team">
+            <column name="id">4</column>
+            <column name="owner_id">25</column>
+            <column name="headquater_id">1</column>
+            <column name="name">Stealth7 eSports</column>
+            <column name="short_code">S7</column>
+            <column name="description">Wir, Stealth7 eSports, sind ein PS4/PC Multigaming Clan wo Fortschritt und Zusammenhalt an erster Stelle steht, was bei einem Teamspiel von hoher Bedeutung ist.</column>
+        </table>
+        <table name="main_team">
+            <column name="id">5</column>
+            <column name="owner_id">10</column>
+            <column name="headquater_id">1</column>
+            <column name="name">AcTive</column>
+            <column name="short_code"></column>
+            <column name="description"></column>
+        </table>
+        <table name="main_team">
+            <column name="id">6</column>
+            <column name="owner_id">19</column>
+            <column name="headquater_id">1</column>
+            <column name="name">Team Aspect</column>
+            <column name="short_code"></column>
+            <column name="description"></column>
+        </table>
+        <table name="main_team">
+            <column name="id">7</column>
+            <column name="owner_id">44</column>
+            <column name="headquater_id">1</column>
+            <column name="name">eQuality.</column>
+            <column name="short_code"></column>
+            <column name="description"></column>
+        </table>
+        <table name="main_team">
+            <column name="id">8</column>
+            <column name="owner_id">8</column>
+            <column name="headquater_id">1</column>
+            <column name="name">Thinking</column>
+            <column name="short_code"></column>
+            <column name="description"></column>
+        </table>
+        <table name="main_team">
+            <column name="id">9</column>
+            <column name="owner_id">17</column>
+            <column name="headquater_id">1</column>
+            <column name="name">eSport Rhein Neckar</column>
+            <column name="short_code">ERN</column>
+            <column name="description">First german amateur sports club with an eSports division @tsvoftersheim | Founding member @ESBD_Verband</column>
+        </table>
+        <table name="main_team">
+            <column name="id">10</column>
+            <column name="owner_id">58</column>
+            <column name="headquater_id">1</column>
+            <column name="name">GHR E-Sports</column>
+            <column name="short_code">GHR</column>
+            <column name="description"></column>
+        </table>
+        <table name="main_team">
+            <column name="id">11</column>
+            <column name="owner_id">41</column>
+            <column name="headquater_id">1</column>
+            <column name="name">Trinitas eSports</column>
+            <column name="short_code">TRT</column>
+            <column name="description"></column>
+        </table>
+        <table name="main_team">
+            <column name="id">12</column>
+            <column name="owner_id">56</column>
+            <column name="headquater_id">1</column>
+            <column name="name">Esport BERG</column>
+            <column name="short_code"></column>
+            <column name="description"></column>
+        </table>
+        <table name="main_team">
+            <column name="id">13</column>
+            <column name="owner_id">42</column>
+            <column name="headquater_id">1</column>
+            <column name="name">Orbital Gaming</column>
+            <column name="short_code">OG</column>
+            <column name="description"></column>
+        </table>
+        <table name="main_team">
+            <column name="id">15</column>
+            <column name="owner_id">71</column>
+            <column name="headquater_id">1</column>
+            <column name="name">Safari Force</column>
+            <column name="short_code"></column>
+            <column name="description"></column>
+        </table>
+        <table name="main_team">
+            <column name="id">16</column>
+            <column name="owner_id">3</column>
+            <column name="headquater_id">1</column>
+            <column name="name">Baby Driver</column>
+            <column name="short_code">BDVR</column>
+            <column name="description">Ob Anfänger, unranked, Bronze, Silber, Gold oder höher - bei den Baby Drivern ist jeder noch so kleine Mitspieler willkommen und darf auch mit uns zusammen in die Turniere schnuppern.</column>
+        </table>
+        <table name="main_team">
+            <column name="id">17</column>
+            <column name="owner_id">116</column>
+            <column name="headquater_id">1</column>
+            <column name="name">Confidence</column>
+            <column name="short_code">PMB</column>
+            <column name="description">kommt noch</column>
+        </table>
+        <table name="main_team">
+            <column name="id">18</column>
+            <column name="owner_id">127</column>
+            <column name="headquater_id">1</column>
+            <column name="name">Lunatic eSports</column>
+            <column name="short_code">KES</column>
+            <column name="description">Wir sind ein aktiver, aufstrebender Clan, der grade im Aufbau ist und 
+Competitive Spieler sucht.
+Wir vertreten Fortnite, Rocket League und League of Legends.</column>
+        </table>
+        <table name="main_team">
+            <column name="id">19</column>
+            <column name="owner_id">130</column>
+            <column name="headquater_id">1</column>
+            <column name="name">Irrelevant eSports</column>
+            <column name="short_code">ILV</column>
+            <column name="description">Irrelevant eSports is an organisation that has competitive Rocket League and Fortnite teams! We help our teams to improve as individuals! We currently have 11 in total!
+We hope to see you soon in our Discord!
+https://discord.gg/zV3jrQX</column>
+        </table>
+        <table name="main_team">
+            <column name="id">20</column>
+            <column name="owner_id">133</column>
+            <column name="headquater_id">1</column>
+            <column name="name">White Sharks eSports</column>
+            <column name="short_code">WHE</column>
+            <column name="description">coming soon</column>
+        </table>
+        <table name="main_team">
+            <column name="id">21</column>
+            <column name="owner_id">110</column>
+            <column name="headquater_id">1</column>
+            <column name="name">Conflict</column>
+            <column name="short_code">CF</column>
+            <column name="description">komt noch</column>
+        </table>
+        <table name="main_team">
+            <column name="id">22</column>
+            <column name="owner_id">150</column>
+            <column name="headquater_id">1</column>
+            <column name="name">Striker Pigeon</column>
+            <column name="short_code">STPG</column>
+            <column name="description">following</column>
+        </table>
+    </database>
+</pma_xml_export>

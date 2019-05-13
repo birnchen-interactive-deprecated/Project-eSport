@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 4.8.4
+- https://www.phpmyadmin.net
+-
+- Host: localhost:3306
+- Erstellungszeit: 13. Mai 2019 um 10:06
+- Server-Version: 5.7.26-0ubuntu0.16.04.1
+- PHP-Version: 7.1.14
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="https://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Datenbank: 'Project-eSport'
+    -->
+    <database name="Project-eSport">
+        <!-- Tabelle tournament_mode -->
+        <table name="tournament_mode">
+            <column name="id">1</column>
+            <column name="game_id">1</column>
+            <column name="name">1v1</column>
+            <column name="max_player">1</column>
+            <column name="sub_player">0</column>
+            <column name="description">1v1 Spieler gegen Spieler</column>
+        </table>
+        <table name="tournament_mode">
+            <column name="id">2</column>
+            <column name="game_id">1</column>
+            <column name="name">2v2</column>
+            <column name="max_player">3</column>
+            <column name="sub_player">1</column>
+            <column name="description">2v2 Team mit zwei Leuten gegen Team mit zwei Leuten</column>
+        </table>
+        <table name="tournament_mode">
+            <column name="id">3</column>
+            <column name="game_id">1</column>
+            <column name="name">3v3</column>
+            <column name="max_player">5</column>
+            <column name="sub_player">2</column>
+            <column name="description">3v3 Team mit drei Leuten gegen Team mit drei Leuten</column>
+        </table>
+    </database>
+</pma_xml_export>
