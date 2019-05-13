@@ -10,6 +10,7 @@ use yii\db\ActiveQuery;
 use yii\web\IdentityInterface;
 
 use app\modules\platformgames\models\UserGames;
+use app\modules\platformgames\models\Platforms;
 
 use app\modules\teams\models\MainTeam;
 use app\modules\teams\models\SubTeam;

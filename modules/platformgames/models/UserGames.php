@@ -49,6 +49,14 @@ class UserGames extends ActiveRecord
 	}
 
 	/**
+	 * @return int platform id
+	 */
+	public function getPlatform()
+	{
+		return $this->platform_id;
+	}
+
+	/**
 	 * @return string player id
 	 */
 	public function getPlayerId()
@@ -64,5 +72,11 @@ class UserGames extends ActiveRecord
 		return $this->visible;
 	}
 
-	/** Static functions */
+	//public function save()
+    //{
+        //if (!$this->player_id) $this->player_id = uniqid();
+        //data::set($this->game_id, $this->data);
+        //$this->saved = true;
+        //return true;
+    //}
 }

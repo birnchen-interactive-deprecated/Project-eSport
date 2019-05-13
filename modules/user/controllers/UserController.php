@@ -24,7 +24,7 @@ use yii\filters\VerbFilter;
 /**
  * Class UserController
  *
- * @package app\modules\userAccount\controllers
+ * @package app\modules\user\controllers
  */
 class UserController extends BaseController
 {

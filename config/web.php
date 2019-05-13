@@ -72,6 +72,7 @@ $config = [
                 //'platformgames/<action>'=>'platformgames/platformgames/<action>',
                 'teams/<action>'=>'teams/teams/<action>',
                 'tournaments/<action>'=>'tournaments/tournaments/<action>',
+                'platformgames/<action>' => 'platformgames/platformgames/<action>', 
             ],
         ],
         'i18n' => [

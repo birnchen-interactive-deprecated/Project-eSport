@@ -25,10 +25,6 @@ Yii::$app->metaClass->writeMetaUser($this, $model, $userInfo['nationality']);
 
 /** $synonym = ($gender_id == 1) ? 'synonym_m' : ($gender_id == 2) ? 'synonym_w' : 'synonym_d'; */
 
-//$timestamp = time();
-//$datum = date("d.m.Y - H:i", $timestamp);
-//echo $datum;
-
 ?>
 
 <div class="site-account">
@@ -91,15 +87,20 @@ Yii::$app->metaClass->writeMetaUser($this, $model, $userInfo['nationality']);
             </div>
             <!-- User games/Platforms and id's -->
             <div class="clearfix">
-            	<div class="col-lg-12 gameHeader"><?= \app\modules\user\Module::t('account', 'games', $userInfo['language']->locale) ?></div>
+            	<div class="col-lg-12 gameHeader">
+                    <?= \app\modules\user\Module::t('account', 'games', $userInfo['language']->locale) ?>
+                    <?php if ($userInfo['isMySelfe']) : ?>
+                        <?= Html::a('(add)', ['/platformgames/add-game-id', 'id' => $model->id]); ?>
+                    <?php endif; ?>
+                </div>
             </div>
 
             <div class="gameBody clearfix">
 	            <div class="entry clearfix">
 	            	<?php foreach ($games as $key => $game) : ?>
                             <div class="col-xs-5 col-sm-3 col-lg-3">
-                                <img class="game-logo" src="<?= $game['gameImg']; ?>.webp" alt="" onerror="this.src='<?= $game['gameImg']; ?>.png'">
                                 <img class="platform-logo" src="<?= $game['platform']; ?>.webp" alt="" onerror="this.src='<?= $game['platform']; ?>.png'">
+                                <img class="game-logo" src="<?= $game['gameImg']; ?>.webp" alt="" onerror="this.src='<?= $game['gameImg']; ?>.png'">
                             </div>
 	        			    <?php if($game['visible']) : ?>
                                 <div class="col-xs-7 col-sm-9 col-lg-9 context"><?= $game['playerId']; ?></div>

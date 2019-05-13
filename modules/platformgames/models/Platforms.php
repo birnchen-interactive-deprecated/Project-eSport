@@ -37,4 +37,12 @@ class Platforms extends ActiveRecord
 	{
 		return $this->description;
 	}
+
+	/**
+     * @inheritdoc
+     */
+    public static function findPlatform($id)
+    {
+        return static::findOne(['id' => $id]);
+    }
 }
