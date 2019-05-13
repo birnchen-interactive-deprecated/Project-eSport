@@ -136,37 +136,6 @@ Yii::$app->MetaClass->writeMetaUser($this, $model, $userInfo['nationality']);
                         </div>
                     <?php endforeach; ?>
                 </div>
-                <table>
-                    <tbody>
-                    <?php foreach ($games as $key => $game) : ?>
-                        <tr>
-                            <td><img class="platform-logo" src="<?= $game['platform']; ?>.webp" alt=""
-                                     onerror="this.src='<?= $game['platform']; ?>.png'"></td>
-                            <td><img class="game-logo" src="<?= $game['gameImg']; ?>.webp" alt=""
-                                     onerror="this.src='<?= $game['gameImg']; ?>.png'"></td>
-                            <td>
-                                <?php if ($game['visible'] || $userInfo['isMySelfe']) : ?>
-                                    <?= $game['playerId']; ?>
-                                <?php endif; ?>
-                            </td>
-                            <td>
-                                <?php if ($userInfo['isMySelfe']) {
-                                    echo Html::a('',
-                                        [
-                                            "toggle-visibility",
-                                            "gameId" => $game['gameId'],
-                                            "platformId" => $game['platformId']
-                                        ],
-                                        ['class' => $game['visible'] == 1 ? "glyphicon glyphicon-eye-open" : "glyphicon glyphicon-eye-close",
-                                            'title' => $game['visible'] == 1 ? "Verstecken" : "Sichtbar machen"
-                                        ]
-                                    );
-                                }; ?>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                    </tbody>
-                </table>
             </div>
 
             <!-- Teams where the user is member -->
