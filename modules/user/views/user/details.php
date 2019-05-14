@@ -116,8 +116,6 @@ Yii::$app->MetaClass->writeMetaUser($this, $model, $userInfo['nationality']);
                     <div class="col-xs-7 col-sm-9 col-lg-9 context">
                         <?= Html::a('Follow @' . $model->twitter_account, 'https://twitter.com/' . $model->twitter_account, ['class' => 'twitter-follow-button', 'target' => '_blank', 'rel' =>'noopener', 'aria-label' => 'twitter', 'label' => 'twitter', 'data-size' => 'default']); ?>
                         <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
-
-                         
                     </div>
                 </div>
             <?php endif; ?>
@@ -126,7 +124,7 @@ Yii::$app->MetaClass->writeMetaUser($this, $model, $userInfo['nationality']);
                 <div class="entry clearfix">
                 <div class="col-xs-5 col-sm-3 col-lg-3"><?= \app\modules\user\Module::t('account', 'twitter_channel', $userInfo['language']->locale) ?>:</div>
                 <div class="col-xs-7 col-sm-9 col-lg-9 context">
-                    <?= Html::a('#' . $model->twitter_channel, 'https://twitter.com/hashtag/' . $model->twitter_channel . '?f=tweets&vertical=default', ['target' => '_blank', 'rel' =>'noopener', 'aria-label' => 'twitter', 'label' => 'twitter']); ?>   
+                    <?= Html::a('Tweet #' . $model->twitter_channel, 'https://twitter.com/intent/tweet?button_hashtag=' . $model->twitter_channel . '&ref_src=twsrc%5Etfw', ['class' => 'twitter-hashtag-button', 'target' => '_blank', 'rel' =>'noopener', 'aria-label' => 'twitter-channel', 'label' => 'twitter-channel', 'data-lang' => 'en', 'data-show-count' => 'false']); ?>
                 </div>
             </div>
             <?php endif; ?>
