@@ -12,6 +12,7 @@
 
 use app\modules\admin\Module;
 use yii\bootstrap\ActiveForm;
+use yii\bootstrap\Alert;
 use yii\helpers\Html;
 
 use app\widgets\Alert;
@@ -31,7 +32,14 @@ Yii::$app->MetaClass->writeMetaUser($this, $model, $userInfo['nationality']);
 
 if($model->id == 2)
 {
-    Yii::$app->session->setFlash('error', 'This is the message');
+    //Yii::$app->session->setFlash('error', 'This is the message');
+
+    echo Alert::widget([
+    'options' => [
+        'class' => 'alert-info',
+    ],
+    'body' => 'Say hello...',
+]);
 }
 
 ?>
