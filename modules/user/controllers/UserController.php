@@ -11,6 +11,7 @@ use app\modules\user\models\formModels\LoginForm;
 use app\modules\user\models\formModels\ProfilePicForm;
 use app\modules\user\models\formModels\RegisterForm;
 use app\modules\user\models\formModels\UserGameForm;
+use app\modules\user\models\formModels\UserDetailsForm;
 
 use app\modules\user\models\Gender;
 use app\modules\user\models\Language;
@@ -211,6 +212,44 @@ class UserController extends BaseController
                 'mainTeams' => $mainTeams,
                 'subTeams' => $subTeams,
                 'siteLanguage' => $siteLanguage,
+            ]);
+    }
+
+    public function actionEditDetails($id)
+    {
+        if (Yii::$app->user->isGuest || Yii::$app->user->identity == null && Yii::$app->user->identity->getId() != $id) {
+            return $this->goHome();
+        }
+
+        $model = new UserDetailsForm();
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->save()) {
+            $this->redirect("details?id=" . Yii::$app->user->identity->getId());
+        }
+
+        $genderList = [];
+        foreach (Gender::find()->all() as $gender) {
+            $genderList[$gender->getId()] = $gender->getName();
+        }
+
+        $languageList = [];
+        foreach (Language::find()->all() as $language) {
+            $languageList[$language->getId()] = $language->getName();
+        }
+
+        $nationalityList = [];
+        foreach (Nationality::find()->all() as $nationality) {
+            $nationalityList[$nationality->getId()] = $nationality->getName();
+        }
+
+
+        return $this->render('editDetails',
+            [
+                'id' => $id,
+                'genderList' => $genderList,
+                'languageList' => $languageList,
+                'nationalityList' => $nationalityList,
+                'model' => $model
             ]);
     }
 

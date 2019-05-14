@@ -62,6 +62,7 @@ Yii::$app->MetaClass->writeMetaUser($this, $model, $userInfo['nationality']);
                     echo Html::a('',
                         [
                             "edit-details",
+                            "id" => $model->id
                         ],
                         ['class' => "glyphicon glyphicon-pencil",
                             'title' => "Edit Details"
