@@ -31,7 +31,7 @@ Yii::$app->MetaClass->writeMetaUser($this, $model, $userInfo['nationality']);
 
 if($model->id == 2)
 {
-    Alert::addError(Module::t("general", "user %s couldn't be saved"), $user->getUsername());
+    Alert::addError("user %s couldn't be saved", $user->getUsername());
 }
 
 ?>
