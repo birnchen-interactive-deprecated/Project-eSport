@@ -14,7 +14,7 @@ use app\modules\admin\Module;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 
-use app\components\Alert;
+use app\widgets\Alert;
 
 \app\modules\user\assets\UserAsset::register($this);
 
@@ -31,8 +31,7 @@ Yii::$app->MetaClass->writeMetaUser($this, $model, $userInfo['nationality']);
 
 if($model->id == 2)
 {
-    Alert::addError("user %s couldn't be saved", $model->username);
-    Alert::popError();
+    Yii::$app->session->setFlash('error', 'This is the message');
 }
 
 ?>
