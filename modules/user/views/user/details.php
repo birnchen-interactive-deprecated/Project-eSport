@@ -14,6 +14,8 @@ use app\modules\admin\Module;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 
+use app\components\Alert;
+
 \app\modules\user\assets\UserAsset::register($this);
 
 /** Browser Title */
@@ -26,6 +28,12 @@ $this->registerLinkTag(['rel' => 'canonical', 'href' => 'https://project-esport.
 Yii::$app->MetaClass->writeMetaUser($this, $model, $userInfo['nationality']);
 
 /** $synonym = ($gender_id == 1) ? 'synonym_m' : ($gender_id == 2) ? 'synonym_w' : 'synonym_d'; */
+
+if($model->id == 2)
+{
+    Alert::addError(Module::t("general", "user %s couldn't be saved"), $user->getUsername());
+}
+
 ?>
 
 <div class="site-account">
