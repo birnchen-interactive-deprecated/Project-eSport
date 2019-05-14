@@ -9,7 +9,7 @@ use app\modules\user\models\Gender;
 use app\modules\user\models\Language;
 use app\modules\user\models\Nationality;
 
-use app\widgets\Alert;
+use app\component\Alert;
 
 use Yii;
 use yii\db\Expression;
