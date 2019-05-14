@@ -15,7 +15,7 @@ use yii\bootstrap\ActiveForm;
 use yii\bootstrap\Alert;
 use yii\helpers\Html;
 
-use app\widgets\Alert;
+//use app\widgets\Alert;
 
 \app\modules\user\assets\UserAsset::register($this);
 
