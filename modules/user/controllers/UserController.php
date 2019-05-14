@@ -6,13 +6,11 @@ use app\components\BaseController;
 use app\modules\platformgames\models\Games;
 use app\modules\platformgames\models\Platforms;
 use app\modules\platformgames\models\UserGames;
-
 use app\modules\user\models\formModels\LoginForm;
 use app\modules\user\models\formModels\ProfilePicForm;
 use app\modules\user\models\formModels\RegisterForm;
-use app\modules\user\models\formModels\UserGameForm;
 use app\modules\user\models\formModels\UserDetailsForm;
-
+use app\modules\user\models\formModels\UserGameForm;
 use app\modules\user\models\Gender;
 use app\modules\user\models\Language;
 use app\modules\user\models\Nationality;
@@ -146,7 +144,7 @@ class UserController extends BaseController
     {
         /** Check if User ID my own User ID */
         $isMySelfe = (Yii::$app->user->identity != null && Yii::$app->user->identity->getId() == $id) ? true : false;
-        $siteLanguage  = (Yii::$app->user->identity != null) ? Yii::$app->user->identity->getLanguage()->one() : Language::findByLocale('en-US');
+        $siteLanguage = (Yii::$app->user->identity != null) ? Yii::$app->user->identity->getLanguage()->one() : Language::findByLocale('en-US');
 
         /** @var User $user */
         $user = User::findIdentity($id);
@@ -221,11 +219,18 @@ class UserController extends BaseController
             return $this->goHome();
         }
 
+        /** @var User $user */
+        $user = User::find()->where(['id' => Yii::$app->user->identity->getId()])->one();
         $model = new UserDetailsForm();
 
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->save()) {
             $this->redirect("details?id=" . Yii::$app->user->identity->getId());
         }
+
+        $model->username = $user->getUsername();
+        $model->genderId = $user->getGenderId();
+        $model->languageId = $user->getLanguageId();
+        $model->nationalityId = $user->getNationalityId();
 
         $genderList = [];
         foreach (Gender::find()->all() as $gender) {
