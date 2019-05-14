@@ -49,7 +49,7 @@ Yii::$app->MetaClass->writeMetaUser($this, $model, $userInfo['nationality']);
     </div>
 
     <!-- Personal User Informations -->
-    <div class="col-lg-7 playerPanel">
+    <div class="col-lg-6 playerPanel">
         <!-- Header with User id and Nationality -->
         <div class="header">
             <img class="nationality-logo" src="<?= $userInfo['nationalityImg']; ?>.webp" alt=""
@@ -213,4 +213,9 @@ Yii::$app->MetaClass->writeMetaUser($this, $model, $userInfo['nationality']);
 
         </div>
     </div>
+
+    <div class="col-lg-3 twitterPanel">
+        <!-- BIRNCHEN, HIER DARFST DU SPASS HABEN <3 -->
+    </div>
+
 </div>

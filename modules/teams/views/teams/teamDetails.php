@@ -53,7 +53,7 @@ Yii::$app->MetaClass->writeMetaMainTeam($this, $teamDetails, $this->title);
     </div>
 
 
-    <div class="col-lg-7 teamPanel">
+    <div class="col-lg-6 teamPanel">
 
         <div class="header">
             <?= Html::img($teamInfo['nationalityImg'], ['class' => 'nationality-logo']); ?>
@@ -115,7 +115,8 @@ Yii::$app->MetaClass->writeMetaMainTeam($this, $teamDetails, $this->title);
         </div>
     </div>
 
-    <div class="col-lg-2">
-        <!-- falls hier noch was reinkommen sollte, auf der rechten Seite ;). -->
+    <div class="col-lg-3">
+        <!-- BIRNCHEN, HIER DARFST DU SPASS HABEN <3 -->
     </div>
+    
 </div>
