@@ -1,129 +1,263 @@
 <?php
 /**
- * @link http://www.yiiframework.com/
- * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
+ * Created by JetBrains PhpStorm.
+ * User: DezMonT
+ * Date: 10.09.14
+ * Time: 20:34
+ * To change this template use File | Settings | File Templates.
+ */
+/**
+ * Class Alert
+ * Nice class to show flash messages to the user.
  */
 namespace app\components;
-use Yii;
-use yii\helpers\ArrayHelper;
-/**
- * Alert renders an alert bootstrap component.
- *
- * For example,
- *
- * ```php
- * echo Alert::widget([
- *     'options' => [
- *         'class' => 'alert-info',
- *     ],
- *     'body' => 'Say hello...',
- * ]);
- * ```
- *
- * The following example will show the content enclosed between the [[begin()]]
- * and [[end()]] calls within the alert box:
- *
- * ```php
- * Alert::begin([
- *     'options' => [
- *         'class' => 'alert-warning',
- *     ],
- * ]);
- *
- * echo 'Say hello...';
- *
- * Alert::end();
- * ```
- *
- * @see https://getbootstrap.com/docs/4.2/components/alerts/
- * @author Antonio Ramirez <amigo.cobos@gmail.com>
- * @author Simon Karlen <simi.albi@gmail.com>
- */
-class Alert extends \yii\bootstrap\Widget
+use RecursiveArrayIterator;
+use RecursiveIteratorIterator;
+use yii;
+class Alert
 {
-    /**
-     * @var string the body content in the alert component. Note that anything between
-     * the [[begin()]] and [[end()]] calls of the Alert widget will also be treated
-     * as the body content, and will be rendered before this.
-     */
-    public $body;
-    /**
-     * @var array|false the options for rendering the close button tag.
-     * The close button is displayed in the header of the modal window. Clicking
-     * on the button will hide the modal window. If this is false, no close button will be rendered.
-     *
-     * The following special options are supported:
-     *
-     * - tag: string, the tag name of the button. Defaults to 'button'.
-     * - label: string, the label of the button. Defaults to '&times;'.
-     *
-     * The rest of the options will be rendered as the HTML attributes of the button tag.
-     * Please refer to the [Alert documentation](http://getbootstrap.com/components/#alerts)
-     * for the supported HTML attributes.
-     */
-    public $closeButton = [];
-    /**
-     * {@inheritdoc}
-     */
-    public function init()
-    {
-        parent::init();
-        $this->initOptions();
-        echo Html::beginTag('div', $this->options) . "\n";
+    /** Types of alerts */
+    const SUCCESS = 2;
+    const WARNING = 1;
+    const ERROR = 0;
+    const NONE = -1;
+    public static $stores = array(
+        self::ERROR => 'FrError',
+        self::WARNING => 'FrWarning',
+        self::SUCCESS => 'FrSuccess',
+    );
+    public static $messages = array(
+        self::ERROR => 'Your request failed with errors:',
+        self::WARNING => 'Your request ends with warnings:',
+        self::SUCCESS => 'Your request ends successfully',
+        self::NONE => 'Can not determine alert type',
+    );
+    public static $general_statuses = array(
+        '100' => self::SUCCESS,
+        '010' => self::WARNING,
+        '001' => self::ERROR,
+        '000' => self::NONE,
+    );
+    public static $colors = array(
+        self::SUCCESS => 'success',
+        self::WARNING => 'warning',
+        self::ERROR => 'danger',
+        self::NONE => 'info'
+    );
+    public static function getErrors() {
+        return self::getAlertStore(self::ERROR);
     }
     /**
-     * {@inheritdoc}
+     * @param $status
+     * @param $msg
+     * @param null $details
+     * Adds an alert to proper store by status
      */
-    public function run()
+    public static function addAlert($status, $msg, $details = null)
     {
-        echo "\n" . $this->renderBodyEnd();
-        echo "\n" . Html::endTag('div');
-        $this->registerPlugin('alert');
+        $assertion = true;
+        if(Yii::$app->request instanceof yii\web\Request)
+            $assertion = !Yii::$app->request->isAjax;
+        if(Yii::$app->request instanceof yii\console\Request)
+            $assertion = true;
+        if($assertion) {
+            $buffer = self::getAlertStore($status);
+            $buffer[] = ['msg' => $msg,
+                         'details' => $details];
+            self::setAlert($status, $buffer);
+        }
+    }
+    public static function popAlert($status)
+    {
+        $buffer = self::getAlertStore($status);
+        $last_message = array_slice($buffer, 0, -1);
+        return $last_message['msg'];
+    }
+    public static function popSuccess()
+    {
+        return self::popAlert(self::SUCCESS);
+    }
+    public static function popError()
+    {
+        return self::popAlert(self::ERROR);
+    }
+    public static function popWarning()
+    {
+        return self::popAlert(self::WARNING);
     }
     /**
-     * Renders the alert body and the close button (if any).
-     * @return string the rendering result
+     * @param $msg
+     * @param null $details
+     * Wraps the addAlert with predefined status
      */
-    protected function renderBodyEnd()
+    public static function addSuccess($msg,$details = null)
     {
-        return $this->body . "\n" .  $this->renderCloseButton() . "\n";
+        self::addAlert(self::SUCCESS,$msg,$details);
+        Yii::info($msg.(serialize($details)),'alerts');
     }
     /**
-     * Renders the close button.
-     * @return string the rendering result
+     * @param $msg
+     * @param null $details
+     * Wraps the addAlert with predefined status
      */
-    protected function renderCloseButton()
+    public static function addWarning($msg,$details = null)
     {
-        if (($closeButton = $this->closeButton) !== false) {
-            $tag = ArrayHelper::remove($closeButton, 'tag', 'button');
-            $label = ArrayHelper::remove($closeButton, 'label', Html::tag('span', '&times;', [
-                'aria-hidden' => 'true'
-            ]));
-            if ($tag === 'button' && !isset($closeButton['type'])) {
-                $closeButton['type'] = 'button';
+        self::addAlert(self::WARNING,$msg,$details);
+        Yii::warning($msg.(serialize($details)),'alerts');
+    }
+    /**
+     * @param $msg
+     * @param null $details
+     * Wraps the addAlert with predefined status
+     */
+    public static function addError($msg,$details = null)
+    {
+        Yii::error($msg.(serialize($details)),'alerts');
+        self::addAlert(self::ERROR,$msg,$details);
+    }
+    /**
+     * @param $status
+     * @param $buffer
+     * load buffer array to proper store.
+     */
+    public static function setAlert($status,$buffer)
+    {
+        Yii::$app->session[self::$stores[$status]] = $buffer;
+    }
+    /**
+     * @throws CException
+     * Prints all collected alerts with proper colors, and then deletes them
+     */
+    public static function printAlert(&$viewInstance)
+    {
+        /**@var \app\components\MainView $viewInstance*/
+        $result = '';
+        $view = Yii::$app->params['isDetailedAlert'] ? 'alertView' : 'alertSmallView' ;
+        if(self::issetAlerts())
+        {
+            $result = $viewInstance->render('/'.$view,array('general_message'=>self::getGeneralMessage(),
+                                                                    'general_color'=>self::getColor(),
+                                                                    'succStore'=>self::getAlertStore(self::SUCCESS),
+                                                                    'warnStore'=>self::getAlertStore(self::WARNING),
+                                                                    'errStore'=>self::getAlertStore(self::ERROR),
+                                                              ));
+            self::dropAlerts();
+        }
+        return $result;
+    }
+    public static function varDumpAlert() {
+        if(self::issetAlerts()) {
+            var_dump(self::getAlertStore(self::SUCCESS));
+            var_dump(self::getAlertStore(self::WARNING));
+            var_dump(self::getAlertStore(self::ERROR));
+        }
+    }
+    /**
+     * @return bool
+     * Checks , whether alerts are exist
+     */
+    public  static function  issetAlerts()
+    {
+        return self::issetAlert(self::SUCCESS) || self::issetAlert(self::WARNING) || self::issetAlert(self::ERROR);
+    }
+    /**
+     * @return bool
+     * * Checks , whether errors are exist
+     */
+    public static function issetErrors()
+    {
+        return self::issetAlert(self::ERROR);
+    }
+    /**
+     * @return bool
+     * * Checks , whether warnings are exist
+     */
+    public static function issetWarnings()
+    {
+        self::issetAlert(self::WARNING);
+    }
+    /**
+     * @param $status
+     * @return bool
+     * Checks, whether specified store exists
+     */
+    public static function issetAlert($status)
+    {
+        return isset(Yii::$app->session[self::$stores[$status]]);
+    }
+    /**
+     * @param $status
+     * @return array
+     * returns the alert store by specified status
+     */
+    public static  function getAlertStore($status)
+    {
+        if(self::issetAlert($status))
+        {
+            return Yii::$app->session[self::$stores[$status]];
+        }
+        else
+            return array();
+    }
+    /**
+     * @param $status
+     * deletes all alerts in specified store
+     */
+    public static  function dropAlert($status)
+    {
+        if(self::issetAlert($status))
+        {
+            unset(Yii::$app->session[self::$stores[$status]]);
+        }
+    }
+    /**
+     * deletes all alerts
+     */
+    public static  function dropAlerts()
+    {
+        self::dropAlert(self::SUCCESS);
+        self::dropAlert(self::WARNING);
+        self::dropAlert(self::ERROR);
+    }
+    /**
+     * @return mixed
+     * returns general status by mix of all statuses
+     */
+    public static  function getGeneralStatus()
+    {
+        $warning = count(self::getAlertStore(self::WARNING));
+        $success = count(self::getAlertStore(self::SUCCESS));
+        $error = count(self::getAlertStore(self::ERROR));
+        $succ = (int)($success >=1 && $warning === 0 && $error === 0);
+        $warn = (int)(($success >= 1 && $error >= 1) || $warning >=1);
+        $err = (int)($success == 0 && $warning == 0 && $error >=1);
+        return self::$general_statuses[$succ.$warn.$err];
+    }
+    /**
+     * returns color by general status
+     * */
+    public static function getColor()
+    {
+        return self::$colors[self::getGeneralStatus()];
+    }
+    /**
+     * @return mixed
+     * returns message by general status
+     */
+    public static function getGeneralMessage()
+    {
+        $title_message = self::$messages[self::getGeneralStatus()];
+        return  $title_message;
+    }
+    public static function recursiveFind(array $array, $needle)
+    {
+        $iterator  = new RecursiveArrayIterator($array);
+        $recursive = new RecursiveIteratorIterator($iterator,
+                                                   RecursiveIteratorIterator::SELF_FIRST);
+        foreach ($recursive as $key => $value) {
+            if ($key === $needle) {
+                return $value;
             }
-            return Html::tag($tag, $label, $closeButton);
-        } else {
-            return null;
-        }
-    }
-    /**
-     * Initializes the widget options.
-     * This method sets the default values for various options.
-     */
-    protected function initOptions()
-    {
-        Html::addCssClass($this->options, ['widget' => 'alert']);
-        if ($this->closeButton !== false) {
-            $this->closeButton = array_merge([
-                'data-dismiss' => 'alert',
-                'class' => ['widget' => 'close'],
-            ], $this->closeButton);
-            Html::addCssClass($this->options, ['alert-dismissible']);
-        }
-        if (!isset($this->options['role'])) {
-            $this->options['role'] = 'alert';
         }
     }
 }
