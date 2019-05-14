@@ -57,6 +57,18 @@ Yii::$app->MetaClass->writeMetaUser($this, $model, $userInfo['nationality']);
                  onerror="this.src='<?= $userInfo['nationalityImg']; ?>.png'">
             <span class="username"><?= $model->username; ?></span>
             <span class="userid">ID:<?= $model->id ?></span>
+            <?php if ($userInfo['isMySelfe']) : ?>
+                <?php
+                    echo Html::a('',
+                        [
+                            "edit-details",
+                        ],
+                        ['class' => "glyphicon glyphicon-pencil",
+                            'title' => "Edit Details"
+                        ]
+                    )
+                ?>
+            <?php endif; ?>
         </div>
 
         <!-- Personal user Informations -->
@@ -116,7 +128,6 @@ Yii::$app->MetaClass->writeMetaUser($this, $model, $userInfo['nationality']);
                     <div class="col-xs-5 col-sm-3 col-lg-3"><?= \app\modules\user\Module::t('account', 'twitter_account', $siteLanguage->locale) ?>:</div>
                     <div class="col-xs-7 col-sm-9 col-lg-9 context">
                         <?= Html::a('Follow @' . $model->twitter_account, 'https://twitter.com/' . $model->twitter_account, ['class' => 'twitter-follow-button', 'target' => '_blank', 'rel' =>'noopener', 'aria-label' => 'twitter', 'label' => 'twitter', 'data-size' => 'default', 'data-show-screen-name' => 'true']); ?>
-                        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
                     </div>
                 </div>
             <?php endif; ?>
@@ -156,7 +167,17 @@ Yii::$app->MetaClass->writeMetaUser($this, $model, $userInfo['nationality']);
                 <div class="col-lg-12 gameHeader">
                     <?= \app\modules\user\Module::t('account', 'games', $siteLanguage->locale) ?>
                     <?php if ($userInfo['isMySelfe']) : ?>
-                        <?= Html::a('(add)', ['/user/add-game-id', 'id' => $model->id]); ?>
+                        <?php
+                            echo Html::a('',
+                                [
+                                    "add-game-id",
+                                    "id" => $model->id
+                                ],
+                                ['class' => "glyphicon glyphicon-plus",
+                                    'title' => "Add Game Account"
+                                ]
+                            )
+                        ?>
                     <?php endif; ?>
                 </div>
             </div>

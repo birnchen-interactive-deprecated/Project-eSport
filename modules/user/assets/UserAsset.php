@@ -8,6 +8,10 @@ class UserAsset extends AssetBundle
 {
     public $sourcePath = '@app/modules/user/assets';
 
+    public $js = [
+        'https://platform.twitter.com/widgets.js'
+    ];
+    
     public $css = [
         'accountOverview.css'
     ];
