@@ -12,10 +12,7 @@
 
 use app\modules\admin\Module;
 use yii\bootstrap\ActiveForm;
-use yii\bootstrap\Alert;
 use yii\helpers\Html;
-
-//use app\widgets\Alert;
 
 \app\modules\user\assets\UserAsset::register($this);
 
@@ -29,19 +26,6 @@ $this->registerLinkTag(['rel' => 'canonical', 'href' => 'https://project-esport.
 Yii::$app->MetaClass->writeMetaUser($this, $model, $userInfo['nationality']);
 
 /** $synonym = ($gender_id == 1) ? 'synonym_m' : ($gender_id == 2) ? 'synonym_w' : 'synonym_d'; */
-
-if($model->id == 2)
-{
-    //Yii::$app->session->setFlash('error', 'This is the message');
-
-    echo Alert::widget([
-    'options' => [
-        'class' => 'alert-info',
-    ],
-    'body' => 'Say hello...',
-]);
-}
-
 ?>
 
 <div class="site-account">
