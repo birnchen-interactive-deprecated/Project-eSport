@@ -11,6 +11,10 @@ class UserAsset extends AssetBundle
     public $js = [
         'https://platform.twitter.com/widgets.js'
     ];
+
+    public $jsOptions = [
+   		'async' => 'true'
+	];
     
     public $css = [
         'accountOverview.css'
