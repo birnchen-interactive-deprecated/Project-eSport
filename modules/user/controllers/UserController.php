@@ -168,7 +168,7 @@ class UserController extends BaseController
             'age' => (new DateTime($user->birthday))->diff(new DateTime())->y,
             'gender' => $user->getGender()->one(),
             'language' => $user->getLanguage()->one(),
-            'languageImg' => Yii::$app->HelperClass->checkImage('/images/nationality/', (($user->getLanguageId() == 1) ? 1 : 2)),
+            'languageImg' => Yii::$app->HelperClass->checkImage('/images/language/', (($user->getLanguageId() == 1) ? 1 : 2)),
             'nationality' => $user->getNationality()->one(), /** @todo prüfen wegen gender (Männlich/Weiblich/Divers) */
             'nationalityImg' => Yii::$app->HelperClass->checkImage('/images/nationality/', $user->getNationalityId()),
             'playerImage' => Yii::$app->HelperClass->checkImage('/images/userAvatar/', $user->getId()),
