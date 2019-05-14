@@ -7,6 +7,7 @@
  * @var $games array
  * @var $mainTeams array
  * @var $subTeams array
+ * @var $siteLanguage string
  */
 
 use app\modules\admin\Module;
@@ -61,37 +62,37 @@ Yii::$app->MetaClass->writeMetaUser($this, $model, $userInfo['nationality']);
         <!-- Personal user Informations -->
         <div class="userBody">
             <div class="entry clearfix">
-                <div class="col-xs-5 col-sm-3 col-lg"><?= \app\modules\user\Module::t('account', 'name', $userInfo['language']->locale) ?>
+                <div class="col-xs-5 col-sm-3 col-lg"><?= \app\modules\user\Module::t('account', 'name', $siteLanguage->locale) ?>
                     :
                 </div>
                 <div class="col-xs-7 col-sm-9 col-lg-9 context"><?= $model->pre_name . ' ' . $model->last_name; ?></div>
             </div>
             <div class="entry clearfix">
-                <div class="col-xs-5 col-sm-3 col-lg-3"><?= \app\modules\user\Module::t('account', 'alias', $userInfo['language']->locale) ?>
+                <div class="col-xs-5 col-sm-3 col-lg-3"><?= \app\modules\user\Module::t('account', 'alias', $siteLanguage->locale) ?>
                     :
                 </div>
                 <div class="col-xs-7 col-sm-9 col-lg-9 context"><?= $model->username; ?></div>
             </div>
             <div class="entry clearfix">
-                <div class="col-xs-5 col-sm-3 col-lg-3"><?= \app\modules\user\Module::t('account', 'member_since', $userInfo['language']->locale) ?>
+                <div class="col-xs-5 col-sm-3 col-lg-3"><?= \app\modules\user\Module::t('account', 'member_since', $siteLanguage->locale) ?>
                     :
                 </div>
                 <div class="col-xs-7 col-sm-9 col-lg-9 context"><?= $userInfo['memberSince']; ?></div>
             </div>
             <div class="entry clearfix">
-                <div class="col-xs-5 col-sm-3 col-lg-3"><?= \app\modules\user\Module::t('account', 'age', $userInfo['language']->locale) ?>
+                <div class="col-xs-5 col-sm-3 col-lg-3"><?= \app\modules\user\Module::t('account', 'age', $siteLanguage->locale) ?>
                     :
                 </div>
                 <div class="col-xs-7 col-sm-9 col-lg-9 context"><?= $userInfo['age']; ?></div>
             </div>
             <div class="entry clearfix">
-                <div class="col-xs-5 col-sm-3 col-lg-3"><?= \app\modules\user\Module::t('account', 'gender', $userInfo['language']->locale) ?>
+                <div class="col-xs-5 col-sm-3 col-lg-3"><?= \app\modules\user\Module::t('account', 'gender', $siteLanguage->locale) ?>
                     :
                 </div>
                 <div class="col-xs-7 col-sm-9 col-lg-9 context"><?= $userInfo['gender']->getName(); ?></div>
             </div>
             <div class="entry clearfix">
-                <div class="col-xs-5 col-sm-3 col-lg-3"><?= \app\modules\user\Module::t('account', 'nationality', $userInfo['language']->locale) ?>
+                <div class="col-xs-5 col-sm-3 col-lg-3"><?= \app\modules\user\Module::t('account', 'nationality', $siteLanguage->locale) ?>
                     :
                 </div>
                 <div class="col-xs-7 col-sm-9 col-lg-9 context">
@@ -102,36 +103,37 @@ Yii::$app->MetaClass->writeMetaUser($this, $model, $userInfo['nationality']);
             </div>
 
             <div class="entry clearfix">
-                <div class="col-xs-5 col-sm-3 col-lg-3"><?= \app\modules\user\Module::t('account', 'language', $userInfo['language']->locale) ?>:</div>
+                <div class="col-xs-5 col-sm-3 col-lg-3"><?= \app\modules\user\Module::t('account', 'language', $siteLanguage->locale) ?>:</div>
                 <div class="col-xs-7 col-sm-9 col-lg-9 context">
                     <img class="nationality-logo" src="<?= $userInfo['nationalityImg']; ?>.webp" alt=""
-                         onerror="this.src='<?= $userInfo['nationalityImg']; ?>.png'">
+                         onerror="this.src='<?= $userInfo['languageImg']; ?>.png'">
                     <?= $userInfo['language']->getName(); ?>
                 </div>
             </div>
 
             <?php if(!empty($model->twitter_account)): ?>
                 <div class="entry clearfix">
-                    <div class="col-xs-5 col-sm-3 col-lg-3"><?= \app\modules\user\Module::t('account', 'twitter_account', $userInfo['language']->locale) ?>:</div>
+                    <div class="col-xs-5 col-sm-3 col-lg-3"><?= \app\modules\user\Module::t('account', 'twitter_account', $siteLanguage->locale) ?>:</div>
                     <div class="col-xs-7 col-sm-9 col-lg-9 context">
-                        <?= Html::a('Follow @' . $model->twitter_account, 'https://twitter.com/' . $model->twitter_account, ['class' => 'twitter-follow-button', 'target' => '_blank', 'rel' =>'noopener', 'aria-label' => 'twitter', 'label' => 'twitter', 'data-size' => 'default']); ?>
+                        <?= Html::a('Follow @' . $model->twitter_account, 'https://twitter.com/' . $model->twitter_account, ['class' => 'twitter-follow-button', 'target' => '_blank', 'rel' =>'noopener', 'aria-label' => 'twitter', 'label' => 'twitter', 'data-size' => 'default', 'data-show-screen-name' => 'true']); ?>
                         <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
                     </div>
                 </div>
             <?php endif; ?>
 
             <?php if(!empty($model->twitter_channel)): ?>
+                <?php $hastagArray = explode(',', $model->twitter_channel);?>
                 <div class="entry clearfix">
-                <div class="col-xs-5 col-sm-3 col-lg-3"><?= \app\modules\user\Module::t('account', 'twitter_channel', $userInfo['language']->locale) ?>:</div>
+                <div class="col-xs-5 col-sm-3 col-lg-3"><?= \app\modules\user\Module::t('account', 'twitter_channel', $siteLanguage->locale) ?>:</div>
                 <div class="col-xs-7 col-sm-9 col-lg-9 context">
-                    <?= Html::a('Tweet #' . $model->twitter_channel, 'https://twitter.com/intent/tweet?text=My+Text&button_hashtag=' . $model->twitter_channel . '&@' . $model->twitter_account . '&ref_src=twsrc%5Etfw', ['class' => 'twitter-hashtag-button', 'target' => '_blank', 'rel' =>'noopener', 'aria-label' => 'twitter-channel', 'label' => 'twitter-channel', 'data-lang' => 'en', 'data-show-count' => 'false', 'data-via' => $model->twitter_account, 'data-hashtags' => $model->twitter_channel ]); ?>
+                    <?= Html::a('Tweet #' . $hastagArray[0], 'https://twitter.com/intent/tweet?text=My+Text&button_hashtag=' . $hastagArray[0] . '&@' . $model->twitter_account . '&ref_src=twsrc%5Etfw', ['class' => 'twitter-hashtag-button', 'target' => '_blank', 'rel' =>'noopener', 'aria-label' => 'twitter-channel', 'label' => 'twitter-channel', 'data-lang' => 'en', 'data-show-count' => 'false', 'data-via' => $model->twitter_account, 'data-hashtags' => $model->twitter_channel ]); ?>
                 </div>
             </div>
             <?php endif; ?>
 
             <?php if(!empty($model->discord_id)): ?>
                 <div class="entry clearfix">
-                <div class="col-xs-5 col-sm-3 col-lg-3"><?= \app\modules\user\Module::t('account', 'discord_account', $userInfo['language']->locale) ?>:</div>
+                <div class="col-xs-5 col-sm-3 col-lg-3"><?= \app\modules\user\Module::t('account', 'discord_account', $siteLanguage->locale) ?>:</div>
                 <div class="col-xs-7 col-sm-9 col-lg-9 context">
                     <?= $model->discord_id; ?>  
                 </div>
@@ -140,7 +142,7 @@ Yii::$app->MetaClass->writeMetaUser($this, $model, $userInfo['nationality']);
 
             <?php if(!empty($model->discord_server)): ?>
                 <div class="entry clearfix">
-                <div class="col-xs-5 col-sm-3 col-lg-3"><?= \app\modules\user\Module::t('account', 'discord_server', $userInfo['language']->locale) ?>:</div>
+                <div class="col-xs-5 col-sm-3 col-lg-3"><?= \app\modules\user\Module::t('account', 'discord_server', $siteLanguage->locale) ?>:</div>
                 <div class="col-xs-7 col-sm-9 col-lg-9 context">
                     <?= Html::a($model->discord_server, 'https://discordapp.com/invite/' . $model->discord_server, ['target' => '_blank', 'rel' =>'noopener', 'aria-label' => 'twitter', 'label' => 'twitter']); ?>   
                 </div>
@@ -152,7 +154,7 @@ Yii::$app->MetaClass->writeMetaUser($this, $model, $userInfo['nationality']);
             <!-- User games/Platforms and id's -->
             <div class="clearfix">
                 <div class="col-lg-12 gameHeader">
-                    <?= \app\modules\user\Module::t('account', 'games', $userInfo['language']->locale) ?>
+                    <?= \app\modules\user\Module::t('account', 'games', $siteLanguage->locale) ?>
                     <?php if ($userInfo['isMySelfe']) : ?>
                         <?= Html::a('(add)', ['/user/add-game-id', 'id' => $model->id]); ?>
                     <?php endif; ?>
@@ -223,7 +225,7 @@ Yii::$app->MetaClass->writeMetaUser($this, $model, $userInfo['nationality']);
 
     <div class="col-lg-3 twitterPanel">
         <?php if(!empty($model->twitter_account)): ?>
-            <?= Html::a('Tweets by ' . $model->twitter_account, 'https://twitter.com/' . $model->twitter_account . '?ref_src=twsrc%5Etfw', ['class' => 'twitter-timeline', 'target' => '_blank', 'rel' =>'noopener', 'aria-label' => 'twitter-timeline', 'label' => 'twitter-timeline', 'data-lang' => 'en', 'data-width' => '285', 'data-height' => '500', 'data-theme' => 'light']); ?>
+            <?= Html::a('Tweets by ' . $model->twitter_account, 'https://twitter.com/' . $model->twitter_account . '?ref_src=twsrc%5Etfw', ['class' => 'twitter-timeline', 'target' => '_blank', 'rel' =>'noopener', 'aria-label' => 'twitter-timeline', 'label' => 'twitter-timeline', 'data-lang' => 'en', 'data-height' => '400', 'data-theme' => 'light']); ?>
         <?php endif; ?>
     </div>
 

@@ -145,6 +145,7 @@ class UserController extends BaseController
     {
         /** Check if User ID my own User ID */
         $isMySelfe = (Yii::$app->user->identity != null && Yii::$app->user->identity->getId() == $id) ? true : false;
+        $siteLanguage  = (Yii::$app->user->identity != null) ? Yii::$app->user->identity->getLanguage()->one() : Language::findByLocale('en-US');
 
         /** @var User $user */
         $user = User::findIdentity($id);
@@ -167,7 +168,8 @@ class UserController extends BaseController
             'memberSince' => DateTime::createFromFormat('Y-m-d H:i:s', $user->dt_created)->format('d.m.y'),
             'age' => (new DateTime($user->birthday))->diff(new DateTime())->y,
             'gender' => $user->getGender()->one(),
-            'language' => ($isMySelfe) ? $user->getLanguage()->one() : Language::findByLocale('en-US'),
+            'language' => $user->getLanguage()->one(),
+            'languageImg' => Yii::$app->HelperClass->checkImage('/images/nationality/', (($user->getLanguageId() == 1) ? 1 : 2)),
             'nationality' => $user->getNationality()->one(), /** @todo prüfen wegen gender (Männlich/Weiblich/Divers) */
             'nationalityImg' => Yii::$app->HelperClass->checkImage('/images/nationality/', $user->getNationalityId()),
             'playerImage' => Yii::$app->HelperClass->checkImage('/images/userAvatar/', $user->getId()),
@@ -208,6 +210,7 @@ class UserController extends BaseController
                 'games' => $games,
                 'mainTeams' => $mainTeams,
                 'subTeams' => $subTeams,
+                'siteLanguage' => $siteLanguage,
             ]);
     }
 
