@@ -124,7 +124,7 @@ Yii::$app->MetaClass->writeMetaUser($this, $model, $userInfo['nationality']);
                 <div class="entry clearfix">
                 <div class="col-xs-5 col-sm-3 col-lg-3"><?= \app\modules\user\Module::t('account', 'twitter_channel', $userInfo['language']->locale) ?>:</div>
                 <div class="col-xs-7 col-sm-9 col-lg-9 context">
-                    <?= Html::a('Tweet #' . $model->twitter_channel, 'https://twitter.com/intent/tweet?button_hashtag=' . $model->twitter_channel . '&ref_src=twsrc%5Etfw', ['class' => 'twitter-hashtag-button', 'target' => '_blank', 'rel' =>'noopener', 'aria-label' => 'twitter-channel', 'label' => 'twitter-channel', 'data-lang' => 'en', 'data-show-count' => 'false']); ?>
+                    <?= Html::a('Tweet #' . $model->twitter_channel, 'https://twitter.com/intent/tweet?text=My+Text&button_hashtag=' . $model->twitter_channel . '&@' . $model->twitter_account . '&ref_src=twsrc%5Etfw', ['class' => 'twitter-hashtag-button', 'target' => '_blank', 'rel' =>'noopener', 'aria-label' => 'twitter-channel', 'label' => 'twitter-channel', 'data-lang' => 'en', 'data-show-count' => 'false', 'data-via' => $model->twitter_account, 'data-hashtags' => $model->twitter_channel ]); ?>
                 </div>
             </div>
             <?php endif; ?>
