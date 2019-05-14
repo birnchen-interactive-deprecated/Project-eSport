@@ -3,6 +3,11 @@
 /* @var $this yii\web\View */
 
 $this->title = 'Welcome to Project eSport\'s';
+
+$this->registerLinkTag(['rel' => 'canonical', 'href' => 'https://project-esport.gg' . Yii::$app->request->url]);
+
+Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
+
 ?>
 
 <div class="site-index">
