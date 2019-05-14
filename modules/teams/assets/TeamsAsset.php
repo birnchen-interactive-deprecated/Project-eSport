@@ -13,7 +13,11 @@ class TeamsAsset extends AssetBundle
     ];
 
     public $js = [
-    //    'js/first-js-file.js',
+        'https://platform.twitter.com/widgets.js'
+    ];
+
+    public $jsOptions = [
+        'async' => 'true'
     ];
 
     // that are the dependencies, for making your Asset bundle work with Yii2 framework
