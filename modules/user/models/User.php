@@ -232,6 +232,38 @@ class User extends AbstractActiveRecord implements IdentityInterface
     /**
      * @return string
      */
+    public function getTwitterAccount()
+    {
+        return $this->twitter_account;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTwitterChannels()
+    {
+        return $this->twitter_channel;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDiscordName()
+    {
+        return $this->discord_id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDiscordServer()
+    {
+        return $this->discord_server;
+    }
+
+    /**
+     * @return string
+     */
     public function getDtCreated()
     {
         return $this->dt_created;

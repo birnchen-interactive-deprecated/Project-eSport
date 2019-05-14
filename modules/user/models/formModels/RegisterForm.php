@@ -92,7 +92,6 @@ class RegisterForm extends FormModel
     {
         return [
         	'username' => \app\modules\user\Module::t('register','username'),
-            'username' => \app\modules\user\Module::t('register','username'),
             'password' => \app\modules\user\Module::t('register','password'),
             'passwordRepeate' => \app\modules\user\Module::t('register','passwordRepeate'),
             'email' => \app\modules\user\Module::t('register','email'),

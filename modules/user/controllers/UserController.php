@@ -227,10 +227,29 @@ class UserController extends BaseController
             $this->redirect("details?id=" . Yii::$app->user->identity->getId());
         }
 
+        /** Language */
+        $model->siteLanguage = (Yii::$app->user->identity != null) ? Yii::$app->user->identity->getLanguage()->one() : Language::findByLocale('en-US');
+
+        /** Default informations */
         $model->username = $user->getUsername();
+        $model->email = $user->getEmail();
+        $model->birthday = Yii::$app->formatter->asDate($user->getBirthday(), 'dd.MM.yyyy');
         $model->genderId = $user->getGenderId();
         $model->languageId = $user->getLanguageId();
         $model->nationalityId = $user->getNationalityId();
+
+        /** Personal user Informations */
+        $model->preName = $user->getPreName();
+        $model->lastName = $user->getLastName();
+        $model->zipCode = $user->getZipCode();
+        $model->city = $user->getCity();
+        $model->street = $user->getStreet();
+
+        /** Social media informations */
+        $model->twitterAccount = $user->getTwitterAccount();
+        $model->twitterChannels = $user->getTwitterChannels();
+        $model->discordName = $user->getDiscordName();
+        $model->discordServer = $user->getDiscordServer();
 
         $genderList = [];
         foreach (Gender::find()->all() as $gender) {

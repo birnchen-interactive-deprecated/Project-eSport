@@ -31,6 +31,7 @@ use Yii;
  				'modules/user/login' => 'login.php',
  				'modules/user/register' => 'register.php',
  				'modules/user/account' => 'account.php',
+ 				'modules/user/userDetails' => 'userDetails.php',
  			],
  		];
 
@@ -43,6 +44,7 @@ use Yii;
  				'modules/user/login' => 'login.php',
  				'modules/user/register' => 'register.php',
  				'modules/user/account' => 'account.php',
+ 				'modules/user/userDetails' => 'userDetails.php',
  			],
  		];
  	}
