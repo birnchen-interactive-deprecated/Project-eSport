@@ -172,7 +172,7 @@ class UserDetailsForm extends FormModel
     	/** Social Media */
         $user->twitter_account = $this->twitterAccount;
     	$user->twitter_channel = $this->twitterChannels;
-    	$user->discord_id = (empty($user->discord_id)? $this->discordName : $user->getZipCode());
+    	$user->discord_id = (empty($user->discord_id)? $this->discordName : $user->getDiscordName());
     	$user->discord_server = $this->discordServer;
 
         try {
