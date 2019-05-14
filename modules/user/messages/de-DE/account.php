@@ -13,7 +13,7 @@ return [
 	'games' => 'Meine Spiele und Id\'s',
 	'twitter_account' => 'Twitter',
 	'twitter_channel' => 'Twitter Kanal',
-	'discord_account' => 'Discord Account',
+	'discord_account' => 'Discord Name',
 	'discord_server' => 'Discord Server',
 
 	/** Games */
