@@ -10,7 +10,8 @@
  * @var $siteLanguage string
  */
 
-use app\modules\admin\Module;
+//use app\modules\admin\Module;
+
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 

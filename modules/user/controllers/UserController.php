@@ -316,6 +316,12 @@ class UserController extends BaseController
         $model->visible = !$model->visible;
         $model->save();
 
+        $gameName = Games::find()->where(['id' => $gameId])->one()->getName();
+
+        Alert::addSuccess('Succesfully Changed Visibility for ' . $gameName . '<br>' . 'test');
+        //Alert::addError("Pierre ist doof"); 
+        //Alert::addInfo("Pierre ist doof"); 
+
         $this->redirect("details?id=" . Yii::$app->user->identity->getId());
     }
 }

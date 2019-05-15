@@ -27,7 +27,7 @@ if (!empty($flashes)) {
             }
         } else {
             foreach ($messages as $message) {
-                 $this->registerJs("showNoticeMessage('$message')");
+                 $this->registerJs("showInfoMessage('$message')");
             }
         }
     }
