@@ -15,6 +15,7 @@ use app\modules\user\models\Gender;
 use app\modules\user\models\Language;
 use app\modules\user\models\Nationality;
 use app\modules\user\models\User;
+use app\widgets\Alert;
 use DateTime;
 use Yii;
 use yii\filters\AccessControl;

@@ -167,7 +167,7 @@ use app\modules\teams\models\MainTeamMember;
         if ($sort) {
             foreach ($subTeamsGrouped as $subTeamKey => $subTeams) {
                 usort($subTeamsGrouped[$subTeamKey], function($a, $b) {
-                    return $a->getName() > $b->getName();
+                    return $a->getTeamName() > $b->getTeamName();
                 });
             }
         }

@@ -1,14 +1,14 @@
 <?php
 
 /* @var $this \yii\web\View */
+
 /* @var $content string */
 
-use app\widgets\Alert;
-use yii\helpers\Html;
+use app\assets\AppAsset;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
+use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
-use app\assets\AppAsset;
 
 AppAsset::register($this);
 
@@ -20,7 +20,7 @@ if (array_key_exists("r", $_REQUEST) && $_REQUEST['r'] == "site/bracket") {
 }
 
 $navigation = array(
-    array('label' => 'Home', 'url' => ['/site/index'],'aria-label' => 'Home Button', 'title' => 'Home Button'),
+    array('label' => 'Home', 'url' => ['/site/index'], 'aria-label' => 'Home Button', 'title' => 'Home Button'),
     array('label' => 'News', 'items' => array(
         array('label' => 'Rocket League', 'url' => ['/rocketleague/news'], ['aria-label' => 'RL News Button']),
     )),
@@ -81,7 +81,7 @@ if (Yii::$app->user->isGuest) {
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
-        <?= Alert::widget() ?>
+        <?php $this->render('@app/views/layouts/_alerts'); ?>
         <?= $content ?>
     </div>
 </div>

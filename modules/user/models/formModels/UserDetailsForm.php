@@ -178,11 +178,12 @@ class UserDetailsForm extends FormModel
         try {
             $user->save();
             $transaction->commit();
+            //Alert::addError(Module::t("general", "user %s couldn't be saved"), $user->getUsername());
             return true;
         } catch (Exception $e) {
             print_r($e->getMessage());
             $transaction->rollBack();
-            Alert::addError(Module::t("general", "user %s couldn't be saved"), $user->getUsername());
+            //Alert::addError(Module::t("general", "user %s couldn't be saved"), $user->getUsername());
         }
         return false;
     }
