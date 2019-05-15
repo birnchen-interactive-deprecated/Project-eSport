@@ -114,7 +114,6 @@ Yii::$app->MetaClass->writeMetaUser($this, $model, $userInfo['nationality']);
                     <?= $userInfo['nationality']->getName(); ?>
                 </div>
             </div>
-
             <div class="entry clearfix">
                 <div class="col-xs-5 col-sm-3 col-lg-3"><?= \app\modules\user\Module::t('account', 'language', $siteLanguage->locale) ?>:</div>
                 <div class="col-xs-7 col-sm-9 col-lg-9 context">

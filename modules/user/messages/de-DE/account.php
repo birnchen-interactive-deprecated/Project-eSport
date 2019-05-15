@@ -7,7 +7,7 @@ return [
 	'member_since' => 'Mitglied seit',
 	'age' => 'Alter',
 	'gender' => 'Geschlecht',
-	'nationality' => 'Nationalität',
+	'nationality' => 'Herkunft',
 	'language' => 'Sprache',
 	'city' => 'Ort',
 	'games' => 'Meine Spiele und Id\'s',
