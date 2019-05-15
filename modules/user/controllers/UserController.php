@@ -318,7 +318,7 @@ class UserController extends BaseController
 
         $gameName = Games::find()->where(['id' => $gameId])->one()->getName();
 
-        Alert::addSuccess('Succesfully Changed Visibility for ' . $gameName . '<br>' . 'test');
+        Alert::addSuccess('Changed Visibility for ' . $gameName . ' from ' . (($model->visible)? 'invisible' : 'visible') . ' to ' . (($model->visible)? 'visible' : 'invisible'));
         //Alert::addError("Pierre ist doof"); 
         //Alert::addInfo("Pierre ist doof"); 
 
