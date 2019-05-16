@@ -87,11 +87,7 @@ class UserDetailsForm extends FormModel
             ],
             [ 
                 'twitterAccount',
-                'customUniqueValidator',
-                'params' => [
-                    'targetClass' => User::className(),
-                    'targetAttribute' => 'twitter_account'
-                ]
+                'customUniqueTwitterValidator',
             ],
         	[ 'email', 'email' ],
 		];
@@ -157,6 +153,20 @@ class UserDetailsForm extends FormModel
             return true;
         else
             $this->addError($attribute, 'Account ' . (($attribute == 'discordName')? $this->discordName : $this->twitterAccount) . ' wird bereits verwendet' );
+    }
+
+    public function customUniqueTwitterValidator($attribute, $params)
+    {
+        //$this->addError($attribute, $attribute . ' | ' . $params['targetAttribute'] . ' | ' . $params['value'] . ' | ' . $params['targetClass']);
+
+        $validation = User::findOne(['twitter_account' => $this->twitterAccount]);
+
+        if(empty($validation))
+            return true;
+        else if (!empty($validation) && $validation->getId() == Yii::$app->user->identity->getId())
+            return true;
+        else
+            $this->addError($attribute, 'Account ' . $this->twitterAccount . ' wird bereits verwendet' );
     }
 
     /**
