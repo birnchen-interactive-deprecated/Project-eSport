@@ -112,4 +112,20 @@ class RocketleagueController extends BaseController
             ]);
     }
 
+    /**
+     * Rocket League Team list
+     *
+     * @return string
+     */
+    public function actionTeamsOverview()
+    {
+        $teamHierarchy = SubTeam::getTeamHierarchyByGame(1);
+
+        return $this->render('teamsOverview',
+            [
+                'teamHierarchy' => $teamHierarchy,
+            ]
+        );
+    }
+
 }

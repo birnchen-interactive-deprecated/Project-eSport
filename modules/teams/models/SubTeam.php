@@ -60,6 +60,14 @@ class SubTeam extends ActiveRecord
     }
 
     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMainTeam()
+    {
+        return $this->hasOne(MainTeam::className(), ['id' => 'main_team_id']);
+    }
+
+    /**
      * @return int game id
      */
     public function getGameId()
@@ -258,5 +266,56 @@ class SubTeam extends ActiveRecord
     public function getSubTeamMembers()
     {
         return $this->hasMany(SubTeamMember::className(), ['sub_team_id' => 'id']);
+    }
+
+    /**
+     * @param $gameId
+     * @return array
+     */
+    public function getTeamHierarchyByGame($gameId)
+    {
+
+        $teamHierarchy = array();
+
+        /** @var SubTeam[] $subTeams */
+        $subTeams = static::findAll(['game_id' => $gameId]);
+        usort($subTeams, function ($a, $b) {
+
+            // $aName = $a->getMainTeam()->one()->getName();
+            // $bName = $b->getMainTeam()->one()->getName();
+
+            $aSubName = $a->getTeamName();
+            $bSubName = $b->getTeamName();
+
+            // return [$aName, $a->getTournamentModeId(), $aSubName] <=> [$bName, $b->getTournamentModeId(), $bSubName];
+            return [$a->getTournamentModeId(), $aSubName] <=> [$b->getTournamentModeId(), $bSubName];
+        });
+
+        foreach ($subTeams as $key => $subTeam) {
+            /** @var MainTeam $mainTeam */
+            $mainTeam = $subTeam->getMainTeam()->one();
+            // $subTeamMember = $subTeam->getSubTeamMembers()->orderBy('is_sub')->all();
+
+            if (!array_key_exists($mainTeam->getId(), $teamHierarchy)) {
+                $teamHierarchy[$mainTeam->getId()] = array(
+                    'mainTeam' => $mainTeam,
+                    'subTeams' => array(),
+                );
+            }
+
+            $subTeamModeId = $subTeam->getTournamentMode()->one()->getName();
+
+            $teamHierarchy[$mainTeam->getId()]['subTeams'][$subTeamModeId][] = array(
+                'subTeam' => $subTeam,
+                // 'subTeamMember' => $subTeamMember,
+            );
+        }
+
+        usort($teamHierarchy, function($a, $b) {
+            return strcasecmp($a['mainTeam']->getName(), $b['mainTeam']->getName());
+            // return $a['mainTeam']->getName() > $b['mainTeam']->getName();
+        });
+
+        return $teamHierarchy;
     }
 }
