@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\components\BaseController;
+
 use app\modules\user\models\LoginForm;
 use app\modules\user\models\UserForm;
 
@@ -14,6 +15,7 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
+use yii\helpers\Html;
 use yii\filters\VerbFilter;
 
 class SiteController extends BaseController
@@ -67,7 +69,26 @@ class SiteController extends BaseController
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $isGuest = (Yii::$app->user->isGuest) ? false : true;
+
+         $twitterImg = Html::img(Yii::$app->HelperClass->checkImage('/images/socialMedia/', 'Twitter_Logo_Blue') . 'webp', ['height' => '49px', 'alt'=> 'twitter image', 'aria-label' => 'twitter image', 'onerror' => 'this.src=' . Yii::$app->HelperClass->checkImage('/images/socialMedia/', 'Twitter_Logo_Blue') . 'png']);
+
+         $twitterLink = Html::a($twitterImg, 'https://twitter.com/esport_project', ['target' => '_blank', 'rel' =>'noopener', 'aria-label' => 'Follow us on twitter', 'label' => 'twitter']);
+
+         $discordImg = Html::img(Yii::$app->HelperClass->checkImage('/images/socialMedia/', 'Discord-Logo-White') . 'webp', ['height' => '49px', 'alt'=> 'discord', 'aria-label' => 'discord', 'onerror' => 'this.src=' . Yii::$app->HelperClass->checkImage('/images/socialMedia/', 'Discord-Logo-White') . 'png']);
+
+         $discordLink = Html::a($discordImg, 'https://discord.gg/f6NXNFy', ['target' => '_blank', 'rel' =>'noopener', 'aria-label' => 'Join our Discord Server']);
+
+
+
+        $socialMedia = [
+            'twitter' => $twitterLink,
+            'discord' => $discordLink,
+        ]
+
+        return $this->render('index', [
+            'socialMedia' => $socialMedia,
+        ]);
     }
 
     /**
