@@ -84,7 +84,7 @@ class SiteController extends BaseController
 
 
         $socialMedia = [
-            'twitter' => $twitterImg,
+            'twitter' => '../images/socialMedia/',
             'discord' => $discordImg,
         ];
 
