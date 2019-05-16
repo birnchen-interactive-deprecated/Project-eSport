@@ -26,6 +26,7 @@ class AppAsset extends AssetBundle
     public $js = [
         'js/site.js',
         'js/iziToast.min.js',
+        'https://platform.twitter.com/widgets.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
