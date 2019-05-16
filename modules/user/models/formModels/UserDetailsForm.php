@@ -83,13 +83,12 @@ class UserDetailsForm extends FormModel
         		'string'
         	],
             [
-                ['twitterAccount', 'twitterChannels', 'discordName', 'discordServer'],
+                ['twitterChannels', 'discordName', 'discordServer'],
                 'string'
             ],
-        	[
-            	'email',
-            	'email',
-        	],
+            [ 'discordName', 'validateDiscord' ],
+            [ 'twitterAccount', 'validateTwitter' ],
+        	[ 'email', 'email'],
 		];
 	}
 
@@ -139,6 +138,36 @@ class UserDetailsForm extends FormModel
         }*/
 
         return true;
+    }
+
+    /**
+     *
+     **/
+    public function validateTwitter($attribute, $params)
+    {
+        $twitterUser = User::findOne(['twitter_account' => $this->twitterAccount]);
+
+        if(empty($twitterUser))
+            return true;
+        else if (!empty($twitterUser) && $twitterUser->getId() == Yii::$app->user->identity->getId())
+            return true;
+        else
+            $this->addError('twitterAccount', 'Account ' . $this->twitterAccount . ' wird bereits verwendet' );
+    }
+
+    /**
+     *
+     **/
+    public function validateDiscord($attribute, $params)
+    {
+        $discordUser = User::findOne(['discord_id' => $this->discordName]);
+
+        if(empty($discordUser))
+            return true;
+        else if (!empty($discordUser) && $discordUser->getId() == Yii::$app->user->identity->getId())
+            return true;
+        else
+            $this->addError('twitterAccount', 'Account ' . $this->twitterAccount . ' wird bereits verwendet' );
     }
 
     /**
