@@ -157,7 +157,7 @@ class UserDetailsForm extends FormModel
 
     public function customUniqueTwitterValidator($attribute, $params)
     {
-        //$this->addError($attribute, $attribute . ' | ' . $params['targetAttribute'] . ' | ' . $params['value'] . ' | ' . $params['targetClass']);
+        $this->addError($attribute, $attribute . ' | ' . $params['targetAttribute'] . ' | ' . $params['value'] . ' | ' . $params['targetClass']);
 
         $validation = User::findOne(['twitter_account' => $this->twitterAccount]);
 
