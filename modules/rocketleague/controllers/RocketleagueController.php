@@ -62,4 +62,54 @@ class RocketleagueController extends BaseController
                 'data' => $data,
             ]);
     }
+
+    /**
+     * @param $pos
+     * @return string
+     */
+    public function actionNewsDetails($pos)
+    {
+        libxml_use_internal_errors(true);
+        $xml = simplexml_load_file($_SERVER['DOCUMENT_ROOT'] . '/../modules/rss_feeds/rocketLeague/rl_feed.xml');
+
+        $data = [
+            [
+                'title' => '',
+                'html' => '',
+            ],
+            [
+                'title' => '',
+                'html' => '',
+            ],
+            [
+                'title' => '',
+                'html' => '',
+            ],
+        ];
+
+        $xmlError = libxml_get_errors();
+        if (empty($xmlError)) {
+
+            $key = 0;
+            foreach ($xml->channel->item as $item) {
+
+                if (3 === $key) {
+                    break;
+                }
+
+                $data[$key++] = [
+                    'title' => $item->title->__toString(),
+                    'html' => $item->description->__toString(),
+                ];
+
+            }
+        }
+        
+        return $this->render('newsDetails',
+            [
+                'data' => $data,
+                'pos' => $pos,
+            ]);
+    }
+
 }
