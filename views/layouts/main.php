@@ -13,6 +13,7 @@ use yii\widgets\Breadcrumbs;
 AppAsset::register($this);
 
 $visible = (Yii::$app->user->isGuest) ? false : true;
+$userID = (Yii::$app->user->isGuest) ? -1 : Yii::$app->user->identity->getId();
 
 $containerClass = '';
 if (array_key_exists("r", $_REQUEST) && $_REQUEST['r'] == "site/bracket") {
@@ -54,6 +55,17 @@ if (Yii::$app->user->isGuest) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140319651-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-140319651-1');
+        gtag('set', {'user_id': '<?php echo $userID; ?>'}); // Legen Sie die User ID mithilfe des Parameters "user_id" des angemeldeten Nutzers fest.
+    </script>
+
     <?php $this->head() ?>
 </head>
 
