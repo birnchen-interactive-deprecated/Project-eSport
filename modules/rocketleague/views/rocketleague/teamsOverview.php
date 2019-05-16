@@ -6,7 +6,7 @@
 
 use yii\helpers\Html;
 
-app\modules\rocketleague\assets\RocketleagueAsset::register($this);
+app\modules\rocketleague\assets\rocketleagueAsset::register($this);
 
 $this->title = 'Team Details';
 ?>
