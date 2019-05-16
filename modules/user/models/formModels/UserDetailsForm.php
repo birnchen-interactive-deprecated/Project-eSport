@@ -72,23 +72,30 @@ class UserDetailsForm extends FormModel
         		'targetClass' => Language::className(),
         		'targetAttribute' => 'id'
         	],
-        	[
-            	'nationalityId',
-        		'exist',
-            	'targetClass' => Nationality::className(),
-            	'targetAttribute' => 'id'
-        	],
-        	[
-        		['preName', 'lastName', 'zipCode', 'city', 'street'],
-        		'string'
-        	],
-            [
-                ['twitterChannels', 'discordName', 'discordServer'],
+        	[ 'nationalityId', 'exist',	'targetClass' => Nationality::className(), 'targetAttribute' => 'id' ],
+        	[ 
+                ['preName', 'lastName', 'zipCode', 'city', 'street', 'twitterAccount', 'twitterChannels', 'discordName', 'discordServer'],
                 'string'
             ],
-            [ 'discordName', 'validateDiscord' ],
-            [ 'twitterAccount', 'validateTwitter' ],
-        	[ 'email', 'email'],
+            [ 
+                'discordName',
+                'customUniqueValidator',
+                'params' => [
+                    'targetClass' => User::className(),
+                    'targetAttribute' => 'discord_id',
+                    'value' => 'discordName'
+                ]
+            ],
+            [ 
+                'twitterAccount',
+                'customUniqueValidator',
+                'params' => [
+                    'targetClass' => User::className(),
+                    'targetAttribute' => 'twitter_account',
+                    'value' => 'twitterAccount'
+                ]
+            ],
+        	[ 'email', 'email' ],
 		];
 	}
 
@@ -140,34 +147,19 @@ class UserDetailsForm extends FormModel
         return true;
     }
 
-    /**
-     *
-     **/
-    public function validateTwitter($attribute, $params)
+    public function customUniqueValidator($attribute, $params)
     {
-        $twitterUser = User::findOne(['twitter_account' => $this->twitterAccount]);
+        //$this->addError($attribute, $attribute . ' | ' . $params['targetAttribute'] . ' | ' . $params['value'] . ' | ' . $params['targetClass']);
 
-        if(empty($twitterUser))
+        $validation = $params['targetClass']::findOne([$params['targetAttribute'] => $params['value']]);
+        //print_r($params['targetAttribute']);
+
+        if(empty($validation))
             return true;
-        else if (!empty($twitterUser) && $twitterUser->getId() == Yii::$app->user->identity->getId())
+        else if (!empty($validation) && $validation->getId() == Yii::$app->user->identity->getId())
             return true;
         else
-            $this->addError('twitterAccount', 'Account ' . $this->twitterAccount . ' wird bereits verwendet' );
-    }
-
-    /**
-     *
-     **/
-    public function validateDiscord($attribute, $params)
-    {
-        $discordUser = User::findOne(['discord_id' => $this->discordName]);
-
-        if(empty($discordUser))
-            return true;
-        else if (!empty($discordUser) && $discordUser->getId() == Yii::$app->user->identity->getId())
-            return true;
-        else
-            $this->addError('twitterAccount', 'Account ' . $this->twitterAccount . ' wird bereits verwendet' );
+            $this->addError($attribute, 'Account ' . $this->twitterAccount . ' wird bereits verwendet' );
     }
 
     /**
