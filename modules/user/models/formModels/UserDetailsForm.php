@@ -82,8 +82,7 @@ class UserDetailsForm extends FormModel
                 'customUniqueValidator',
                 'params' => [
                     'targetClass' => User::className(),
-                    'targetAttribute' => 'discord_id',
-                    'value' => $this->discordName
+                    'targetAttribute' => 'discord_id'
                 ]
             ],
             [ 
@@ -91,8 +90,7 @@ class UserDetailsForm extends FormModel
                 'customUniqueValidator',
                 'params' => [
                     'targetClass' => User::className(),
-                    'targetAttribute' => 'twitter_account',
-                    'value' => $this->twitterAccount
+                    'targetAttribute' => 'twitter_account'
                 ]
             ],
         	[ 'email', 'email' ],
