@@ -71,7 +71,9 @@ class SiteController extends BaseController
     {
         $isGuest = (Yii::$app->user->isGuest) ? false : true;
 
-         $twitterImg = Html::img('..' . Yii::$app->HelperClass->checkImage('/images/socialMedia/', 'Twitter_Logo_Blue') . 'webp', ['height' => '49px', 'alt'=> 'twitter image', 'aria-label' => 'twitter image']);
+         //$twitterImg = Html::img('..' . Yii::$app->HelperClass->checkImage('/images/socialMedia/', 'Twitter_Logo_Blue') . 'webp', ['height' => '49px', 'alt'=> 'twitter image', 'aria-label' => 'twitter image']);
+
+         $twitterImg = Yii::$app->HelperClass->checkImage('/images/socialMedia/', 'Twitter_Logo_Blue');
 
          //$twitterLink = Html::a($twitterImg, 'https://twitter.com/esport_project', ['target' => '_blank', 'rel' =>'noopener', 'aria-label' => 'Follow us on twitter', 'label' => 'twitter']);
 

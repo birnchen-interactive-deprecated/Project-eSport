@@ -110,7 +110,8 @@ if (Yii::$app->user->isGuest) {
             Project-eSport ist eine Marke der Birnchen Interactive. &copy; 2016 - <?= date('Y'); ?>
         </div>
         <div class="col-sm-3 col-lg-3 right_side">
-            <span><?= Html::a($socialMedia['twitter'], 'https://twitter.com/esport_project', ['target' => '_blank', 'rel' =>'noopener', 'aria-label' => 'Follow us on twitter', 'label' => 'twitter']); ?></span>
+            <span>
+                <img height="49px" alt="twitter image" aria-label= "twitter image" src="<?= $socialMedia['twitter']; ?>.webp" onerror="this.src='<?= $socialMedia['twitter']; ?>.png'">
             <span><?= Html::a($socialMedia['discord'], 'https://discord.gg/f6NXNFy', ['target' => '_blank', 'rel' =>'noopener', 'aria-label' => 'Join our Discord Server', 'label' => 'discord']); ?></span>
         </div>
     </div>
