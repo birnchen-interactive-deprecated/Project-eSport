@@ -69,25 +69,6 @@ class SiteController extends BaseController
      */
     public function actionIndex()
     {
-        $isGuest = (Yii::$app->user->isGuest) ? false : true;
-
-         //$twitterImg = Html::img('..' . Yii::$app->HelperClass->checkImage('/images/socialMedia/', 'Twitter_Logo_Blue') . 'webp', ['height' => '49px', 'alt'=> 'twitter image', 'aria-label' => 'twitter image']);
-
-         $twitterImg = Yii::$app->HelperClass->checkImage('/images/socialMedia/', 'Twitter_Logo_Blue');
-
-         //$twitterLink = Html::a($twitterImg, 'https://twitter.com/esport_project', ['target' => '_blank', 'rel' =>'noopener', 'aria-label' => 'Follow us on twitter', 'label' => 'twitter']);
-
-         $discordImg = Html::img(Yii::$app->HelperClass->checkImage('/images/socialMedia/', 'Discord-Logo-White') . 'webp', ['height' => '49px', 'alt'=> 'discord', 'aria-label' => 'discord']);
-
-         //$discordLink = Html::a($discordImg, 'https://discord.gg/f6NXNFy', ['target' => '_blank', 'rel' =>'noopener', 'aria-label' => 'Join our Discord Server']);
-
-
-
-        $socialMedia = [
-            'twitter' => '../images/socialMedia/',
-            'discord' => $discordImg,
-        ];
-
         return $this->render('index', [
             'socialMedia' => $socialMedia,
         ]);

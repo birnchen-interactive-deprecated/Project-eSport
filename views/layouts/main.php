@@ -16,6 +16,15 @@ AppAsset::register($this);
 $visible = (Yii::$app->user->isGuest) ? false : true;
 $userID = (Yii::$app->user->isGuest) ? -1 : Yii::$app->user->identity->getId();
 
+/** Footer Images */
+$twitterImg = Html::img('..' . Yii::$app->HelperClass->checkImage('/images/socialMedia/', 'Twitter_Logo_Blue') . 'webp', ['height' => '49px', 'alt'=> 'twitter image', 'aria-label' => 'twitter image']);
+//$twitterImg = Yii::$app->HelperClass->checkImage('/images/socialMedia/', 'Twitter_Logo_Blue');
+$twitterLink = Html::a($twitterImg, 'https://twitter.com/esport_project', ['target' => '_blank', 'rel' =>'noopener', 'aria-label' => 'Follow us on twitter', 'label' => 'twitter']);
+
+$discordImg = Html::img(Yii::$app->HelperClass->checkImage('/images/socialMedia/', 'Discord-Logo-White') . 'webp', ['height' => '49px', 'alt'=> 'discord', 'aria-label' => 'discord']);
+$discordLink = Html::a($discordImg, 'https://discord.gg/f6NXNFy', ['target' => '_blank', 'rel' =>'noopener', 'aria-label' => 'Join our Discord Server']);
+
+/** some stuff */
 $containerClass = '';
 if (array_key_exists("r", $_REQUEST) && $_REQUEST['r'] == "site/bracket") {
     $containerClass = 'bracket';
@@ -111,8 +120,8 @@ if (Yii::$app->user->isGuest) {
         </div>
         <div class="col-sm-3 col-lg-3 right_side">
             <span>
-                <img height="49px" alt="twitter image" aria-label= "twitter image" src="<?= $socialMedia['twitter']; ?>.webp" onerror="this.src='<?= $socialMedia['twitter']; ?>.png'">
-            <span><?= Html::a($socialMedia['discord'], 'https://discord.gg/f6NXNFy', ['target' => '_blank', 'rel' =>'noopener', 'aria-label' => 'Join our Discord Server', 'label' => 'discord']); ?></span>
+                <img height="49px" alt="twitter image" aria-label= "twitter image" src="<?= $twitterImg; ?>.webp" onerror="this.src='<?= $twitterImg; ?>.png'">
+            <span><?= $discordLink; ?></span>
         </div>
     </div>
 </footer>
