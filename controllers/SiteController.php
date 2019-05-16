@@ -69,9 +69,7 @@ class SiteController extends BaseController
      */
     public function actionIndex()
     {
-        return $this->render('index', [
-            'socialMedia' => $socialMedia,
-        ]);
+        return $this->render('index');
     }
 
     /**
