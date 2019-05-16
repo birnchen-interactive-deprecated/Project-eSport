@@ -27,7 +27,7 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
         </div>
 
         <div class="col-lg-3">
-            <!-- Platzhalter für BIRNCHEN rechts -->
+            <?= Html::a('Tweets by project-eSport', 'https://twitter.com/' . 'esport_project' . '?ref_src=twsrc%5Etfw', ['class' => 'twitter-timeline', 'target' => '_blank', 'rel' =>'noopener', 'aria-label' => 'twitter-timeline', 'label' => 'twitter-timeline', 'data-lang' => 'en', 'data-height' => '400', 'data-theme' => 'light']); ?>
         </div>
 
     </main>
