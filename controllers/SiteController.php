@@ -87,7 +87,7 @@ class SiteController extends BaseController
         ];
 
         return $this->render('index', [
-            'model' => $model,
+            'socialMedia' => $socialMedia,
         ]);
     }
 
