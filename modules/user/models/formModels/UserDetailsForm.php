@@ -4,6 +4,8 @@ namespace app\modules\user\models\formModels;
 
 use app\components\FormModel;
 
+use app\widgets\Alert;
+
 use app\modules\user\models\User;
 use app\modules\user\models\Gender;
 use app\modules\user\models\Language;
@@ -77,16 +79,13 @@ class UserDetailsForm extends FormModel
             	'targetAttribute' => 'id'
         	],
         	[
-        		['preName', 'lastName', 'zipCode', 'city', 'street', 'twitterAccount', 'twitterChannels', 'discordName', 'discordServer'],
+        		['preName', 'lastName', 'zipCode', 'city', 'street'],
         		'string'
         	],
-        	//[
-        	//	'username',
-            //	'unique',
-        	//	'targetClass' => User::className(),
-    	    //	'targetAttribute' => 'username',
-    	    //	'message' => Yii::t('app', 'usernameUsed')
-        	//],
+            [
+                ['twitterAccount', 'twitterChannels', 'discordName', 'discordServer'],
+                'string'
+            ],
         	[
             	'email',
             	'email',
@@ -178,12 +177,12 @@ class UserDetailsForm extends FormModel
         try {
             $user->save();
             $transaction->commit();
-            //Alert::addError(Module::t("general", "user %s couldn't be saved"), $user->getUsername());
             return true;
         } catch (Exception $e) {
-            print_r($e->getMessage());
+            print_r($e);
             $transaction->rollBack();
-            //Alert::addError(Module::t("general", "user %s couldn't be saved"), $user->getUsername());
+            Alert::addError('user %s couldnt be saved', $user->username);
+            //Alert::addError("user %s couldn't be saved" . $e->getMessage());
         }
         return false;
     }

@@ -224,7 +224,7 @@ class UserController extends BaseController
         $user = User::find()->where(['id' => Yii::$app->user->identity->getId()])->one();
         $model = new UserDetailsForm();
 
-        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->save()){
             $this->redirect("details?id=" . Yii::$app->user->identity->getId());
         }
 
@@ -266,7 +266,6 @@ class UserController extends BaseController
         foreach (Nationality::find()->all() as $nationality) {
             $nationalityList[$nationality->getId()] = $nationality->getName();
         }
-
 
         return $this->render('editDetails',
             [
