@@ -161,6 +161,8 @@ class UserDetailsForm extends FormModel
 
         $validation = User::findOne(['twitter_account' => $this->twitterAccount]);
 
+        print_r($validation);
+        
         if(empty($validation))
             return true;
         else if (!empty($validation) && $validation->getId() == Yii::$app->user->identity->getId())
