@@ -73,17 +73,17 @@ class SiteController extends BaseController
 
          $twitterImg = Html::img(Yii::$app->HelperClass->checkImage('/images/socialMedia/', 'Twitter_Logo_Blue') . 'webp', ['height' => '49px', 'alt'=> 'twitter image', 'aria-label' => 'twitter image', 'onerror' => 'this.src=' . Yii::$app->HelperClass->checkImage('/images/socialMedia/', 'Twitter_Logo_Blue') . 'png']);
 
-         $twitterLink = Html::a($twitterImg, 'https://twitter.com/esport_project', ['target' => '_blank', 'rel' =>'noopener', 'aria-label' => 'Follow us on twitter', 'label' => 'twitter']);
+         //$twitterLink = Html::a($twitterImg, 'https://twitter.com/esport_project', ['target' => '_blank', 'rel' =>'noopener', 'aria-label' => 'Follow us on twitter', 'label' => 'twitter']);
 
          $discordImg = Html::img(Yii::$app->HelperClass->checkImage('/images/socialMedia/', 'Discord-Logo-White') . 'webp', ['height' => '49px', 'alt'=> 'discord', 'aria-label' => 'discord', 'onerror' => 'this.src=' . Yii::$app->HelperClass->checkImage('/images/socialMedia/', 'Discord-Logo-White') . 'png']);
 
-         $discordLink = Html::a($discordImg, 'https://discord.gg/f6NXNFy', ['target' => '_blank', 'rel' =>'noopener', 'aria-label' => 'Join our Discord Server']);
+         //$discordLink = Html::a($discordImg, 'https://discord.gg/f6NXNFy', ['target' => '_blank', 'rel' =>'noopener', 'aria-label' => 'Join our Discord Server']);
 
 
 
         $socialMedia = [
-            'twitter' => $twitterLink,
-            'discord' => $discordLink,
+            'twitter' => $twitterImg,
+            'discord' => $discordImg,
         ];
 
         return $this->render('index', [
