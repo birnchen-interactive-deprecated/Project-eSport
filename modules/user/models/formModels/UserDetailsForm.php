@@ -157,7 +157,7 @@ class UserDetailsForm extends FormModel
 
         $validation = User::find()->where(['twitter_account' => $this->twitterAccount])->one();
 
-        print_r($validation);
+        //print_r($validation);
 
         if(empty($validation))
             return true;
