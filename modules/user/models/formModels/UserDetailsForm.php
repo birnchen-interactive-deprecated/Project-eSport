@@ -83,7 +83,7 @@ class UserDetailsForm extends FormModel
                 'params' => [
                     'targetClass' => User::className(),
                     'targetAttribute' => 'discord_id',
-                    'value' => 'discordName'
+                    'value' => $this->discordName
                 ]
             ],
             [ 
@@ -92,7 +92,7 @@ class UserDetailsForm extends FormModel
                 'params' => [
                     'targetClass' => User::className(),
                     'targetAttribute' => 'twitter_account',
-                    'value' => 'twitterAccount'
+                    'value' => $this->twitterAccount
                 ]
             ],
         	[ 'email', 'email' ],
@@ -151,15 +151,14 @@ class UserDetailsForm extends FormModel
     {
         //$this->addError($attribute, $attribute . ' | ' . $params['targetAttribute'] . ' | ' . $params['value'] . ' | ' . $params['targetClass']);
 
-        $validation = $params['targetClass']::findOne([$params['targetAttribute'] => $params['value']]);
-        //print_r($params['targetAttribute']);
+        $validation = $params['targetClass']::findOne([$params['targetAttribute'] => (($attribute == 'discordName') ? $this->discordName : $this->twitterAccount)]);
 
         if(empty($validation))
             return true;
         else if (!empty($validation) && $validation->getId() == Yii::$app->user->identity->getId())
             return true;
         else
-            $this->addError($attribute, 'Account ' . $params['value'] . ' wird bereits verwendet' );
+            $this->addError($attribute, 'Account ' . (($attribute == 'discordName')? $this->discordName : $this->twitterAccount) . ' wird bereits verwendet' );
     }
 
     /**
