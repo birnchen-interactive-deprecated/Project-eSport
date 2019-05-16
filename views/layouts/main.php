@@ -17,12 +17,11 @@ $visible = (Yii::$app->user->isGuest) ? false : true;
 $userID = (Yii::$app->user->isGuest) ? -1 : Yii::$app->user->identity->getId();
 
 /** Footer Images */
-$twitterImg = Html::img('..' . Yii::$app->HelperClass->checkImage('../images/socialMedia/', 'Twitter_Logo_Blue') . 'webp', ['height' => '49px', 'alt'=> 'twitter image', 'aria-label' => 'twitter image']);
-//$twitterImg = Yii::$app->HelperClass->checkImage('/images/socialMedia/', 'Twitter_Logo_Blue');
+$twitterImg = Html::img('../images/socialMedia/Twitter_Logo_Blue.png', ['height' => '49px', 'alt'=> 'twitter.png', 'aria-label' => 'twitter.png']);
 $twitterLink = Html::a($twitterImg, 'https://twitter.com/esport_project', ['target' => '_blank', 'rel' =>'noopener', 'aria-label' => 'Follow us on twitter', 'label' => 'twitter']);
 
-$discordImg = Html::img(Yii::$app->HelperClass->checkImage('../images/socialMedia/', 'Discord-Logo-White') . 'webp', ['height' => '49px', 'alt'=> 'discord', 'aria-label' => 'discord']);
-$discordLink = Html::a($discordImg, 'https://discord.gg/f6NXNFy', ['target' => '_blank', 'rel' =>'noopener', 'aria-label' => 'Join our Discord Server']);
+$discordImg = Html::img('../images/socialMedia/Discord-Logo-White.png', ['height' => '49px', 'alt'=> 'discord.png', 'aria-label' => 'discord.png', 'style' => 'padding: 5px 0; ']);
+$discordLink = Html::a($discordImg, 'https://discord.gg/rk3qd9U', ['target' => '_blank', 'rel' =>'noopener', 'aria-label' => 'Join our Discord Server']);
 
 /** some stuff */
 $containerClass = '';
