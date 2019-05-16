@@ -84,10 +84,10 @@ class SiteController extends BaseController
         $socialMedia = [
             'twitter' => $twitterLink,
             'discord' => $discordLink,
-        ]
+        ];
 
         return $this->render('index', [
-            'socialMedia' => $socialMedia,
+            'model' => $model,
         ]);
     }
 
