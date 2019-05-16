@@ -159,7 +159,7 @@ class UserDetailsForm extends FormModel
         else if (!empty($validation) && $validation->getId() == Yii::$app->user->identity->getId())
             return true;
         else
-            $this->addError($attribute, 'Account ' . $this->twitterAccount . ' wird bereits verwendet' );
+            $this->addError($attribute, 'Account ' . $params['value'] . ' wird bereits verwendet' );
     }
 
     /**
