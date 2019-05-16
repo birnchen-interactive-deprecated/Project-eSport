@@ -74,16 +74,12 @@ class UserDetailsForm extends FormModel
         	],
         	[ 'nationalityId', 'exist',	'targetClass' => Nationality::className(), 'targetAttribute' => 'id' ],
         	[ 
-                ['preName', 'lastName', 'zipCode', 'city', 'street', 'twitterAccount', 'twitterChannels', 'discordName', 'discordServer'],
+                ['preName', 'lastName', 'zipCode', 'city', 'street', 'twitterChannels', 'discordServer'],
                 'string'
             ],
             [ 
                 'discordName',
-                'customUniqueValidator',
-                'params' => [
-                    'targetClass' => User::className(),
-                    'targetAttribute' => 'discord_id'
-                ]
+                'customUniqueDiscordValidator'
             ],
             [ 
                 'twitterAccount',
@@ -141,18 +137,18 @@ class UserDetailsForm extends FormModel
         return true;
     }
 
-    public function customUniqueValidator($attribute, $params)
+    public function customUniqueDiscordValidator($attribute, $params)
     {
         //$this->addError($attribute, $attribute . ' | ' . $params['targetAttribute'] . ' | ' . $params['value'] . ' | ' . $params['targetClass']);
 
-        $validation = $params['targetClass']::findOne([$params['targetAttribute'] => (($attribute == 'discordName') ? $this->discordName : $this->twitterAccount)]);
+        $validation = User::find()->where(['discord_id' => $this->discordName])->one();
 
         if(empty($validation))
             return true;
         else if (!empty($validation) && $validation->getId() == Yii::$app->user->identity->getId())
             return true;
         else
-            $this->addError($attribute, 'Account ' . (($attribute == 'discordName')? $this->discordName : $this->twitterAccount) . ' wird bereits verwendet' );
+            $this->addError($attribute, 'Account ' . $this->discordName . ' wird bereits verwendet' );
     }
 
     public function customUniqueTwitterValidator($attribute, $params)
@@ -161,7 +157,7 @@ class UserDetailsForm extends FormModel
 
         $validation = User::find()->where(['twitter_account' => $this->twitterAccount])->one();
 
-        //print_r($validation);
+        print_r($validation);
 
         if(empty($validation))
             return true;
