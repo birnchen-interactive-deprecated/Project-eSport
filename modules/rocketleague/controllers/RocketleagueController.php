@@ -128,4 +128,17 @@ class RocketleagueController extends BaseController
         );
     }
 
+    /**
+     * Rocket League Tournament
+     */
+    public function actionTournaments()
+    {
+        $tournamentList = Tournament::getRLTournaments();
+
+        return $this->render('tournamentsOverview',
+            [
+                'tournamentList' => $tournamentList,
+            ]
+        );
+    }
 }
