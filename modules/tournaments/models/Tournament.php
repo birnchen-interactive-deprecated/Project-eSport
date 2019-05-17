@@ -4,6 +4,8 @@ namespace app\modules\tournaments\models;
 
 use yii\db\ActiveRecord;
 
+use app\modules\tournaments\models\Cup;
+
 /**
  * Class GCup
  * @package app\modules\tournament\models
@@ -56,6 +58,14 @@ class Tournament extends ActiveRecord
 	{
 		return $this->mode_id;
 	}
+
+    /**
+     * @return ActiveQuery
+     */
+    public function getMode()
+    {
+        return $this->hasOne(TournamentMode::className(), ['id' => 'mode_id']);
+    }
 
 	/**
 	 * @return int id
@@ -151,5 +161,40 @@ class Tournament extends ActiveRecord
     public function getTwitterChannel()
     {
         return $this->twitter_channel;
+    }
+
+    /**
+     * @return Tournament[]
+     */
+    public static function getTournament($tournamentId)
+    {
+        //TODO: Die 1 als RL Id solltet ihr in die Constants auslagern. Im Idealfall solltet ihr sogar ne Spiele Tabelle in der DB haben.
+        return static::findAll(['game_id' => $tournamentId]);
+    }
+
+    /**
+     * @return ActiveQuery
+     */
+    public function getCup()
+    {
+        return $this->hasOne(Cup::className(), ['id' => 'cup_id']);
+    }
+
+    /**
+     * @return string
+     */
+    public function showRealTournamentName()
+    {
+        $cup = $this->getCup()->one();;
+        $tMode = $this->getMode()->one();
+
+        $cupName = $cup->getName();
+        $season = 'S' . $cup->getSeason();
+
+        $modeName = $tMode->getName();
+
+        $dayName = $this->getName();
+
+        return $cupName . ' ' . $season . ' ' . $modeName . ' ' . $dayName;
     }
 }

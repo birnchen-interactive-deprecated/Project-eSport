@@ -11,6 +11,7 @@ namespace app\modules\rocketleague\controllers;
 use app\components\BaseController;
 
 use app\modules\teams\models\SubTeam;
+use app\modules\tournaments\models\Tournament;
 
 class RocketleagueController extends BaseController
 {
@@ -133,7 +134,7 @@ class RocketleagueController extends BaseController
      */
     public function actionTournaments()
     {
-        $tournamentList = Tournament::getRLTournaments();
+        $tournamentList = Tournament::getTournament(1);
 
         return $this->render('tournamentsOverview',
             [

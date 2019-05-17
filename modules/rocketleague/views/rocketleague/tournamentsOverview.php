@@ -15,7 +15,7 @@ $subTeams = [];
 if(Yii::$app->user->identity != null)
 {
     $user = Yii::$app->user->identity;
-    $subTeams = $user->getOwnedSubTeams()->all();
+    $subTeams = $user->getSubTeamsOwnership();
 }
 
 
