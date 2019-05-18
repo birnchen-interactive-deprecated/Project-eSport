@@ -211,4 +211,12 @@ class Tournament extends ActiveRecord
 
         return $this->hasMany(SubTeam::className(), ['sub_team_id' => 'sub_team_id'])->viaTable('team_participating', ['tournament_id' => 'id']);
     }
+
+    /**
+     * @return false
+     */
+    public function showRegisterBtn() {
+        // TODO: Logik fehlt noch
+        return false;
+    }
 }
