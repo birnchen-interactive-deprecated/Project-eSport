@@ -43,16 +43,16 @@ foreach ($tournamentList as $tournament) {
         continue;
     }
 
-    $checkInBegin = new DateTime($tournament->getDtCheckinBegin());
+    $checkInBegin = new DateTime($tournament->getDtCheckinOpen());
     $diffBegin = $now->diff($checkInBegin);
 
-    $checkInEnd = new DateTime($tournament->getDtCheckinEnd());
+    $checkInEnd = new DateTime($tournament->getDtCheckinClose());
     $diffEnd = $now->diff($checkInEnd);
 
-    $registerStart = new DateTime($tournament->getDtRegisterBegin());
+    $registerStart = new DateTime($tournament->getDtRegisterOpen());
     $diffRegBegin = $now->diff($registerStart);
 
-    $registerEnd = new DateTime($tournament->getDtRegisterEnd());
+    $registerEnd = new DateTime($tournament->getDtRegisterClose());
     $diffRegEnd = $now->diff($registerEnd);
 
     if (1 === $diffRegBegin->invert && 0 === $diffRegEnd->invert) {

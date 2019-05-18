@@ -5,6 +5,7 @@ namespace app\modules\tournaments\models;
 use yii\db\ActiveRecord;
 
 use app\modules\tournaments\models\Cup;
+use app\modules\user\models\User;
 
 /**
  * Class GCup
@@ -189,12 +190,25 @@ class Tournament extends ActiveRecord
         $tMode = $this->getMode()->one();
 
         $cupName = $cup->getName();
-        $season = 'S' . $cup->getSeason();
+        $season = $cup->getSeason();
 
         $modeName = $tMode->getName();
 
         $dayName = $this->getName();
 
         return $cupName . ' ' . $season . ' ' . $modeName . ' ' . $dayName;
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getParticipants()
+    {
+        if ($this->getMode()->one()->getMaxPlayer() == 1) {
+            return $this->hasMany(User::className(), ['id' => 'user_id'])->viaTable('player_participating', ['tournament_id' => 'id']);
+        }
+
+        return $this->hasMany(SubTeam::className(), ['sub_team_id' => 'sub_team_id'])->viaTable('team_participating', ['tournament_id' => 'id']);
     }
 }
