@@ -3,6 +3,7 @@
 namespace app\modules\tournaments\models;
 
 use yii\db\ActiveRecord;
+use yii\helpers\Html;
 
 use app\modules\tournaments\models\Cup;
 use app\modules\user\models\User;
