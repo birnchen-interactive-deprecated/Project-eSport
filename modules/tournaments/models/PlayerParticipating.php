@@ -45,4 +45,15 @@ class PlayerParticipating extends ActiveRecord
 	{
 		return $this->checked_in;
 	}
+
+    /**
+     * @param $tournamentId
+     * @param $userId
+     * @return ActiveRecord
+     */
+    public static function findPlayerParticipating($tournamentId, $userId)
+    {
+        return static::findOne(['tournament_id' => $tournamentId, 'user_id' => $userId]);
+    }
+
 }

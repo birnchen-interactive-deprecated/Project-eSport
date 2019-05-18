@@ -45,4 +45,15 @@ class TeamParticipating extends ActiveRecord
 	{
 		return $this->checked_in;
 	}
+
+    /**
+     * @param $tournamentId
+     * @param $subTeam
+     * @return TeamParticipating|null
+     */
+    public static function findTeamParticipating($tournamentId, $subTeam)
+    {
+        return static::findOne(['tournament_id' => $tournamentId, 'sub_team_id' => $subTeam]);
+    }
+
 }
