@@ -139,8 +139,8 @@ $this->title = 'RL Tournament Overview';
             <tbody>
             <?php foreach ($checkInTurnier as $tournament): ?>
                 <?php
-                $checkInBegin = new DateTime($tournament->getDtCheckinBegin());
-                $checkInEnd = new DateTime($tournament->getDtCheckinEnd());
+                $checkInBegin = new DateTime($tournament->getDtCheckinOpen());
+                $checkInEnd = new DateTime($tournament->getDtCheckinClose());
                 ?>
                 <tr>
                     <td><?= Html::a($tournament->showRealTournamentName(), ['/rocketleague/tournament-details', 'id' => $tournament->getId()]) ?>
@@ -170,8 +170,8 @@ $this->title = 'RL Tournament Overview';
             <?php endforeach; ?>
             <?php foreach ($preCheckInTurnier as $tournament): ?>
                 <?php
-                $checkInBegin = new DateTime($tournament->getDtCheckinBegin());
-                $checkInEnd = new DateTime($tournament->getDtCheckinEnd());
+                $checkInBegin = new DateTime($tournament->getDtCheckinOpen());
+                $checkInEnd = new DateTime($tournament->getDtCheckinClose());
                 ?>
                 <tr>
                     <td><?= Html::a($tournament->showRealTournamentName(), ['/rocketleague/tournament-details', 'id' => $tournament->getId()]); ?> <span
@@ -202,8 +202,8 @@ $this->title = 'RL Tournament Overview';
             <tbody>
             <?php foreach ($registerTurnier as $tournament): ?>
                 <?php
-                $checkInBegin = new DateTime($tournament->getDtCheckinBegin());
-                $checkInEnd = new DateTime($tournament->getDtCheckinEnd());
+                $checkInBegin = new DateTime($tournament->getDtCheckinOpen());
+                $checkInEnd = new DateTime($tournament->getDtCheckinClose());
                 ?>
                 <tr>
                     <td><?= Html::a($tournament->showRealTournamentName(), ['/rocketleague/tournament-details', 'id' => $tournament->getId()]) ?>
