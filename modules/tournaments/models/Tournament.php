@@ -213,10 +213,103 @@ class Tournament extends ActiveRecord
     }
 
     /**
-     * @return false
+     * @param $subTeams
+     * @return boolean
      */
-    public function showRegisterBtn() {
-        // TODO: Logik fehlt noch
+    public function showRegisterBtn($subTeams, $user) {
+        if ($this->getMode()->one()->getMaxPlayer() == 1) {
+            return (NULL === $user) ? false : true;
+        }
+
+        if (count($subTeams) > 0) {
+            return true;
+        }
+
         return false;
     }
+
+    /**
+     * @param $subTeams
+     * @param $user
+     * @return array
+     */
+    public function getRegisterBtns($subTeams, $user)
+    {
+        if ($this->getMode()->one()->getMaxPlayer() == 1) {
+
+            $isParticipating = $this->checkPlayerParticipating($user);
+
+            $btnValue = ($isParticipating) ? 'Abmelden' : 'Registrieren';
+            $btnColor = ($isParticipating) ? 'btn-danger' : 'btn-success';
+
+            $tmp = array(
+                array(
+                    'type' => 'user',
+                    'id' => $user->getId(),
+                    'name' => Html::tag('span', $user->getUsername()),
+                    'btn' => Html::submitInput($btnValue, ['class' => 'btn ' . $btnColor, 'name' => 'submitText']),
+                ),
+            );
+            return $tmp;
+        }
+
+        $retArr = array();
+        foreach ($subTeams as $key => $subTeam) {
+
+            if ($subTeam->getTournamentModeId() !== $this->getModeId()) {
+                continue;
+            }
+
+            $modeMaxPlayers = $this->getMode()->one()->getMaxPlayer();
+            $modeSubPlayers = $this->getMode()->one()->getSubPlayer();
+            $modeMainPlayers = $modeMaxPlayers - $modeSubPlayers;
+
+            $mainFound = 0;
+            $teamMembers = SubTeamMember::getTeamMembers($subTeam->getId());
+            foreach ($teamMembers as $teamMemberKey => $teamMember) {
+                if ($teamMember->getIsSubstitute() === 0) {
+                    $mainFound++;
+                }
+            }
+
+            if ($mainFound < $modeMainPlayers) {
+                continue;
+            }
+
+            $isParticipating = $this->checkTeamParticipating($subTeam);
+
+            $btnValue = ($isParticipating) ? 'Abmelden' : 'Registrieren';
+            $btnColor = ($isParticipating) ? 'btn-danger' : 'btn-success';
+
+            $retArr[] = array(
+                'type' => 'subTeam',
+                'id' => $subTeam->getId(),
+                'name' => Html::tag('span', $subTeam->getName()),
+                'btn' => Html::submitInput($btnValue, ['class' => 'btn ' . $btnColor, 'name' => 'submitText']),
+            );
+
+        }
+
+        return $retArr;
+
+    }
+
+    /**
+     * @param $user
+     * @return boolean
+     */
+    private function checkPlayerParticipating($user)
+    {
+        return PlayerParticipating::findPlayerParticipating($this->tournament_id, $user->getId()) != null;
+    }
+
+    /**
+     * @param $subTeam
+     * @return boolean
+     */
+    private function checkTeamParticipating($subTeam)
+    {
+        return TeamParticipating::findTeamParticipating($this->tournament_id, $subTeam->getId()) != null;
+    }
+
 }
