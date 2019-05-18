@@ -12,6 +12,8 @@ use app\components\BaseController;
 
 use app\modules\teams\models\SubTeam;
 use app\modules\tournaments\models\Tournament;
+use app\modules\tournaments\models\PlayerParticipating;
+use app\modules\tournaments\models\TeamParticipating;
 
 class RocketleagueController extends BaseController
 {
