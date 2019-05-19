@@ -7,6 +7,7 @@ use yii\helpers\Html;
 
 use app\modules\tournaments\models\Cup;
 use app\modules\user\models\User;
+use app\modules\teams\models\SubTeam;
 
 /**
  * Class GCup
@@ -219,7 +220,26 @@ class Tournament extends ActiveRecord
      */
     public function showRegisterBtn($subTeams, $user) {
         if ($this->getMode()->one()->getMaxPlayer() == 1) {
-            return (NULL === $user) ? false : true;
+
+            if (NULL === $user) {
+                return false;
+            }
+
+            $gameFound = false;
+            $userGames = $user->getGames()->all();
+            foreach ($userGames as $key => $userGame) {
+                
+                if ($userGame->getGameId() !== $this->game_id) {
+                    continue;
+                }
+
+                if (!preg_match('/.*#[0-9]{4}$/', $userGame->getPlayerId())) {
+                    continue;
+                }
+                
+                $gameFound = true;
+            }
+            return true;
         }
 
         if (count($subTeams) > 0) {
