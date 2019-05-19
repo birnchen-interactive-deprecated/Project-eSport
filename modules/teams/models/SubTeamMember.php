@@ -75,4 +75,13 @@ class SubTeamMember extends ActiveRecord
     {
         return static::findAll(['sub_team_id' => $subTeamId]);
     }
+
+    /**
+     * @param $subTeamId
+     * @return SubTeamMember[]
+     */
+    public static function getTeamMembers($subTeamId)
+    {
+        return static::findAll(['sub_team_id' => $subTeamId]);
+    }
 }

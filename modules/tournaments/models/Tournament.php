@@ -285,7 +285,7 @@ class Tournament extends ActiveRecord
             $modeMaxPlayers = $this->getMode()->one()->getMaxPlayer();
             $modeSubPlayers = $this->getMode()->one()->getSubPlayer();
             $modeMainPlayers = $modeMaxPlayers - $modeSubPlayers;
-continue;
+
             $mainFound = 0;
             $teamMembers = SubTeamMember::getTeamMembers($subTeam->getId());
             foreach ($teamMembers as $teamMemberKey => $teamMember) {
