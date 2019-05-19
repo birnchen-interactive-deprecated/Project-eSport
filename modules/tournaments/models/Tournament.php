@@ -287,6 +287,7 @@ class Tournament extends ActiveRecord
             $modeMainPlayers = $modeMaxPlayers - $modeSubPlayers;
 
             $mainFound = 0;
+            $playersWithRLID = 0;
             $teamMembers = SubTeamMember::getTeamMembers($subTeam->getId());
             foreach ($teamMembers as $teamMemberKey => $teamMember) {
 
@@ -306,11 +307,16 @@ class Tournament extends ActiveRecord
                     }
 
                     $mainFound++;
+                    $playersWithRLID++;
                 }
 
             }
 
             if ($mainFound < $modeMainPlayers) {
+                continue;
+            }
+
+            if ($playersWithRLID < count($teamMembers)) {
                 continue;
             }
 
