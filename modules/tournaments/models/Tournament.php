@@ -289,9 +289,25 @@ class Tournament extends ActiveRecord
             $mainFound = 0;
             $teamMembers = SubTeamMember::getTeamMembers($subTeam->getId());
             foreach ($teamMembers as $teamMemberKey => $teamMember) {
-                if ($teamMember->getIsSubstitute() === 0) {
+
+                if ($teamMember->getIsSubstitute() !== 0) {
+                    continue;
+                }
+
+                $userGames = $teamMember->getUser()->one()->getUserGames()->all();
+                foreach ($userGames as $key => $userGame) {
+
+                    if ($userGame->getGameId() !== $this->game_id) {
+                        continue;
+                    }
+
+                    if (!preg_match('/.*#[0-9]{4}$/', $userGame->getPlayerId())) {
+                        continue;
+                    }
+
                     $mainFound++;
                 }
+
             }
 
             if ($mainFound < $modeMainPlayers) {
