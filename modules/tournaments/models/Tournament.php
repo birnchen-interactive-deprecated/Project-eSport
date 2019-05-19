@@ -294,7 +294,7 @@ class Tournament extends ActiveRecord
                     continue;
                 }
 
-                $userGames = $teamMember->getUser()->one()->getUserGames()->all();
+                $userGames = $teamMember->getUser()->one()->getGames()->all();
                 foreach ($userGames as $key => $userGame) {
 
                     if ($userGame->getGameId() !== $this->game_id) {
