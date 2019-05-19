@@ -8,6 +8,7 @@ use yii\helpers\Html;
 use app\modules\tournaments\models\Cup;
 use app\modules\user\models\User;
 use app\modules\teams\models\SubTeam;
+use app\modules\teams\models\SubTeamMember;
 
 /**
  * Class GCup
@@ -236,7 +237,7 @@ class Tournament extends ActiveRecord
                 if (!preg_match('/.*#[0-9]{4}$/', $userGame->getPlayerId())) {
                     continue;
                 }
-                
+
                 $gameFound = true;
             }
             return true;
