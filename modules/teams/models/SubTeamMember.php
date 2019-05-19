@@ -84,4 +84,12 @@ class SubTeamMember extends ActiveRecord
     {
         return static::findAll(['sub_team_id' => $subTeamId]);
     }
+
+    /**
+     * @return bool
+     */
+    public function getIsSubstitute()
+    {
+        return $this->is_sub;
+    }
 }
