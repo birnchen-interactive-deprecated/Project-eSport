@@ -306,7 +306,7 @@ class Tournament extends ActiveRecord
             $retArr[] = array(
                 'type' => 'subTeam',
                 'id' => $subTeam->getId(),
-                'name' => Html::tag('span', $subTeam->getName()),
+                'name' => Html::tag('span', $subTeam->getTeamName()),
                 'btn' => Html::submitInput($btnValue, ['class' => 'btn ' . $btnColor, 'name' => 'submitText']),
             );
 
