@@ -12,6 +12,8 @@ use app\modules\core\models\TeamParticipating;
 use app\modules\core\models\User;
 use yii\helpers\Html;
 
+app\modules\rocketleague\assets\rocketleagueAsset::register($this);
+
 $userTeam = '';
 if (isset($participatingEntrys[0])) {
     if ($participatingEntrys[0] instanceOf User) {
@@ -80,8 +82,8 @@ $this->title = 'Turnier Details';
             /** @var  $subRuleSet \app\modules\core\models\TournamentSubrules */
             foreach ($ruleSet['subRulesSet'] as $key => $subRuleSet): ?>
                 <tr class="fold">
-                    <td><?= $subRuleSet->getRulesParagraph() . ". " . $subRuleSet->getSubRuleName(); ?></td>
-                    <td><?= $subRuleSet->getSubRuleDescription(); ?></td>
+                    <td><?= $subRuleSet->getParagraph() . ". " . $subRuleSet->getName(); ?></td>
+                    <td><?= $subRuleSet->getDescription(); ?></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
@@ -201,8 +203,7 @@ $this->title = 'Turnier Details';
     </table>
 
     <?php if ($now->diff($turnierStart)->invert == 1): ?>
-        <iframe src="https://challonge.com/de/<?= $challengeId; ?>/module" width="100%" height="500" frameborder="0"
-                scrolling="auto" allowtransparency="true"></iframe>
+        
     <?php else: ?>
         <b>!!!</b> Hier erscheint nach Turnierstart der Turnierbaum <b>!!!</b>
     <?php endif; ?>

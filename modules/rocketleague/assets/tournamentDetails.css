@@ -1,0 +1,21 @@
+.site-rl-tournament-details > h1 {
+	text-align: center;
+}
+
+.site-rl-tournament-details .participants .imageCell {
+	width: 100px;
+}
+
+.site-rl-tournament-details .participants .nameCell,
+.site-rl-tournament-details .participants .checkInCell,
+.site-rl-tournament-details .participants .disqCell {
+	text-align: center;
+}
+
+.site-rl-tournament-details .participants td {
+	vertical-align: middle;
+}
+
+.site-rl-tournament-details .participants .entry-logo {
+	width: 75px;
+}

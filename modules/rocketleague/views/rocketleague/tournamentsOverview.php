@@ -7,6 +7,8 @@
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 
+app\modules\rocketleague\assets\rocketleagueAsset::register($this);
+
 usort($tournamentList, function ($a, $b) {
     return $a->getDtStartingTime() > $b->getDtStartingTime();
 });

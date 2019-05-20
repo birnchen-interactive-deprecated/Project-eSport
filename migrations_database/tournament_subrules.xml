@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 4.8.4
+- https://www.phpmyadmin.net
+-
+- Host: localhost:3306
+- Erstellungszeit: 20. Mai 2019 um 09:17
+- Server-Version: 5.7.26-0ubuntu0.16.04.1
+- PHP-Version: 7.1.14
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="https://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Datenbank: 'Project-eSport'
+    -->
+    <database name="Project-eSport">
+        <!-- Tabelle tournament_rules_subrules -->
+        <table name="tournament_rules_subrules">
+            <column name="rules_set_id">1</column>
+            <column name="paragraph">1</column>
+            <column name="name">Definition</column>
+            <column name="description">&lt;u&gt;1.1 Gerta-Cup&lt;/u&gt;
+&lt;/p&gt;
+1.1.1 Der Gerta-Cup richtet sich an alle Rocket League Spieler im Raum EU, welche mindestens einen deutschsprachigen Teammember oder –Captain zu Kommunikationszwecken hat.
+&lt;/p&gt;
+1.1.2 Der Gerta-Cup ist Teil des Project eSport welcher Teil der Birnchen Interactive ist.
+&lt;/p&gt;
+&lt;u&gt;1.2 Sanktionen&lt;/u&gt;
+&lt;/p&gt;
+1.2.1 Eine Verwarnung führt in erster Linie noch keine weiteren Maßnahmen mit sich. Es wird lediglich auf einen Fehler, bzw. Regelbruch hingewiesen und darum gebeten, dass dieser in Zukunft berücksichtigt wird. Werden vermehrt die Regeln verletzt, kann dies auch zu einem Strike führen.
+&lt;/p&gt;
+1.2.2 Ein Strike führt einen sofortigen Ausschluss aus dem aktuellen Turniergeschehen mit sich. Weitere Teilnahmen im Laufe der Season sind jedoch noch möglich. 
+&lt;/p&gt;
+1.2.3 Zwei Strikes führen zu einer Disqualifikation und damit zum Ausschluss des Spielers bzw. des Teams aus der aktuellen Season.
+&lt;/p&gt;
+1.2.4 Bei einem Seasonwechsel erfolgt eine Übernahme der Strikes aus der vergangen Season:
+&lt;/p&gt;
+1.2.4.1 Ein erhaltener Strike bleibt für eine volle weitere Season als Strike vorbelastend vorhanden und verfällt erst in deren Anschluss.
+&lt;/p&gt;
+1.2.4.2 Eine erhaltene Disqualifikation wird halbiert und  als Strike in die neue Season als Vorbelastung mit übernommen.
+&lt;/p&gt;
+1.2.4.3 Ist ein Strike bereits älter als die vergangene Season, so verfällt dieser und wird nicht mit übernommen.
+&lt;/p&gt;
+&lt;u&gt;1.3 Tryout-Teams&lt;/u&gt;
+&lt;/p&gt;
+1.3.1 Ein Tryout-Team ist ein für jedes Turnier neu zusammengesetztes Team bestehend aus Spielern, welche keine eigenen Teams haben. 
+&lt;/p&gt;
+1.3.2 Einzelspieler, welche an Team-Turnieren Interesse haben und sich rechtzeitig gemäß der Anmeldezeit §3.2 bei der Turnierleitung gemeldet haben, werden von dieser in Tryout-Teams gesteckt. 
+&lt;/p&gt;
+1.3.3 Die Ranking-Punkte für Spieler des Tryout-Teams werden für das Cup-Ranking nicht gewertet, da sich die Teams nach jedem Turnier auflösen.
+&lt;/p&gt;
+1.3.4 Spieler in Tryout Teams haben die Möglichkeit, von anderen teilnehmenden Teams oder Clans wahrgenommen und ggf. in ihren Teams aufgenommen zu werden, sofern diese noch freie Slots zur Verfügung haben. Sie können auch weiterhin zusammen spielen, indem ein eigenes Team gegründet wird.
+&lt;/p&gt;
+1.3.5 Für Tryout Teams werden bei jedem Turnier 2 Plätze reserviert. Bewerben sich mehr Spieler auf ein Tryout Team und es sind noch Plätze frei, so können auch mehrere Tryout Teams an dem Turnier teilnehmen.
+&lt;/p&gt;
+&lt;u&gt;1.4 Allgemeine Definitionen&lt;/u&gt;
+&lt;/p&gt;
+1.4.1 „Best of“ (Bo3 / Bo5): Bei einem „Best of“ hat man die Angegebene Anzahl an Spielen zu Verfügung, um die Mehrheit der Spiele für sich zu entscheiden. Ist die Mehrheit bei einer kleineren Anzahl an Spielen bereits überschritten, so fallen die anderen Spiele weg, da der Gewinner bereits entschieden ist.
+&lt;/p&gt;
+1.4.2 Double Elimination mit 1-2 Spielen im Finale: Verliert man einmalig eine Runde, so darf man noch weiter am Turnier teilnehmen. Erst bei dem zweiten mal, bei dem man in einer Runde besiegt wurde, ist das Turnier für den Teilnehmer beendet. D.h. auch, dass im Finale ein bisher Unbesiegter gegen den letzten Verbliebenen mit nur einer verlorenen Runde antreten. Im Falle dass der Unbesiegte verliert, muss das Finale ein zweites mal ausgetragen werden, bis einer von beiden Finalisten auch ein weiteres mal verliert.</column>
+        </table>
+        <table name="tournament_rules_subrules">
+            <column name="rules_set_id">1</column>
+            <column name="paragraph">2</column>
+            <column name="name">Teilnahmeberechtigung</column>
+            <column name="description">&lt;u&gt;2.1 Zulassung&lt;/u&gt;
+&lt;/p&gt;
+2.1.1 Der Gerta-Cup ist für alle Altersklassen ab dem vom Spiel vorgegebenen Alter, Ränge und unterstützte Konsolen vorgesehen und hat in diesen Punkten keine Einschränkung für die Teilnahme.
+&lt;/p&gt;
+2.1.2 Es ist jeder Spieler mit einem Rocket League Account zugelassen, welcher sich auf der Webpage https://project-esport.gg registriert hat.
+&lt;/p&gt;
+2.1.3 Bei dem Gerta-Cup ist auch der Quereinstieg zwischen den Spieltagen willkommen. Es ist nicht relevant, ob man bereits an früheren Terminen in der aktuellen Season mitgespielt hat. 
+&lt;/p&gt;
+2.1.4 Ein Spieler ist nur für ein Team pro Modus zugelassen. Dieses Team darf später nicht mehr gewechselt werden.
+&lt;/p&gt;
+2.1.5 Es wird geraten, dass sich während eines Turniers alle Spieler eines Teams auf dem offiziellen Discord Server des Gerta-Cups befinden. Dies ist jedoch nur für einen Teammember pro Team für eine Teilnahmezulassung verpflichtend.
+&lt;/p&gt;
+&lt;u&gt;2.2 Ausschluss für die Zulassung&lt;/u&gt;
+&lt;/p&gt;
+2.2.1 Spieler oder Teams, welche in der aktuellen Season disqualifiziert wurden, sind von allen weiteren Turnieren in dieser Season ausgeschlossen.
+&lt;/p&gt;
+2.2.2 Spieler oder Teams, welche sich nicht während der Check-in Zeiten aus §3.3 eine Anwesenheit bestätigt haben, werden für das Turnier an diesem Abend ausgeschlossen.
+&lt;/p&gt;
+2.2.3 Spieler oder Teams, bzw. Teamcaptains, welche in einer Season freiwillig austreten, werden in der darauf folgenden Season geblockt und dürfen nicht teilnehmen.
+&lt;/p&gt;
+&lt;u&gt;2.3 Ausschluss aus dem aktuellen Turnier&lt;/u&gt;
+&lt;/p&gt;
+2.2.1 Das aktuelle Turnier definiert sich ab dem Zeitpunkt des erfolgreichen Check-ins bis zum Ende des Finalspiels.
+&lt;/p&gt;
+2.2.2 Teilnehmer, welche eingecheckt sind, jedoch nicht im vorgegebenen Zeitraum nach §3.6 der zugewiesenen Lobby eines Matches beitreten, erhalten einen Strike und werden von allen ausstehenden Spielen des jeweiligen Turniers ausgeschlossen.
+&lt;/p&gt;
+2.2.3 Teilnehmer, welche absichtlich oder unangekündigt aus dem laufenden Turnier aussteigen, erhalten ebenso einen Strike und werden vom jeweiligen Turnier ausgeschlossen.
+&lt;/p&gt;
+2.2.4 Spieler, die vermehrt ein Fehlverhalten auf jeglichen Kommunikationswegen, in Discord oder im Spiel an den Tag legen, können disqualifiziert und aus dem aktuellen Turniergeschehen ausgeschlossen werden werden.</column>
+        </table>
+        <table name="tournament_rules_subrules">
+            <column name="rules_set_id">1</column>
+            <column name="paragraph">3</column>
+            <column name="name">Zeit</column>
+            <column name="description">3.1 Teams können bis 24 Stunden vor Beginn des 1. Spieltages einer Season noch verändert und angepasst werden.
+&lt;/p&gt;
+3.2 Anmeldeschluss auf der Website ist 60 Minuten vor Beginn
+&lt;/p&gt;
+3.3 Check-in geht von 30 Minuten vor Beginn bis 15 Minuten vor Beginn
+&lt;/p&gt;
+3.4 Teilnehmenden Teams wird nicht mehr als 30 Minuten Zeit eingeräumt, maximal 3 Spiele abzuschließen, sowie  alle dazugehörigen Ergebnisse einzutragen und gegenseitig zu bestätigen.
+&lt;/p&gt;
+3.5 Sobald beide Kontrahenten feststehen, spätestens zu der im Turnierbaum vorgegebenen Zeit der anstehenden Runde, soll eine Lobby eröffnet werden.
+&lt;/p&gt;
+&lt;u&gt;3.6 Pausen&lt;/u&gt;
+&lt;/p&gt;
+3.6.1 Sobald eine Lobby eröffnet wurde, haben beide Teams 5 Minuten Zeit, sich in der Lobby einzufinden.
+&lt;/p&gt;
+3.6.2 Wird eine längere Pause benötigt, so muss dies der Turnierleitung mitgeteilt werden. Eine Genehmigung kann nur im Einverständnis beider Teams oder mit ausreichend guter Begründung erfolgen.
+&lt;/p&gt;
+3.6.3 Vor dem Looser- &amp; Gesamt-Finale gibt es eine 10-minütige Zwangspause, welche eingehalten werden muss. Der Turnierbaum gibt hierfür einen um 15 Minuten verzögerten Start an.</column>
+        </table>
+        <table name="tournament_rules_subrules">
+            <column name="rules_set_id">1</column>
+            <column name="paragraph">4</column>
+            <column name="name">Anmeldephase</column>
+            <column name="description">&lt;u&gt;4.1 Teamregistrierung&lt;/u&gt;
+&lt;/p&gt;
+4.1.1 Jeder Mitspieler, welcher in einem Team registriert werden soll, hat sich zuvor auf der Website https://project-esport.gg zu registrieren.
+&lt;/p&gt;
+4.1.2 Ein Spieler hat ein Team zu eröffnen und seine auf der Website registrierten Mitspieler dort unter Beachtung von §2.1 einzutragen. 
+&lt;/p&gt;
+4.1.3 Bei der Teamregistrierung muss mit angegeben werden:
+&lt;/p&gt;
+4.1.3.1 Teamname
+&lt;/p&gt;
+4.1.3.2 Team-Tag
+&lt;/p&gt;
+4.1.3.3 Team-Logo
+&lt;/p&gt;
+4.1.3.4 Teamcaptain
+&lt;/p&gt;
+4.1.3.5 Teammates
+&lt;/p&gt;
+4.1.3.6 Teamfarben primär &amp; sekundär für jeweils Blau &amp; Orange, die Option „Standard“ ist möglich.
+&lt;/p&gt;
+4.1.4 Die Option, mehrere Sub-Teams zu erstellen ist gegeben.
+&lt;/p&gt;
+4.1.5 Die Sub-Teams benötigen alle einen individuellen Namen, der Team-Tag kann gleich bleiben.
+&lt;/p&gt;
+4.1.6 Pro Sub-Team gibt es eine begrenzte Anzahl an Slots:
+&lt;/p&gt;
+4.1.6.1 ein 3v3-Team hat 5 Slots
+&lt;/p&gt;
+4.1.6.2 ein 2v2-Team hat 3 Slots
+&lt;/p&gt;
+4.1.6.3 Ist ein Spieler in einem Slot eingetragen, darf dieser nicht wieder ausgetauscht werden.
+&lt;/p&gt;
+4.1.6.4 Freie Slots können jederzeit auch im Laufe der Season gefüllt werden.
+&lt;/p&gt;
+4.1.6.5 Es ist möglich, für jeden Modus ein eigenes Team anzulegen und so die Slots anders zu belegen.
+&lt;/p&gt;
+4.1.7 Meldet sich der Teamcaptain des Hauptteams bei der Turnierleitung, so kann ihm die Berechtigung im offiziellen Discord Server erteilt werden, die Voice-Channel aller Sub-Teams einzusehen und zu betreten.
+&lt;/p&gt;
+&lt;u&gt;4.2 Anmeldung&lt;/u&gt;
+&lt;/p&gt;
+4.2.1 Hat ein Team die benötigte Mindestspielerzahl erreicht, so kann der Teamleader, welcher in der Teamregistrierung mit angegeben wurde, das Team bei den gewünschten Turnieren anmelden.
+&lt;/p&gt;
+4.2.2 Hat ein Spieler kein Team, so kann er sich an die Turnierleitung wenden und sich für ein Tryout-Team §1.3 bewerben.
+&lt;/p&gt;
+4.2.3 Die empfohlene Mindestteilnehmerzahl (Teamanzahl) beträgt 5 pro Turnier.
+&lt;/p&gt;
+4.2.4 Ist die Mindestteilnehmerzahl nicht erreicht, kann das Turnier auf Wunsch der Teams „Jeder gegen Jeden“ ausgetragen werden, wie geplant stattfinden oder die zu vergebenen Punkte auch ohne Teilnahme gerecht auf alle anwesenden Teams verteilt werden.
+&lt;/p&gt;
+4.2.5 Zur Anmeldung für ein 1v1 Turnier wird kein zuvor erstelltes Team und auch kein Teamcaptain benötigt. Jeder Spieler kann sich hierfür selbst anmelden.
+&lt;/p&gt;
+4.2.6 Die maximale Teilnehmeranzahl (Teamanzahl) beträgt 32 pro Turnier.</column>
+        </table>
+        <table name="tournament_rules_subrules">
+            <column name="rules_set_id">1</column>
+            <column name="paragraph">5</column>
+            <column name="name">Das Turnier</column>
+            <column name="description">&lt;u&gt;5.1 Gespielt wird&lt;/u&gt;
+&lt;/p&gt;
+5.1.1 Best of 3, im Finale Best of 5
+&lt;/p&gt;
+5.1.2 in privaten Spielen
+&lt;/p&gt;
+5.1.3 Im Crossplay – Es ist darauf zu achten, dass alle Teilnehmer Crossplay in den Einstellungen akzeptieren.
+&lt;/p&gt;
+&lt;u&gt;5.2 Spielerstellung&lt;/u&gt;
+&lt;/p&gt;
+5.2.1 Die jeweiligen Lobbys werden von den @Official Streamer erstellt. Die Streamer haben sich an den Plan zu halten, wer welche Spiele übernimmt.
+&lt;/p&gt;
+5.2.2 Außnahme: Das Finale wird von einem Offiziellen Vertreter des Project eSport erstellt, damit §5.4.1.5 eingehalten werden kann.
+&lt;/p&gt;
+5.2.3 Gibt es Spiele, welche nicht von einem @Official Streamer übertragen werden, so werden die Teams von der Turnierleitung, bzw. der Website in Kenntnis gesetzt und erstgenanntes Team erstellt die Lobby.
+&lt;/p&gt;
+5.2.4 Bei einem Team hat im Fall §5.2.3 der angegebene Teamcaptain eine Lobby zu erstellen.
+&lt;/p&gt;
+5.2.5 Für eine verbesserte Absprache zwischen 2 Teams, welche sich nicht hören können, kann der #turnier-chat auf dem Discord-Server benutzt werden.
+&lt;/p&gt;
+&lt;u&gt;5.3 Einstellungen&lt;/u&gt;
+&lt;/p&gt;
+&lt;b&gt;SPIELMODUS&lt;/b&gt; &lt;i&gt;Blechfußball&lt;/i&gt;
+&lt;/p&gt;
+&lt;b&gt;ARENA&lt;/b&gt; &lt;i&gt;beliebig&lt;/i&gt; wird von der Website vorgegeben
+&lt;/p&gt;
+&lt;b&gt;TEAMGRÖßE&lt;/b&gt; &lt;i&gt;1v1 | 2v2 | 3v3&lt;/i&gt;
+&lt;/p&gt;
+&lt;b&gt;BOTS&lt;/b&gt; &lt;i&gt;keine&lt;/i&gt;
+&lt;/p&gt;
+&lt;b&gt;TEAM1&lt;/b&gt; &lt;i&gt;Teamname1&lt;/i&gt; 
+&lt;/p&gt;
+&lt;b&gt;TEAM2&lt;/b&gt; &lt;i&gt;Teamname2&lt;/i&gt;
+&lt;/p&gt;
+&lt;b&gt;Spielname&lt;/b&gt; &lt;i&gt;wird von der Website vorgegeben&lt;/i&gt;
+&lt;/p&gt;
+&lt;b&gt;Passwort&lt;/b&gt; &lt;i&gt;wird von der Website vorgegeben&lt;/i&gt;
+&lt;/p&gt;
+Mutatoreinstellungen (Standard):
+&lt;/p&gt;
+&lt;b&gt;Spiellänge&lt;/b&gt; &lt;i&gt;5 Min&lt;/i&gt;
+&lt;/p&gt;
+&lt;b&gt;Torlimit&lt;/b&gt; &lt;i&gt;unbegrenzt&lt;/i&gt;
+&lt;/p&gt;
+&lt;b&gt;Verlängerung&lt;/b&gt; &lt;i&gt;standard&lt;/i&gt;
+&lt;/p&gt;
+&lt;b&gt;Serienlänge&lt;/b&gt; &lt;i&gt;3 Spiele (optional)&lt;/i&gt;
+&lt;/p&gt;
+&lt;b&gt;Spielgeschwindigkeit&lt;/b&gt; &lt;i&gt;standard&lt;/i&gt;
+&lt;/p&gt;
+&lt;b&gt;Ballhöchstgeschwindigkeit&lt;/b&gt; &lt;i&gt;standard&lt;/i&gt;
+&lt;/p&gt;
+&lt;b&gt;Ballart&lt;/b&gt; &lt;i&gt;standard&lt;/i&gt;
+&lt;/p&gt;
+&lt;b&gt;Ballgewicht&lt;/b&gt; &lt;i&gt;standard&lt;/i&gt;
+&lt;/p&gt;
+&lt;b&gt;Ballgröße&lt;/b&gt; &lt;i&gt;standard&lt;/i&gt;
+&lt;/p&gt;
+&lt;b&gt;Ballabprallkraft&lt;/b&gt; &lt;i&gt;standard&lt;/i&gt;
+&lt;/p&gt;
+&lt;b&gt;Boostmenge&lt;/b&gt; &lt;i&gt;standard&lt;/i&gt;
+&lt;/p&gt;
+&lt;u&gt;5.4 Die Lobby&lt;/u&gt;
+&lt;/p&gt;
+5.4.1 In die Lobby zugelassen sind:
+&lt;/p&gt;
+5.4.1.1 Der Streamer, der das Match streamt und die Lobby eröffnet hat.
+&lt;/p&gt;
+5.4.1.2 Maximal ein Caster, der den Streamer begleitet
+&lt;/p&gt;
+5.4.1.3 Die antretenden Spieler (max. 6 beim 3v3)
+&lt;/p&gt;
+5.4.1.4 Jeweils ein Teamleiter oder Teammanager (max. 2 bei 2 Teams)
+&lt;/p&gt;
+5.4.1.5 Ein Offizieller Vertreter von Project Esport mit Zugang auf die offiziellen Social Media Kanäle, damit er Replays speichern kann, ua. für das #pic-of-the-day , sofern noch ein Platz in der Lobby frei ist
+&lt;/p&gt;
+5.4.2 Die Teams dürfen das Feld erst dann betreten, wenn sich alle antretenden Spieler beider Teams in der Lobby befinden.
+&lt;/p&gt;
+&lt;/p&gt;
+&lt;u&gt;5.5 Nicht-Antritt und Disconnect&lt;/u&gt;
+&lt;/p&gt;
+5.5.1 Kann ein Team während eines Spiels nicht weiter teilnehmen, so wird das Team in dieser Runde als Verlierer gewertet.
+&lt;/p&gt;
+5.5.2 Fällt ein Teammember während einer Runde aus, kann das Team einen bereits eingetragenen Ersatzspieler einsetzen. Ein Neustart wird in diesem Fall nicht durchgeführt.
+&lt;/p&gt;
+5.5.3 Findet sich kein Ersatzspieler liegt es im eigenen Ermessen des Teams, trotz Handicap weiter zu spielen oder auszusteigen.
+&lt;/p&gt;
+5.5.4 Auch ein freiwilliger Ausstieg aus einem laufenden Turnier hat einen Strike zur Folge, sofern dieser nicht bereits vor Turnierbeginn bei der Turnierleitung angekündigt wurde.
+&lt;/p&gt;
+5.5.5 Bei Disconnect eines Spielers, kann das Spiel ohne Verzögerung weitergeführt werden. 
+&lt;/p&gt;
+5.5.6 Eine Disconnection kann wieder aufgehoben werden, indem der Teilnehmer wieder in das aktuelle Spielgeschehen eintritt.
+&lt;/p&gt;
+5.5.7 Bestehen beide Teams auf einen Neustart des Spiels innerhalb der ersten Spielminute sofern kein Tor geschossen wurde, so kann dieser mit Genehmigung der Turnierleitung erfolgen.
+&lt;/p&gt;
+&lt;u&gt;5.6 Game-Chat&lt;/u&gt;
+&lt;/p&gt;
+5.6.1 Die Nutzung des Game-Chats ist während eines Matches nicht erwünscht.
+&lt;/p&gt;
+5.6.2 Ein &quot;gg&quot; oder ähnliches am Ende des Spiels ist möglich, da das Match nicht mehr weiter im Gange ist.
+&lt;/p&gt;
+5.6.3 Sollten Probleme auftreten, zB. dass ein Spieler die Verbindung verliert, kann das andere Team über den Game-Chat höflich darauf hin gewiesen werden. Dennoch ist es in diesem Fall meist hilfreich, die Turnierleitung direkt zu verständigen.
+&lt;/p&gt;
+5.6.4 Muss der Game-Chat zu teaminternen Kommunikationszwecken verwendet werden, wird das gesamte Team gebeten, in den Einstellungen &quot;nur Team Chat&quot; anzuwählen, sodass das Gegnerteam nicht zugespammt wird.
+&lt;/p&gt;
+5.6.5 Beschwerden müssen unverzüglich nach der Runde mit einem entsprechenden Screen bei der Turnierleitung eingereicht werden, spätere Beschwerden werden nicht beachtet.
+&lt;/p&gt;
+&lt;u&gt;5.7 Verhalten&lt;/u&gt;
+&lt;/p&gt;
+5.7.1 Es wird um einen vernünftigen und respektvollen Umgangston in sämtlichen Kommunikationen und auch in den Streams gebeten.
+&lt;/p&gt;
+5.7.2 Unsportliches und negatives Verhalten kann jederzeit zu einem sofortigen Ausschluss aus dem Turnier oder dem Cup führen.
+&lt;/p&gt;
+5.7.3 Rassistische, sexistische, radikale, anstößige Ausdrücke und sonstige Beleidigungen jeglicher Art sind untersagt und haben beim Spieler, Streamer, Caster oder sonstigem Mitwirkenden zu bleiben.
+&lt;/p&gt;
+5.7.4 Ein unnötiges Hinauszögern eines Matches wird nicht geduldet.
+&lt;/p&gt;
+5.7.5 In Game Mechanik wird nicht eingegriffen oder geahndet.
+&lt;/p&gt;
+&lt;u&gt;5.8 Ergebnisse&lt;/u&gt;
+&lt;/p&gt;
+5.8.1 Jeder Spieler hat die Aufgabe von den Rundenergebnissen Screenshots oder Fotos zu machen.
+&lt;/p&gt;
+5.8.2 Ein Ergebnisscreen muss neben den Toren der Teams auch alle Punkte aller Mitspieler anzeigen.
+&lt;/p&gt;
+5.8.2 Damit ein Ergebnis eingetragen und gewertet werden kann, müssen beide Kontrahenten ihre Screenshots auf der Website einreichen und die dortigen Ergebnisse übertragen.
+&lt;/p&gt;
+5.8.3 Der jeweilige Gegner hat die eingetragenen Ergebnisse zu bestätigen.
+&lt;/p&gt;
+5.8.4 Erst wenn beide Teams im vorgegebenen Zeitraum §3.4 ihre Eintragung gegenseitig bestätigt haben, wird der Turnierbaum weiter angezeigt.
+&lt;/p&gt;
+5.8.5 Kann kein Screenshot oder Foto eingereicht werden, bekommen beide betreffenden Teams eine Verwarnung und es gibt ein weiteres Spiel, welches nach einem Match den Gewinner ermittelt. Von diesem Match muss stellvertretend ein Screenshot eingereicht werden (Best of 1).
+&lt;/p&gt;
+5.8.6 Tritt ein Spieler verfrüht aus dem Spielgeschehen aus, sodass nicht alle Mitspieler in der Punktetabelle erfasst werden können, so bekommt das entsprechende Team eine Verwarnung. Das Replay zu diesem Match muss gespeichert werden und ein Screenshot oder Foto von der Punktetabelle der letzten Sekunde des Spielers muss eingereicht werden. Jeder Teilnehmer hat dafür zu sorgen, dass genügend Speicher vorhanden ist, um das Replay zu speichern.
+&lt;/p&gt;
+5.8.7 Zu jedem Match kann bei Eintragung der Ergebnisse ein jeweiliges Replay zusätzlich eingereicht werden. Dieses kann ohne weitere Erlaubnis für Highlight und Round-up Videos verwendet werden.</column>
+        </table>
+        <table name="tournament_rules_subrules">
+            <column name="rules_set_id">1</column>
+            <column name="paragraph">6</column>
+            <column name="name">Nach dem Spiel</column>
+            <column name="description">&lt;u&gt;6.1 Ranking Auswertung&lt;/u&gt;
+&lt;/p&gt;
+6.1.1 Je nach Runde des endgültigen Ausscheidens aus dem Turnier bekommt der Spieler, bzw. das Team eine festgelegte Anzahl an Punkten für das gesamt-Cup-Ranking in jeweiligem Modus. Diese Anzahl an verdienten Punkten ist für alle Spieler, bzw. Teams, welche in der selben Runde ausscheiden, gleich.
+&lt;/p&gt;
+6.1.2 Ist nach Ende des letzten Spieltages einer Season ein Punktegleichstand zweier Teilnehmer auf den Plätzen 1, 2 oder 3 zu verzeichnen, so müssen Gleichplatzierte in einem finalen Best-of-3 erneut im Direktvergleich gegeneinander antreten und so ihre individuelle Platzierung festlegen.
+&lt;/p&gt;
+&lt;u&gt;6.2 Spieler-Ranking&lt;/u&gt;
+&lt;/p&gt;
+6.2.1 In jedem Modus gibt es auch ein Spieler-Ranking
+&lt;/p&gt;
+6.2.2 Gewertet wird in durchschnittlichen erspielten Punkten pro Runde eines Teilnehmers
+&lt;/p&gt;
+6.2.3 Das Spieler-Ranking ist eine reine Statistik und nicht für die Platzierungen des Teams relevant.
+&lt;/p&gt;
+&lt;u&gt;6.3 Sieger und Gewinne&lt;/u&gt;
+&lt;/p&gt;
+6.3.1 Gewinnberechtigt sind alle Spieler, die im Verlauf des Cups an mindestens 3 Terminen der entsprechenden Season teilgenommen haben. Der Modus ist dabei nicht relevant.
+&lt;/p&gt;
+6.3.2 Die Turnier-Sieger landen in der #hall-of-fame des Discord-Servers und erhalten die Rolle Turnier-Champion, sofern sie auf dem Server vertreten sind, für eine Dauer von 3 Turnieren.
+&lt;/p&gt;
+6.3.3 Hat ein Spieler die meisten Siege in Summe, so behält dieser die Rolle &lt;i&gt;Turnier-Champion&lt;/i&gt;, bis er überboten wird.
+&lt;/p&gt;
+6.3.4 Weitere Preise im Sinne von Urkunden oder kleinen Geld- oder Sachpreisen sind jederzeit möglich. Per Post oder in digitaler Form.
+&lt;/p&gt;
+6.3.5 Die Preise werden innerhalb von 8 Wochen nach Cupende ausgezahlt, bzw. ausgeliefert.</column>
+        </table>
+        <table name="tournament_rules_subrules">
+            <column name="rules_set_id">1</column>
+            <column name="paragraph">7</column>
+            <column name="name">Turnier-Staff und deren Aufgabe</column>
+            <column name="description">&lt;u&gt;7.1 Streamer&lt;/u&gt;
+&lt;/p&gt;
+7.1.1 Ein Official Streamer ist ein vom Management des Project eSport offiziell anerkannter Streamer für seinen Bereich. In diesem Fall für den Gerta Cup. Er hat die Aufgabe, neben allgemeinen Rocket League Streams vor allem auch Spiele des Gerta Cups auf den vom Management vorgegebenen Plattformen zu streamen.
+&lt;/p&gt;
+7.1.2 Es ist dem Streamer gestattet einen eigenen Caster zur Unterstützung beim Management vorzustellen.
+&lt;/p&gt;
+7.1.3 Mindestens ein Headset mit guter Tonqualität sowie eine stabile Internetverbindung, wie auch Streaming Software und das benötigte Spiel müssen vorhanden sein.
+&lt;/p&gt;
+7.1.4 Kommunikationsplattform
+&lt;/p&gt;
+7.1.4.1 Der Streamer muss sich auf dem offiziellen Discord Server befinden, da dort die Kommunikation und Termineinteilung unter den Streamern erfolgt.
+&lt;/p&gt;
+7.1.4.2 Dem official Streamer ist es gestattet, auf Wunsch eine eigene Plattform zu wählen, um dort mit dem Caster interagieren zu können.
+&lt;/p&gt;
+7.1.5 Der Streamer als Caster
+&lt;/p&gt;
+7.1.5.1 Dem Streamer steht es frei, die Spiele selbst zu casten und somit die Rolle eines Casters zu übernehmen ( §7.2 ).
+&lt;/p&gt;
+7.1.5.2 Ein Streamer, welcher nur seine eigenen Streams castet, erhält nicht die Caster-Rolle.
+&lt;/p&gt;
+7.1.6 Um weiterhin offizieller Streamer bleiben zu dürfen, muss dieser an mindestens 4 von 18 Terminen seiner Tätigkeit nachgehen. Hierbei zählen nicht die freiwilligen Streaming-Termine, sondern  Termine, an denen sich der Streamer eingetragen und auch gestreamt hat.
+&lt;/p&gt;
+7.1.7 An Terminen, an denen der &quot;Official Streamer&quot; für seine Tätigkeit eingetragen ist, darf dieser nicht selbst am Turnier teilnehmen.
+&lt;/p&gt;
+7.1.8 Ein &quot;Official Streamer&quot; ist angewiesen an offiziellen Turnieren wie dem Gerta-Cup ein von Project eSport bereitgestelltes Overlay zu verwenden, sowie dessen Aufbau-Richtlinien einzuhalten.
+&lt;/p&gt;
+7.1.9 Offizielle Streamer bekommen Begegnungen in einem Turnier zugeteilt und eröffnen deren Lobbys mit den unter §5.3 genannten Einstellungen.
+&lt;/p&gt;
+7.1.10 Auch kleinen, nicht offiziellen Streamern ist es gestattet, einzelne und eigene Spiele zu streamen. Diese eröffnen jedoch nicht die Lobby, sondern treten einer existierenden Lobby bei.
+&lt;/p&gt;
+7.1.11 Streamer werden gebeten, alle Replays zu speichern und nach dem Turnier alle gespeicherten Files auf der bereitgestellten Homepage hochzuladen.
+&lt;/p&gt;
+&lt;u&gt;7.1.12 Interviews&lt;/u&gt;
+&lt;/p&gt;
+7.1.12.1 Entschließt sich der Streamer dazu, Interviews zu führen, so werden diese nicht nach jedem Match, sondern nur nach Runden-Abschluss geführt. 
+&lt;/p&gt;
+7.1.12.2 In einem Interview wird nur ein Teammember oder Manager befragt. Mehr als eine Person zur gleichen Zeit in einem Interview ist nicht gestattet. Streamer und Caster sind davon nicht betroffen.
+&lt;/p&gt;
+&lt;u&gt;7.2 Caster&lt;/u&gt;
+&lt;/p&gt;
+7.2.1 Ein Caster hat die Aufgabe, den Streamer zu begleiten und das Spiel zu kommentieren, zu analysieren mit dem Streamer zu interagieren und sich an dessen Themen zu beteiligen.
+&lt;/p&gt;
+7.2.2 Mindestens ein Headset mit guter Tonqualität sowie eine stabile Internetverbindung bei 90% der Zeit müssen gegeben sein.
+&lt;/p&gt;
+7.2.3 Der Caster muss sich auf dem offiziellen Discord Server befinden und sollte, im Falle dass der zugehörige Streamer eine andere Plattform bevorzugt, diese ebenfalls mitbenutzen, um den Streamer begleiten zu können.
+&lt;/p&gt;
+7.2.4 Der Caster sollte Ahnung vom Spiel haben und nötige spielbezogene Begrifflichkeiten kennen und anwenden können.
+&lt;/p&gt;
+7.2.5 Um Caster bleiben zu dürfen, muss er an mindestens 4 von 18 Terminen seiner Tätigkeit nachgehen. Hierbei zählen nicht die freiwilligen Cast-Termine, sondern  Termine, an denen sich der Caster eingetragen und auch gecastet hat.
+&lt;/p&gt;
+7.2.6 An Terminen, an denen der Caster für seine Tätigkeit eingetragen ist, darf dieser nicht selbst am Turnier teilnehmen.
+&lt;/p&gt;
+7.3 Turnier-Moderatoren
+&lt;/p&gt;
+7.3.1 Ein Turnier-Moderator behält die Übersicht über das zu moderierende Turnier. Er steht bei Fragen und Problemen als Ansprechpartner zu Verfügung. 
+&lt;/p&gt;
+7.3.2 Die Entscheidung eines Turnier-Moderators ist verbindlich.
+&lt;/p&gt;
+7.3.3 Ein Turnier-Moderator ist dazu berechtigt, Spieler oder Teams zu verwarnen, wenn ein Regelbruch vorliegt und begründete Sanktionen über diese zu verhängen.
+&lt;/p&gt;
+7.3.4 Ein Turnier-Moderator, welcher eingeteilt wurde, darf an diesem Termin selbst nicht als Spieler teilnehmen.</column>
+        </table>
+        <table name="tournament_rules_subrules">
+            <column name="rules_set_id">1</column>
+            <column name="paragraph">8</column>
+            <column name="name">Änderungen</column>
+            <column name="description">8.1 Änderungen im Regelwerk können jederzeit vorgenommen werden. 
+&lt;/p&gt;
+8.2 Im Falle einer Änderung, werden alle Teilnehmer des aktuellen, bzw. nächsten Turniers entsprechend benachrichtigt.</column>
+        </table>
+    </database>
+</pma_xml_export>
