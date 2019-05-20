@@ -111,13 +111,13 @@ class m190517_081725_tournament_cup_brackets extends Migration
         // team participating
         $this->execute("
           CREATE TABLE IF NOT EXISTS `team_participating` (
-              `sub_Team_id` INT NOT NULL,
+              `sub_team_id` INT NOT NULL,
               `tournament_id` INT NOT NULL,
               `checked_in` TINYINT(1) NOT NULL,
-              PRIMARY KEY (`sub_Team_id`, `tournament_id`),
+              PRIMARY KEY (`sub_team_id`, `tournament_id`),
               INDEX `FK_TEAM_PARTICIPATING_TOURNAMENT_ID_idx` (`tournament_id` ASC),
               CONSTRAINT `FK_TEAM_PARTICIPATING_SUB_TEAM_ID`
-                FOREIGN KEY (`sub_Team_id`)
+                FOREIGN KEY (`sub_team_id`)
                 REFERENCES `sub_team` (`id`)
                 ON DELETE CASCADE
                 ON UPDATE CASCADE,

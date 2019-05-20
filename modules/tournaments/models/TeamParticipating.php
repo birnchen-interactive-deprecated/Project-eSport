@@ -8,7 +8,7 @@ use yii\db\ActiveRecord;
  * Class TeamParticipating
  * @package app\modules\tournament\models
  *
- * @property int $sub_Team_id
+ * @property int $sub_team_id
  * @property int $tournament_id
  * @property bool $checked_in
  */
@@ -27,7 +27,7 @@ class TeamParticipating extends ActiveRecord
 	 */
 	public function getSubTeamId()
 	{
-		return $this->sub_Team_id;
+		return $this->sub_team_id;
 	}
 
 	/**
