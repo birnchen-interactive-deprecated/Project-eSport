@@ -212,4 +212,27 @@ class RocketleagueController extends BaseController
             ]
         );
     }
+
+    /**
+     * Rocket League Tournament Details
+     *
+     * @param null $id
+     * @return string
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function actionTournamentDetails($id = null)
+    {
+        $tournament = Tournament::getTournamentById($id);
+        $ruleSet = $tournament->getRules();
+
+        $participatingEntrys = $tournament->getParticipants()->all();
+
+        return $this->render('tournamentDetails',
+            [
+                'tournament' => $tournament,
+                'ruleSet' => $ruleSet,
+                'participatingEntrys' => $participatingEntrys
+            ]
+        );
+    }
 }

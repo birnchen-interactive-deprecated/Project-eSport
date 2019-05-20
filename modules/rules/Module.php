@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\platformgames;
+namespace app\modules\rules;
 
 use Yii;
 
@@ -30,6 +30,6 @@ use Yii;
      */
  	public static function t($category, $message, $language = null, $params = [])
  	{
- 		return Yii::t('modules/platformgames/' . $category, $message, $params, $language);
+ 		return Yii::t('modules/rules/' . $category, $message, $params, $language);
  	}
  }

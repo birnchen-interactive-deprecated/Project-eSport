@@ -60,6 +60,7 @@ class m190517_081725_tournament_cup_brackets extends Migration
               INDEX `FK_TOURNAMENT_MODE_ID_TOURNAMENT_MODE_ID_idx` (`mode_id` ASC),
               INDEX `FK_TOURNAMENT_BRACKET_MODE_ID_BRACKET_MODE_ID_idx` (`bracket_mode_id` ASC),
               INDEX `FK_TOURNAMENT_CUP_ID_CUP_ID_idx` (`cup_id` ASC),
+              INDEX `FK_TOURNAMENT_RULES_ID_RULES_ID_idx` (`rules_id` ASC),
               CONSTRAINT `FK_TOURNAMENT_GAME_ID_GAMES_ID`
                 FOREIGN KEY (`game_id`)
                 REFERENCES `games` (`id`)
@@ -68,6 +69,11 @@ class m190517_081725_tournament_cup_brackets extends Migration
               CONSTRAINT `FK_TOURNAMENT_MODE_ID_TOURNAMENT_MODE_ID`
                 FOREIGN KEY (`mode_id`)
                 REFERENCES `tournament_mode` (`id`)
+                ON DELETE CASCADE
+                ON UPDATE CASCADE,
+              CONSTRAINT `FK_TOURNAMENT_RULES_ID_RULES_ID`
+                FOREIGN KEY (`rules_id`)
+                REFERENCES `tournament_rules_set` (`id`)
                 ON DELETE CASCADE
                 ON UPDATE CASCADE,
               CONSTRAINT `FK_TOURNAMENT_BRACKET_MODE_ID_BRACKET_MODE_ID`

@@ -10,6 +10,10 @@ use app\modules\user\models\User;
 use app\modules\teams\models\SubTeam;
 use app\modules\teams\models\SubTeamMember;
 
+use app\modules\rules\models\TournamentRulesSet;
+use app\modules\rules\models\TournamentRulesSubrules;
+
+
 /**
  * Class GCup
  * @package app\modules\tournament\models
@@ -46,6 +50,17 @@ class Tournament extends ActiveRecord
 	{
 		return $this->id;
 	}
+
+    /**
+     * Finds tournament by id.
+     *
+     * @param string $tournamentname the name
+     * @return static|null the tournament, if a tournament with that tournament name exists
+     */
+    public static function getTournamentById($tournamentId)
+    {
+        return static::findOne(['id' => $tournamentId]);
+    }
 
 	/**
 	 * @return int id
@@ -94,6 +109,38 @@ class Tournament extends ActiveRecord
 	{
 		return $this->rules_id;
 	}
+
+    /**
+     * Get Rules Name
+     */
+    public function getRules()
+    {
+        $baseRuleSet = $this->getBaseRuleSet()->one();
+        $subRuleSet = $this->getSubRuleSet()->all();
+
+        $rulesName = [
+            'baseSet' => $baseRuleSet->getName(),
+            'subRulesSet' => $subRuleSet,
+        ];
+
+        return $rulesName;
+    }
+
+    /**
+     * @return ActiveQuery
+     */
+    public function getBaseRuleSet()
+    {
+        return $this->hasOne(TournamentRulesSet::className(), ['id' => 'rules_id']);
+    }
+
+    /**
+     * @return ActiveQuery
+     */
+    public function getSubRuleSet()
+    {
+        return $this->hasMany(TournamentRulesSubrules::className(), ['rules_set_id' => 'rules_id']);
+    }
 
 	/**
 	 * @return string name
