@@ -386,7 +386,7 @@ class User extends AbstractActiveRecord implements IdentityInterface
      */
     public function getPlayerParticipating()
     {
-        return $this->hasMany(PlayerParticipating::className(), ['user_id' => 'user_id']);
+        return $this->hasMany(PlayerParticipating::className(), ['user_id' => 'id']);
     }
 
     /**
