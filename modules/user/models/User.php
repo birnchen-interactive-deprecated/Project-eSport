@@ -390,6 +390,17 @@ class User extends AbstractActiveRecord implements IdentityInterface
     }
 
     /**
+     * @param $tournamentId
+     * @return string
+     */
+    public function getCheckInStatus($tournamentId)
+    {
+        /** @var PlayerParticipating $isParticipating */
+        $isParticipating = $this->getPlayerParticipating()->where(['tournament_id' => $tournamentId])->one();
+        return $isParticipating->getCheckedIn() != null;
+    }
+
+    /**
      * @return array
      * @throws \yii\base\InvalidConfigException
      */
