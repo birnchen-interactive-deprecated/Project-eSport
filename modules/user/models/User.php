@@ -15,6 +15,8 @@ use app\modules\platformgames\models\Platforms;
 use app\modules\teams\models\MainTeam;
 use app\modules\teams\models\SubTeam;
 
+use app\modules\tournaments\models\PlayerParticipating;
+
 use app\modules\miscellaneous\HelperClass;
 
 /**
