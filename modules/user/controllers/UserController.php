@@ -20,6 +20,7 @@ use DateTime;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Response;
+use yii\web\UploadFile;
 
 /**
  * Class UserController
