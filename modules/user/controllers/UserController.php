@@ -21,7 +21,6 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\web\Response;
 use yii\web\UploadedFile;
-//use \GuzzleHttp\Psr7\UploadedFile;
 
 /**
  * Class UserController
