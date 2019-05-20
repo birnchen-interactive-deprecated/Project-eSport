@@ -380,6 +380,14 @@ class User extends AbstractActiveRecord implements IdentityInterface
     }
 
     /**
+     * @return ActiveQuery
+     */
+    public function getPlayerParticipating()
+    {
+        return $this->hasMany(PlayerParticipating::className(), ['user_id' => 'user_id']);
+    }
+
+    /**
      * @return array
      * @throws \yii\base\InvalidConfigException
      */
