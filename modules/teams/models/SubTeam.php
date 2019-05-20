@@ -333,4 +333,15 @@ class SubTeam extends ActiveRecord
     {
         return $this->hasMany(TeamParticipating::className(), ['sub_team_id' => 'id']);
     }
+
+    /**
+     * @param int $tournamentId
+     * @return string
+     */
+    public function getCheckInStatus($tournamentId)
+    {
+        /** @var TeamParticipating $isParticipating */
+        $isParticipating = $this->getTeamParticipating()->where('tournament_id = ' . $tournamentId)->one();
+        return $isParticipating->getIsCheckedin() != null;
+    }
 }
