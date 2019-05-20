@@ -318,4 +318,9 @@ class SubTeam extends ActiveRecord
 
         return $teamHierarchy;
     }
+
+    public function getTeamParticipating()
+    {
+        return $this->hasMany(TeamParticipating::className(), ['sub_team_id' => 'id']);
+    }
 }
