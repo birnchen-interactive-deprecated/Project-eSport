@@ -125,6 +125,7 @@ class TeamsController extends BaseController
         /** @var $teamInfo array */
         $teamInfo = [
             'isOwner' => (Yii::$app->user->identity != null && Yii::$app->user->identity->getId() == $teamDetails->captain_id) ? true : false,
+            'isDeputy' => (Yii::$app->user->identity != null && Yii::$app->user->identity->getId() == $teamDetails->deputy_id) ? true : false,
             //'memberSince' => DateTime::createFromFormat('d.m.y', $user->dt_created),
             'memberSince' => $memberDateTime->format('d.m.y'),
             //'language' => $teamDetails->getHeadQuarterId(),

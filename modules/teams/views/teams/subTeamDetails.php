@@ -34,7 +34,7 @@ Yii::$app->MetaClass->writeMetaMainTeam($this, $teamDetails, $this->title);
         <img class="avatar-logo" src="<?= $teamInfo['teamImage']; ?>.webp" alt="<?=\app\modules\teams\Module::t('teams', 'teamLogo')?>" aria-label="<?=\app\modules\teams\Module::t('teams', 'teamLogo')?>"
              onerror="this.src='<?= $teamInfo['teamImage']; ?>.png'">
 
-        <?php if ($teamInfo['isOwner']) : ?>
+        <?php if ($teamInfo['isOwner'] || $teamInfo['isDeputy']) : ?> 
             <?php $form = ActiveForm::begin([
                 'id' => 'profile-pic-form',
                 // 'layout' => 'horizontal',
@@ -55,6 +55,19 @@ Yii::$app->MetaClass->writeMetaMainTeam($this, $teamDetails, $this->title);
         <div class="header">
             <span class="teamname"><?= $teamDetails->getTeamName(); ?></span>
             <span class="teamid">id: <?= $teamDetails->getId(); ?></span>
+            <?php if ($teamInfo['isOwner'] || $teamInfo['isDeputy']) : ?>
+                <?php
+                    echo Html::a('',
+                        [
+                            "edit-details",
+                            "id" => $teamDetails->getId()
+                        ],
+                        ['class' => "glyphicon glyphicon-pencil",
+                            'title' => "Edit Details"
+                        ]
+                    )
+                ?>
+            <?php endif; ?>
         </div>
         <div class="teamInfos">
             <div class="entry clearfix">
@@ -68,6 +81,12 @@ Yii::$app->MetaClass->writeMetaMainTeam($this, $teamDetails, $this->title);
             <div class="entry clearfix">
                 <div class="col-xs-5 col-sm-3 col-lg-3"><?=\app\modules\teams\Module::t('teams', 'team_captain')?></div>
                 <div class="col-xs-7 col-sm-9 col-lg-9 context"><?= Html::a($teamDetails->GetTeamCaptain()->one()->getUsername(), ['/user/details', 'id' => $teamDetails->getTeamCaptainId()]); ?></div>
+            </div>
+            <div class="entry clearfix">
+                <div class="col-xs-5 col-sm-3 col-lg-3">Stellvertreter</div>
+                <?php if($teamDetails->getTeamDeputy()->one() != null) : ?>
+                <div class="col-xs-7 col-sm-9 col-lg-9 context"><?= Html::a($teamDetails->getTeamDeputy()->one()->getUsername(), ['/user/details', 'id' => $teamDetails->getTeamDeputyId()]); ?></div>
+            <?php endif; ?>
             </div>
             <div class="entry clearfix">
                 <div class="col-xs-5 col-sm-3 col-lg-3"><?=\app\modules\teams\Module::t('teams', 'member_since')?></div>
