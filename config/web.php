@@ -75,6 +75,7 @@ $config = [
                 'platformgames/<action>' => 'platformgames/platformgames/<action>', 
                 'rocketleague/<action>' => 'rocketleague/rocketleague/<action>',
                 'rules/<action>' => 'rules/rules/<action>',
+                'events/<action>' => 'events/events/<action>',
             ],
         ],
         'i18n' => [
@@ -105,6 +106,7 @@ $config = [
         'tournaments' => 'app\modules\tournaments\Module',
         'rocketleague' => 'app\modules\rocketleague\Module',
         'rules' => 'app\modules\rules\Module',
+        'events' => 'app\modules\events\Module',
         //'core' => 'app\modules\core\Module',
         //'rbac' => 'app\modules\rbac\Module',
     ],
