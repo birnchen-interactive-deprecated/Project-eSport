@@ -197,6 +197,14 @@ class SubTeam extends ActiveRecord
         return $this->name;
     }
 
+    /** Deprecated
+     * @return string team name
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
     /**
      * @return string short code
      */
@@ -283,8 +291,8 @@ class SubTeam extends ActiveRecord
         $subTeams = static::findAll(['game_id' => $gameId]);
         usort($subTeams, function ($a, $b) {
 
-            // $aName = $a->getMainTeam()->one()->getName();
-            // $bName = $b->getMainTeam()->one()->getName();
+             $aName = $a->getMainTeam()->one()->getName();
+             $bName = $b->getMainTeam()->one()->getName();
 
             $aSubName = $a->getTeamName();
             $bSubName = $b->getTeamName();
