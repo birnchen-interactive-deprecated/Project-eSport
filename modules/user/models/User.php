@@ -397,7 +397,7 @@ class User extends AbstractActiveRecord implements IdentityInterface
     {
         /** @var PlayerParticipating $isParticipating */
         $isParticipating = $this->getPlayerParticipating()->where(['tournament_id' => $tournamentId])->one();
-        return $isParticipating->getCheckedIn() != null;
+        return $isParticipating->getIsCheckedin() != null;
     }
 
     /**
