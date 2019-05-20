@@ -170,7 +170,7 @@ $this->title = 'Turnier Details';
         <?php foreach ($participatingEntrys as $key => $entry): ?>
             <?php
 
-            $imgPath = ($entry instanceOf User) ? '/images/userAvatar/' . $entry->user_id : '/images/teams/subTeams/' . $entry->sub_team_id;
+            $imgPath = ($entry instanceOf User) ? '/images/userAvatar/' . $entry->id : '/images/teams/subTeams/' . $entry->id;
 
             if (!is_file($_SERVER['DOCUMENT_ROOT'] . '/' . $imgPath . '.webp')) {
                 if (!is_file($_SERVER['DOCUMENT_ROOT'] . '/' . $imgPath . '.png')) {
