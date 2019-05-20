@@ -60,7 +60,8 @@ Yii::$app->MetaClass->writeMetaMainTeam($this, $teamDetails, $this->title);
                     echo Html::a('',
                         [
                             "edit-details",
-                            "id" => $teamDetails->getId()
+                            "id" => $teamDetails->getId(),
+                            "isSub" => true
                         ],
                         ['class' => "glyphicon glyphicon-pencil",
                             'title' => "Edit Details"
@@ -111,6 +112,21 @@ Yii::$app->MetaClass->writeMetaMainTeam($this, $teamDetails, $this->title);
                     ?>
                     <div class="col-lg-6 teamMembers"><?= Html::a($username, ['/user/details', 'id' => $userId]); ?>
                         (<?=\app\modules\teams\Module::t('teams', ($teamDetails->isUserSubstitute($userId) ? 'substitude' : 'player'))?>)
+                        <?php if ($teamInfo['isOwner'] || $teamInfo['isDeputy']) : ?>
+                        <?php
+                            echo Html::a('',
+                                [
+                                    "delete-member",
+                                    "subTeamId" => $teamDetails->getId(),
+                                    "userId" => $userId,
+                                    "isSub" => true
+                                ],
+                                ['class' => "glyphicon glyphicon-remove",
+                                    'title' => "Remove Player"
+                                ]
+                            )
+                        ?>
+                    <?php endif; ?>
                     </div>
                 <?php endforeach; ?>
             </div>

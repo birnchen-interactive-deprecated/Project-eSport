@@ -11,8 +11,14 @@ namespace app\modules\teams\controllers;
 use app\components\BaseController;
 use app\modules\teams\models\MainTeam;
 use app\modules\teams\models\SubTeam;
+use app\modules\teams\models\SubTeamMember;
 
 use app\modules\user\models\formModels\ProfilePicForm;
+
+use app\modules\teams\models\formModels\SubTeamDetailsForm;
+use app\modules\teams\models\formModels\TeamDetailsForm;
+
+use app\widgets\Alert;
 
 use DateTime;
 
@@ -29,20 +35,20 @@ class TeamsController extends BaseController
      *
      * @inheritdoc
      */
-    //public function behaviors()
-    //{
-    //    return [
-    //        'access' => [
-    //            'class' => AccessControl::className(),
-    //            'rules' => [
-    //                [
-    //                    'allow' => true,
-    //                    'roles' => ['@'],
-    //                ]
-    //            ]
-    //        ]
-    //    ];
-    //}
+    /*public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ]
+                ]
+            ]
+        ];
+    }*/
 
     /**
      * Main Team Details Page
@@ -150,22 +156,58 @@ class TeamsController extends BaseController
             ]);
     }
 
-    public function actionChangeTeamDetails($id = null)
+
+
+    public function actionEditDetails($id, $isSub = false)
     {
-        if (Yii::$app->user->isGuest) {
+        $teamDetails = SubTeam::findOne(['id' => $id]);
+
+        if (Yii::$app->user->isGuest || Yii::$app->user->identity == null) {
             return $this->goHome();
         }
 
-        $teamDetails = MainTeam::findOne(['team_id' => $id]);
-        $myID = Yii::$app->user->identity->getId();
+        if (Yii::$app->user->identity->getId() != $teamDetails->captain_id && Yii::$app->user->identity->getId() != $teamDetails->deputy_id) {
+            return $this->goHome();
+        }
 
-        /** Check if owner ID my own User ID */
-        if($teamDetails->getOwnerId() == $myID)
-        $isMySelfe = (Yii::$app->user->identity != null && Yii::$app->user->identity->getId() == $id) ? true : false;
+        $model = ($isSub == true) ? new SubTeamDetailsForm() : new TeamDetailsForm();
 
-        return $this->render('changeTeamDetails',
+        return $this->render('editDetails',
             [
-
+                'id' => $id,
+                //'genderList' => $genderList,
+                //'languageList' => $languageList,
+                //'nationalityList' => $nationalityList,
+                'model' => $model
             ]);
+    }
+
+    public function actionDeleteMember($subTeamId, $userId, $isSub = false)
+    {
+        $model = null;
+
+        if($isSub)
+        {
+            $model = SubTeamMember::find()->where(['user_id' => $userId, 'sub_team_id' => $subTeamId])->one();
+        }
+        else
+        {
+            //$model = TeamMember::find()->where(['user_id' => $userId, 'sub_team_id' => $subTeamId])->one();
+        }
+        
+        if($model != null)
+            $model->delete();
+        //$model = UserGames::find()->where(['game_id' => $gameId, 'platform_id' => $platformId, 'user_id' => Yii::$app->user->identity->getId()])->one();
+
+        //$model->visible = !$model->visible;
+        //$model->save();
+
+        //$gameName = Games::find()->where(['id' => $gameId])->one()->getName();
+
+        Alert::addSuccess('User ' . $model->getUser()->one()->getUsername() . ' deleted from ' . $model->getSubTeam()->one()->getTournamentMode()->one()->getName() . ' Sub Team ' . $model->getSubTeam()->one()->getTeamName());
+        //Alert::addError("Pierre ist doof"); 
+        //Alert::addInfo("Pierre ist doof"); 
+
+        $this->redirect("sub-team-details?id=" . $subTeamId);
     }
 }

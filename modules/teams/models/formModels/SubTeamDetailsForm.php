@@ -13,3 +13,14 @@ use app\modules\user\models\Nationality;
 use Yii;
 use yii\db\Expression;
 use yii\db\Exception;
+
+/**
+ * SubTeamDetailForm is the model behind the login form.
+ *
+ * @property User|null $user This property is read-only.
+ *
+ */
+class SubTeamDetailsForm extends FormModel
+{
+
+}
