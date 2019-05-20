@@ -184,9 +184,9 @@ $this->title = 'Turnier Details';
             $checkInText = (false === $checkInStatus) ? 'Not Checked In' : 'Checked In';
             $checkInClass = (false === $checkInStatus) ? 'alert-danger' : 'alert-success';
 
-            $disqStatus = $entry->getDisqualifiedStatus($tournament->getId());
-            $disqText = (false === $disqStatus) ? '' : 'Disqualifiziert';
-            $disqClass = (false === $disqStatus) ? '' : 'alert-danger';
+            //$disqStatus = $entry->getDisqualifiedStatus($tournament->getId());
+            //$disqText = (false === $disqStatus) ? '' : 'Disqualifiziert';
+            //$disqClass = (false === $disqStatus) ? '' : 'alert-danger';
             ?>
             <tr class="fold">
 

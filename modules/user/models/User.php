@@ -401,6 +401,18 @@ class User extends AbstractActiveRecord implements IdentityInterface
     }
 
     /**
+     * @param $tournamentId
+     * @return string
+     */
+    public function getDisqualifiedStatus($tournamentId)
+    {
+        /** @var PlayerParticipating $isParticipating */
+        //$isParticipating = $this->getPlayerParticipating()->where(['tournament_id' => $tournamentId])->one();
+        //return $isParticipating->getDisqualified() != null;
+        return false;
+    }
+
+    /**
      * @return array
      * @throws \yii\base\InvalidConfigException
      */
