@@ -33,13 +33,13 @@ foreach ($participatingEntrys as $key => $entry) {
         // $checkedIn = $entry->hasOne(PlayerParticipating::className(), ['user_id' => 'user_id'])->one()->getCheckedIn();
         $tournamentPlayerParticipating = $entry->getPlayerParticipating()->where(['tournament_id' => $tournament->getId()])->one();
         if ($tournamentPlayerParticipating instanceOf PlayerParticipating) {
-            $checkedIn = $tournamentPlayerParticipating->getCheckedIn();
+            $checkedIn = $tournamentPlayerParticipating->getIsCheckedin();
         }
     } else if ($entry instanceOf SubTeam) {
         // $checkedIn = $entry->hasOne(TeamParticipating::className(), ['sub_team_id' => 'sub_team_id'])->one()->getCheckedIn();
         $tournamentTeamParticipating = $entry->getTeamParticipating()->where(['tournament_id' => $tournament->getId()])->one();
         if ($tournamentTeamParticipating instanceOf TeamParticipating) {
-            $checkedIn = $tournamentTeamParticipating->getCheckedIn();
+            $checkedIn = $tournamentTeamParticipating->getIsCheckedin();
         }
     }
     if (1 == $checkedIn) {
