@@ -344,4 +344,20 @@ class SubTeam extends ActiveRecord
         $isParticipating = $this->getTeamParticipating()->where('tournament_id = ' . $tournamentId)->one();
         return $isParticipating->getIsCheckedin() != null;
     }
+
+    /**
+     * @return string
+     */
+    public function getTeamMembersFormatted()
+    {
+        $users = $this->getSubTeamMembers()->orderBy('is_sub')->all();
+
+        $userString = array_map(function ($arr) {
+            $userName = $arr->getUser()->one()->getUsername();
+            $isSub = (1 === $arr->getIsSubstitute()) ? 'Substitute' : 'Spieler';
+            return $userName . ' (' . $isSub . ')';
+        }, $users);
+
+        return implode('<br>', $userString);
+    }
 }
