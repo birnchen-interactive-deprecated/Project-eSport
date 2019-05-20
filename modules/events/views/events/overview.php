@@ -13,15 +13,25 @@ $dvisionLink = Html::a($dvisionImg, 'https://www.dvision-diner.com', ['target' =
 ?>
 
 <div class="site-events-overview">
-	<center>
-    	<div><h1><b>Köln 23.08.2019</b></h1></div>
-    	<br>
-    	<br>
-    	<br>
-    	<div><h2><b>Save the Date!!!</b></h2></div>
-    	<br>
-    	<br>
-    	<br>
-    	<span><?= $pespLink; ?></span><span><?= $dvisionLink; ?>
-	</center>
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Datum</th>
+                <th>Ort</th>
+                <th>Beschreibung</th>
+                <th>Links</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>23.08.2019</td>
+                <td>Köln</td>
+                <td><b>Save the Date!!!</b></td>
+                <td>
+                    <span><?= $pespLink; ?></span>
+                    <span><?= $dvisionLink; ?></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>

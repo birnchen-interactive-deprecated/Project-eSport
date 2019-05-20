@@ -28,6 +28,9 @@ $containerClass = '';
 if (array_key_exists("r", $_REQUEST) && $_REQUEST['r'] == "site/bracket") {
     $containerClass = 'bracket';
 }
+if (array_key_exists("r", $_REQUEST) && $_REQUEST['r'] == 'events/overview') {
+    $containerClass = 'events';
+}
 
 $navigation = array(
     array('label' => 'Home', 'url' => ['/site/index'], 'aria-label' => 'Home Button', 'title' => 'Home Button'),
