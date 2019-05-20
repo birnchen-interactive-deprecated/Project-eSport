@@ -7,6 +7,8 @@ use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
 use app\modules\tournaments\models\TournamentMode;
+use app\modules\tournaments\models\TeamParticipating;
+
 
 use app\modules\user\models\User;
 
