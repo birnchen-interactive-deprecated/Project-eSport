@@ -6,10 +6,13 @@
  * @var $participatingEntrys array
  */
 
-use app\modules\core\models\PlayerParticipating;
-use app\modules\core\models\SubTeam;
-use app\modules\core\models\TeamParticipating;
-use app\modules\core\models\User;
+use app\modules\tournaments\models\TeamParticipating;
+use app\modules\tournaments\models\PlayerParticipating;
+
+use app\modules\teams\models\SubTeam;
+
+use app\modules\user\models\User;
+
 use yii\helpers\Html;
 
 app\modules\rocketleague\assets\rocketleagueAsset::register($this);
