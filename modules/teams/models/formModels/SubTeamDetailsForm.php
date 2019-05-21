@@ -61,40 +61,45 @@ class SubTeamDetailsForm extends FormModel
     /**
      * SubTeamDetailsForm constructor.
      * @param $subTeamId
+     * @return SubTeamDetailsForm
      */
-    public function __construct($subTeamId)
+    public static function getSubTeamForm($subTeamId)
     {
         $teamDetails = SubTeam::findOne(['id' => $subTeamId]);
-        
+        $model = new SubTeamDetailsForm();
         /** Language */
-        $this->siteLanguage = (Yii::$app->user->identity != null) ? Yii::$app->user->identity->getLanguage()->one() : Language::findByLocale('en-US');
+        $model->siteLanguage = (Yii::$app->user->identity != null) ? Yii::$app->user->identity->getLanguage()->one() : Language::findByLocale('en-US');
 
         /** Default informations */
-        $this->main_team = $teamDetails->getMainTeam()->one()->getName();
-        $this->subTeamId = $subTeamId;
-        $this->headquater_id = $teamDetails->getHeadquaterId();
-        $this->language_id = $teamDetails->getLanguageId();
-        $this->game_id = $teamDetails->getGameId();
-        $this->tournament_mode = $teamDetails->getTournamentMode()->one()->getName();
+        $model->main_team = $teamDetails->getMainTeam()->one()->getName();
+        $model->subTeamId = $subTeamId;
+        $model->headquater_id = $teamDetails->getHeadquaterId();
+        $model->language_id = $teamDetails->getLanguageId();
+        $model->game_id = $teamDetails->getGameId();
+        $model->tournament_mode = $teamDetails->getTournamentMode()->one()->getName();
 
         /** Management Informations */
-        $this->captain_id = $teamDetails->getTeamCaptainId();
-        $this->deputy_id = $teamDetails->getTeamDeputyId();
-        $this->manager_id = $teamDetails->getTeamManagerId();
-        $this->trainer_id = $teamDetails->getTeamTrainerId();
+        $model->captain_id = $teamDetails->getTeamCaptainId();
+        $model->deputy_id = $teamDetails->getTeamDeputyId();
+        $model->manager_id = $teamDetails->getTeamManagerId();
+        $model->trainer_id = $teamDetails->getTeamTrainerId();
 
         /** Team Informations */
-        $this->name = $teamDetails->getTeamName();
-        $this->short_code = $teamDetails->getTeamShortCode();
-        $this->mixed = $teamDetails->getIsTeamShortCodeMixed();
-        $this->main_short_code = $teamDetails->getMainTeam()->one()->getShortCode();
-        $this->main_short_code_hidden = $teamDetails->getMainTeam()->one()->getShortCode();
-        $this->description = $teamDetails->getTeamDescription();
+        $model->name = $teamDetails->getTeamName();
+        $model->short_code = $teamDetails->getTeamShortCode();
+        $model->mixed = $teamDetails->getIsTeamShortCodeMixed();
+        $model->main_short_code = $teamDetails->getMainTeam()->one()->getShortCode();
+        $model->main_short_code_hidden = $teamDetails->getMainTeam()->one()->getShortCode();
+        $model->description = $teamDetails->getTeamDescription();
 
         /** Social Media Informations */
-        $this->twitter_account = $teamDetails->getTeamTwitterAccount();
-        $this->twitter_channel = $teamDetails->getTeamTwitterChannel();
-        $this->discord_server = $teamDetails->getTeamDiscordServer();  
+        $model->twitter_account = $teamDetails->getTeamTwitterAccount();
+        $model->twitter_channel = $teamDetails->getTeamTwitterChannel();
+        $model->discord_server = $teamDetails->getTeamDiscordServer();
+
+
+
+        return $model;
     }
 
 
