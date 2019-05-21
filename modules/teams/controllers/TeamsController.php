@@ -179,7 +179,7 @@ class TeamsController extends BaseController
             return $this->goHome();
         }
 
-        $model = ($isSub == true) ? $this->getSubTeamForm($id) : $this->getTeamForm($id);
+        $model = ($isSub == true) ? new SubTeamDetailsForm($id) : $this->getTeamForm($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->save()){
             $this->redirect("sub-team-details?id=" . $id);
@@ -235,7 +235,7 @@ class TeamsController extends BaseController
 
     private function getSubTeamForm($id)
     {
-        $teamDetails = SubTeam::findOne(['id' => 1]);
+        $teamDetails = SubTeam::findOne(['id' => $id]);
         $subTeamModel = new SubTeamDetailsForm();
 
         /** Language */

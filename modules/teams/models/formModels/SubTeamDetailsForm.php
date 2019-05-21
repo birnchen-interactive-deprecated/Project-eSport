@@ -64,7 +64,37 @@ class SubTeamDetailsForm extends FormModel
      */
     public function __construct($subTeamId)
     {
+        $teamDetails = SubTeam::findOne(['id' => $subTeamId]);
+        
+        /** Language */
+        $this->siteLanguage = (Yii::$app->user->identity != null) ? Yii::$app->user->identity->getLanguage()->one() : Language::findByLocale('en-US');
+
+        /** Default informations */
+        $this->main_team = $teamDetails->getMainTeam()->one()->getName();
         $this->subTeamId = $subTeamId;
+        $this->headquater_id = $teamDetails->getHeadquaterId();
+        $this->language_id = $teamDetails->getLanguageId();
+        $this->game_id = $teamDetails->getGameId();
+        $this->tournament_mode = $teamDetails->getTournamentMode()->one()->getName();
+
+        /** Management Informations */
+        $this->captain_id = $teamDetails->getTeamCaptainId();
+        $this->deputy_id = $teamDetails->getTeamDeputyId();
+        $this->manager_id = $teamDetails->getTeamManagerId();
+        $this->trainer_id = $teamDetails->getTeamTrainerId();
+
+        /** Team Informations */
+        $this->name = $teamDetails->getTeamName();
+        $this->short_code = $teamDetails->getTeamShortCode();
+        $this->mixed = $teamDetails->getIsTeamShortCodeMixed();
+        $this->main_short_code = $teamDetails->getMainTeam()->one()->getShortCode();
+        $this->main_short_code_hidden = $teamDetails->getMainTeam()->one()->getShortCode();
+        $this->description = $teamDetails->getTeamDescription();
+
+        /** Social Media Informations */
+        $this->twitter_account = $teamDetails->getTeamTwitterAccount();
+        $this->twitter_channel = $teamDetails->getTeamTwitterChannel();
+        $this->discord_server = $teamDetails->getTeamDiscordServer();  
     }
 
 
