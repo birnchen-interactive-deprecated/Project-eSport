@@ -285,6 +285,29 @@ class SubTeam extends ActiveRecord
     public function getSubTeamMembers()
     {
         return $this->hasMany(SubTeamMember::className(), ['sub_team_id' => 'id']);
+
+        $members = [];
+        //$members[] = $this->hasOne(User::className(), ['id' => 'owner_id'])->one();
+        foreach ($this->hasMany(SubTeamMember::className(), ['sub_team_id' => 'id'])->all() as $teamMemberKey => $teamMember) {
+            $members[] = $teamMember->getUser()->one();
+        }
+
+        if ($sort) {
+            usort($members, function($a, $b) {
+                return $a->getUsername() > $b->getUsername();
+            });
+        }
+
+        return $members;
+
+    }
+
+    /**
+     * @return ActiveQuery
+     */
+    public function getSubTeamMainMembers()
+    {
+        return $this->hasMany(SubTeamMember::className(), ['sub_team_id' => 'id', 'is_sub' => 0]);
     }
 
     /**

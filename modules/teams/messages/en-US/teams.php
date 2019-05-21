@@ -54,4 +54,7 @@ return [
     'twitter_channel' => 'Comma Separated Hastag\'s, without #',
     'discord_server' => 'Discord Server',
 
+    /** team member details change */
+    'DetailsMemberHead' => 'Change Member Settings',
+
 ];

@@ -24,7 +24,10 @@ use app\modules\tournaments\models\TournamentMode;
 
 use app\modules\user\models\formModels\ProfilePicForm;
 
+use app\modules\user\models\User;
+
 use app\modules\teams\models\formModels\SubTeamDetailsForm;
+use app\modules\teams\models\formModels\SubTeamMemberDetailsForm;
 use app\modules\teams\models\formModels\TeamDetailsForm;
 
 use app\widgets\Alert;
@@ -227,49 +230,47 @@ class TeamsController extends BaseController
             ]);
     }
 
+    public function actionEditPlayers($id, $isSub = false)
+    {
+        $teamDetails = ($isSub) ? SubTeam::findOne(['id' => $id]) : MainTeam::findOne(['id' => $id]);
+
+        if (Yii::$app->user->isGuest || Yii::$app->user->identity == null) {
+            return $this->goHome();
+        }
+
+        if (Yii::$app->user->identity->getId() != $teamDetails->captain_id && Yii::$app->user->identity->getId() != (($isSub) ? $teamDetails->deputy_id : $teamDetails->owner_id)) {
+            return $this->goHome();
+        }
+
+        $model = ($isSub == true) ? SubTeamMemberDetailsForm::getSubTeamMemberForm($id) : $this->getTeamMemberForm($id);
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->save()){
+            Alert::addSuccess('succesfully changed the Team details');
+            return $this->redirect("sub-team-details?id=" . $id);
+        }
+
+        /** Get All Members From Main team */
+        $mainTeamPlayerList = [];
+        $mainteam = ($isSub) ?  SubTeam::findOne(['id' => $id])->getMainTeam()->one() : MainTeam::findOne(['id' => $id]);
+        $members = $mainteam->getTeamMemberWithOwner();
+
+        foreach ($members as $teamMember) {
+            $mainTeamPlayerList[$teamMember->getId()] = $teamMember->getUsername();
+        }
+
+        return $this->render((($isSub) ? 'editSubTeamMemberDetails' : 'editMemberDetails'),
+            [
+                'id' => $id,
+                'mainTeamPlayerList' => $mainTeamPlayerList,
+                'model' => $model
+            ]);
+    }
+
     private function getTeamForm($teamDetails, $id)
     {
         $teamModel = new TeamDetailsForm();
 
         return $teamModel;
-    }
-
-    private function getSubTeamForm($id)
-    {
-        $teamDetails = SubTeam::findOne(['id' => $id]);
-        $subTeamModel = new SubTeamDetailsForm();
-
-        /** Language */
-        $subTeamModel->siteLanguage = (Yii::$app->user->identity != null) ? Yii::$app->user->identity->getLanguage()->one() : Language::findByLocale('en-US');
-
-        /** Default informations */
-        $subTeamModel->main_team = $teamDetails->getMainTeam()->one()->getName();
-        $subTeamModel->subTeamId = $id;
-        $subTeamModel->headquater_id = $teamDetails->getHeadquaterId();
-        $subTeamModel->language_id = $teamDetails->getLanguageId();
-        $subTeamModel->game_id = $teamDetails->getGameId();
-        $subTeamModel->tournament_mode = $teamDetails->getTournamentMode()->one()->getName();
-
-        /** Management Informations */
-        $subTeamModel->captain_id = $teamDetails->getTeamCaptainId();
-        $subTeamModel->deputy_id = $teamDetails->getTeamDeputyId();
-        $subTeamModel->manager_id = $teamDetails->getTeamManagerId();
-        $subTeamModel->trainer_id = $teamDetails->getTeamTrainerId();
-
-        /** Team Informations */
-        $subTeamModel->name = $teamDetails->getTeamName();
-        $subTeamModel->short_code = $teamDetails->getTeamShortCode();
-        $subTeamModel->mixed = $teamDetails->getIsTeamShortCodeMixed();
-        $subTeamModel->main_short_code = $teamDetails->getMainTeam()->one()->getShortCode();
-        $subTeamModel->main_short_code_hidden = $teamDetails->getMainTeam()->one()->getShortCode();
-        $subTeamModel->description = $teamDetails->getTeamDescription();
-
-        /** Social Media Informations */
-        $subTeamModel->twitter_account = $teamDetails->getTeamTwitterAccount();
-        $subTeamModel->twitter_channel = $teamDetails->getTeamTwitterChannel();
-        $subTeamModel->discord_server = $teamDetails->getTeamDiscordServer();        
-
-        return $subTeamModel;
     }
 
     public function actionDeleteMember($subTeamId, $userId, $isSub = false)
@@ -285,9 +286,13 @@ class TeamsController extends BaseController
                 $model->delete();
 
                 Alert::addSuccess('User ' . $model->getUser()->one()->getUsername() . ' deleted from ' . $model->getSubTeam()->one()->getTournamentMode()->one()->getName() . ' Sub Team '. $model->getSubTeam()->one()->getTeamName());
+
+                return $this->redirect("sub-team-details?id=" . $subTeamId);
             }
             
-            Alert::addError('User '. User::findIdentity($userId)->one()->getUsername() .' does not exist in Team ' . SubTeam::findOne(['id' => $subTeamId])->one()->getTeamName());            
+            Alert::addError('User '. User::findIdentity($userId)->getUsername() .' does not exist in Team ' . SubTeam::findOne(['id' => $subTeamId])->getTeamName());
+
+            return $this->redirect("sub-team-details?id=" . $subTeamId);    
         }
         else
         {
@@ -298,6 +303,6 @@ class TeamsController extends BaseController
         //Alert::addError("Pierre ist doof"); 
         //Alert::addInfo("Pierre ist doof"); 
 
-        $this->redirect("sub-team-details?id=" . $subTeamId);
+        
     }
 }

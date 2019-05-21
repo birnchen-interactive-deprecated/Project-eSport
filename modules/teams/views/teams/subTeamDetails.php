@@ -103,7 +103,23 @@ Yii::$app->MetaClass->writeMetaMainTeam($this, $teamDetails, $this->title);
             </div>
         </div>
         <div class="entry entryMembers clearfix">
-            <div class="col-xs-5 col-sm-3 col-lg-3"><?=\app\modules\teams\Module::t('teams', 'team_member')?></div>
+            <div class="header">
+            <span class="teamname"><?=\app\modules\teams\Module::t('teams', 'team_member')?></span>
+            <?php if ($teamInfo['isOwner'] || $teamInfo['isDeputy']) : ?>
+                <?php
+                    echo Html::a('',
+                        [
+                            "edit-players",
+                            "id" => $teamDetails->getId(),
+                            "isSub" => true
+                        ],
+                        ['class' => "glyphicon glyphicon-pencil",
+                            'title' => "Edit Details"
+                        ]
+                    )
+                ?>
+            <?php endif; ?>
+        </div>
             <div class="col-xs-7 col-sm9 col-lg-9 context">
                 <?php foreach($teamDetails->getSubTeamMembers()->all() as $userKey => $user): ?>
                     <?php
