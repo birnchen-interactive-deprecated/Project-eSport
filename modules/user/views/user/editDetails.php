@@ -16,7 +16,7 @@ use kartik\date\DatePicker;
 \app\modules\user\assets\UserAsset::register($this);
 
 ?>
-<div class="site-addGame">
+<div class="site-editDetails">
 	<?php $form = ActiveForm::begin([
         'id' => 'user-details-form',
         'options' => ['class' => 'form-vertical']

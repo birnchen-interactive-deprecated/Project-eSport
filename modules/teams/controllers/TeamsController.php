@@ -9,9 +9,13 @@
 namespace app\modules\teams\controllers;
 
 use app\components\BaseController;
+
 use app\modules\teams\models\MainTeam;
 use app\modules\teams\models\SubTeam;
 use app\modules\teams\models\SubTeamMember;
+
+use app\modules\user\models\Language;
+use app\modules\user\models\Nationality;
 
 use app\modules\user\models\formModels\ProfilePicForm;
 
@@ -160,26 +164,77 @@ class TeamsController extends BaseController
 
     public function actionEditDetails($id, $isSub = false)
     {
-        $teamDetails = SubTeam::findOne(['id' => $id]);
+        $teamDetails = ($isSub) ? SubTeam::findOne(['id' => $id]) : MainTeam::findOne(['id' => $id]);
 
         if (Yii::$app->user->isGuest || Yii::$app->user->identity == null) {
             return $this->goHome();
         }
 
-        if (Yii::$app->user->identity->getId() != $teamDetails->captain_id && Yii::$app->user->identity->getId() != $teamDetails->deputy_id) {
+        if (Yii::$app->user->identity->getId() != $teamDetails->captain_id && Yii::$app->user->identity->getId() != (($isSub) ? $teamDetails->deputy_id : $teamDetails->owner_id)) {
             return $this->goHome();
         }
 
-        $model = ($isSub == true) ? new SubTeamDetailsForm() : new TeamDetailsForm();
+        $model = ($isSub == true) ? $this->getSubTeamForm($id) : $this->getTeamForm($id);
 
-        return $this->render('editDetails',
+        $languageList = [];
+        foreach (Language::find()->all() as $language) {
+            $languageList[$language->getId()] = $language->getName();
+        }
+
+        $nationalityList = [];
+        foreach (Nationality::find()->all() as $nationality) {
+            $nationalityList[$nationality->getId()] = $nationality->getName();
+        }
+
+
+        return $this->render((($isSub) ? 'editSubTeamDetails' : 'editDetails'),
             [
                 'id' => $id,
-                //'genderList' => $genderList,
-                //'languageList' => $languageList,
-                //'nationalityList' => $nationalityList,
+                'languageList' => $languageList,
+                'nationalityList' => $nationalityList,
                 'model' => $model
             ]);
+    }
+
+    private function getTeamForm($teamDetails, $id)
+    {
+        $teamModel = new TeamDetailsForm();
+
+        return $teamModel;
+    }
+
+    private function getSubTeamForm($id)
+    {
+        $teamDetails = SubTeam::findOne(['id' => 1]);
+        $subTeamModel = new SubTeamDetailsForm();
+
+        /** Language */
+        $subTeamModel->siteLanguage = (Yii::$app->user->identity != null) ? Yii::$app->user->identity->getLanguage()->one() : Language::findByLocale('en-US');
+
+        /** Default informations */
+        $subTeamModel->main_team_id = $teamDetails->getMainTeamId();
+        $subTeamModel->headquater_id = $teamDetails->getHeadquaterId();
+        $subTeamModel->language_id = $teamDetails->getLanguageId();
+
+        /** Management Informations */
+        $subTeamModel->captain_id = $teamDetails->getTeamCaptainId();
+        $subTeamModel->deputy_id = $teamDetails->getTeamDeputyId();
+        $subTeamModel->manager_id = $teamDetails->getTeamManagerId();
+        $subTeamModel->trainer_id = $teamDetails->getTeamTrainerId();
+
+        /** Team Informations */
+        $subTeamModel->name = $teamDetails->getTeamName();
+        $subTeamModel->short_code = $teamDetails->getTeamShortCode();
+        $subTeamModel->mixed = $teamDetails->getIsTeamShortCodeMixed();
+        $subTeamModel->main_short_code = $teamDetails->getMainTeamShortCode();
+        $subTeamModel->description = $teamDetails->getTeamDescription();
+
+        /** Social Media Informations */
+        $subTeamModel->twitter_account = $teamDetails->getTeamTwitterAccount();
+        $subTeamModel->twitter_channel = $teamDetails->getTeamTwitterChannel();
+        $subTeamModel->discord_server = $teamDetails->getTeamDiscordServer();        
+
+        return $subTeamModel;
     }
 
     public function actionDeleteMember($subTeamId, $userId, $isSub = false)
@@ -189,22 +244,22 @@ class TeamsController extends BaseController
         if($isSub)
         {
             $model = SubTeamMember::find()->where(['user_id' => $userId, 'sub_team_id' => $subTeamId])->one();
+
+            if($model != null)
+            {
+                $model->delete();
+
+                Alert::addSuccess('User ' . $model->getUser()->one()->getUsername() . ' deleted from ' . $model->getSubTeam()->one()->getTournamentMode()->one()->getName() . ' Sub Team '. $model->getSubTeam()->one()->getTeamName());
+            }
+            
+            Alert::addError('User '. User::findIdentity($userId)->one()->getUsername() .' does not exist in Team ' . SubTeam::findOne(['id' => $subTeamId])->one()->getTeamName());            
         }
         else
         {
             //$model = TeamMember::find()->where(['user_id' => $userId, 'sub_team_id' => $subTeamId])->one();
         }
         
-        if($model != null)
-            $model->delete();
-        //$model = UserGames::find()->where(['game_id' => $gameId, 'platform_id' => $platformId, 'user_id' => Yii::$app->user->identity->getId()])->one();
-
-        //$model->visible = !$model->visible;
-        //$model->save();
-
-        //$gameName = Games::find()->where(['id' => $gameId])->one()->getName();
-
-        Alert::addSuccess('User ' . $model->getUser()->one()->getUsername() . ' deleted from ' . $model->getSubTeam()->one()->getTournamentMode()->one()->getName() . ' Sub Team ' . $model->getSubTeam()->one()->getTeamName());
+        
         //Alert::addError("Pierre ist doof"); 
         //Alert::addInfo("Pierre ist doof"); 
 

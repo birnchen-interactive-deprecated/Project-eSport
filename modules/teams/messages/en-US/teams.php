@@ -8,27 +8,27 @@
 
 return [
     /** Image Uploader */
-    'upload' => 'Hochladen',
-    'change' => 'Bearbeiten',
+    'upload' => 'Upload',
+    'change' => 'Change',
 
     /** alt attributes */
     'teamLogo' => 'Team Logo',
 
     /** Team Info Labels */
     'name' => 'Name',
-    'shortcode' => 'Kürzel',
+    'shortcode' => 'Tag',
     'team_captain' => 'Team Manager',
-    'member_since' => 'Mitglied Seit',
-    'nationality' => 'Nationalität',
-    'description' => 'Beschreibung',
+    'member_since' => 'Member Since',
+    'nationality' => 'Nationality',
+    'description' => 'Description',
 
     /** Team Mitglieder Bereich */
-    'team_member' => 'Team Mitglieder',
-    'substitude' => 'Ersatz Spieler',
-    'player' => 'Spieler',
+    'team_member' => 'Team Member',
+    'substitude' => 'Substitude',
+    'player' => 'Player',
 
     /** team details change */
-    'DetailsHead' => 'Team Daten Bearbeiten',
+    'DetailsHead' => 'Change Team Details',
     'teamName' => 'Team Name'
 
 ];

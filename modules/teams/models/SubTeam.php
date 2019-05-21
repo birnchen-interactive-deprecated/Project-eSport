@@ -29,6 +29,7 @@ use app\modules\user\models\User;
  * @property string $name
  * @property string $short_code
  * @property bool $mixed
+ * @property string $main_short_code
  * @property string $description
  * @property bool $disqualified
  * @property string $twitter_account
@@ -219,6 +220,14 @@ class SubTeam extends ActiveRecord
     public function getIsTeamShortCodeMixed()
     {
         return $this->mixed;
+    }
+
+    /**
+     * @return string short code
+     */
+    public function getMainTeamShortCode()
+    {
+        return $this->main_short_code;
     }
 
     /**

@@ -24,10 +24,27 @@ class Module extends \yii\base\Module
     {
         Yii::$app->i18n->translations['modules/teams/*'] = [
             'class' => 'yii\i18n\PhpMessageSource',
+            'sourceLanguage' => 'de',
+            'basePath' => '@app/modules/teams/messages',
+            'fileMap' => [
+                'modules/teams/teams' => 'teams.php'
+                //'modules/user/user' => 'user.php',
+                //'modules/user/login' => 'login.php',
+                //'modules/user/register' => 'register.php',
+                //'modules/user/account' => 'account.php',
+            ],
+        ];
+
+        Yii::$app->i18n->translations['modules/teams/*'] = [
+            'class' => 'yii\i18n\PhpMessageSource',
             'sourceLanguage' => 'en',
             'basePath' => '@app/modules/teams/messages',
             'fileMap' => [
-                'modules/teams/teams' => 'teams.php',
+                'modules/teams/teams' => 'teams.php'
+                //'modules/user/user' => 'user.php',
+                //'modules/user/login' => 'login.php',
+                //'modules/user/register' => 'register.php',
+                //'modules/user/account' => 'account.php',
             ],
         ];
     }
@@ -35,7 +52,7 @@ class Module extends \yii\base\Module
     /**
      * @inheritdoc
      */
-    public static function t($category, $message, $params = [], $language = null)
+    public static function t($category, $message, $language = null, $params = [])
     {
         return Yii::t('modules/teams/' . $category, $message, $params, $language);
     }
