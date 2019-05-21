@@ -11,11 +11,16 @@ namespace app\modules\teams\controllers;
 use app\components\BaseController;
 
 use app\modules\teams\models\MainTeam;
+use app\modules\teams\models\MainTeamMember;
 use app\modules\teams\models\SubTeam;
 use app\modules\teams\models\SubTeamMember;
 
 use app\modules\user\models\Language;
 use app\modules\user\models\Nationality;
+
+use app\modules\platformgames\models\Games;
+
+use app\modules\tournaments\models\TournamentMode;
 
 use app\modules\user\models\formModels\ProfilePicForm;
 
@@ -176,6 +181,10 @@ class TeamsController extends BaseController
 
         $model = ($isSub == true) ? $this->getSubTeamForm($id) : $this->getTeamForm($id);
 
+        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->save()){
+            $this->redirect("sub-team-details?id=" . $id);
+        }
+
         $languageList = [];
         foreach (Language::find()->all() as $language) {
             $languageList[$language->getId()] = $language->getName();
@@ -186,12 +195,33 @@ class TeamsController extends BaseController
             $nationalityList[$nationality->getId()] = $nationality->getName();
         }
 
+        $gamesList = [];
+        foreach (Games::find()->all() as $game) {
+            $gamesList[$game->getId()] = $game->getName();
+        }
+
+        $tournamentModeList = [];
+        foreach (TournamentMode::find()->all() as $tournamentMode) {
+            $tournamentModeList[$tournamentMode->getId()] = $tournamentMode->getName();
+        }
+
+        $playerList = [];
+        $mainteam = MainTeam::findOne(['id' => $id]);
+        $members = $mainteam->getTeamMemberWithOwner();
+
+        foreach ($members as $teamMember) {
+            $playerList[$teamMember->getId()] = $teamMember->getUsername();
+        }
+
 
         return $this->render((($isSub) ? 'editSubTeamDetails' : 'editDetails'),
             [
                 'id' => $id,
                 'languageList' => $languageList,
                 'nationalityList' => $nationalityList,
+                'playerList' => $playerList,
+                'gamesList' => $gamesList,
+                'tournamentModeList' => $tournamentModeList,
                 'model' => $model
             ]);
     }
@@ -212,9 +242,12 @@ class TeamsController extends BaseController
         $subTeamModel->siteLanguage = (Yii::$app->user->identity != null) ? Yii::$app->user->identity->getLanguage()->one() : Language::findByLocale('en-US');
 
         /** Default informations */
-        $subTeamModel->main_team_id = $teamDetails->getMainTeamId();
+        $subTeamModel->main_team = $teamDetails->getMainTeam()->one()->getName();
+        $subTeamModel->subTeamId = $id;
         $subTeamModel->headquater_id = $teamDetails->getHeadquaterId();
         $subTeamModel->language_id = $teamDetails->getLanguageId();
+        $subTeamModel->game_id = $teamDetails->getGameId();
+        $subTeamModel->tournament_mode = $teamDetails->getTournamentMode()->one()->getName();
 
         /** Management Informations */
         $subTeamModel->captain_id = $teamDetails->getTeamCaptainId();
@@ -226,7 +259,8 @@ class TeamsController extends BaseController
         $subTeamModel->name = $teamDetails->getTeamName();
         $subTeamModel->short_code = $teamDetails->getTeamShortCode();
         $subTeamModel->mixed = $teamDetails->getIsTeamShortCodeMixed();
-        $subTeamModel->main_short_code = $teamDetails->getMainTeamShortCode();
+        $subTeamModel->main_short_code = $teamDetails->getMainTeam()->one()->getShortCode();
+        $subTeamModel->main_short_code_hidden = $teamDetails->getMainTeam()->one()->getShortCode();
         $subTeamModel->description = $teamDetails->getTeamDescription();
 
         /** Social Media Informations */

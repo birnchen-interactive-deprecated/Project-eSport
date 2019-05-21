@@ -28,7 +28,30 @@ return [
     'player' => 'Player',
 
     /** team details change */
-    'DetailsHead' => 'Change Team Details',
-    'teamName' => 'Team Name'
+    'DetailsHead' => 'Change Sub Team Details',
+
+    /** Default informations */
+    'main_team' => 'Main Team',        /** done */
+    'headquater_id' => 'Nationality', /** done */
+    'language_id' => 'Language',        /** done */
+
+    /** Management Informations */
+    'captain_id' => 'Captain',         /** done */
+    'deputy_id' => 'Deputy',   /** done */
+    'manager_id' => 'Manager',         /** done */
+    'trainer_id' => 'Trainer',         /** done */
+
+    /** Team Informations */
+    'isInTournament' => '',
+    'name' => 'Team Name',
+    'short_code' => 'Tag',
+    'mixed' => 'Mixed Tag',
+    'main_short_code' => 'Main Team Tag',
+    'description' => 'Description',
+
+    /** Social Media Informations */
+    'twitter_account' => 'Twitter Account without @',
+    'twitter_channel' => 'Comma Separated Hastag\'s, without #',
+    'discord_server' => 'Discord Server',
 
 ];

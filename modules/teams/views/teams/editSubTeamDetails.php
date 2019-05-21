@@ -3,9 +3,11 @@
 /* @var $this yii\web\View *
  * @var $form yii\bootstrap\ActiveForm
  * @var $id int
- * @var genderList array
  * @var languageList array
+ * @var gamesList array
  * @var nationalityList array
+ * @var tournamentModeList array
+ * @var playerList array
 /* @var $model app\modules\teams\models\formModel\SubTeamDetailsForm */
 
 use yii\helpers\Html;
@@ -31,10 +33,39 @@ use yii\bootstrap\ActiveForm;
 
                     <div class="col-md-12">
 
-                        <!-- Default Informations -->
-                        <?= $form->field($model, 'name')->textInput(["class" => 'form-control form-control-color','readonly'=> true]) ?>
+                        <!-- Default informations -->
+                        <?= $form->field($model, 'main_team')->textInput(["class" => 'form-control form-control-color','readonly'=> true]) ?>
+
+                        <?= $form->field($model, 'headquater_id')->dropDownList($nationalityList, ["class" => 'form-control form-control-color', 'prompt' => 'Bitte auswählen']) ?>
+
+                        <?= $form->field($model, 'language_id')->dropDownList($languageList, ["class" => 'form-control form-control-color', 'prompt' => 'Bitte auswählen']) ?>
+
+                        <?= $form->field($model, 'game_id')->dropDownList($gamesList, ["class" => 'form-control form-control-color', 'prompt' => 'Bitte auswählen']) ?>
+
+                        <?= $form->field($model, 'tournament_mode')->textInput(["class" => 'form-control form-control-color','readonly'=> true]) ?>
+
+                        <!-- Management Informations -->
+                        <?= $form->field($model, 'captain_id')->dropDownList($playerList, ["class" => 'form-control form-control-color', 'prompt' => 'Bitte auswählen']) ?>
+
+                        <?= $form->field($model, 'deputy_id')->dropDownList($playerList, ["class" => 'form-control form-control-color', 'prompt' => 'Bitte auswählen']) ?>
+
+                        <?= $form->field($model, 'manager_id')->dropDownList($playerList, ["class" => 'form-control form-control-color', 'prompt' => 'Bitte auswählen']) ?>
+
+                        <?= $form->field($model, 'trainer_id')->dropDownList($playerList, ["class" => 'form-control form-control-color', 'prompt' => 'Bitte auswählen']) ?>
+
+                        <!-- Team Informations -->
+                        <?= $form->field($model, 'name')->textInput(["class" => 'form-control form-control-color','readonly'=> false]) ?>
                         <?= $form->field($model, 'short_code')->textInput(["class" => 'form-control form-control-color', 'readonly'=> false]) ?>
 
+                        <?= $form->field($model, 'mixed')->checkbox() ?>
+
+                        <?= $form->field($model, 'main_short_code')->textInput(["class" => 'form-control form-control-color','readonly'=> true]) ?>
+                        <?= $form->field($model, 'description')->textInput(["class" => 'form-control form-control-color', 'readonly'=> false]) ?>
+
+                        <!-- Social Media Informations -->
+                        <?= $form->field($model, 'twitter_account')->textInput(["class" => 'form-control form-control-color','readonly'=> false]) ?>
+                        <?= $form->field($model, 'twitter_channel')->textInput(["class" => 'form-control form-control-color', 'readonly'=> false]) ?>
+                        <?= $form->field($model, 'discord_server')->textInput(["class" => 'form-control form-control-color','readonly'=> false]) ?>
                     </div>
 
                 </div>
