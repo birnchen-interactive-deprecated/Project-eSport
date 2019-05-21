@@ -56,9 +56,19 @@ class SubTeamDetailsForm extends FormModel
 	/** Social Media Informations */
 	public $twitter_account;	
 	public $twitter_channel;	
-	public $discord_server;		
+	public $discord_server;
 
-	/**
+    /**
+     * SubTeamDetailsForm constructor.
+     * @param $subTeamId
+     */
+    public function __construct($subTeamId)
+    {
+        $this->subTeamId = $subTeamId;
+    }
+
+
+    /**
      * @return array the validation rules.
      */
 	public function rules()
