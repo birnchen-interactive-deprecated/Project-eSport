@@ -230,42 +230,6 @@ class TeamsController extends BaseController
             ]);
     }
 
-    public function actionEditPlayers($id, $isSub = false)
-    {
-        $teamDetails = ($isSub) ? SubTeam::findOne(['id' => $id]) : MainTeam::findOne(['id' => $id]);
-
-        if (Yii::$app->user->isGuest || Yii::$app->user->identity == null) {
-            return $this->goHome();
-        }
-
-        if (Yii::$app->user->identity->getId() != $teamDetails->captain_id && Yii::$app->user->identity->getId() != (($isSub) ? $teamDetails->deputy_id : $teamDetails->owner_id)) {
-            return $this->goHome();
-        }
-
-        $model = ($isSub == true) ? SubTeamMemberDetailsForm::getSubTeamMemberForm($id) : $this->getTeamMemberForm($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->save()){
-            Alert::addSuccess('succesfully changed the Team details');
-            return $this->redirect("sub-team-details?id=" . $id);
-        }
-
-        /** Get All Members From Main team */
-        $mainTeamPlayerList = [];
-        $mainteam = ($isSub) ?  SubTeam::findOne(['id' => $id])->getMainTeam()->one() : MainTeam::findOne(['id' => $id]);
-        $members = $mainteam->getTeamMemberWithOwner();
-
-        foreach ($members as $teamMember) {
-            $mainTeamPlayerList[$teamMember->getId()] = $teamMember->getUsername();
-        }
-
-        return $this->render((($isSub) ? 'editSubTeamMemberDetails' : 'editMemberDetails'),
-            [
-                'id' => $id,
-                'mainTeamPlayerList' => $mainTeamPlayerList,
-                'model' => $model
-            ]);
-    }
-
     private function getTeamForm($teamDetails, $id)
     {
         $teamModel = new TeamDetailsForm();
