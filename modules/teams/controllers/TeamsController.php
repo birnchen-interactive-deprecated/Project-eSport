@@ -182,7 +182,8 @@ class TeamsController extends BaseController
         $model = ($isSub == true) ? SubTeamDetailsForm::getSubTeamForm($id) : $this->getTeamForm($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->save()){
-            $this->redirect("sub-team-details?id=" . $id);
+            Alert::addSuccess('succesfully changed the Team details');
+            return $this->redirect("sub-team-details?id=" . $id);
         }
 
         $languageList = [];
