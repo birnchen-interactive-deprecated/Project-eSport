@@ -42,27 +42,6 @@ use yii\filters\AccessControl;
 class TeamsController extends BaseController
 {
     /**
-     * Access Controll
-     * ka was es macht aber es blockt nicht eingeloggt user
-     *
-     * @inheritdoc
-     */
-    /*public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ]
-                ]
-            ]
-        ];
-    }*/
-
-    /**
      * Main Team Details Page
      *
      * @param null $id
@@ -168,8 +147,6 @@ class TeamsController extends BaseController
             ]);
     }
 
-
-
     public function actionEditDetails($id, $isSub = false)
     {
         $teamDetails = ($isSub) ? SubTeam::findOne(['id' => $id]) : MainTeam::findOne(['id' => $id]);
@@ -237,6 +214,7 @@ class TeamsController extends BaseController
         return $teamModel;
     }
 
+    /** Glyphicon Actions */
     public function actionDeleteMember($subTeamId, $userId, $isSub = false)
     {
         $model = null;

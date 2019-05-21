@@ -3,9 +3,11 @@
 namespace app\modules\user\controllers;
 
 use app\components\BaseController;
+
 use app\modules\platformgames\models\Games;
 use app\modules\platformgames\models\Platforms;
 use app\modules\platformgames\models\UserGames;
+
 use app\modules\user\models\formModels\LoginForm;
 use app\modules\user\models\formModels\ProfilePicForm;
 use app\modules\user\models\formModels\RegisterForm;
@@ -16,6 +18,9 @@ use app\modules\user\models\Gender;
 use app\modules\user\models\Language;
 use app\modules\user\models\Nationality;
 use app\modules\user\models\User;
+use app\modules\user\models\TeamInvitations;
+
+use app\modules\teams\models\MainTeamMember;
 
 use app\widgets\Alert;
 use DateTime;
@@ -206,6 +211,10 @@ class UserController extends BaseController
 
         $subTeams = $user->getAllSubTeamsWithMembers();
 
+
+        $invitations = TeamInvitations::find()->where(['user_id' => $id, 'rejected' => 0])->all();
+        //TeamInvitations::hasMany()->where(['user_id' => $id, 'rejected' => 0])->all();
+
         return $this->render('details',
             [
                 'profilePicModel' => $profilePicModel,
@@ -215,6 +224,7 @@ class UserController extends BaseController
                 'mainTeams' => $mainTeams,
                 'subTeams' => $subTeams,
                 'siteLanguage' => $siteLanguage,
+                'invitations' => $invitations,
             ]);
     }
 
@@ -326,5 +336,36 @@ class UserController extends BaseController
         //Alert::addInfo("Pierre ist doof"); 
 
         return $this->redirect("details?id=" . Yii::$app->user->identity->getId());
+    }
+
+    public function actionInvitation($accept, $teamId)
+    {
+        $model = TeamInvitations::find()->where(['user_id' => Yii::$app->user->identity->getId(), 'main_team_id' => $teamId])->one();
+
+        if($accept)
+        {
+            $teamModel = new MainTeamMember();
+            $teamModel->user_id = Yii::$app->user->identity->getId();
+            $teamModel->main_team_id = $teamId;
+            $teamModel->save();
+
+            $model->delete();
+
+            Alert::addSuccess('Team erfoglreich beigetreten');
+
+            return $this->redirect("details?id=" . Yii::$app->user->identity->getId());
+
+        }
+        else
+        {
+            $model->rejected = true;
+            $model->save();
+
+            Alert::addSuccess('Invite rejected');
+
+            return $this->redirect("details?id=" . Yii::$app->user->identity->getId());
+
+        }
+
     }
 }

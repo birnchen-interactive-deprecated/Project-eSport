@@ -10,11 +10,25 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
+use app\widgets\Alert;
+
+use app\modules\user\models\TeamInvitations;
 
 AppAsset::register($this);
 
 $visible = (Yii::$app->user->isGuest) ? false : true;
 $userID = (Yii::$app->user->isGuest) ? -1 : Yii::$app->user->identity->getId();
+
+if($visible)
+{
+    $invitations = TeamInvitations::find()->where(['user_id' => $userID, 'rejected' => 0])->all();
+    
+    if(count($invitations) > 0)
+    {
+        Alert::addSuccess('You gote some Invites');
+    }
+}
+
 
 /** Footer Images */
 $twitterImg = Html::img('../images/socialMedia/Twitter_Logo_Blue.webp', ['height' => '49px', 'alt'=> 'twitter', 'aria-label' => 'twitter', 'onerror' => 'this.src=\'../images/socialMedia/Twitter_Logo_Blue.png\'']);
@@ -33,30 +47,31 @@ if (array_key_exists("r", $_REQUEST) && $_REQUEST['r'] == 'events/overview') {
 }
 
 $navigation = array(
-    array('label' => 'Home', 'url' => ['/site/index'], 'aria-label' => 'Home Button', 'title' => 'Home Button'),
+    array('label' => 'Home', 'url' => ['/site/index'], 'linkOptions' => ['aria-label' => 'Home Button', 'title' => 'Home Button']),
     array('label' => 'News', 'items' => array(
-        array('label' => 'Rocket League', 'url' => ['/rocketleague/news'], ['aria-label' => 'RL News Button']),
+        array('label' => 'Rocket League', 'url' => ['/rocketleague/news'], 'linkOptions' =>  ['aria-label' => 'RL News Button']),
     )),
     array('label' => 'Teams', 'items' => array(
-        array('label' => 'Rocket League', 'url' => ['/rocketleague/teams-overview'], ['aria-label' => 'Rocket League Button']),
+        array('label' => 'Rocket League', 'url' => ['/rocketleague/teams-overview'], 'linkOptions' =>  ['aria-label' => 'Rocket League Button']),
     )),
     array('label' => 'Turniere', 'items' => array(
-        array('label' => 'Rocket League', 'url' => ['/rocketleague/tournaments'], ['aria-label' => 'RL Tournaments Button']),
+        array('label' => 'Rocket League', 'url' => ['/rocketleague/tournaments'], 'linkOptions' =>  ['aria-label' => 'RL Tournaments Button']),
     )),
-    array('label' => 'Jobs', 'url' => ['/company/jobs'], ['aria-label' => 'Jobs Button']),
-    array('label' => 'Events', 'url' => ['/events/overview'], ['aria-label' => 'Events Button']),
+    array('label' => 'Jobs', 'url' => ['/company/jobs'], 'linkOptions' => ['aria-label' => 'Jobs Button']),
+    array('label' => 'Events', 'url' => ['/events/overview'], 'linkOptions' => ['aria-label' => 'Events Button', 'style' => 'color: #a0ce4e']),
 
 );
 if (Yii::$app->user->isGuest) {
-    $navigation[] = array('label' => 'Login', 'url' => ['/user/login'], ['aria-label' => 'Login Button']);
+    $navigation[] = array('label' => 'Login', 'url' => ['/user/login'], 'linkOptions' => ['aria-label' => 'Login Button']);
 } else {
     $navigation[] = array('label' => '' . Yii::$app->user->identity->username . '', 'visible' => $visible, 'items' => array(
-        array('label' => 'Account', 'url' => ['/user/user/details', 'id' => Yii::$app->user->identity->getId()], ['aria-label' => 'Account Button']),
-        array('label' => 'My Teams', 'url' => ['/site/my-teams'], ['aria-label' => 'My Teams Button']),
-        array('label' => 'My Tournaments', 'url' => ['/site/my-tournaments'], ['aria-label' => 'My Tournaments Button']),
-        array('label' => 'Logout', 'url' => ['/site/logout'], 'linkOptions' => ['data-method' => 'post'], ['aria-label' => 'Logout Button']),
+        array('label' => 'Account', 'url' => ['/user/user/details', 'id' => Yii::$app->user->identity->getId()], 'linkOptions' => ['aria-label' => 'Account Button']),
+        array('label' => 'My Teams', 'url' => ['/site/my-teams'], 'linkOptions' => ['aria-label' => 'My Teams Button']),
+        array('label' => 'My Tournaments', 'url' => ['/site/my-tournaments'], 'linkOptions' => ['aria-label' => 'My Tournaments Button']),
+        array('label' => 'Logout', 'url' => ['/site/logout'], 'linkOptions' => ['data-method' => 'post', 'aria-label' => 'Logout Button'], ['aria-label' => 'Logout Button']),
     ));
 }
+
 
 ?>
 <?php $this->beginPage() ?>

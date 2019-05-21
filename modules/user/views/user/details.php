@@ -8,6 +8,7 @@
  * @var $mainTeams array
  * @var $subTeams array
  * @var $siteLanguage string
+ * @var $invitations array
  */
 
 //use app\modules\admin\Module;
@@ -238,10 +239,45 @@ Yii::$app->MetaClass->writeMetaUser($this, $model, $userInfo['nationality']);
                         </div>
                     <?php endforeach; ?>
                 </div>
-
-
             </div>
 
+            <!-- Teams where the user is member -->
+            <div class="clearfix">
+                <div class="col-lg-12 teamHeader">Open Invitations</div>
+            </div>
+            <div class="invitationBody cleafi">
+                <?php if ($userInfo['isMySelfe']): ?>
+                    <?php foreach ($invitations as $invitation) : ?>
+                        <div class="col-lg-12">
+                            <?= $invitation->getMainTeam()->one()->getName(); ?>
+                            <?php
+                                echo Html::a('',
+                                    [
+                                        "invitation",
+                                        "accept" => true,
+                                        "teamId" => $invitation->getMainTeam()->one()->GetId()
+                                    ],
+                                    ['class' => 'glyphicon glyphicon-ok',
+                                        'title' => 'Annehmen'
+                                    ]
+                                )
+                            ?>
+                            <?php
+                                echo Html::a('',
+                                    [
+                                        "invitation",
+                                        "accept" => false,
+                                        "teamId" => $invitation->getMainTeam()->one()->GetId()
+                                    ],
+                                    ['class' => 'glyphicon glyphicon-remove',
+                                        'title' => 'Ablehnen'
+                                    ]
+                                )
+                            ?>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </div>
         </div>
     </div>
 
