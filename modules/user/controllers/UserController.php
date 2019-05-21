@@ -325,6 +325,6 @@ class UserController extends BaseController
         //Alert::addError("Pierre ist doof"); 
         //Alert::addInfo("Pierre ist doof"); 
 
-        $this->redirect("details?id=" . Yii::$app->user->identity->getId());
+        return $this->redirect("details?id=" . Yii::$app->user->identity->getId());
     }
 }

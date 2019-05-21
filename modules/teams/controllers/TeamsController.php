@@ -287,6 +287,9 @@ class TeamsController extends BaseController
 
                 Alert::addSuccess('User ' . $model->getUser()->one()->getUsername() . ' deleted from ' . $model->getSubTeam()->one()->getTournamentMode()->one()->getName() . ' Sub Team '. $model->getSubTeam()->one()->getTeamName());
 
+                //Alert::addError("Pierre ist doof"); 
+                //Alert::addInfo("Pierre ist doof"); 
+
                 return $this->redirect("sub-team-details?id=" . $subTeamId);
             }
             
@@ -297,12 +300,31 @@ class TeamsController extends BaseController
         else
         {
             //$model = TeamMember::find()->where(['user_id' => $userId, 'sub_team_id' => $subTeamId])->one();
-        }
-        
-        
-        //Alert::addError("Pierre ist doof"); 
-        //Alert::addInfo("Pierre ist doof"); 
+        }        
+    }
 
-        
+    public function actionSetMemberSubstitution($subTeamId, $userId)
+    {
+        $model = null;
+        $model = SubTeamMember::find()->where(['user_id' => $userId, 'sub_team_id' => $subTeamId])->one();
+
+        if($model != null)
+        {
+            $model->is_sub = !$model->is_sub;
+            $model->save();
+
+            Alert::addSuccess('User ' . $model->getUser()->one()->getUsername() . ' set from ' . (($model->is_sub) ? 'Main Player' : 'Substitude') . ' to '. (($model->is_sub) ? 'Substitude' : 'Main Player'));
+
+            //Alert::addError("Pierre ist doof"); 
+            //Alert::addInfo("Pierre ist doof"); 
+
+            return $this->redirect("sub-team-details?id=" . $subTeamId);
+        }
+        else
+        {
+            Alert::addError('User '. User::findIdentity($userId)->getUsername() .' does not exist in Team ' . SubTeam::findOne(['id' => $subTeamId])->getTeamName());
+
+            return $this->redirect("sub-team-details?id=" . $subTeamId);
+        }       
     }
 }
