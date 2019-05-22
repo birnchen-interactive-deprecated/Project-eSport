@@ -268,6 +268,7 @@ class RocketleagueController extends BaseController
             }
 
             $this->setPlayersIntoBracket($bracketArr, $teilnehmer, $playersPerRound);
+            $this->connectBrackets($bracketArr);
         }
 
         $ruleSet = $tournament->getRules();
@@ -358,6 +359,76 @@ class RocketleagueController extends BaseController
             $bracket->update();
 
             $bracket = next($bracketArr);
+
+        }
+
+    }
+
+    private function connectBrackets(&$bracketArr) {
+
+        $initBracket = $bracketArr;
+
+        // Winner Brackets
+        $bracket1 = reset($initBracket);
+        $bracket2 = next($initBracket);
+
+        $id = 0;
+
+        foreach ($bracketArr as $key => $bracket) {
+            
+            if ($bracket->getRunde() !== NULL) {
+                $id = $bracket->getEncounterId() + 1;
+                continue;
+            }
+
+            $bracket->encounter_id = $id;
+            $bracket->tournament_round = $bracket1->getRunde() + 1;
+
+            $bracket1->winner_bracket = $bracket;
+            $bracket2->winner_bracket = $bracket;
+
+            $bracket1->update();
+            $bracket2->update();
+
+            $bracket1 = next($initBracket);
+            $bracket2 = next($initBracket);
+
+            $id++;
+
+            if (!$bracket1->isWinnerBracket()) {
+                break;
+            }
+
+            if (false !== $bracket2 && !$bracket2->isWinnerBracket()) {
+                break;
+            }
+
+        }
+
+        // Looser Brackets
+        $bracket1 = reset($initBracket);
+        $bracket2 = next($initBracket);
+
+        foreach ($bracketArr as $key => $bracket) {
+            
+            if ($bracket->getRunde() !== NULL) {
+                $id = $bracket->getEncounterId() + 1;
+                continue;
+            }
+
+            $bracket->encounter_id = $id;
+            $bracket->tournament_round = 1;
+
+            $bracket1->looser_bracket = $bracket;
+            $bracket2->looser_bracket = $bracket;
+
+            $bracket1->update();
+            $bracket2->update();
+
+            $bracket1 = next($initBracket);
+            $bracket2 = next($initBracket);
+
+            $id++;
 
         }
 
