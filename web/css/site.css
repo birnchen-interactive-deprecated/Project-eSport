@@ -275,7 +275,19 @@ li.teamName > ul {
     width: 100%;
 }
 
-@media screen and (max-width: 768px)
+@media screen and (max-width: 537px)
+{
+    .navbar-brand {
+        padding: 2px 0px;
+    }
+
+    .navbar-brand img {
+        height: 46px;
+    }
+}
+
+
+@media screen and (min-width: 538px)
 {
     .navbar-brand {
         padding: 0px 0px;
