@@ -14,6 +14,7 @@ use app\modules\teams\models\SubTeam;
 use app\modules\tournaments\models\Tournament;
 use app\modules\tournaments\models\PlayerParticipating;
 use app\modules\tournaments\models\TeamParticipating;
+use app\modules\tournamenttrees\models\Bracket;
 
 class RocketleagueController extends BaseController
 {
@@ -223,6 +224,28 @@ class RocketleagueController extends BaseController
     public function actionTournamentDetails($id = null)
     {
         $tournament = Tournament::getTournamentById($id);
+        $ruleSet = $tournament->getRules();
+
+        $participatingEntrys = $tournament->getParticipants()->all();
+
+        return $this->render('tournamentDetails',
+            [
+                'tournament' => $tournament,
+                'ruleSet' => $ruleSet,
+                'participatingEntrys' => $participatingEntrys
+            ]
+        );
+    }
+
+    /**
+     * Rocket League Create Brackets
+     *
+     * @param null $tournament_id
+     * @return string
+     */
+    public function actionCreateBrackets($tournament_id = null)
+    {
+        $tournament = Tournament::getTournamentById($tournament_id);
         $ruleSet = $tournament->getRules();
 
         $participatingEntrys = $tournament->getParticipants()->all();

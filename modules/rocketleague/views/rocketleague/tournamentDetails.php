@@ -211,4 +211,8 @@ $this->title = 'Turnier Details';
     <?php else: ?>
         <b>!!!</b> Hier erscheint nach Turnierstart der Turnierbaum <b>!!!</b>
     <?php endif; ?>
+
+    <?php if (Yii::$app->user->identity instanceOf User && Yii::$app->user->identity->getId() === 4): ?>
+        <?= Html::a('Brackets erstellen', ['/rocketleague/create-brackets', 'tournament_id' => $tournament->getId()]); ?>
+    <?php endif; ?>
 </div>
