@@ -152,7 +152,9 @@ Yii::$app->MetaClass->writeMetaMainTeam($this, $teamDetails, $this->title);
     </div>
 
     <div class="col-lg-3">
-        <!-- BIRNCHEN, HIER DARFST DU SPASS HABEN <3 -->
+        <?php if(!empty($teamDetails->getTeamTwitterAccount())): ?>
+            <?= Html::a('Tweets by ' . empty($teamDetails->getTeamTwitterAccount(), 'https://twitter.com/' . $teamDetails->getTeamTwitterAccount() . '?ref_src=twsrc%5Etfw', ['class' => 'twitter-timeline', 'target' => '_blank', 'rel' =>'noopener', 'aria-label' => 'twitter-timeline', 'label' => 'twitter-timeline', 'data-lang' => 'en', 'data-height' => '400', 'data-theme' => 'light']); ?>
+        <?php endif; ?>
     </div>
 
 </div>
