@@ -213,6 +213,6 @@ $this->title = 'Turnier Details';
     <?php endif; ?>
 
     <?php if (Yii::$app->user->identity instanceOf User && Yii::$app->user->identity->getId() === 4): ?>
-        Das ist der Captain.
+        <?php Html::a('Brackets erstellen', ['/rocketleague/create-brackets', 'tournament_id' => $tournament->getId()]); ?>
     <?php endif; ?>
 </div>
