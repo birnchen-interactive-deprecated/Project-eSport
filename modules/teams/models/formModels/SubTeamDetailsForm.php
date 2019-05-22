@@ -112,9 +112,9 @@ class SubTeamDetailsForm extends FormModel
 		return [
 			[ 'language_id', 'exist', 'targetClass' => Language::className(), 'targetAttribute' => 'id' ],
         	[ 'headquater_id', 'exist',	'targetClass' => Nationality::className(), 'targetAttribute' => 'id' ],
-			[ 'game_id', 'exist', 'targetClass' => Games::className(), 'targetAttribute' => 'id' ],
+			//[ 'game_id', 'exist', 'targetClass' => Games::className(), 'targetAttribute' => 'id' ],
 			[ ['captain_id', 'deputy_id', 'manager_id', 'trainer_id'], 'exist', 'targetClass' => User::className(), 'targetAttribute' => 'id' ],
-			[ ['main_team', 'name', 'short_code', 'main_short_code', 'description'], 'string' ],
+			[ ['game_id', 'main_team', 'name', 'short_code', 'main_short_code', 'description'], 'string' ],
         	[ 'twitter_channel', 'string' ],
 			[ 'discord_server', 'customUniqueDiscordValidator' ],
 			[ 'twitter_account', 'customUniqueTwitterValidator'],
