@@ -13,7 +13,10 @@ use app\modules\platformgames\models\UserGames;
 use app\modules\platformgames\models\Platforms;
 
 use app\modules\teams\models\MainTeam;
+use app\modules\teams\models\MainTeamMember;
 use app\modules\teams\models\SubTeam;
+
+use app\modules\user\models\TeamInvitations;
 
 use app\modules\tournaments\models\PlayerParticipating;
 
@@ -353,6 +356,38 @@ class User extends AbstractActiveRecord implements IdentityInterface
         }
 
         return $mainTeams;
+    }
+
+    public function getIsMainTeammember($mainTeamId)
+    {
+        $mainTeamsOwnership = $this->hasMany(MainTeam::className(), ['owner_id' => 'id'])->all();
+        $mainTeamsMembership = $this->hasMany(MainTeam::className(), ['id' => 'main_team_id'])
+            ->viaTable('main_team_member', ['user_id' => 'id'])->all();
+
+        foreach ($mainTeamsOwnership as $value) {
+            if($value->getId() == $mainTeamId)
+                return true;
+        }
+
+        foreach ($mainTeamsMembership as $value) {
+            if($value->getId() == $mainTeamId)
+                return true;
+        }
+
+        return false;
+    }
+
+    public function getIsInvited($mainTeamId)
+    {
+        //$model = TeamInvitations::find()->where(['user_id' => 'id'])->all();
+        $model = $this->hasMany(TeamInvitations::className(), ['user_id' => 'id'])->all();
+
+        foreach ($model as $value) {
+            if($value->getMainTeamId() == $mainTeamId)
+                return true;
+        }
+
+        return false;
     }
 
     /**

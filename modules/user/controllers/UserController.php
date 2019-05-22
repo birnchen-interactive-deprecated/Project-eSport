@@ -13,6 +13,7 @@ use app\modules\user\models\formModels\ProfilePicForm;
 use app\modules\user\models\formModels\RegisterForm;
 use app\modules\user\models\formModels\UserDetailsForm;
 use app\modules\user\models\formModels\UserGameForm;
+use app\modules\user\models\formModels\UserTeamForm;
 
 use app\modules\user\models\Gender;
 use app\modules\user\models\Language;
@@ -325,20 +326,23 @@ class UserController extends BaseController
 
     public function actionOverview($page = 1)
     {
+        $siteLanguage = (Yii::$app->user->identity != null) ? Yii::$app->user->identity->getLanguage()->one() : Language::findByLocale('en-US');
+
         $allUser = User::find()->orderBy(['username' => SORT_ASC]);
         $count = $allUser->count();
 
         $pagination = new Pagination(['totalCount' => $count, 'pageSize' => 35]);
 
-        $soretedPaginatedUsers = $allUser->offset($pagination->offset)->limit($pagination->limit)->all();
+        $sortedPaginatedUsers = $allUser->offset($pagination->offset)->limit($pagination->limit)->all();
 
-
+        $isMainTeamManager = (Yii::$app->user->identity != null) ? Yii::$app->user->identity->getMainTeamsOwnership()->all() : null;
 
         return $this->render('overview',
             [
+                'siteLanguage' => $siteLanguage,
                 'pagination' => $pagination,
-                'soretedPaginatedUsers' => $soretedPaginatedUsers,
-                //'platformList' => $platformList,
+                'sortedPaginatedUsers' => $sortedPaginatedUsers,
+                'isMainTeamManager' => $isMainTeamManager,
                 //'model' => $model
             ]);
     }
@@ -385,5 +389,30 @@ class UserController extends BaseController
 
             return $this->redirect("details?id=" . Yii::$app->user->identity->getId());
         }
+    }
+
+    public function actionInviteToTeam($userId, $teamId)
+    {
+        $model = new TeamInvitations();
+
+        $model->user_id = $userId;
+        $model->main_team_id = $teamId;
+        $model->rejected = false;
+
+        $model->save();
+
+        Alert::addSuccess('User Invited');
+
+        return $this->redirect('overview');
+    }
+
+    public function actionWithdrawnInvite($userId, $teamId)
+    {
+        $model = TeamInvitations::find()->where(['user_id' => $userId, 'main_team_id' => $teamId])->one();
+        $model->delete();
+
+        Alert::addSuccess('Invitation successfully withdrawn');
+
+        return $this->redirect('overview');
     }
 }
