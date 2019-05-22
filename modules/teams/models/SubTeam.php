@@ -9,6 +9,7 @@ use yii\db\ActiveRecord;
 use app\modules\tournaments\models\TournamentMode;
 use app\modules\tournaments\models\TeamParticipating;
 
+use app\modules\platformgames\models\Games;
 
 use app\modules\user\models\User;
 
@@ -76,6 +77,14 @@ class SubTeam extends ActiveRecord
     public function getGameId()
     {
         return $this->game_id;
+    }
+
+    /**
+     * @return ActiveQuery
+     */
+    public function getGameName()
+    {
+        return $this->hasOne(Games::className(), ['id' => 'game_id']);
     }
 
     /**

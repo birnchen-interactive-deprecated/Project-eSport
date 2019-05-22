@@ -75,7 +75,8 @@ class SubTeamDetailsForm extends FormModel
         $model->subTeamId = $subTeamId;
         $model->headquater_id = $teamDetails->getHeadquaterId();
         $model->language_id = $teamDetails->getLanguageId();
-        $model->game_id = $teamDetails->getGameId();
+        $model->game_id = $teamDetails->getGameName()->one()->getName();
+        //$model->game_id = $teamDetails->getGameId();
         $model->tournament_mode = $teamDetails->getTournamentMode()->one()->getName();
 
         /** Management Informations */
@@ -177,7 +178,7 @@ class SubTeamDetailsForm extends FormModel
         $subTeam = SubTeam::findOne(['id' => $this->subTeamId]);
 
         /** Default informations */
-        $subTeam->game_id = $this->game_id;
+        $subTeam->game_id = $subTeam->game_id;
         $subTeam->headquater_id = $this->headquater_id;
         $subTeam->language_id = $this->language_id;
 

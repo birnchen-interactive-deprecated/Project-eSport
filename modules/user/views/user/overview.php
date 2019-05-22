@@ -48,6 +48,7 @@ $this->title = 'Player Overview';
 	        usort($games, function ($a, $b) {
 	            return [$a['platformId'], $a['gameId']] <=> [$b['platformId'], $b['gameId']];
 	        });
+	        
 	        ?>
         <div class="playerRow clearfix">
         	<!-- summe Y aller col-lg-X darf 12 nicht ueberschreiten, sonst bricht es um -->

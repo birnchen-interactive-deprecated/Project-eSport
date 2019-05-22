@@ -41,6 +41,7 @@ use yii\bootstrap\ActiveForm;
                         <?= $form->field($model, 'language_id')->dropDownList($languageList, ["class" => 'form-control form-control-color', 'prompt' => 'Bitte auswählen']) ?>
 
                         <?= $form->field($model, 'game_id')->dropDownList($gamesList, ["class" => 'form-control form-control-color', 'prompt' => 'Bitte auswählen']) ?>
+                        <?= $form->field($model, 'game_id')->textInput(["class" => 'form-control form-control-color','readonly'=> true]) ?>
 
                         <?= $form->field($model, 'tournament_mode')->textInput(["class" => 'form-control form-control-color','readonly'=> true]) ?>
 
