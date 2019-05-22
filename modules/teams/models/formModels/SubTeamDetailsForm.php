@@ -162,7 +162,7 @@ class SubTeamDetailsForm extends FormModel
         else if ($validation->getId() == $this->subTeamId)
             return true;
         else
-            $this->addError($attribute, 'Account ' . $this->twitter_account . ' wird bereits verwendet' );
+            true;//$this->addError($attribute, 'Account ' . $this->twitter_account . ' wird bereits verwendet' );
     }
 
 	/**
