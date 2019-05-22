@@ -75,7 +75,8 @@ class SubTeamDetailsForm extends FormModel
         $model->subTeamId = $subTeamId;
         $model->headquater_id = $teamDetails->getHeadquaterId();
         $model->language_id = $teamDetails->getLanguageId();
-        $model->game_id = $teamDetails->getGameId();
+        $model->game_id = $teamDetails->getGameName()->one()->getName();
+        //$model->game_id = $teamDetails->getGameId();
         $model->tournament_mode = $teamDetails->getTournamentMode()->one()->getName();
 
         /** Management Informations */
@@ -131,6 +132,7 @@ class SubTeamDetailsForm extends FormModel
         	'main_team' => \app\modules\teams\Module::t('teams','main_team', $siteLanguage->locale),
         	'headquater_id' => \app\modules\teams\Module::t('teams','headquater_id', $siteLanguage->locale),
         	'language_id' => \app\modules\teams\Module::t('teams','language_id', $siteLanguage->locale),
+            'game_id' => 'Game',
         	'captain_id' => \app\modules\teams\Module::t('teams','captain_id', $siteLanguage->locale),
         	'deputy_id' => \app\modules\teams\Module::t('teams','deputy_id', $siteLanguage->locale),
         	'manager_id' => \app\modules\teams\Module::t('teams','manager_id', $siteLanguage->locale),
@@ -177,7 +179,7 @@ class SubTeamDetailsForm extends FormModel
         $subTeam = SubTeam::findOne(['id' => $this->subTeamId]);
 
         /** Default informations */
-        $subTeam->game_id = $this->game_id;
+        $subTeam->game_id = $subTeam->game_id;
         $subTeam->headquater_id = $this->headquater_id;
         $subTeam->language_id = $this->language_id;
 
