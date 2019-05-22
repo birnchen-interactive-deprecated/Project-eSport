@@ -13,6 +13,16 @@ use yii\widgets\LinkPager;
 $this->title = 'Player Overview';
 ?>
 <div class="site-player-overview">
+	<div class="playerRow clearfix">
+        	<!-- summe Y aller col-lg-X darf 12 nicht ueberschreiten, sonst bricht es um -->
+        	<div class="col-lg-1">Avatar</div>
+	        <div class="col-lg-2">Username</div>
+	        <div class="col-lg-2">Main Teams</div>
+	        <div class="col-lg-3">Sub Teams</div>
+	        <div class="col-lg-3">Games</div>
+	        <div class="col-lg-2"><!-- Container 2 --></div>
+	        <div class="col-lg-1"><!-- Container 3 --></div>
+		</div>
 	<?php foreach ($soretedPaginatedUsers as $user) : ?>
     	<?php
     		$userImage = Yii::$app->HelperClass->checkImage('/images/userAvatar/', $user->getId());
