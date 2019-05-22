@@ -175,7 +175,7 @@ Yii::$app->MetaClass->writeMetaUser($this, $model, $userInfo['nationality']);
                                     "add-game-id",
                                     "id" => $model->id
                                 ],
-                                ['class' => "glyphicon glyphicon-plus",
+                                ['class' => "glyphicon glyphicon-pencil",
                                     'title' => "Add Game Account"
                                 ]
                             )
@@ -242,11 +242,11 @@ Yii::$app->MetaClass->writeMetaUser($this, $model, $userInfo['nationality']);
             </div>
 
             <!-- Teams where the user is member -->
-            <div class="clearfix">
-                <div class="col-lg-12 teamHeader">Open Invitations</div>
-            </div>
-            <div class="invitationBody cleafi">
-                <?php if ($userInfo['isMySelfe']): ?>
+            <?php if ($userInfo['isMySelfe']): ?>
+                <div class="clearfix">
+                    <div class="col-lg-12 teamHeader">Open Invitations</div>
+                </div>
+                <div class="invitationBody cleafi">
                     <?php foreach ($invitations as $invitation) : ?>
                         <div class="col-lg-12">
                             <?= $invitation->getMainTeam()->one()->getName(); ?>
@@ -276,8 +276,8 @@ Yii::$app->MetaClass->writeMetaUser($this, $model, $userInfo['nationality']);
                             ?>
                         </div>
                     <?php endforeach; ?>
-                <?php endif; ?>
-            </div>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 
