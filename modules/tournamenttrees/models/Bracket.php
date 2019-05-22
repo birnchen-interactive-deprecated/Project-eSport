@@ -139,17 +139,17 @@ class Bracket extends ActiveRecord
 		if ($participant instanceof User) {
 
 			if (NULL === $this->user_1_id) {
-				$this->user_1_id = $participant;
+				$this->user_1_id = $participant->getId();
 			} else {
-				$this->user_2_id = $participant;
+				$this->user_2_id = $participant->getId();
 			}
 
 		} elseif ($participant instanceof SubTeam) {
 
 			if (NULL === $this->team_1_id) {
-				$this->team_1_id = $participant;
+				$this->team_1_id = $participant->getId();
 			} else {
-				$this->team_2_id = $participant;
+				$this->team_2_id = $participant->getId();
 			}
 
 		}
