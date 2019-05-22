@@ -253,7 +253,12 @@ class RocketleagueController extends BaseController
             $doubleElimination = ($bracketMode->getName() == 'Double Elimination') ? true : false;
 
             $bracketArr = [];
+            $looserPlayers = count($participatingEntrys) - 1;
+            
             $playersPerRound = $this->createWinnerBracket($bracketArr, $tournament_id, $participatingEntrys, 1);
+            if (true === $doubleElimination) {
+                $this->createLooserBracket($bracketArr, $looserPlayers, $tournament_id, $playersPerRound/2, 1, false);
+            }
         }
 
         $ruleSet = $tournament->getRules();
@@ -291,6 +296,34 @@ class RocketleagueController extends BaseController
 
         return self::createWinnerBracket($bracketArr, $tournament_id, $teilnehmer, $playersPerRound);
 
+    }
+
+    private function createLooserBracket(&$bracketArr, &$looserPlayers, $tournament_id, $playersPerWinnerRound, $bracketSizeInRound, $isVirtual) {
+
+        $playersPerRound = ($isVirtual) ? $bracketSizeInRound*2 : $bracketSizeInRound;
+
+        for ($b=0; $b < $bracketSizeInRound; $b++) { 
+
+            $bracket = new Bracket();
+            $bracket->tournament_id = $tournament_id;
+            $bracket->best_of = 3;
+            $bracket->tournament_round = 1;
+            $bracket->is_winner_bracket = false;
+            $bracket->insert();
+            
+            $bracketArr[] = $bracket;
+
+            if (!$isVirtual) {
+                $looserPlayers--;
+            }
+
+        }
+
+        if ($playersPerRound >= $playersPerWinnerRound) {
+            return;
+        }
+
+        self::createLooserBracket($bracketArr, $looserPlayers, $tournament_id, $playersPerWinnerRound, $playersPerRound, !$isVirtual);
     }
 
 }
