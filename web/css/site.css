@@ -282,3 +282,30 @@ li.teamName > ul {
 .navbar-brand img {
     height: 50px;
 }
+
+@media (min-width: 1200px)
+{
+
+}
+
+@media (min-width: 992px)
+{
+    .navbar-brand {
+        padding: 5px 0px;
+    }
+
+    .navbar-brand img {
+        height: 37px;
+    }
+}
+
+@media (min-width: 768px)
+{
+    .navbar-brand {
+        padding: 5px 0px;
+    }
+
+    .navbar-brand img {
+        height: 43px;
+    }
+}
