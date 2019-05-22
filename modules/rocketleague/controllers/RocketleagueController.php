@@ -355,6 +355,8 @@ class RocketleagueController extends BaseController
                 $countSingle--;
             }
 
+            $bracket->update();
+
             $bracket = next($bracketArr);
 
         }
