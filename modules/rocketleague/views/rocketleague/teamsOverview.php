@@ -8,7 +8,7 @@ use yii\helpers\Html;
 
 app\modules\rocketleague\assets\rocketleagueAsset::register($this);
 
-$this->title = 'Team Details';
+$this->title = 'RL Teams Overview';
 ?>
 
 <div class="site-rl-team-details">

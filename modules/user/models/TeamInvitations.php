@@ -65,4 +65,12 @@ class TeamInvitations extends ActiveRecord
 	{
 		return $this->rejected;
 	}
+
+	/**
+     * @return ActiveQuery
+     */
+    public function getInvitations()
+    {
+        return $this->hasMany(MainTeamMember::className(), ['main_team_id' => 'id']);
+    }
 }

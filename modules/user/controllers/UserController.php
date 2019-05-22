@@ -29,6 +29,7 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\web\Response;
 use yii\web\UploadedFile;
+use yii\data\Pagination;
 
 /**
  * Class UserController
@@ -322,6 +323,26 @@ class UserController extends BaseController
             ]);
     }
 
+    public function actionOverview($page = 1)
+    {
+        $allUser = User::find()->orderBy(['username' => SORT_ASC]);
+        $count = $allUser->count();
+
+        $pagination = new Pagination(['totalCount' => $count, 'pageSize' => 35]);
+
+        $soretedPaginatedUsers = $allUser->offset($pagination->offset)->limit($pagination->limit)->all();
+
+
+
+        return $this->render('overview',
+            [
+                'pagination' => $pagination,
+                'soretedPaginatedUsers' => $soretedPaginatedUsers,
+                //'platformList' => $platformList,
+                //'model' => $model
+            ]);
+    }
+
     public function actionToggleVisibility($gameId, $platformId)
     {
         $model = UserGames::find()->where(['game_id' => $gameId, 'platform_id' => $platformId, 'user_id' => Yii::$app->user->identity->getId()])->one();
@@ -354,7 +375,6 @@ class UserController extends BaseController
             Alert::addSuccess('Team erfoglreich beigetreten');
 
             return $this->redirect("details?id=" . Yii::$app->user->identity->getId());
-
         }
         else
         {
@@ -364,8 +384,6 @@ class UserController extends BaseController
             Alert::addSuccess('Invite rejected');
 
             return $this->redirect("details?id=" . Yii::$app->user->identity->getId());
-
         }
-
     }
 }
