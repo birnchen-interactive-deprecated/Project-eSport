@@ -13,6 +13,7 @@ use app\modules\teams\models\SubTeamMember;
 use app\modules\rules\models\TournamentRulesSet;
 use app\modules\rules\models\TournamentRulesSubrules;
 
+use app\modules\tournaments\models\TournamentBracketMode;
 
 /**
  * Class GCup
@@ -93,6 +94,14 @@ class Tournament extends ActiveRecord
 	{
 		return $this->bracket_mode_id;
 	}
+
+    /**
+     * @return ActiveQuery
+     */
+    public function getBracketMode()
+    {
+        return $this->hasOne(TournamentBracketMode::className(), ['id' => 'bracket_mode_id']);
+    }
 
 	/**
 	 * @return int id

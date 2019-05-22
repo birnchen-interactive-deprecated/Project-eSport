@@ -246,9 +246,18 @@ class RocketleagueController extends BaseController
     public function actionCreateBrackets($tournament_id = null)
     {
         $tournament = Tournament::getTournamentById($tournament_id);
+        $bracketMode = $tournament->getBracketMode()->one();
+        $participatingEntrys = $tournament->getParticipants()->all();
+
+        if (NULL !== $bracketMode) {
+            $doubleElimination = ($bracketMode->getName() == 'Double Elimination') ? true : false;
+
+            $bracketArr = [];
+            $playersPerRound = $this->createWinnerBracket($bracketArr, $participatingEntrys, 1);
+        }
+
         $ruleSet = $tournament->getRules();
 
-        $participatingEntrys = $tournament->getParticipants()->all();
 
         return $this->render('tournamentDetails',
             [
@@ -258,4 +267,30 @@ class RocketleagueController extends BaseController
             ]
         );
     }
+
+    private function createWinnerBracket(&$bracketArr, $teilnehmer, $bracketSizeInRound) {
+        
+        $playersPerRound = $bracketSizeInRound*2;
+
+        for ($b=0; $b < $bracketSizeInRound; $b++) { 
+
+            $bracket = new Bracket();
+            $bracket->tournament_id = $tournament_id;
+            $bracket->best_of = 3;
+            $bracket->tournament_round = 1;
+            $bracket->is_winner_bracket = true;
+            $bracket->insert();
+            
+            $bracketArr[] = $bracket;
+
+        }
+
+        if (count($teilnehmer) <= $playersPerRound) {
+            return $playersPerRound;
+        }
+
+        return self::createWinnerBracket($bracketArr, $teilnehmer, $playersPerRound);
+
+    }
+
 }
