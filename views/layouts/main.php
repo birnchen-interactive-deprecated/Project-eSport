@@ -105,7 +105,7 @@ if (Yii::$app->user->isGuest) {
     <?php
     NavBar::begin([
         //'brandLabel' => '<img src="../images/PeSpLogos/banner.png" class="img-responsive"/>Project eSport Beta',
-        'brandLabel' => Html::img('../images/PeSpLogos/banner2.webp', ['alt'=> 'pesp', 'aria-label' => 'pesp', 'onerror' => 'this.src=\'../images/PeSpLogos/banner2.png\'', 'srcset' => '../images/PeSpLogos/banner.webp 768w']),
+        'brandLabel' => Html::img('../images/PeSpLogos/banner2.webp', ['alt'=> 'pesp', 'aria-label' => 'pesp', 'onerror' => 'this.src=\'../images/PeSpLogos/banner2.png\''),
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
