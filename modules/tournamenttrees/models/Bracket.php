@@ -13,6 +13,7 @@ use app\modules\user\models\User;
  * @package app\modules\tournamenttree\models
  *
  * @property int $id
+ * @property int $encounter_id
  * @property int $tournament_id
  * @property int $best_of default:3
  * @property int $tournament_round
@@ -40,6 +41,14 @@ class Bracket extends ActiveRecord
 	public function getId()
 	{
 		return $this->id;
+	}
+
+	/**
+	 * @return int id
+	 */
+	public function getEncounterId()
+	{
+		return $this->encounter_id;
 	}
 
 	/**
@@ -122,5 +131,29 @@ class Bracket extends ActiveRecord
 		return $this->hasOne(Bracket::className(), ['id' => 'looser_bracket']);
 	}
 
+	/**
+	 *
+	 */
+	public function setSpieler($participant) {
+
+		if ($participant instanceof User) {
+
+			if (NULL === $this->user_1_id) {
+				$this->user_1_id = $participant;
+			} else {
+				$this->user_2_id = $participant;
+			}
+
+		} elseif ($participant instanceof SubTeam) {
+
+			if (NULL === $this->team_1_id) {
+				$this->team_1_id = $participant;
+			} else {
+				$this->team_2_id = $participant;
+			}
+
+		}
+
+	}
 
 }
