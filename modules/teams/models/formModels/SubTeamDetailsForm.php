@@ -155,14 +155,14 @@ class SubTeamDetailsForm extends FormModel
 
     public function customUniqueTwitterValidator($attribute, $params)
     {
-        $validation = SubTeam::find()->where(['twitter_account' => $this->twitterAccount])->one();
+        $validation = SubTeam::find()->where(['twitter_account' => $this->twitter_account])->one();
 
         if(empty($validation))
             return true;
         else if (!empty($validation) && $validation->getId() == $subTeamId)
             return true;
         else
-            $this->addError($attribute, 'Account ' . $this->twitterAccount . ' wird bereits verwendet' );
+            $this->addError($attribute, 'Account ' . $this->twitter_account . ' wird bereits verwendet' );
     }
 
 	/**
