@@ -252,12 +252,12 @@ class RocketleagueController extends BaseController
         if (NULL !== $bracketMode) {
             $doubleElimination = ($bracketMode->getName() == 'Double Elimination') ? true : false;
 
-            $bracket = new Bracket();
-            $bracket->tournament_id = $tournament_id;
-            $bracket->best_of = 3;
-            $bracket->tournament_round = 1;
-            $bracket->is_winner_bracket = true;
-            $bracket->insert();
+            // $bracket = new Bracket();
+            // $bracket->tournament_id = $tournament_id;
+            // $bracket->best_of = 3;
+            // $bracket->tournament_round = 1;
+            // $bracket->is_winner_bracket = true;
+            // $bracket->insert();
         }
 
         $ruleSet = $tournament->getRules();
