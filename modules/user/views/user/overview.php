@@ -50,7 +50,7 @@ $this->title = 'Player Overview';
                     <?= ($mainTeam['owner']) ? '(owner)' : '(member)'; ?><br>
                 <?php endforeach; ?>
 	        </div>
-	        <div class="col-lg-2">
+	        <div class="col-lg-3">
 	        	<?php foreach ($subTeams as $key => $subTeam): ?>
                     <?= Html::a($subTeam['team']->getTeamName(), ['/teams/sub-team-details', 'id' => $subTeam['team']->getId()]) . " (" . $subTeam['team']->getTournamentMode()->one()->getName() . ")"; ?><br>
                     <?= ($subTeam['owner']) ? '(Captain)' : (($subTeam['isSub']) ? '(substitute)' : '(player)'); ?><br>
