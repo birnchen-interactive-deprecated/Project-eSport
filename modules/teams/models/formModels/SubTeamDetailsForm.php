@@ -132,6 +132,7 @@ class SubTeamDetailsForm extends FormModel
         	'main_team' => \app\modules\teams\Module::t('teams','main_team', $siteLanguage->locale),
         	'headquater_id' => \app\modules\teams\Module::t('teams','headquater_id', $siteLanguage->locale),
         	'language_id' => \app\modules\teams\Module::t('teams','language_id', $siteLanguage->locale),
+            'game_id' => 'Game',
         	'captain_id' => \app\modules\teams\Module::t('teams','captain_id', $siteLanguage->locale),
         	'deputy_id' => \app\modules\teams\Module::t('teams','deputy_id', $siteLanguage->locale),
         	'manager_id' => \app\modules\teams\Module::t('teams','manager_id', $siteLanguage->locale),
