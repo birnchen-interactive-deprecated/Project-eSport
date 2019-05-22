@@ -17,7 +17,7 @@ use app\modules\user\models\TeamInvitations;
 AppAsset::register($this);
 
 $visible = (Yii::$app->user->isGuest) ? false : true;
-$userID = (Yii::$app->user->isGuest) ? -1 : Yii::$app->user->identity->getId();
+$userID = (Yii::$app->user->isGuest) ? null : Yii::$app->user->identity->getId();
 
 if($visible)
 {
