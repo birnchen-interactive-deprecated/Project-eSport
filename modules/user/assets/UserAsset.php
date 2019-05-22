@@ -17,6 +17,7 @@ class UserAsset extends AssetBundle
 	];
     
     public $css = [
-        'accountOverview.css'
+        'accountOverview.css',
+        'playerOverview.css'
     ];
 }
