@@ -8,6 +8,8 @@
 
 namespace app\modules\rocketleague\controllers;
 
+use app\widgets\Alert;
+
 use app\components\BaseController;
 
 use app\modules\teams\models\SubTeam;
@@ -274,21 +276,19 @@ class RocketleagueController extends BaseController
             $this->connectWinnerBrackets($bracketArr);
             if (true === $doubleElimination) {
                 $this->createConnectFinale($bracketArr, $tournament_id);
-                $this->connectLooserBrackets($bracketArr);
+                $countLooserBrackets = $this->connectLooserBrackets($bracketArr);
+                $this->changeLooserRounds($bracketArr, $countLooserBrackets);
             }
 
         }
 
         $ruleSet = $tournament->getRules();
 
+        // Alert::addError('');
+        Alert::addSuccess('Brackets erfolgreich angelegt.');
+        // Alert::addInfo('your message');
 
-        return $this->render('tournamentDetails',
-            [
-                'tournament' => $tournament,
-                'ruleSet' => $ruleSet,
-                'participatingEntrys' => $participatingEntrys
-            ]
-        );
+        return $this->redirect('tournament-details?id=' . $tournament_id);
     }
 
     private function createWinnerBracket(&$bracketArr, $tournament_id, $teilnehmer, $bracketSizeInRound) {
@@ -374,7 +374,6 @@ class RocketleagueController extends BaseController
 
         $initBracket = $bracketArr;
 
-        // Winner Brackets
         $bracket1 = reset($initBracket);
         $bracket2 = next($initBracket);
 
@@ -416,11 +415,6 @@ class RocketleagueController extends BaseController
 
     private function connectLooserBrackets(&$bracketArr) {
 
-        $initBracket = $bracketArr;
-
-        // Looser Brackets
-        $bracket1 = reset($initBracket);
-        $bracket2 = next($initBracket);
         $id = 0;
 
         foreach ($bracketArr as $key => $bracket) {
@@ -435,18 +429,145 @@ class RocketleagueController extends BaseController
             $bracket->tournament_round = 1;
             $bracket->update();
 
-            $bracket1->looser_bracket = $bracket->getId();
-            $bracket2->looser_bracket = $bracket->getId();
-
-            $bracket1->update();
-            $bracket2->update();
-
-            $bracket1 = next($initBracket);
-            $bracket2 = next($initBracket);
-
             $id++;
 
         }
+
+        $initBracketRevers = $bracketArr;
+        $looserBracket = end($initBracketRevers);
+
+        $initBracket = $bracketArr;
+        $winnerBracket = reset($initBracket);
+        while ($winnerBracket->getIsWinnerBracket()) {
+            $winnerBracket = next($initBracket);
+        }
+        $winnerBracket = prev($initBracket);
+
+        $countIns = 0;
+
+        while (false !== $looserBracket && !$looserBracket->getIsWinnerBracket()) {
+
+            $countIns++;
+
+            for ($c=1; $c<=$countIns; $c++) {
+
+                $winnerBracket->looser_bracket = $looserBracket->getId();
+                $winnerBracket->update();
+                $winnerBracket = prev($initBracket);
+
+                $looserBracket = prev($initBracketRevers);
+
+            }
+
+            for ($c=1; $c<=$countIns; $c++) {
+                $looserBracket = prev($initBracketRevers);
+            }
+
+        }
+
+        if (false === $winnerBracket) {
+            return;
+        }
+
+        for ($c=1; $c<=$countIns; $c++) {
+            $looserBracket = next($initBracketRevers);
+        }
+
+        $countLooserBrackets = 0;
+
+        while (false !== $looserBracket && !$looserBracket->getIsWinnerBracket()) {
+            $winnerBracket->looser_bracket = $looserBracket->getId();
+            $winnerBracket->update();
+            $winnerBracket = prev($initBracket);
+
+            $winnerBracket->looser_bracket = $looserBracket->getId();
+            $winnerBracket->update();
+            $winnerBracket = prev($initBracket);
+
+            $looserBracket = prev($initBracketRevers);
+            $countLooserBrackets++;
+        }
+
+        return $countLooserBrackets;
+    }
+
+    private function changeLooserRounds(&$bracketArr, $countLooserBrackets) {
+
+        // $firstLooserBracketId = NULL;
+        $countFirstLooserBrackets = 0;
+        $round = 0;
+
+        foreach ($bracketArr as $key => $bracket) {
+
+            if (!$bracket->getIsWinnerBracket()) {
+                continue;
+            }
+
+            if ($bracket->getTournamentRound() !== 1) {
+                continue;
+            }
+
+            $looserBracket = $bracket->getLooserBracket()->one();
+            if (NULL === $looserBracket) {
+                continue;
+            }
+
+            // if (NULL === $firstLooserBracketId) {
+            //     $firstLooserBracketId = $looserBracket->getId();
+            // }
+
+            $round = $bracket->getTournamentRound() + 1;
+            $looserBracket->tournament_round = $round;
+            $looserBracket->update();
+            $countFirstLooserBrackets++;
+        }
+
+        $countFirstLooserBrackets/= 2;
+
+        $counter = 0;
+        $bracket = reset($bracketArr);
+        while ($bracket->getIsWinnerBracket()) {
+            $bracket = next($bracketArr);
+        }
+        while ($counter < $countFirstLooserBrackets) {
+            $bracket = next($bracketArr);
+            $counter++;
+        }
+        $isVirtual = false;
+        $counter = 0;
+        $round++;
+        while (false !== $bracket) {
+
+            $bracket->tournament_round = $round;
+            $bracket->update();
+            $bracket = next($bracketArr);
+            $counter++;
+
+            if ($counter === $countFirstLooserBrackets) {
+                $isVirtual = !$isVirtual;
+                if ($isVirtual && $countFirstLooserBrackets === 1) {
+                    break;
+                }
+                $countFirstLooserBrackets = ($isVirtual) ? $countFirstLooserBrackets/2 : $countFirstLooserBrackets;
+                $counter = 0;
+                $round++;
+            }
+
+        }
+        // foreach ($bracketArr as $key => $bracket) {
+
+        //     if ($bracket->getIsWinnerBracket()) {
+        //         continue;
+        //     }
+
+        //     if ($counter < $countFirstLooserBrackets) {
+        //         $round = $bracket->getTournamentRound();
+        //         $counter++;
+        //         continue;
+        //     }
+
+        //     $bracket
+        // }
 
     }
 
