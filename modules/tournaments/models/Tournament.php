@@ -342,12 +342,12 @@ class Tournament extends ActiveRecord
             $modeSubPlayers = $this->getMode()->one()->getSubPlayer();
             $modeMainPlayers = $modeMaxPlayers - $modeSubPlayers;
 
-            $isSub = false;
             $mainFound = 0;
             $playersWithRLID = 0;
             $teamMembers = SubTeamMember::getTeamMembers($subTeam->getId());
             foreach ($teamMembers as $teamMemberKey => $teamMember) {
 
+                $isSub = false;
                 if ($teamMember->getIsSubstitute() !== 0) {
                     $isSub = true;
                 }
