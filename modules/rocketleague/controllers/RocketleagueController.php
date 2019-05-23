@@ -8,6 +8,8 @@
 
 namespace app\modules\rocketleague\controllers;
 
+use app\widgets\Alert;
+
 use app\components\BaseController;
 
 use app\modules\teams\models\SubTeam;
@@ -281,7 +283,11 @@ class RocketleagueController extends BaseController
 
         $ruleSet = $tournament->getRules();
 
-        $this->redirect('tournament-details?id=' . $tournament_id);
+        // Alert::addError('');
+        Alert::addSuccess('Brackets erfolgreich angelegt.');
+        // Alert::addInfo('your message');
+
+        return $this->redirect('tournament-details?id=' . $tournament_id);
     }
 
     private function createWinnerBracket(&$bracketArr, $tournament_id, $teilnehmer, $bracketSizeInRound) {
@@ -449,16 +455,18 @@ class RocketleagueController extends BaseController
         }
         $winnerBracket = prev($initBracket);
 
-        $countIns = 1;
+        $countIns = 0;
 
         while (false !== $looserBracket && !$looserBracket->getIsWinnerBracket()) {
+
+            $countIns++;
 
             for ($c=1; $c<=$countIns; $c++) {
 
                 $winnerBracket->looser_bracket = $looserBracket->getId();
                 $winnerBracket->update();
                 $winnerBracket = prev($initBracket);
-                
+
                 $looserBracket = prev($initBracketRevers);
 
             }
@@ -467,17 +475,27 @@ class RocketleagueController extends BaseController
                 $looserBracket = prev($initBracketRevers);
             }
 
-            $countIns++;
-
         }
 
-        // $winnerBracket->looser_bracket = $bracketsReverse[2]->getId();
-        // $winnerBracket->update();
+        if (false === $winnerBracket) {
+            return;
+        }
 
-        // $winnerBracket = prev($initBracket);
+        for ($c=1; $c<=$countIns; $c++) {
+            $looserBracket = next($initBracketRevers);
+        }
 
-        // $winnerBracket->looser_bracket = $bracketsReverse[3]->getId();
-        // $winnerBracket->update();
+        while (false !== $looserBracket && !$looserBracket->getIsWinnerBracket()) {
+            $winnerBracket->looser_bracket = $looserBracket->getId();
+            $winnerBracket->update;
+            $winnerBracket = prev($initBracket);
+
+            $winnerBracket->looser_bracket = $looserBracket->getId();
+            $winnerBracket->update;
+            $winnerBracket = prev($initBracket);
+
+            $looserBracket = prev($initBracketRevers);
+        }
 
     }
 
