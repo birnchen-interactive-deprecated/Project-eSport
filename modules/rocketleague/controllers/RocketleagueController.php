@@ -271,7 +271,10 @@ class RocketleagueController extends BaseController
 
             $this->setPlayersIntoBracket($bracketArr, $teilnehmer, $playersPerRound);
             $this->connectWinnerBrackets($bracketArr);
-            $this->connectLooserBrackets($bracketArr);
+            if (true === $doubleElimination) {
+                $this->createConnectFinale($bracketArr);
+                $this->connectLooserBrackets($bracketArr);
+            }
 
         }
 
@@ -444,6 +447,10 @@ class RocketleagueController extends BaseController
 
         }
 
+    }
+
+    private function createConnectFinale(&$bracketArr) {
+        
     }
 
 }
