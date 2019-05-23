@@ -56,4 +56,13 @@ class PlayerParticipating extends ActiveRecord
         return static::findOne(['tournament_id' => $tournamentId, 'user_id' => $userId]);
     }
 
+    /**
+     * @param $tournamentId
+     * @param $userId
+     * @return ActiveRecord
+     */
+    public static function findPlayerCheckedIn($tournamentId, $userId)
+    {
+        return static::findOne(['tournament_id' => $tournamentId, 'user_id' => $userId, 'checked_in' => 1]);
+    }
 }

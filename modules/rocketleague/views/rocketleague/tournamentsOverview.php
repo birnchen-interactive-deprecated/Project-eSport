@@ -151,20 +151,18 @@ $this->title = 'RL Tournament Overview';
                     <td><?= $checkInBegin->format('H:i'); ?> - <?= $checkInEnd->format('H:i'); ?></td>
                     <td>
                         <?php
-                        if ($tournament->showCheckInBtn($subTeams, $user)) {
-                            $btns = $tournament->getCheckInBtns($subTeams, $user);
-                            foreach ($btns as $btn) {
+                        $btns = $tournament->getCheckInBtns($subTeams, $user);
+                        foreach ($btns as $btn) {
 
-                                $form = ActiveForm::begin([
-                                    'id' => 'registerForm',
-                                ]);
-                                echo Html::hiddenInput($btn['type'], $btn['id']);
-                                echo Html::hiddenInput('tournamentId', $tournament->getId());
-                                echo $btn['btn'];
-                                echo ' ';
-                                echo $btn['name'];
-                                ActiveForm::end();
-                            }
+                            $form = ActiveForm::begin([
+                                'id' => 'registerForm',
+                            ]);
+                            echo Html::hiddenInput($btn['type'], $btn['id']);
+                            echo Html::hiddenInput('tournamentId', $tournament->getId());
+                            echo $btn['btn'];
+                            echo ' ';
+                            echo $btn['name'];
+                            ActiveForm::end();
                         }
                         ?>
                     </td>
