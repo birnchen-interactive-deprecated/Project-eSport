@@ -439,7 +439,8 @@ class RocketleagueController extends BaseController
 
         // }
 
-        $bracketsReverse = array_reverse($bracketArr);
+        $initBracketRevers = $bracketArr;
+        $looserBracket = end($initBracketRevers);
 
         $initBracket = $bracketArr;
         $winnerBracket = reset($initBracket);
@@ -448,18 +449,33 @@ class RocketleagueController extends BaseController
         }
         $winnerBracket = prev($initBracket);
 
-        $winnerBracket->looser_bracket = $bracketsReverse[0]->getId();
-        $winnerBracket->update();
+        $countIns = 1;
 
-        $winnerBracket = prev($initBracket);
+        while (false !== $looserBracket && !$looserBracket->getIsWinnerBracket()) {
 
-        $winnerBracket->looser_bracket = $bracketsReverse[2]->getId();
-        $winnerBracket->update();
+            for ($c=1; $c<=$countIns; $c++) {
 
-        $winnerBracket = prev($initBracket);
+                $winnerBracket->looser_bracket = $looserBracket->getId();
+                $winnerBracket->update();
+                $winnerBracket = prev($initBracket);
 
-        $winnerBracket->looser_bracket = $bracketsReverse[3]->getId();
-        $winnerBracket->update();
+            }
+
+            for ($c=1; $c<=$countIns; $c++) {
+                $looserBracket = prev($initBracketRevers);
+            }
+
+            $countIns++;
+
+        }
+
+        // $winnerBracket->looser_bracket = $bracketsReverse[2]->getId();
+        // $winnerBracket->update();
+
+        // $winnerBracket = prev($initBracket);
+
+        // $winnerBracket->looser_bracket = $bracketsReverse[3]->getId();
+        // $winnerBracket->update();
 
     }
 
