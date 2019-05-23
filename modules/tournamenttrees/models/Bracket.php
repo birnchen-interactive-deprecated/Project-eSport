@@ -136,8 +136,8 @@ class Bracket extends ActiveRecord
 	 */
 	public function getBracketRefs()
 	{
-		$winner = $this->hasMany(Bracket::className(), ['id' => 'winner_bracket'])->all();
-		$looser = $this->hasMany(Bracket::className(), ['id' => 'looser_bracket'])->all();
+		$winner = $this->hasMany(Bracket::className(), ['winner_bracket' => 'id'])->all();
+		$looser = $this->hasMany(Bracket::className(), ['looser_bracket' => 'id'])->all();
 
 		$brackets = [];
 		while ($tmp = array_shift($looser)) {
@@ -158,7 +158,6 @@ class Bracket extends ActiveRecord
 		$return = [];
 
 		$refs = $this->getBracketRefs();
-		return $refs;
 
 		$class = NULL;
 		$vars = NULL;
