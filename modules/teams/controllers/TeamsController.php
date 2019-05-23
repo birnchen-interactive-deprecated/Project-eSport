@@ -218,6 +218,16 @@ class TeamsController extends BaseController
     /** Glyphicon Actions */
     public function actionDeleteMember($teamId, $userId, $isSub = false)
     {
+        if (Yii::$app->user->isGuest || Yii::$app->user->identity == null) {
+            return $this->goHome();
+        }
+
+        if(Yii::$app->user->identity->getId() != (($isSub)? SubTeam::findOne(['id' => $teamId])->one()->getTeamCaptainId() : MainTeam::findOne(['id' => $teamId])->getOwnerId())
+            && Yii::$app->user->identity->getId() != (($isSub) ? SubTeam::findOne(['id' => $teamId])->one()->getTeamDeputyId() : MainTeam::findOne(['id' => $teamId])->getDeputyId()))
+        {
+            return $this->goHome();
+        }
+
         $model = null;
 
         if($isSub)
@@ -254,26 +264,32 @@ class TeamsController extends BaseController
                     if($value->getTeamDeputyId() == $userId)
                     {
                         $value->deputy_id = null;
-                        $value->save();
                     }
 
                     if($value->getTeamTrainerId() == $userId)
                     {
                         $value->trainer_id = null;
-                        $value->save();
                     }
 
                     if($value->getTeamManagerId() == $userId)
                     {
                         $value->manager_id = null;
-                        $value->save();
+                    }
+                    if($value->getTeamManagerId() == $userId)
+                    {
+                        $value->manager_id = null;
+                    }
+                    if($value->getTeamCaptainId() == $userId)
+                    {
+                        $value->captain_id = Yii::$app->user->identity->getId();
                     }
 
                     $subTeamMember = SubTeamMember::find()->where(['user_id' => $userId, 'sub_team_id' => $value->getId()])->one();
 
+                    $value->save();
+
                     if($subTeamMember != null)
                         $subTeamMember->delete();
-
                 }
 
                 $deputyModel->deputy_id = null;
@@ -288,6 +304,7 @@ class TeamsController extends BaseController
             else
             {
                 Alert::addError('User '. User::findIdentity($userId)->getUsername() .' does not exist in Team ' . MainTeam::findOne(['id' => $teamId])->getName() . ' or is Team Owner');
+
                 return $this->redirect("team-details?id=" . $teamId);
             }
         }        
