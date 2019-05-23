@@ -538,6 +538,7 @@ class RocketleagueController extends BaseController
 
             $bracket->tournament_round = $round;
             $bracket->update();
+            $bracket = next($bracketArr);
             $counter++;
 
             if ($counter === $countFirstLooserBrackets) {
@@ -547,6 +548,7 @@ class RocketleagueController extends BaseController
                 }
                 $countFirstLooserBrackets = ($isVirtual) ? $countFirstLooserBrackets/2 : $countFirstLooserBrackets;
                 $counter = 0;
+                $round++;
             }
 
         }
