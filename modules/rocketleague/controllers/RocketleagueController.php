@@ -383,6 +383,7 @@ class RocketleagueController extends BaseController
 
             $bracket->encounter_id = $id;
             $bracket->tournament_round = $bracket1->getTournamentRound() + 1;
+            $bracket->update();
 
             $bracket1->winner_bracket = $bracket;
             $bracket2->winner_bracket = $bracket;
@@ -418,6 +419,7 @@ class RocketleagueController extends BaseController
 
             $bracket->encounter_id = $id;
             $bracket->tournament_round = 1;
+            $bracket->update();
 
             $bracket1->looser_bracket = $bracket;
             $bracket2->looser_bracket = $bracket;
