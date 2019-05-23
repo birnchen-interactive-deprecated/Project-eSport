@@ -219,5 +219,8 @@ $this->title = 'Turnier Details';
 
     <?php if (Yii::$app->user->identity instanceOf User && Yii::$app->user->identity->getId() <= 4): ?>
         <div>Hier seht ihr in Kürze die neuen Brackets, allerdings sehen sie noch grottig aus :P</div>
+        <?php foreach ($brackets as $key => $bracket): ?>
+            <div>Bracket ID <?= $bracket->getEncounterId(); ?> in Runde <?= $bracket->getTournamentRound(); ?></div>
+        <?php endforeach; ?>
     <?php endif; ?>
 </div>
