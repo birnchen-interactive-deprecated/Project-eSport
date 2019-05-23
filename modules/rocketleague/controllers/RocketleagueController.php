@@ -402,7 +402,7 @@ class RocketleagueController extends BaseController
                 break;
             }
 
-            if (false !== $bracket2 && !$bracket2->isWinnerBracket()) {
+            if (false !== $bracket2 && !$bracket2->getIsWinnerBracket()) {
                 break;
             }
 
