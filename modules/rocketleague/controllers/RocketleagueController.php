@@ -379,7 +379,7 @@ class RocketleagueController extends BaseController
             
             $encounterId = $bracket->getEncounterId();
             if ($encounterId !== NULL) {
-                $id = $encounterId;
+                $id = $encounterId + 1;
                 continue;
             }
 
@@ -417,7 +417,7 @@ class RocketleagueController extends BaseController
             
             $encounterId = $bracket->getEncounterId();
             if ($encounterId !== NULL) {
-                $id = $encounterId;
+                $id = $encounterId + 1;
                 continue;
             }
 
