@@ -407,33 +407,33 @@ class RocketleagueController extends BaseController
 
         }
 
-        // Looser Brackets
-        $bracket1 = reset($initBracket);
-        $bracket2 = next($initBracket);
+        // // Looser Brackets
+        // $bracket1 = reset($initBracket);
+        // $bracket2 = next($initBracket);
 
-        foreach ($bracketArr as $key => $bracket) {
+        // foreach ($bracketArr as $key => $bracket) {
             
-            $id = $bracket->getEncounterId();
-            if ($id !== NULL) {
-                continue;
-            }
+        //     $id = $bracket->getEncounterId();
+        //     if ($id !== NULL) {
+        //         continue;
+        //     }
 
-            $bracket->encounter_id = $id+1;
-            $bracket->tournament_round = 1;
-            $bracket->update();
+        //     $bracket->encounter_id = $id+1;
+        //     $bracket->tournament_round = 1;
+        //     $bracket->update();
 
-            $bracket1->looser_bracket = $bracket->getId();
-            $bracket2->looser_bracket = $bracket->getId();
+        //     $bracket1->looser_bracket = $bracket->getId();
+        //     $bracket2->looser_bracket = $bracket->getId();
 
-            $bracket1->update();
-            $bracket2->update();
+        //     $bracket1->update();
+        //     $bracket2->update();
 
-            $bracket1 = next($initBracket);
-            $bracket2 = next($initBracket);
+        //     $bracket1 = next($initBracket);
+        //     $bracket2 = next($initBracket);
 
-            $id++;
+        //     $id++;
 
-        }
+        // }
 
     }
 
