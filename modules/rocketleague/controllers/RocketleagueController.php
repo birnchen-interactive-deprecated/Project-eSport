@@ -228,13 +228,14 @@ class RocketleagueController extends BaseController
 
         $participatingEntrys = $tournament->getParticipants()->all();
 
-        // $brackets = Bracket::getAllByTournament($id);
+        $brackets = Bracket::getAllByTournament($id);
 
         return $this->render('tournamentDetails',
             [
                 'tournament' => $tournament,
                 'ruleSet' => $ruleSet,
-                'participatingEntrys' => $participatingEntrys
+                'participatingEntrys' => $participatingEntrys,
+                'brackets' => $brackets,
             ]
         );
     }
@@ -450,7 +451,7 @@ class RocketleagueController extends BaseController
     }
 
     private function createConnectFinale(&$bracketArr) {
-        
+
     }
 
 }

@@ -132,9 +132,10 @@ class Bracket extends ActiveRecord
 	}
 
 	/**
-	 *
+	 * @param User|SubTeam
 	 */
-	public function setSpieler($participant) {
+	public function setSpieler($participant)
+	{
 
 		if ($participant instanceof User) {
 
@@ -156,4 +157,12 @@ class Bracket extends ActiveRecord
 
 	}
 
+	/**
+	 * @param int
+	 * @return static|null
+	 */
+	public static function getAllByTournament($tournament_id)
+	{
+		return static::findAll(['tournament_id' => $tournament_id]);
+	}
 }

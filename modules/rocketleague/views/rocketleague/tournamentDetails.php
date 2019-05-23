@@ -4,6 +4,7 @@
  * @var $tournament \app\modules\core\models\Tournament
  * @var $ruleSet array
  * @var $participatingEntrys array
+ * @var $brackets array
  */
 
 use app\modules\tournaments\models\TeamParticipating;
