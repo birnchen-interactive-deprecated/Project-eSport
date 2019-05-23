@@ -209,13 +209,6 @@ class TeamsController extends BaseController
             ]);
     }
 
-    private function getTeamForm($teamDetails, $id)
-    {
-        $teamModel = new TeamDetailsForm();
-
-        return $teamModel;
-    }
-
     /** Glyphicon Actions */
     public function actionDeleteMember($teamId, $userId, $isSub = false)
     {
@@ -223,8 +216,8 @@ class TeamsController extends BaseController
             return $this->goHome();
         }
 
-        if(Yii::$app->user->identity->getId() != (($isSub)? SubTeam::findOne(['id' => $teamId])->one()->getTeamCaptainId() : MainTeam::findOne(['id' => $teamId])->getOwnerId())
-            && Yii::$app->user->identity->getId() != (($isSub) ? SubTeam::findOne(['id' => $teamId])->one()->getTeamDeputyId() : MainTeam::findOne(['id' => $teamId])->getDeputyId()))
+        if(Yii::$app->user->identity->getId() != (($isSub)? SubTeam::findOne(['id' => $teamId])->getTeamCaptainId() : MainTeam::findOne(['id' => $teamId])->getOwnerId())
+            && Yii::$app->user->identity->getId() != (($isSub) ? SubTeam::findOne(['id' => $teamId])->getTeamDeputyId() : MainTeam::findOne(['id' => $teamId])->getDeputyId()))
         {
             return $this->goHome();
         }
