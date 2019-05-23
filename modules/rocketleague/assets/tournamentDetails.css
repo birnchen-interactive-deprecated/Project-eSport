@@ -19,3 +19,7 @@
 .site-rl-tournament-details .participants .entry-logo {
 	width: 75px;
 }
+
+.site-rl-tournament-details .bracketRound {
+	float: left;
+}

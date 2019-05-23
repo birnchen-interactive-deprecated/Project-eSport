@@ -222,34 +222,38 @@ $this->title = 'Turnier Details';
 
         <div class="scrollable">
             
-            <h1>Winner Bracket</h1>
-            
-            <?php $round = 0; ?>
-            <?php foreach ($brackets['winner'] as $round => $roundBrackets): ?>
+            <div class="winnerBracket clearfix">
+                <h1>Winner Bracket</h1>
+                
+                <?php $round = 0; ?>
+                <?php foreach ($brackets['winner'] as $round => $roundBrackets): ?>
 
-                <div class="bracketRound">
+                    <div class="bracketRound">
 
-                    <?php foreach ($roundBrackets as $bracketKey => $bracket): ?>
-                        <?php
-                            $bracketRound = $bracket->getTournamentRound();
-                            $bracketEncounter = $bracket->getEncounterId();
-                            $bracketParticipants = $bracket->getParticipants();
-                        ?>
+                        <?php foreach ($roundBrackets as $bracketKey => $bracket): ?>
+                            <?php
+                                $bracketRound = $bracket->getTournamentRound();
+                                $bracketEncounter = $bracket->getEncounterId();
+                                $bracketParticipants = $bracket->getParticipants();
+                            ?>
 
-                        <div class="roundTitle">Runde <?= $bracketRound; ?></div>
-                        <span>Bracket <?= $bracketEncounter; ?></span>
-                        <div class="bracket">
-                            <div class="bracketParticipant"><?= $bracketParticipants[0]; ?></div>
-                            <div class="bracketParticipant"><?= $bracketParticipants[1]; ?></div>
-                        </div>
+                            <div class="roundTitle">Runde <?= $bracketRound; ?></div>
+                            <span>Bracket <?= $bracketEncounter; ?></span>
+                            <div class="bracket">
+                                <div class="bracketParticipant"><?= $bracketParticipants[0]; ?></div>
+                                <div class="bracketParticipant"><?= $bracketParticipants[1]; ?></div>
+                            </div>
 
-                    <?php endforeach; ?>
+                        <?php endforeach; ?>
 
-                </div>
+                    </div>
 
-            <?php endforeach; ?>
+                <?php endforeach; ?>
+            </div>
 
-            <h1>Looser Bracket</h1>
+            <div class="looserBracket">
+                <h1>Looser Bracket</h1>
+            </div>
         </div>
 
 
