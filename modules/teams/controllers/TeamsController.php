@@ -138,12 +138,14 @@ class TeamsController extends BaseController
             }
         }
 
+        $playerInfo = MainTeam::findOne(['id' => $teamDetails->getMainTeamId()])->getInvitableMembers($teamDetails->getTournamentModeId(),$teamDetails->getId(), $teamDetails->getGameId());
 
         return $this->render('subTeamDetails',
             [
                 'profilePicModel' => $profilePicModel,
                 'teamDetails' => $teamDetails,
                 'teamInfo' => $teamInfo,
+                'playerInfo' => $playerInfo
             ]);
     }
 
@@ -302,6 +304,32 @@ class TeamsController extends BaseController
                 return $this->redirect("team-details?id=" . $teamId);
             }
         }        
+    }
+
+    public function actionAddMemberToTeam($teamId, $userId, $sub)
+    {
+        if (Yii::$app->user->isGuest || Yii::$app->user->identity == null) {
+            return $this->goHome();
+        }
+
+        if(Yii::$app->user->identity->getId() != SubTeam::findOne(['id' => $teamId])->getTeamCaptainId() 
+            && Yii::$app->user->identity->getId() != SubTeam::findOne(['id' => $teamId])->getTeamDeputyId())
+        {
+            return $this->goHome();
+        }
+
+        $model = new SubTeamMember();
+
+        $model->user_id = $userId;
+        $model->sub_team_id = $teamId;
+        $model->is_sub = $sub;
+
+        $model->save();
+
+        Alert::addSuccess('User Added');
+        
+        return $this->redirect("sub-team-details?id=" . $teamId);
+
     }
 
     public function actionSetMemberSubstitution($subTeamId, $userId)

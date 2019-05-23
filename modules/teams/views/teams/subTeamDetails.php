@@ -10,6 +10,7 @@
  * @var $profilePicModel ProfilePicForm
  * @var $teamDetails array
  * @var $teamInfo array
+ * @var $playerInfo array
  */
 
 use app\modules\core\models\ProfilePicForm;
@@ -104,8 +105,8 @@ Yii::$app->MetaClass->writeMetaMainTeam($this, $teamDetails, $this->title);
         </div>
         <div class="entry entryMembers clearfix">
             <div class="header">
-            <span class="teamname"><?=\app\modules\teams\Module::t('teams', 'team_member')?></span>
-        </div>
+                <span class="teamname"><?=\app\modules\teams\Module::t('teams', 'team_member')?></span>
+            </div>
             <div class="col-xs-7 col-sm9 col-lg-9 context">
                 <?php foreach($teamDetails->getSubTeamMembers()->all() as $userKey => $user): ?>
                     <?php
@@ -147,7 +148,33 @@ Yii::$app->MetaClass->writeMetaMainTeam($this, $teamDetails, $this->title);
 
                     </div>
                 <?php endforeach; ?>
-            </div>
+            </div> 
+        </div>
+        <div class="header">
+                <span class="teamname">Invitabel Members</span>
+        </div>
+        <div class="entry entryMembers clearfix">
+            <?php foreach ($playerInfo as $invitabelPlayer) : ?>
+
+                <div class="col-lg-6 teamMembers">
+                    <?= Html::a($invitabelPlayer->getUsername(), ['/user/details', 'id' => $invitabelPlayer->getId()]); ?>
+                    <?php if ($teamInfo['isOwner'] || $teamInfo['isDeputy']) : ?>
+                        <?php
+                            echo Html::a('',
+                                [
+                                    "add-member-to-team",
+                                    "teamId" => $teamDetails->getId(),
+                                    "userId" => $invitabelPlayer->getId(),
+                                    "sub" => false
+                                ],
+                                ['class' => "glyphicon glyphicon-remove",
+                                    'title' => "Add Player"
+                                ]
+                            )
+                        ?>
+                    <?php endif; ?>
+                </div>
+            <?php endforeach; ?>
         </div>
     </div>
 
