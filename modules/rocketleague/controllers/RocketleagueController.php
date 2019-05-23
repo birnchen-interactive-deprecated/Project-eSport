@@ -495,6 +495,7 @@ class RocketleagueController extends BaseController
 
         // $firstLooserBracketId = NULL;
         $countFirstLooserBrackets = 0;
+        $round = 0;
 
         foreach ($bracketArr as $key => $bracket) {
 
@@ -515,7 +516,8 @@ class RocketleagueController extends BaseController
             //     $firstLooserBracketId = $looserBracket->getId();
             // }
 
-            $looserBracket->tournament_round = $bracket->getTournamentRound() + 1;
+            $round = $bracket->getTournamentRound() + 1;
+            $looserBracket->tournament_round = $round;
             $looserBracket->update();
             $countFirstLooserBrackets++;
         }
@@ -523,13 +525,11 @@ class RocketleagueController extends BaseController
         $countFirstLooserBrackets/= 2;
 
         $counter = 0;
-        $round = 0;
         $bracket = reset($bracketArr);
         while ($bracket->getIsWinnerBracket()) {
             $bracket = next($bracketArr);
         }
         while ($counter < $countFirstLooserBrackets) {
-            $round = $bracket->getTournamentRound();
             $bracket = next($bracketArr);
             $counter++;
         }
