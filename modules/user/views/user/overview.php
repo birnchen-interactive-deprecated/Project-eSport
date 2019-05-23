@@ -2,11 +2,14 @@
 
 /* @var $this yii\web\View
  * @var $pagination array
- * @var $soretedPaginatedUsers array
+ * @var $sortedPaginatedUsers array
+ * @var $isMainTeamManager array
  */
 
 use yii\helpers\Html;
 use yii\widgets\LinkPager;
+
+use yii\bootstrap\ActiveForm;
 
 \app\modules\user\assets\UserAsset::register($this);
 
@@ -18,12 +21,17 @@ $this->title = 'Player Overview';
         	<div class="col-lg-1">Avatar</div>
 	        <div class="col-lg-2">Username</div>
 	        <div class="col-lg-2">Main Teams</div>
-	        <div class="col-lg-3">Sub Teams</div>
-	        <div class="col-lg-3">Games</div>
-	        <div class="col-lg-2"><!-- Container 2 --></div>
-	        <div class="col-lg-1"><!-- Container 3 --></div>
+	        <div class="col-lg-2">Sub Teams</div>
+	        <div class="col-lg-2">Games</div>
+	        <?php if($isMainTeamManager) : ?>
+	        	<div class="col-lg-2">Invite Player</div>
+	        	<div class="col-lg-1"><!-- Container 3 --></div>
+	        <?php else: ?>
+	        	<div class="col-lg-2"><!-- Container 2 --></div>
+	        	<div class="col-lg-1"><!-- Container 3 --></div>
+	    	<?php endif; ?>
 		</div>
-	<?php foreach ($soretedPaginatedUsers as $user) : ?>
+	<?php foreach ($sortedPaginatedUsers as $index => $user) : ?>
     	<?php
     		$userImage = Yii::$app->HelperClass->checkImage('/images/userAvatar/', $user->getId());
             $username = $user->getUsername();
@@ -61,13 +69,13 @@ $this->title = 'Player Overview';
                     <?= ($mainTeam['owner']) ? '(owner)' : '(member)'; ?><br>
                 <?php endforeach; ?>
 	        </div>
-	        <div class="col-lg-3">
+	        <div class="col-lg-2">
 	        	<?php foreach ($subTeams as $key => $subTeam): ?>
                     <?= Html::a($subTeam['team']->getTeamName(), ['/teams/sub-team-details', 'id' => $subTeam['team']->getId()]) . " (" . $subTeam['team']->getTournamentMode()->one()->getName() . ")"; ?><br>
                     <?= ($subTeam['owner']) ? '(Captain)' : (($subTeam['isSub']) ? '(substitute)' : '(player)'); ?><br>
                 <?php endforeach; ?>
 	        </div>
-	        <div class="col-lg-3">
+	        <div class="col-lg-2">
 	        	<?php foreach ($games as $key => $game) : ?>
 	        		<div>
                     <img class="platform-logo" src="<?= $game['platform']; ?>.webp" alt="platform" onerror="this.src='<?= $game['platform']; ?>.png'">
@@ -78,8 +86,47 @@ $this->title = 'Player Overview';
                 	</div>
                 <?php endforeach; ?>
 	        </div>
-	        <div class="col-lg-2"><!-- Container 2 --></div>
-	        <div class="col-lg-1"><!-- Container 3 --></div>
+	        <?php if($isMainTeamManager): ?>
+	        	<div class="col-lg-2">
+	        		<?php foreach ($isMainTeamManager as $mainTeamInvitabel) : ?>
+	        			<?php if(!$user->getIsMainTeammember($mainTeamInvitabel->getId())) : ?>
+	        				<?php if(!$user->getIsInvited($mainTeamInvitabel->getId())) : ?>
+			        			<?php
+				        			echo Html::a('',
+				                        [
+				                            "invite-to-team",
+				                            "userId" => $userId,
+				                            "teamId" => $mainTeamInvitabel->getId()
+				                        ],
+				                        ['class' => "glyphicon glyphicon-link",
+				                            'title' => "Invite"
+				                        ]
+			                    	)
+		                    	?>
+		                    	<?= $mainTeamInvitabel->getName(); ?><br>
+	                    	<?php else : ?>
+	                    		<?php
+				        			echo Html::a('',
+				                        [
+				                            "withdrawn-invite",
+				                            "userId" => $userId,
+				                            "teamId" => $mainTeamInvitabel->getId()
+				                        ],
+				                        ['class' => "glyphicon glyphicon-ok-sign",
+				                            'title' => "Withdrawn Invitation"
+				                        ]
+			                    	)
+		                    	?>
+	                    		<?= ' ' . $mainTeamInvitabel->getName(); ?><br>
+	                    	<?php endif; ?>
+                    	<?php endif; ?>
+	        		<?php endforeach; ?>
+	        		
+	        	</div>
+	        <?php else: ?>
+	        	<div class="col-lg-2"><!-- Container 2 --></div>
+	        	<div class="col-lg-1"><!-- Container 3 --></div>
+	    	<?php endif; ?>
 		</div>
 	<?php endforeach; ?>
 
@@ -88,4 +135,9 @@ $this->title = 'Player Overview';
     		'pagination' => $pagination,
 		]);
 	?>
+	<script type="text/javascript">
+		function getTeamId() {
+			return $('#teamSelect').val();
+		}
+	</script>
 </div>

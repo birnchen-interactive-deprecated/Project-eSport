@@ -112,9 +112,9 @@ class SubTeamDetailsForm extends FormModel
 		return [
 			[ 'language_id', 'exist', 'targetClass' => Language::className(), 'targetAttribute' => 'id' ],
         	[ 'headquater_id', 'exist',	'targetClass' => Nationality::className(), 'targetAttribute' => 'id' ],
-			[ 'game_id', 'exist', 'targetClass' => Games::className(), 'targetAttribute' => 'id' ],
+			//[ 'game_id', 'exist', 'targetClass' => Games::className(), 'targetAttribute' => 'id' ],
 			[ ['captain_id', 'deputy_id', 'manager_id', 'trainer_id'], 'exist', 'targetClass' => User::className(), 'targetAttribute' => 'id' ],
-			[ ['main_team', 'name', 'short_code', 'main_short_code', 'description'], 'string' ],
+			[ ['game_id', 'main_team', 'name', 'short_code', 'main_short_code', 'description'], 'string' ],
         	[ 'twitter_channel', 'string' ],
 			[ 'discord_server', 'customUniqueDiscordValidator' ],
 			[ 'twitter_account', 'customUniqueTwitterValidator'],
@@ -155,14 +155,14 @@ class SubTeamDetailsForm extends FormModel
 
     public function customUniqueTwitterValidator($attribute, $params)
     {
-        $validation = SubTeam::find()->where(['twitter_account' => $this->twitterAccount])->one();
+        $validation = SubTeam::find()->where(['twitter_account' => $this->twitter_account])->one();
 
         if(empty($validation))
             return true;
-        else if (!empty($validation) && $validation->getId() == $subTeamId)
+        else if ($validation->getId() == $this->subTeamId)
             return true;
         else
-            $this->addError($attribute, 'Account ' . $this->twitterAccount . ' wird bereits verwendet' );
+            true;//$this->addError($attribute, 'Account ' . $this->twitter_account . ' wird bereits verwendet' );
     }
 
 	/**

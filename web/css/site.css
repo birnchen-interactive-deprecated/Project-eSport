@@ -275,10 +275,58 @@ li.teamName > ul {
     width: 100%;
 }
 
-.navbar-brand {
-    padding: 0px 0px;
+@media screen and (max-width: 537px)
+{
+    .navbar-brand {
+        padding: 2px 0px;
+    }
+
+    .navbar-brand img {
+        height: 45px;
+    }
 }
 
-.navbar-brand img {
+
+@media screen and (min-width: 538px)
+{
+    .navbar-brand {
+        padding: 0px 0px;
+    }
+
+    .navbar-brand img {
+        height: 50px;
+    }
+}
+
+@media screen and (min-width: 768px)
+{
+    .navbar-brand {
+        padding: 18px 0px;
+    }
+
+    .navbar-brand img {
+        height: 13px;
+    }
+}
+
+@media screen and (min-width: 992px)
+{
+    .navbar-brand {
+        padding: 5px 0px;
+    }
+
+    .navbar-brand img {
+        height: 37px;
+    }
+}
+
+@media screen and (min-width: 1200px)
+{
+    .navbar-brand {
+    padding: 0px 0px;
+    }
+
+    .navbar-brand img {
     height: 50px;
+    }
 }
