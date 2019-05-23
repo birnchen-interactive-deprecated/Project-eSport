@@ -505,6 +505,7 @@ class RocketleagueController extends BaseController
 
             $looserBracket = $bracket->getLooserBracket()->one();
             if (NULL === $looserBracket) {
+                Alert::addError('Fehler!?');
                 continue;
             }
 
