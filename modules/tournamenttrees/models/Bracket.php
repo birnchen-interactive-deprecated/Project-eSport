@@ -141,10 +141,10 @@ class Bracket extends ActiveRecord
 
 		$brackets = [];
 		while ($tmp = array_shift($looser)) {
-			$brackets[] = $tmp;
+			$brackets[] = ['type' => 'looser', 'bracket' => $tmp];
 		}
 		while ($tmp = array_shift($winner)) {
-			$brackets[] = $tmp;
+			$brackets[] = ['type' => 'winner', 'bracket' => $tmp];
 		}
 
 		return $brackets;
@@ -176,10 +176,10 @@ class Bracket extends ActiveRecord
 				$return[] = 'FREILOS';
 			} else {
 				$preBracket = array_shift($refs);
-				$preText = ($preBracket->winner_bracket == $this->getId()) ? 'Winner' : 'Looser';
-				$preRound = $preBracket->getTournamentRound();
+				$preText = ucfirst($preBracket['type']);
+				$preRound = $preBracket['bracket']->getTournamentRound();
 				$preRound = (998 == $preRound) ? 'Finale' : $preRound;
-				$return[] = $preText . ' von Runde ' . $preRound . ' Bracket ' . $preBracket->getEncounterId();
+				$return[] = $preText . ' von Runde ' . $preRound . ' Bracket ' . $preBracket['bracket']->getEncounterId();
 			}
 		} else {
 			$slot = $this->hasOne($class, $vars)->one();
@@ -211,10 +211,10 @@ class Bracket extends ActiveRecord
 				$return[] = 'FREILOS';
 			} else {
 				$preBracket = array_shift($refs);
-				$preText = ($preBracket->winner_bracket == $this->getId()) ? 'Winner' : 'Looser';
-				$preRound = $preBracket->getTournamentRound();
+				$preText = ucfirst($preBracket['type']);
+				$preRound = $preBracket['bracket']->getTournamentRound();
 				$preRound = (998 == $preRound) ? 'Finale' : $preRound;
-				$return[] = $preText . ' von Runde ' . $preRound . ' Bracket ' . $preBracket->getEncounterId();
+				$return[] = $preText . ' von Runde ' . $preRound . ' Bracket ' . $preBracket['bracket']->getEncounterId();
 			}
 		} else {
 			$slot = $this->hasOne($class, $vars)->one();
