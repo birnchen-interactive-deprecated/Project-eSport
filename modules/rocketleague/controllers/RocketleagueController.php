@@ -421,7 +421,7 @@ class RocketleagueController extends BaseController
                 continue;
             }
 
-            $bracket->encounter_id = $id+1;
+            $bracket->encounter_id = $id;
             $bracket->tournament_round = 1;
             $bracket->update();
 
