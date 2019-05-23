@@ -281,14 +281,7 @@ class RocketleagueController extends BaseController
 
         $ruleSet = $tournament->getRules();
 
-
-        return $this->render('tournamentDetails',
-            [
-                'tournament' => $tournament,
-                'ruleSet' => $ruleSet,
-                'participatingEntrys' => $participatingEntrys
-            ]
-        );
+        $this->http_redirect('tournament-details?id=' . $tournament_id);
     }
 
     private function createWinnerBracket(&$bracketArr, $tournament_id, $teilnehmer, $bracketSizeInRound) {
