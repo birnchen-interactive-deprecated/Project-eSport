@@ -215,4 +215,8 @@ $this->title = 'Turnier Details';
     <?php if (Yii::$app->user->identity instanceOf User && Yii::$app->user->identity->getId() === 4): ?>
         <?= Html::a('Brackets erstellen', ['/rocketleague/create-brackets', 'tournament_id' => $tournament->getId()], ['class' => 'btn btn-success']); ?>
     <?php endif; ?>
+
+    <?php if (Yii::$app->user->identity instanceOf User && Yii::$app->user->identity->getId() <= 4): ?>
+        <div>Hier seht ihr in Kürze die neuen Brackets, allerdings sehen sie noch grottig aus :P</div>
+    <?php endif; ?>
 </div>
