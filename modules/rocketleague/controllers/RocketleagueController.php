@@ -269,9 +269,9 @@ class RocketleagueController extends BaseController
 
             $this->setPlayersIntoBracket($bracketArr, $teilnehmer, $playersPerRound);
             $this->connectBrackets($bracketArr);
-            
+
             foreach ($bracketArr as $key => $bracket) {
-                $bracket->update();
+                $bracket->insert();
             }
         }
 
@@ -298,7 +298,7 @@ class RocketleagueController extends BaseController
             $bracket->best_of = 3;
             $bracket->tournament_round = 1;
             $bracket->is_winner_bracket = true;
-            $bracket->insert();
+            // $bracket->insert();
             
             $bracketArr[] = $bracket;
 
@@ -323,7 +323,7 @@ class RocketleagueController extends BaseController
             $bracket->best_of = 3;
             $bracket->tournament_round = 1;
             $bracket->is_winner_bracket = false;
-            $bracket->insert();
+            // $bracket->insert();
             
             $bracketArr[] = $bracket;
 
