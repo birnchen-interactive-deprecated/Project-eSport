@@ -148,7 +148,14 @@ class Bracket extends ActiveRecord
 		}
 
 		if (NULL === $class) {
-			return '!! FEHLER-1 !!';
+			$preText = 'Winner';
+			$preBracket = Bracket::getBracketByWinner($this->getId());
+			if (NULL === $preBracket) {
+				$preText = 'Looser';
+				$preBracket == Bracket::getBracketByLooser($this->getId());
+			}
+
+			return (NULL === $preBracket) ? 'FREILOS' : $preText . ' von Runde ' . $preBracket->getTournamentRound() . ' Bracket ' . $preBracket->getEncounterId();
 		}
 		$slot = $this->hasOne($class, $vars)->one();
 
@@ -232,5 +239,21 @@ class Bracket extends ActiveRecord
 	public static function getAllByTournament($tournament_id)
 	{
 		return static::findAll(['tournament_id' => $tournament_id]);
+	}
+
+	/**
+	 * @param int
+	 * @return static|null
+	 */
+	public static function getBracketByWinner($bracketId) {
+		return static::findOne(['winner_bracket' => $bracketId]);
+	}
+
+	/**
+	 * @param int
+	 * @return static|null
+	 */
+	public static function getBracketByLooser($bracketId) {
+		return static::findOne(['looser_bracket' => $bracketId]);
 	}
 }
