@@ -220,7 +220,7 @@ $this->title = 'Turnier Details';
     <?php if (Yii::$app->user->identity instanceOf User && Yii::$app->user->identity->getId() <= 4): ?>
         <div>Hier seht ihr in Kürze die neuen Brackets, allerdings sehen sie noch grottig aus :P</div>
 
-        <div class="scrollable">
+        <div class="scrollableBracket">
             
             <div class="winnerBracket clearfix">
                 <h1>Winner Bracket</h1>
@@ -231,7 +231,7 @@ $this->title = 'Turnier Details';
                     <div class="bracketRound">
 
                         <div class="roundTitle">Runde <?= $round; ?></div>
-                        
+
                         <?php foreach ($roundBrackets as $bracketKey => $bracket): ?>
                             <?php
                                 $bracketEncounter = $bracket->getEncounterId();

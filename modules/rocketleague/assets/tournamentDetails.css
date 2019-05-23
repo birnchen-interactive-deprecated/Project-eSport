@@ -20,6 +20,10 @@
 	width: 75px;
 }
 
+.site-rl-tournament-details .scrollableBracket {
+	overflow-x: scroll;
+}
+
 .site-rl-tournament-details .bracketRound {
 	border-right: 1px solid black;
 	float: left;
