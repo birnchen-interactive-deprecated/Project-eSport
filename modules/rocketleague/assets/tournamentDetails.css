@@ -19,3 +19,45 @@
 .site-rl-tournament-details .participants .entry-logo {
 	width: 75px;
 }
+
+.site-rl-tournament-details .scrollableBracket {
+	overflow-x: auto;
+}
+
+.site-rl-tournament-details .scrollableBracket > h1 {
+	text-align: center;
+}
+
+.site-rl-tournament-details .winnerBracket,
+.site-rl-tournament-details .looserBracket {
+	display: flex;
+	flex: 1 1 auto;
+	flex-direction: row;
+	justify-content: flex-start;
+}
+
+.site-rl-tournament-details .bracketRound {
+	border-right: 1px solid black;
+	display: flex;
+	flex: 0 0 auto;
+	flex-direction: column;
+	padding: 5px;
+	width: 250px;
+}
+
+.site-rl-tournament-details .roundTitle {
+	text-align: center;
+}
+
+.site-rl-tournament-details .bracketEncounter {
+	font-size: 10px;
+}
+
+.site-rl-tournament-details .bracket {
+	border: 1px solid grey;
+	margin-bottom: 20px;
+}
+
+.site-rl-tournament-details .bracketParticipant {
+    padding: 0 4px;
+}

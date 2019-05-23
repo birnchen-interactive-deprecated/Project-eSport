@@ -136,8 +136,8 @@ class Bracket extends ActiveRecord
 	 */
 	public function getBracketRefs()
 	{
-		$winner = $this->hasMany(Bracket::className(), ['id' => 'winner_bracket'])->all();
-		$looser = $this->hasMany(Bracket::className(), ['id' => 'looser_bracket'])->all();
+		$winner = $this->hasMany(Bracket::className(), ['winner_bracket' => 'id'])->all();
+		$looser = $this->hasMany(Bracket::className(), ['looser_bracket' => 'id'])->all();
 
 		$brackets = [];
 		while ($tmp = array_shift($looser)) {
@@ -177,7 +177,7 @@ class Bracket extends ActiveRecord
 			} else {
 				$preBracket = array_shift($refs);
 				$preText = ($preBracket->winner_bracket == $this->getId()) ? 'Winner' : 'Looser';
-				$return[] = ' von Runde ' . $preBracket->getTournamentRound() . ' Bracket ' . $preBracket->getEncounterId();
+				$return[] = $preText . ' von Runde ' . $preBracket->getTournamentRound() . ' Bracket ' . $preBracket->getEncounterId();
 			}
 		} else {
 			$slot = $this->hasOne($class, $vars)->one();
@@ -210,7 +210,7 @@ class Bracket extends ActiveRecord
 			} else {
 				$preBracket = array_shift($refs);
 				$preText = ($preBracket->winner_bracket == $this->getId()) ? 'Winner' : 'Looser';
-				$return[] = ' von Runde ' . $preBracket->getTournamentRound() . ' Bracket ' . $preBracket->getEncounterId();
+				$return[] = $preText . ' von Runde ' . $preBracket->getTournamentRound() . ' Bracket ' . $preBracket->getEncounterId();
 			}
 		} else {
 			$slot = $this->hasOne($class, $vars)->one();
@@ -223,6 +223,8 @@ class Bracket extends ActiveRecord
 			}
 
 		}
+
+		return $return;
 	}
 
 	/**
@@ -340,6 +342,35 @@ class Bracket extends ActiveRecord
 	public static function getAllByTournament($tournament_id)
 	{
 		return static::findAll(['tournament_id' => $tournament_id]);
+	}
+
+	/**
+	 * @param int
+	 * @return array
+	 */
+	public static function getAllByTournamentFormatted($tournament_id)
+	{
+		$brackets = self::getAllByTournament($tournament_id);
+		$out = [
+			'winner' => [],
+			'looser' => [],
+		];
+
+		foreach ($brackets as $key => $bracket) {
+
+			$firstLevel = ($bracket->getIsWinnerBracket()) ? 'winner' : 'looser';
+			$secondLevel = $bracket->getTournamentRound();
+			$secondLevel = ($secondLevel === 998) ? 'Finale' : $secondLevel;
+			$secondLevel = ($secondLevel === 999) ? 'Finale (optional)' : $secondLevel;
+
+			if (!array_key_exists($secondLevel, $out[$firstLevel])) {
+				$out[$firstLevel][$secondLevel] = [];
+			}
+
+			$out[$firstLevel][$secondLevel][] = $bracket;
+		}
+
+		return $out;
 	}
 
 	/**

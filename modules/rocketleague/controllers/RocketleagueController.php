@@ -230,7 +230,7 @@ class RocketleagueController extends BaseController
 
         $participatingEntrys = $tournament->getParticipants()->all();
 
-        $brackets = Bracket::getAllByTournament($id);
+        $brackets = Bracket::getAllByTournamentFormatted($id);
 
         return $this->render('tournamentDetails',
             [
@@ -554,15 +554,14 @@ class RocketleagueController extends BaseController
     }
 
     private function connectWinnerBracketsInLooser(&$bracketArr) {
-        return;
+        
         $initBracket = $bracketArr;
 
         $winnerBrackets = reset($initBracket);
         while ($winnerBrackets->getIsWinnerBracket()) {
             $winnerBrackets = next($initBracket);
         }
-        $bracket1 = $winnerBrackets;
-        $bracket2 = next($initBracket);
+        $looserBracket = $winnerBrackets;
 
         $isVirtual = true;
 
@@ -572,23 +571,18 @@ class RocketleagueController extends BaseController
                 continue;
             }
 
-            $bracket1->winner_bracket = $bracket->getId();
-            $bracket2->winner_bracket = $bracket->getId();
-
-            $bracket1->update();
-            $bracket2->update();
-
-            $bracket1 = next($initBracket);
-            $bracket2 = next($initBracket);
-
-            $id++;
-
-            if (!$bracket1->getIsWinnerBracket()) {
-                break;
+            $bracketRefs = $bracket->getBracketRefs();
+            if (count($bracketRefs) === 2) {
+                continue;
             }
 
-            if (false !== $bracket2 && !$bracket2->getIsWinnerBracket()) {
-                break;
+            for ($b=$bracketRefs; $b<2; $b++) {
+
+                $looserBracket->winner_bracket = $bracket->getId();
+                $looserBracket->update();
+                
+                $looserBracket = next($initBracket);
+
             }
 
         }
@@ -601,7 +595,7 @@ class RocketleagueController extends BaseController
         $finale1->tournament_id = $tournament_id;
         $finale1->encounter_id = count($bracketArr) + 1;
         $finale1->best_of = 5;
-        $finale1->tournament_round = 1;
+        $finale1->tournament_round = 998;
         $finale1->is_winner_bracket = true;
         $finale1->insert();
 
@@ -609,7 +603,7 @@ class RocketleagueController extends BaseController
         $finale2->tournament_id = $tournament_id;
         $finale2->encounter_id = count($bracketArr) + 2;
         $finale2->best_of = 5;
-        $finale2->tournament_round = 1;
+        $finale2->tournament_round = 999;
         $finale2->is_winner_bracket = true;
         $finale2->insert();
 

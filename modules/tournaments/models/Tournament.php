@@ -347,8 +347,9 @@ class Tournament extends ActiveRecord
             $teamMembers = SubTeamMember::getTeamMembers($subTeam->getId());
             foreach ($teamMembers as $teamMemberKey => $teamMember) {
 
+                $isSub = false;
                 if ($teamMember->getIsSubstitute() !== 0) {
-                    continue;
+                    $isSub = true;
                 }
 
                 $userGames = $teamMember->getUser()->one()->getGames()->all();
@@ -362,7 +363,9 @@ class Tournament extends ActiveRecord
                         continue;
                     }
 
-                    $mainFound++;
+                    if (!$isSub) {
+                        $mainFound++;
+                    }
                     $playersWithRLID++;
                 }
 

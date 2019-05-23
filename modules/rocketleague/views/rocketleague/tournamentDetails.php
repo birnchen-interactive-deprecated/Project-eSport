@@ -220,57 +220,65 @@ $this->title = 'Turnier Details';
     <?php if (Yii::$app->user->identity instanceOf User && Yii::$app->user->identity->getId() <= 4): ?>
         <div>Hier seht ihr in Kürze die neuen Brackets, allerdings sehen sie noch grottig aus :P</div>
 
-        <div class="scrollable">
+        <div class="scrollableBracket">
             
             <h1>Winner Bracket</h1>
-            
-            <?php $round = 0; ?>
-            <?php foreach ($brackets as $key => $bracket): ?>
-                <?php
-                    $bracketRound = $bracket->getTournamentRound();
-                    $bracketEncounter = $bracket->getEncounterId();
-                    $bracketParticipants = $bracket->getParticipants();
-                ?>
+            <div class="winnerBracket">
+                
+                <?php $round = 0; ?>
+                <?php foreach ($brackets['winner'] as $round => $roundBrackets): ?>
 
-                <?php if ($round !== $bracketRound): ?>
                     <div class="bracketRound">
-                <?php endif; ?>
 
-                        <div class="roundTitle">Runde <?= $bracketRound; ?></div>
-                        <span>Bracket <?= $bracketEncounter; ?></span>
-                        <div class="bracket">
-                            <div class="bracketParticipant"><?= $bracketParticipants[0]; ?></div>
-                            <div class="bracketParticipant"><?= $bracketParticipants[1]; ?></div>
-                        </div>
+                        <div class="roundTitle">Runde <?= $round; ?></div>
 
-                <?php if ($round !== $bracketRound): ?>
+                        <?php foreach ($roundBrackets as $bracketKey => $bracket): ?>
+                            <?php
+                                $bracketEncounter = $bracket->getEncounterId();
+                                $bracketParticipants = $bracket->getParticipants();
+                            ?>
+
+                            <span class="bracketEncounter">Bracket <?= $bracketEncounter; ?></span>
+                            <div class="bracket">
+                                <div class="bracketParticipant"><?= $bracketParticipants[0]; ?></div>
+                                <div class="bracketParticipant"><?= $bracketParticipants[1]; ?></div>
+                            </div>
+
+                        <?php endforeach; ?>
+
                     </div>
-                <?php endif; ?>
-                <?php $round = $bracketRound; ?>
 
-            <?php endforeach; ?>
+                <?php endforeach; ?>
+            </div>
 
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>&nbsp;</th>
-                        <th>Spieler 1</th>
-                        <th>Spieler 2</th>
-                    </tr>
-                </thead>
-            <?php foreach ($brackets as $key => $bracket): ?>
-                <?php if (!$bracket->getIsWinnerBracket()) continue; ?>
-                    <tbody>
-                        <tr>
-                            <td>Runde <?= $bracket->getTournamentRound(); ?><br>Bracket <?= $bracket->getEncounterId(); ?></td>
-                            <td><?= $bracket->getParticipant1(); ?></td>
-                            <td><?= $bracket->getParticipant2(); ?></td>
-                        </tr>
-                    </tbody>
-            <?php endforeach; ?>
-            </table>
-            
-            <h1>Looser Bracket</h1>
+            <h1>Looser Bracket</h1> 
+            <div class="looserBracket">
+
+                <?php $round = 0; ?>
+                <?php foreach ($brackets['looser'] as $round => $roundBrackets): ?>
+
+                    <div class="bracketRound">
+
+                        <div class="roundTitle">Runde <?= $round; ?></div>
+
+                        <?php foreach ($roundBrackets as $bracketKey => $bracket): ?>
+                            <?php
+                                $bracketEncounter = $bracket->getEncounterId();
+                                $bracketParticipants = $bracket->getParticipants();
+                            ?>
+
+                            <span class="bracketEncounter">Bracket <?= $bracketEncounter; ?></span>
+                            <div class="bracket">
+                                <div class="bracketParticipant"><?= $bracketParticipants[0]; ?></div>
+                                <div class="bracketParticipant"><?= $bracketParticipants[1]; ?></div>
+                            </div>
+
+                        <?php endforeach; ?>
+
+                    </div>
+
+                <?php endforeach; ?>
+            </div>
         </div>
 
 
