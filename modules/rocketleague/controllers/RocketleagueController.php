@@ -373,16 +373,17 @@ class RocketleagueController extends BaseController
         $bracket1 = reset($initBracket);
         $bracket2 = next($initBracket);
 
-        $id = 0;
+        $id = 1;
 
         foreach ($bracketArr as $key => $bracket) {
             
-            $id = $bracket->getEncounterId();
-            if ($id !== NULL) {
+            $encounterId = $bracket->getEncounterId();
+            if ($encounterId !== NULL) {
+                $id++;
                 continue;
             }
 
-            $bracket->encounter_id = $id+1;
+            $bracket->encounter_id = $id;
             $bracket->tournament_round = $bracket1->getTournamentRound() + 1;
             $bracket->update();
 
@@ -413,8 +414,9 @@ class RocketleagueController extends BaseController
 
         // foreach ($bracketArr as $key => $bracket) {
             
-        //     $id = $bracket->getEncounterId();
-        //     if ($id !== NULL) {
+        //     $encounterId = $bracket->getEncounterId();
+        //     if ($encounterId !== NULL) {
+        //         $id++;
         //         continue;
         //     }
 
