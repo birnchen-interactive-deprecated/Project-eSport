@@ -402,7 +402,7 @@ class UserController extends BaseController
         $model->save();
 
         Alert::addSuccess('User Invited');
-
+        
         return $this->redirect('overview');
     }
 

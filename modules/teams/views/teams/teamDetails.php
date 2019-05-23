@@ -35,7 +35,7 @@ Yii::$app->MetaClass->writeMetaMainTeam($this, $teamDetails, $this->title);
         <img class="avatar-logo" src="<?= $teamInfo['teamImage']; ?>.webp" alt="<?=\app\modules\teams\Module::t('teams', 'teamLogo')?>" aria-label="<?=\app\modules\teams\Module::t('teams', 'teamLogo')?>"
              onerror="this.src='<?= $teamInfo['teamImage']; ?>.png'">
 
-        <?php if ($teamInfo['isOwner']) : ?>
+        <?php if ($teamInfo['isOwner'] || $teamInfo['isDeputy']) : ?>
             <?php $form = ActiveForm::begin([
                 'id' => 'profile-pic-form',
                 // 'layout' => 'horizontal',
@@ -48,7 +48,6 @@ Yii::$app->MetaClass->writeMetaMainTeam($this, $teamDetails, $this->title);
             <?= $form->field($profilePicModel, 'file')->fileInput() ?>
             <?= Html::submitButton(\app\modules\teams\Module::t('teams', 'upload')); ?>
             <?php ActiveForm::end(); ?>
-            <?= Html::a(\app\modules\teams\Module::t('teams', 'change'), ['/teams/change-team-details', 'id' => $teamDetails->getId()]); ?>
         <?php endif; ?>
     </div>
 
@@ -59,6 +58,20 @@ Yii::$app->MetaClass->writeMetaMainTeam($this, $teamDetails, $this->title);
             <?= Html::img($teamInfo['nationalityImg'], ['class' => 'nationality-logo']); ?>
             <span class="teamname"><?= $teamDetails->getName(); ?></span>
             <span class="teamid">id: <?= $teamDetails->getId(); ?></span>
+            <?php if ($teamInfo['isOwner'] || $teamInfo['isDeputy']) : ?>
+                <?php
+                    echo Html::a('',
+                        [
+                            "edit-details",
+                            "id" => $teamDetails->getId(),
+                            "isSub" => false
+                        ],
+                        ['class' => "glyphicon glyphicon-pencil",
+                            'title' => "Edit Details"
+                        ]
+                    )
+                ?>
+            <?php endif; ?>
         </div>
         <div class="teamInfos">
             <div class="entry clearfix">
@@ -95,6 +108,20 @@ Yii::$app->MetaClass->writeMetaMainTeam($this, $teamDetails, $this->title);
 
                         <div class="col-lg-6 subTeam">
                             <?= Html::a($subTeam->getTeamName(), ['/teams/sub-team-details', 'id' => $subTeam->getId()]); ?>
+                            <?php if ($teamInfo['isOwner'] || $teamInfo['isDeputy']) : ?>
+                                <?php
+                                    echo Html::a('',
+                                        [
+                                            "edit-details",
+                                            "id" => $subTeam->getId(),
+                                            "isSub" => true
+                                        ],
+                                        ['class' => "glyphicon glyphicon-pencil",
+                                            'title' => "Edit Details"
+                                        ]
+                                    )
+                                ?>
+                            <?php endif; ?>
                         </div>
 
                     <?php endforeach; ?>
