@@ -493,6 +493,9 @@ class RocketleagueController extends BaseController
 
     private function changeLooserRounds(&$bracketArr, $countLooserBrackets) {
 
+        // $firstLooserBracketId = NULL;
+        $countFirstLooserBrackets = 0;
+
         foreach ($bracketArr as $key => $bracket) {
 
             if (!$bracket->getIsWinnerBracket()) {
@@ -505,13 +508,62 @@ class RocketleagueController extends BaseController
 
             $looserBracket = $bracket->getLooserBracket()->one();
             if (NULL === $looserBracket) {
-                Alert::addError('Fehler!?');
                 continue;
             }
 
+            // if (NULL === $firstLooserBracketId) {
+            //     $firstLooserBracketId = $looserBracket->getId();
+            // }
+
             $looserBracket->tournament_round = $bracket->getTournamentRound() + 1;
             $looserBracket->update();
+            $countFirstLooserBrackets++;
         }
+
+        $counter = 0;
+        $round = 0;
+        $bracket = reset($bracketArr);
+        while ($bracket->getIsWinnerBracket()) {
+            $bracket = next($bracketArr);
+        }
+        while ($counter < $countFirstLooserBrackets) {
+            $round = $bracket->getTournamentRound();
+            $bracket = next($bracketArr);
+            $counter++;
+        }
+        $isVirtual = false;
+        $counter = 0;
+        $round++;
+        while (false !== $bracket) {
+
+            $bracket->tournament_round = $round;
+            $bracket->update();
+            $counter++;
+
+            if ($counter === $countFirstLooserBrackets) {
+                $isVirtual = !$isVirtual;
+                if ($isVirtual && $countFirstLooserBrackets === 1) {
+                    break;
+                }
+                $countFirstLooserBrackets = ($isVirtual) ? $countFirstLooserBrackets/2 : $countFirstLooserBrackets;
+                $counter = 0;
+            }
+
+        }
+        // foreach ($bracketArr as $key => $bracket) {
+
+        //     if ($bracket->getIsWinnerBracket()) {
+        //         continue;
+        //     }
+
+        //     if ($counter < $countFirstLooserBrackets) {
+        //         $round = $bracket->getTournamentRound();
+        //         $counter++;
+        //         continue;
+        //     }
+
+        //     $bracket
+        // }
 
     }
 
