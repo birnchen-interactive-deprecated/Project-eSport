@@ -36,8 +36,6 @@ use yii\bootstrap\ActiveForm;
                         <!-- Default informations -->
                         <?= $form->field($model, 'main_team')->textInput(["class" => 'form-control form-control-color','readonly'=> true]) ?>
 
-                        <?= $form->field($model, 'name')->textInput(["class" => 'form-control form-control-color','readonly'=> false]) ?>
-
                         <?= $form->field($model, 'headquater_id')->dropDownList($nationalityList, ["class" => 'form-control form-control-color', 'prompt' => 'Bitte auswählen']) ?>
 
                         <?= $form->field($model, 'language_id')->dropDownList($languageList, ["class" => 'form-control form-control-color', 'prompt' => 'Bitte auswählen']) ?>

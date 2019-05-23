@@ -122,7 +122,7 @@ class SubTeamDetailsForm extends FormModel
 			[ ['captain_id', 'deputy_id', 'manager_id', 'trainer_id'], 'exist', 'targetClass' => User::className(), 'targetAttribute' => 'id' ],
 			[ ['game', 'main_team', 'short_code', 'main_short_code', 'description'], 'string' ],
         	[ 'twitter_channel', 'string' ],
-            [ 'name', 'customUniqueTeamName' ],
+            [ 'name', 'string' ],
 			[ 'discord_server', 'customUniqueDiscordValidator' ],
 			[ 'twitter_account', 'customUniqueTwitterValidator'],
 		];
@@ -203,9 +203,6 @@ class SubTeamDetailsForm extends FormModel
             }
         }
 
-        //if(count($validationSub))
-            //$this->addError($attribute, 'Account ' . $this->twitter_account . ' wird bereits verwendet' );
-
         return true;
     }
 
@@ -223,6 +220,7 @@ class SubTeamDetailsForm extends FormModel
         $subTeam = SubTeam::findOne(['id' => $this->subTeamId]);
 
         /** Default informations */
+        $subTeam->name = $this->name;
         $subTeam->game_id = $subTeam->game_id;
         $subTeam->headquater_id = $this->headquater_id;
         $subTeam->language_id = $this->language_id;
