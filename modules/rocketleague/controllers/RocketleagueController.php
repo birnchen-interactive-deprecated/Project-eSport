@@ -228,6 +228,8 @@ class RocketleagueController extends BaseController
 
         $participatingEntrys = $tournament->getParticipants()->all();
 
+        // $brackets = Bracket::getAllByTournament($id);
+
         return $this->render('tournamentDetails',
             [
                 'tournament' => $tournament,
@@ -293,7 +295,7 @@ class RocketleagueController extends BaseController
             $bracket = new Bracket();
             $bracket->tournament_id = $tournament_id;
             $bracket->best_of = 3;
-            $bracket->tournament_round = NULL;
+            $bracket->tournament_round = 1;
             $bracket->is_winner_bracket = true;
             $bracket->insert();
             
