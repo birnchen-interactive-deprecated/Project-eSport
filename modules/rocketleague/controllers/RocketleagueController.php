@@ -604,6 +604,10 @@ class RocketleagueController extends BaseController
         $finale2->is_winner_bracket = true;
         $finale2->insert();
 
+        $finale1->winner_bracket = $finale2->getId();
+        $finale1->looser_bracket = $finale2->getId();
+        $finale1->update();
+
         $highestWinnerRound = 0;
         $highestWinnerBracket = NULL;
         foreach ($bracketArr as $key => $bracket) {
