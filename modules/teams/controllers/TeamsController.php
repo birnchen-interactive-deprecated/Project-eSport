@@ -275,10 +275,6 @@ class TeamsController extends BaseController
                     {
                         $value->manager_id = null;
                     }
-                    if($value->getTeamManagerId() == $userId)
-                    {
-                        $value->manager_id = null;
-                    }
                     if($value->getTeamCaptainId() == $userId)
                     {
                         $value->captain_id = Yii::$app->user->identity->getId();
@@ -292,8 +288,12 @@ class TeamsController extends BaseController
                         $subTeamMember->delete();
                 }
 
-                $deputyModel->deputy_id = null;
-                $deputyModel->save();
+                if($deputyModel != null)
+                {
+                    $deputyModel->deputy_id = null;
+                    $deputyModel->save();
+                }
+                
 
                 $model->delete();
 
