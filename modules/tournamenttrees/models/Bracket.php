@@ -150,11 +150,13 @@ class Bracket extends ActiveRecord
 		if (NULL === $class) {
 			return 'Empty Slot';
 		}
-		$slot = $this->hasOne($class, $vars);
+		$result = $this->hasOne($class, $vars);
 
-		if (NULL === $slot) {
+		if (NULL === $result) {
 			return 'Empty Slot';
 		}
+		
+		$slot = $result->one();
 
 		if ($slot instanceof User) {
 			return $slot->getUsername();
@@ -184,11 +186,13 @@ class Bracket extends ActiveRecord
 		if (NULL === $class) {
 			return 'Empty Slot';
 		}
-		$slot = $this->hasOne($class, $vars);
+		$result = $this->hasOne($class, $vars);
 
-		if (NULL === $slot) {
+		if (NULL === $result) {
 			return 'Empty Slot';
 		}
+		
+		$slot = $result->one();
 
 		if ($slot instanceof User) {
 			return $slot->getUsername();
