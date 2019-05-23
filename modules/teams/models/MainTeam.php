@@ -11,6 +11,7 @@ use app\modules\user\models\Nationality;
 use app\modules\user\models\Language;
 
 use app\modules\teams\models\MainTeamMember;
+use app\modules\teams\models\SubTeamMember;
 
 /**
  * Class MainTeam
@@ -190,6 +191,25 @@ use app\modules\teams\models\MainTeamMember;
             usort($members, function($a, $b) {
                 return $a->getUsername() > $b->getUsername();
             });
+        }
+
+        return $members;
+    }
+
+    /**
+     * @return array
+     */
+    public function getInvitableMembers($mode, $subTeamId, $gameId, $sort = true)
+    {
+        $members = [];
+        $members[] = $this->hasOne(User::className(), ['id' => 'owner_id'])->one();
+        foreach ($this->getTeamMember()->all() as $teamMemberKey => $teamMember)
+        {
+            $alreadyInThisTeam = SubTeamMember::find()->where(['user_id' => $teamMember->getUserId(), 'sub_team_id' => $subTeamId])->count();
+            $alreadyInASubTeam = $teamMember->getUser()->one()->getSubTeamsMembership()->andWhere(['tournament_mode_id' => $mode, 'game_id' => $gameId])->count();
+            if ($alreadyInASubTeam == 0 && $alreadyInThisTeam == 0){
+                $members[] = $teamMember->getUser()->one();    
+            }
         }
 
         return $members;
