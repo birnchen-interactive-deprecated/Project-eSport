@@ -360,6 +360,7 @@ class Bracket extends ActiveRecord
 
 			$firstLevel = ($bracket->getIsWinnerBracket()) ? 'winner' : 'looser';
 			$secondLevel = $bracket->getTournamentRound();
+			$secondLevel = ($secondLevel >= 999) ? 'Finale' : $secondLevel;
 
 			if (!array_key_exists($secondLevel, $out[$firstLevel])) {
 				$out[$firstLevel][$secondLevel] = [];

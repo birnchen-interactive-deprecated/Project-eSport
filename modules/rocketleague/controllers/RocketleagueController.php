@@ -601,7 +601,7 @@ class RocketleagueController extends BaseController
         $finale1->tournament_id = $tournament_id;
         $finale1->encounter_id = count($bracketArr) + 1;
         $finale1->best_of = 5;
-        $finale1->tournament_round = 1;
+        $finale1->tournament_round = 998;
         $finale1->is_winner_bracket = true;
         $finale1->insert();
 
@@ -609,7 +609,7 @@ class RocketleagueController extends BaseController
         $finale2->tournament_id = $tournament_id;
         $finale2->encounter_id = count($bracketArr) + 2;
         $finale2->best_of = 5;
-        $finale2->tournament_round = 1;
+        $finale2->tournament_round = 999;
         $finale2->is_winner_bracket = true;
         $finale2->insert();
 
