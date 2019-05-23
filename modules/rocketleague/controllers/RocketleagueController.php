@@ -414,6 +414,8 @@ class RocketleagueController extends BaseController
 
     private function connectLooserBrackets(&$bracketArr) {
 
+        $id = 0;
+        
         foreach ($bracketArr as $key => $bracket) {
             
             $encounterId = $bracket->getEncounterId();
@@ -425,6 +427,8 @@ class RocketleagueController extends BaseController
             $bracket->encounter_id = $id;
             $bracket->tournament_round = 1;
             $bracket->update();
+
+            $id++;
 
         }
 
