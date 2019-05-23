@@ -414,36 +414,19 @@ class RocketleagueController extends BaseController
 
     private function connectLooserBrackets(&$bracketArr) {
 
-        // $initBracket = $bracketArr;
-
-        // $bracket1 = reset($initBracket);
-        // $bracket2 = next($initBracket);
-        // $id = 0;
-
-        // foreach ($bracketArr as $key => $bracket) {
+        foreach ($bracketArr as $key => $bracket) {
             
-        //     $encounterId = $bracket->getEncounterId();
-        //     if ($encounterId !== NULL) {
-        //         $id = $encounterId + 1;
-        //         continue;
-        //     }
+            $encounterId = $bracket->getEncounterId();
+            if ($encounterId !== NULL) {
+                $id = $encounterId + 1;
+                continue;
+            }
 
-        //     $bracket->encounter_id = $id;
-        //     $bracket->tournament_round = 1;
-        //     $bracket->update();
+            $bracket->encounter_id = $id;
+            $bracket->tournament_round = 1;
+            $bracket->update();
 
-        //     $bracket1->looser_bracket = $bracket->getId();
-        //     $bracket2->looser_bracket = $bracket->getId();
-
-        //     $bracket1->update();
-        //     $bracket2->update();
-
-        //     $bracket1 = next($initBracket);
-        //     $bracket2 = next($initBracket);
-
-        //     $id++;
-
-        // }
+        }
 
         $initBracketRevers = $bracketArr;
         $looserBracket = end($initBracketRevers);
