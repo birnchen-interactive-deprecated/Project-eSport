@@ -146,7 +146,7 @@ class Bracket extends ActiveRecord
 			$class = SubTeam::className();
 			$vars = ['id' => 'team_1_id'];
 		}
-
+return var_export($class, true);
 		if (NULL === $class) {
 			return 'Empty Slot';
 		}
@@ -180,11 +180,11 @@ class Bracket extends ActiveRecord
 			$class = SubTeam::className();
 			$vars = ['id' => 'team_2_id'];
 		}
-
+return var_export($class, true);
 		if (NULL === $class) {
 			return 'Empty Slot';
 		}
-		$slot = $this->hasOne($class, $vars);
+		$slot = $this->hasOne($class, $vars)->one();
 
 		if (NULL === $slot) {
 			return 'Empty Slot';
