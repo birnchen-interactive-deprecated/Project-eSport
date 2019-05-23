@@ -255,7 +255,7 @@ $this->title = 'Turnier Details';
             <div class="looserBracket">
 
                 <?php $round = 0; ?>
-                <?php foreach ($brackets['winner'] as $round => $roundBrackets): ?>
+                <?php foreach ($brackets['looser'] as $round => $roundBrackets): ?>
 
                     <div class="bracketRound">
 
