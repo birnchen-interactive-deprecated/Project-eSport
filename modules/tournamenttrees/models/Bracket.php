@@ -346,6 +346,33 @@ class Bracket extends ActiveRecord
 
 	/**
 	 * @param int
+	 * @return array
+	 */
+	public static function getAllByTournamentFormatted($tournament_id)
+	{
+		$brackets = self::getAllByTournament($tournament_id);
+		$out = [
+			'winner' => [],
+			'looser' => [],
+		];
+
+		foreach ($brackets as $key => $bracket) {
+
+			$firstLevel = ($bracket->getIsWinnerBracket()) ? 'winner' : 'looser';
+			$secondLevel = $bracket->getTournamentRound();
+
+			if (!array_key_exists($secondLevel, $out[$firstLevel])) {
+				$out[$firstLevel][$secondLevel] = [];
+			}
+
+			$out[$firstLevel][$secondLevel][] = $bracket;
+		}
+		
+		return $out;
+	}
+
+	/**
+	 * @param int
 	 * @return static|null
 	 */
 	public static function getBracketByWinner($bracketId) {
