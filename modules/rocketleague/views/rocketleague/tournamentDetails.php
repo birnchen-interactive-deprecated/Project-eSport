@@ -220,68 +220,59 @@ $this->title = 'Turnier Details';
     <?php if (Yii::$app->user->identity instanceOf User && Yii::$app->user->identity->getId() <= 4): ?>
         <div>Hier seht ihr in Kürze die neuen Brackets, allerdings sehen sie noch grottig aus :P</div>
 
-        <h1>Winner Bracket</h1>
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>&nbsp;</th>
-                    <th>Spieler 1</th>
-                    <th>Spieler 2</th>
-                </tr>
-            </thead>
-        <?php foreach ($brackets as $key => $bracket): ?>
-            <?php if (!$bracket->getIsWinnerBracket()) continue; ?>
-                <tbody>
-                    <tr>
-                        <td>Runde <?= $bracket->getTournamentRound(); ?><br>Bracket <?= $bracket->getEncounterId(); ?></td>
-                        <td><?= $bracket->getParticipant1(); ?></td>
-                        <td><?= $bracket->getParticipant2(); ?></td>
-                    </tr>
-                </tbody>
-        <?php endforeach; ?>
-        </table>
+        <div class="scrollable">
+            
+            <h1>Winner Bracket</h1>
+            
+            <?php $round = 0; ?>
+            <?php foreach ($brackets as $key => $bracket): ?>
+                <?php
+                    $bracketRound = $bracket->getTournamentRound();
+                    $bracketEncounter = $bracket->getEncounterId();
+                    $bracketParticipants = $bracket->getParticipants();
+                ?>
 
-        <h1>Looser Bracket</h1>
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>&nbsp;</th>
-                    <th>Spieler 1</th>
-                    <th>Spieler 2</th>
-                </tr>
-            </thead>
-        <?php foreach ($brackets as $key => $bracket): ?>
-            <?php if ($bracket->getIsWinnerBracket()) continue; ?>
-                <tbody>
-                    <tr>
-                        <td>Runde <?= $bracket->getTournamentRound(); ?><br>Bracket <?= $bracket->getEncounterId(); ?></td>
-                        <td><?= $bracket->getParticipant1(); ?></td>
-                        <td><?= $bracket->getParticipant2(); ?></td>
-                    </tr>
-                </tbody>
-        <?php endforeach; ?>
-        </table>
+                <?php if ($round !== $bracketRound): ?>
+                    <div class="bracketRound">
+                <?php endif; ?>
 
-        <h1>Finale</h1>
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>&nbsp;</th>
-                    <th>Spieler 1</th>
-                    <th>Spieler 2</th>
-                </tr>
-            </thead>
-        <?php foreach ($brackets as $key => $bracket): ?>
-            <?php if (true) continue; ?>
-                <tbody>
+                        <div class="roundTitle">Runde <?= $bracketRound; ?></div>
+                        <span>Bracket <?= $bracketEncounter; ?></span>
+                        <div class="bracket">
+                            <div class="bracketParticipant"><?= $bracketParticipants[0]; ?></div>
+                            <div class="bracketParticipant"><?= $bracketParticipants[1]; ?></div>
+                        </div>
+
+                <?php if ($round !== $bracketRound): ?>
+                    </div>
+                <?php endif; ?>
+                <?php $round = $bracketRound; ?>
+
+            <?php endforeach; ?>
+
+            <table class="table table-hover">
+                <thead>
                     <tr>
-                        <td>Runde <?= $bracket->getTournamentRound(); ?><br>Bracket <?= $bracket->getEncounterId(); ?></td>
-                        <td><?= $bracket->getParticipant1(); ?></td>
-                        <td><?= $bracket->getParticipant2(); ?></td>
+                        <th>&nbsp;</th>
+                        <th>Spieler 1</th>
+                        <th>Spieler 2</th>
                     </tr>
-                </tbody>
-        <?php endforeach; ?>
-        </table>
+                </thead>
+            <?php foreach ($brackets as $key => $bracket): ?>
+                <?php if (!$bracket->getIsWinnerBracket()) continue; ?>
+                    <tbody>
+                        <tr>
+                            <td>Runde <?= $bracket->getTournamentRound(); ?><br>Bracket <?= $bracket->getEncounterId(); ?></td>
+                            <td><?= $bracket->getParticipant1(); ?></td>
+                            <td><?= $bracket->getParticipant2(); ?></td>
+                        </tr>
+                    </tbody>
+            <?php endforeach; ?>
+            </table>
+            
+            <h1>Looser Bracket</h1>
+        </div>
+
 
     <?php endif; ?>
 </div>
