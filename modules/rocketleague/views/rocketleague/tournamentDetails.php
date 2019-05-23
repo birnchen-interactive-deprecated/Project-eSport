@@ -220,7 +220,7 @@ $this->title = 'Turnier Details';
     <?php if (Yii::$app->user->identity instanceOf User && Yii::$app->user->identity->getId() <= 4): ?>
         <div>Hier seht ihr in Kürze die neuen Brackets, allerdings sehen sie noch grottig aus :P</div>
 
-        <h2>Winner Bracket</h2>
+        <h1>Winner Bracket</h1>
         <table class="table table-hover">
             <thead>
                 <tr>
