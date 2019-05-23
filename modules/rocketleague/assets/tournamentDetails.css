@@ -21,9 +21,14 @@
 }
 
 .site-rl-tournament-details .bracketRound {
-	border: 1px solid black;
+	border-right: 1px solid black;
 	float: left;
-	width: 200px;
+	padding: 5px;
+	width: 250px;
+}
+
+.site-rl-tournament-details .roundTitle {
+	text-align: center;
 }
 
 .site-rl-tournament-details .bracket {

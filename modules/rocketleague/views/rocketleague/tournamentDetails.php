@@ -230,6 +230,7 @@ $this->title = 'Turnier Details';
 
                     <div class="bracketRound">
 
+                        <div class="roundTitle">Runde <?= $bracketRound; ?></div>
                         <?php foreach ($roundBrackets as $bracketKey => $bracket): ?>
                             <?php
                                 $bracketRound = $bracket->getTournamentRound();
@@ -237,7 +238,6 @@ $this->title = 'Turnier Details';
                                 $bracketParticipants = $bracket->getParticipants();
                             ?>
 
-                            <div class="roundTitle">Runde <?= $bracketRound; ?></div>
                             <span>Bracket <?= $bracketEncounter; ?></span>
                             <div class="bracket">
                                 <div class="bracketParticipant"><?= $bracketParticipants[0]; ?></div>
