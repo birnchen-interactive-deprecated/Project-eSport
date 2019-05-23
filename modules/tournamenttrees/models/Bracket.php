@@ -189,7 +189,14 @@ class Bracket extends ActiveRecord
 		}
 
 		if (NULL === $class) {
-			return '!! FEHLER-1 !!';
+			$preText = 'Winner';
+			$preBracket = Bracket::getBracketByWinner($this->getId());
+			if (NULL === $preBracket) {
+				$preText = 'Looser';
+				$preBracket == Bracket::getBracketByLooser($this->getId());
+			}
+
+			return (NULL === $preBracket) ? 'FREILOS' : $preText . ' von Runde ' . $preBracket->getTournamentRound() . ' Bracket ' . $preBracket->getEncounterId();
 		}
 		$slot = $this->hasOne($class, $vars)->one();
 
