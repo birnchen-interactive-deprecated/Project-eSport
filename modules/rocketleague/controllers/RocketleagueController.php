@@ -520,6 +520,8 @@ class RocketleagueController extends BaseController
             $countFirstLooserBrackets++;
         }
 
+        $countFirstLooserBrackets/= 2;
+
         $counter = 0;
         $round = 0;
         $bracket = reset($bracketArr);
