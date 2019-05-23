@@ -342,13 +342,14 @@ class Tournament extends ActiveRecord
             $modeSubPlayers = $this->getMode()->one()->getSubPlayer();
             $modeMainPlayers = $modeMaxPlayers - $modeSubPlayers;
 
+            $isSub = false;
             $mainFound = 0;
             $playersWithRLID = 0;
             $teamMembers = SubTeamMember::getTeamMembers($subTeam->getId());
             foreach ($teamMembers as $teamMemberKey => $teamMember) {
 
                 if ($teamMember->getIsSubstitute() !== 0) {
-                    continue;
+                    $isSub = true;
                 }
 
                 $userGames = $teamMember->getUser()->one()->getGames()->all();
@@ -362,7 +363,9 @@ class Tournament extends ActiveRecord
                         continue;
                     }
 
-                    $mainFound++;
+                    if (!$isSub) {
+                        $mainFound++;
+                    }
                     $playersWithRLID++;
                 }
 
@@ -372,9 +375,9 @@ class Tournament extends ActiveRecord
                 continue;
             }
 
-            // if ($playersWithRLID < count($teamMembers)) {
-            //     continue;
-            // }
+            if ($playersWithRLID < count($teamMembers)) {
+                continue;
+            }
 
             $isParticipating = $this->checkTeamParticipating($subTeam);
 
