@@ -11,6 +11,7 @@ use app\modules\user\models\Language;
 use app\modules\user\models\Nationality;
 
 use app\modules\teams\models\SubTeam;
+use app\modules\teams\models\MainTeam;
 
 use app\modules\platformgames\models\Games;
 
@@ -31,12 +32,15 @@ class SubTeamDetailsForm extends FormModel
 	public $siteLanguage;
 
 	/** Default informations */
-	public $main_team; 			
+    public $main_team;          
+	public $main_team_id; 			
 	public $subTeamId;			
 	public $headquater_id;		
 	public $language_id;		
+    public $game;
 	public $game_id;
 	public $tournament_mode;
+    public $tournament_mode_id;
 
 	/** Management Informations */
 	public $captain_id;			
@@ -72,12 +76,14 @@ class SubTeamDetailsForm extends FormModel
 
         /** Default informations */
         $model->main_team = $teamDetails->getMainTeam()->one()->getName();
+        $model->main_team_id = $teamDetails->getMainTeam()->one()->getId();
         $model->subTeamId = $subTeamId;
         $model->headquater_id = $teamDetails->getHeadquaterId();
         $model->language_id = $teamDetails->getLanguageId();
-        $model->game_id = $teamDetails->getGameName()->one()->getName();
-        //$model->game_id = $teamDetails->getGameId();
+        $model->game = $teamDetails->getGameName()->one()->getName();
+        $model->game_id = $teamDetails->getGameId();
         $model->tournament_mode = $teamDetails->getTournamentMode()->one()->getName();
+        $model->tournament_mode_id = $teamDetails->getTournamentModeId();
 
         /** Management Informations */
         $model->captain_id = $teamDetails->getTeamCaptainId();
@@ -114,8 +120,9 @@ class SubTeamDetailsForm extends FormModel
         	[ 'headquater_id', 'exist',	'targetClass' => Nationality::className(), 'targetAttribute' => 'id' ],
 			//[ 'game_id', 'exist', 'targetClass' => Games::className(), 'targetAttribute' => 'id' ],
 			[ ['captain_id', 'deputy_id', 'manager_id', 'trainer_id'], 'exist', 'targetClass' => User::className(), 'targetAttribute' => 'id' ],
-			[ ['game_id', 'main_team', 'name', 'short_code', 'main_short_code', 'description'], 'string' ],
+			[ ['game', 'main_team', 'short_code', 'main_short_code', 'description'], 'string' ],
         	[ 'twitter_channel', 'string' ],
+            [ 'name', 'customUniqueTeamName' ],
 			[ 'discord_server', 'customUniqueDiscordValidator' ],
 			[ 'twitter_account', 'customUniqueTwitterValidator'],
 		];
@@ -132,7 +139,7 @@ class SubTeamDetailsForm extends FormModel
         	'main_team' => \app\modules\teams\Module::t('teams','main_team', $siteLanguage->locale),
         	'headquater_id' => \app\modules\teams\Module::t('teams','headquater_id', $siteLanguage->locale),
         	'language_id' => \app\modules\teams\Module::t('teams','language_id', $siteLanguage->locale),
-            'game_id' => 'Game',
+            'game' => 'Game',
         	'captain_id' => \app\modules\teams\Module::t('teams','captain_id', $siteLanguage->locale),
         	'deputy_id' => \app\modules\teams\Module::t('teams','deputy_id', $siteLanguage->locale),
         	'manager_id' => \app\modules\teams\Module::t('teams','manager_id', $siteLanguage->locale),
@@ -163,6 +170,43 @@ class SubTeamDetailsForm extends FormModel
             return true;
         else
             true;//$this->addError($attribute, 'Account ' . $this->twitter_account . ' wird bereits verwendet' );
+    }
+
+    public function customUniqueTeamName($attribute, $params)
+    {
+        $validationMain = MainTeam::find()->where(['name' => $this->main_team])->all();
+        $validationSub = SubTeam::find()->where(['name' => $this->main_team])->all();
+
+        foreach ($validationMain as $value) {
+            if($value->getId() == $this->main_team_id)
+            {
+                foreach ($validationSub as $value2) {
+                    if($value2->getId() == $this->main_team_id)
+                    {
+                        if($value2->getId() == $this->subTeamId)
+                        {
+                            return true;
+                        }
+                        elseif($value2->getGameId() == $this->game_id && $value2->getTournamentModeId() == $this->tournament_mode_id)
+                        {
+                            $this->addError($attribute, 'Sorry only one ' . $this->game . ' Team can Take this Name in ' . $this->tournament_mode );
+                        }
+                    }
+                    else
+                    {
+                        if($value2->getGameId() == $this->game_id && $value2->getTournamentModeId() == $this->tournament_mode_id)
+                        {
+                            $this->addError($attribute, 'Sorry only one ' . $this->game . ' Team can Take this Name in ' . $this->tournament_mode );
+                        }
+                    }
+                }
+            }
+        }
+
+        //if(count($validationSub))
+            //$this->addError($attribute, 'Account ' . $this->twitter_account . ' wird bereits verwendet' );
+
+        return true;
     }
 
 	/**
