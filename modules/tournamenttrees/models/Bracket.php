@@ -177,7 +177,9 @@ class Bracket extends ActiveRecord
 			} else {
 				$preBracket = array_shift($refs);
 				$preText = ($preBracket->winner_bracket == $this->getId()) ? 'Winner' : 'Looser';
-				$return[] = $preText . ' von Runde ' . $preBracket->getTournamentRound() . ' Bracket ' . $preBracket->getEncounterId();
+				$preRound = $preBracket->getTournamentRound();
+				$preRound = (998 == $preRound) ? 'Finale' : $preRound;
+				$return[] = $preText . ' von Runde ' . $preRound . ' Bracket ' . $preBracket->getEncounterId();
 			}
 		} else {
 			$slot = $this->hasOne($class, $vars)->one();
@@ -210,7 +212,9 @@ class Bracket extends ActiveRecord
 			} else {
 				$preBracket = array_shift($refs);
 				$preText = ($preBracket->winner_bracket == $this->getId()) ? 'Winner' : 'Looser';
-				$return[] = $preText . ' von Runde ' . $preBracket->getTournamentRound() . ' Bracket ' . $preBracket->getEncounterId();
+				$preRound = $preBracket->getTournamentRound();
+				$preRound = (998 == $preRound) ? 'Finale' : $preRound;
+				$return[] = $preText . ' von Runde ' . $preRound . ' Bracket ' . $preBracket->getEncounterId();
 			}
 		} else {
 			$slot = $this->hasOne($class, $vars)->one();
