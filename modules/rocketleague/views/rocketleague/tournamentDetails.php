@@ -222,8 +222,8 @@ $this->title = 'Turnier Details';
 
         <div class="scrollableBracket">
             
-            <div class="winnerBracket clearfix">
-                <h1>Winner Bracket</h1>
+            <h1>Winner Bracket</h1>
+            <div class="winnerBracket">
                 
                 <?php $round = 0; ?>
                 <?php foreach ($brackets['winner'] as $round => $roundBrackets): ?>
@@ -251,8 +251,8 @@ $this->title = 'Turnier Details';
                 <?php endforeach; ?>
             </div>
 
+            <h1>Looser Bracket</h1> 
             <div class="looserBracket">
-                <h1>Looser Bracket</h1>
             </div>
         </div>
 

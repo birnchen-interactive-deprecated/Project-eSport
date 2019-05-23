@@ -21,12 +21,22 @@
 }
 
 .site-rl-tournament-details .scrollableBracket {
-	overflow-x: scroll;
+	/*overflow-x: scroll;*/
+}
+
+.site-rl-tournament-details .winnerBracket,
+.site-rl-tournament-details .looserBracket {
+	display: flex;
+	float: 1 1 auto;
+	flex-direction: row;
+	justify-content: flex-start;
 }
 
 .site-rl-tournament-details .bracketRound {
 	border-right: 1px solid black;
-	float: left;
+	display: flex;
+	flex: 0 0 auto;
+	flex-direction: column;
 	padding: 5px;
 	width: 250px;
 }
