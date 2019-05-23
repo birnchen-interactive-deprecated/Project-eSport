@@ -48,12 +48,12 @@ if (array_key_exists("r", $_REQUEST) && $_REQUEST['r'] == 'events/overview') {
 
 $navigation = array(
     array('label' => 'Home', 'url' => ['/site/index'], 'linkOptions' => ['aria-label' => 'Home Button', 'title' => 'Home Button']),
+    array('label' => 'News', 'items' => array(
+        array('label' => 'Rocket League', 'url' => ['/rocketleague/news'], 'linkOptions' =>  ['aria-label' => 'RL News Button']),
+    )),
     array('label' => 'Player', 'url' => ['/user/overview'], 'linkOptions' => ['aria-label' => 'Player Button', 'title' => 'Player Button']),
     array('label' => 'Teams', 'items' => array(
         array('label' => 'Rocket League', 'url' => ['/rocketleague/teams-overview'], 'linkOptions' =>  ['aria-label' => 'Rocket League Button']),
-    )),
-    array('label' => 'News', 'items' => array(
-        array('label' => 'Rocket League', 'url' => ['/rocketleague/news'], 'linkOptions' =>  ['aria-label' => 'RL News Button']),
     )),
     array('label' => 'Turniere', 'items' => array(
         array('label' => 'Rocket League', 'url' => ['/rocketleague/tournaments'], 'linkOptions' =>  ['aria-label' => 'RL Tournaments Button']),
