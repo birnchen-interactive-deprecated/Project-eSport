@@ -253,6 +253,31 @@ $this->title = 'Turnier Details';
 
             <h1>Looser Bracket</h1> 
             <div class="looserBracket">
+
+                <?php $round = 0; ?>
+                <?php foreach ($brackets['winner'] as $round => $roundBrackets): ?>
+
+                    <div class="bracketRound">
+
+                        <div class="roundTitle">Runde <?= $round; ?></div>
+
+                        <?php foreach ($roundBrackets as $bracketKey => $bracket): ?>
+                            <?php
+                                $bracketEncounter = $bracket->getEncounterId();
+                                $bracketParticipants = $bracket->getParticipants();
+                            ?>
+
+                            <span class="bracketEncounter">Bracket <?= $bracketEncounter; ?></span>
+                            <div class="bracket">
+                                <div class="bracketParticipant"><?= $bracketParticipants[0]; ?></div>
+                                <div class="bracketParticipant"><?= $bracketParticipants[1]; ?></div>
+                            </div>
+
+                        <?php endforeach; ?>
+
+                    </div>
+
+                <?php endforeach; ?>
             </div>
         </div>
 
