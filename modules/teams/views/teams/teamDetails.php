@@ -109,7 +109,23 @@ Yii::$app->MetaClass->writeMetaMainTeam($this, $teamDetails, $this->title);
                         $username = $user->getUsername();
                         $userId = $user->getId();
                     ?>
-                    <div class="col-lg-4 teamMembers"><?= Html::a($username, ['/user/details', 'id' => $userId]); ?></div>
+                    <div class="col-lg-4 teamMembers"><?= Html::a($username, ['/user/details', 'id' => $userId]); ?>
+                        <?php if ($teamInfo['isOwner'] || $teamInfo['isDeputy']) : ?>
+                        <?php
+                            echo Html::a('',
+                                [
+                                    "delete-member",
+                                    "teamId" => $teamDetails->getId(),
+                                    "userId" => $userId,
+                                    "isSub" => false
+                                ],
+                                ['class' => "glyphicon glyphicon-remove",
+                                    'title' => "Remove Player"
+                                ]
+                            )
+                        ?>
+                    <?php endif; ?>
+                    </div>
                 <?php endforeach; ?>
             </div>
         </div>

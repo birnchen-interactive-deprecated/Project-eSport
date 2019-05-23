@@ -119,7 +119,7 @@ Yii::$app->MetaClass->writeMetaMainTeam($this, $teamDetails, $this->title);
                             echo Html::a('',
                                 [
                                     "delete-member",
-                                    "subTeamId" => $teamDetails->getId(),
+                                    "teamId" => $teamDetails->getId(),
                                     "userId" => $userId,
                                     "isSub" => true
                                 ],

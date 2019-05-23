@@ -70,6 +70,7 @@ class TeamsController extends BaseController
         /** @var $teamInfo array */
         $teamInfo = [
             'isOwner' => (Yii::$app->user->identity != null && Yii::$app->user->identity->getId() == $teamDetails->owner_id) ? true : false,
+            'isDeputy' => (Yii::$app->user->identity != null && Yii::$app->user->identity->getId() == $teamDetails->deputy_id) ? true : false,
             //'memberSince' => DateTime::createFromFormat('d.m.y', $user->dt_created),
             'memberSince' => $memberDateTime->format('d.m.y'),
             'language' => $teamDetails->getHeadQuaterId(),
@@ -215,13 +216,13 @@ class TeamsController extends BaseController
     }
 
     /** Glyphicon Actions */
-    public function actionDeleteMember($subTeamId, $userId, $isSub = false)
+    public function actionDeleteMember($teamId, $userId, $isSub = false)
     {
         $model = null;
 
         if($isSub)
         {
-            $model = SubTeamMember::find()->where(['user_id' => $userId, 'sub_team_id' => $subTeamId])->one();
+            $model = SubTeamMember::find()->where(['user_id' => $userId, 'sub_team_id' => $teamId])->one();
 
             if($model != null)
             {
@@ -232,16 +233,63 @@ class TeamsController extends BaseController
                 //Alert::addError("Pierre ist doof"); 
                 //Alert::addInfo("Pierre ist doof"); 
 
-                return $this->redirect("sub-team-details?id=" . $subTeamId);
+                return $this->redirect("sub-team-details?id=" . $teamId);
             }
             
-            Alert::addError('User '. User::findIdentity($userId)->getUsername() .' does not exist in Team ' . SubTeam::findOne(['id' => $subTeamId])->getTeamName());
+            Alert::addError('User '. User::findIdentity($userId)->getUsername() .' does not exist in Team ' . SubTeam::findOne(['id' => $teamId])->getTeamName());
 
-            return $this->redirect("sub-team-details?id=" . $subTeamId);    
+            return $this->redirect("sub-team-details?id=" . $teamId);    
         }
         else
         {
-            //$model = TeamMember::find()->where(['user_id' => $userId, 'sub_team_id' => $subTeamId])->one();
+            $model = MainTeamMember::find()->where(['user_id' => $userId, 'main_team_id' => $teamId])->one();
+
+            if($model != null)
+            {
+                $deputyModel = MainTeam::find()->where(['deputy_id' => $userId, 'id' => $teamId])->one();
+
+                $subTeamModel = $model->getMainTeam()->one()->getSubTeams();   
+
+                foreach ($subTeamModel as $value) {
+                    if($value->getTeamDeputyId() == $userId)
+                    {
+                        $value->deputy_id = null;
+                        $value->save();
+                    }
+
+                    if($value->getTeamTrainerId() == $userId)
+                    {
+                        $value->trainer_id = null;
+                        $value->save();
+                    }
+
+                    if($value->getTeamManagerId() == $userId)
+                    {
+                        $value->manager_id = null;
+                        $value->save();
+                    }
+
+                    $subTeamMember = SubTeamMember::find()->where(['user_id' => $userId, 'sub_team_id' => $value->getId()])->one();
+
+                    if($subTeamMember != null)
+                        $subTeamMember->delete();
+
+                }
+
+                $deputyModel->deputy_id = null;
+                $deputyModel->save();
+
+                $model->delete();
+
+                Alert::addSuccess('User ' . $model->getUser()->one()->getUsername() . ' deleted from Main Team '. $model->getMainTeam()->one()->getName() . ' with all rights and memberships in Sub Teams');
+
+                return $this->redirect("team-details?id=" . $teamId);
+            }
+            else
+            {
+                Alert::addError('User '. User::findIdentity($userId)->getUsername() .' does not exist in Team ' . MainTeam::findOne(['id' => $teamId])->getName() . ' or is Team Owner');
+                return $this->redirect("team-details?id=" . $teamId);
+            }
         }        
     }
 

@@ -145,9 +145,9 @@ use app\modules\teams\models\MainTeamMember;
     /**
      * @return ActiveQuery
      */
-    /*public function getSubTeams() {
-        return $this->hasMany(SubTeam::className(), ['main_team_id' => 'team_id']);
-    }*/
+    public function getSubTeams() {
+        return $this->hasMany(SubTeam::className(), ['main_team_id' => 'id'])->all();
+    }
 
     /**
      * @return ActiveQuery

@@ -7,7 +7,7 @@ use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
 use app\modules\user\models\User;
-use app\modules\user\models\MainTeam;
+use app\modules\teams\models\MainTeam;
 
 /**
  * Class main_team_member
