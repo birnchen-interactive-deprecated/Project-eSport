@@ -270,7 +270,8 @@ class RocketleagueController extends BaseController
             }
 
             $this->setPlayersIntoBracket($bracketArr, $teilnehmer, $playersPerRound);
-            $this->connectBrackets($bracketArr);
+            $this->connectWinnerBrackets($bracketArr);
+            $this->connectLooserBrackets($bracketArr);
 
         }
 
@@ -365,7 +366,7 @@ class RocketleagueController extends BaseController
 
     }
 
-    private function connectBrackets(&$bracketArr) {
+    private function connectWinnerBrackets(&$bracketArr) {
 
         $initBracket = $bracketArr;
 
@@ -407,6 +408,11 @@ class RocketleagueController extends BaseController
             }
 
         }
+    }
+
+    private function connectLooserBrackets(&$bracketArr) {
+
+        $initBracket = $bracketArr;
 
         // Looser Brackets
         $bracket1 = reset($initBracket);
