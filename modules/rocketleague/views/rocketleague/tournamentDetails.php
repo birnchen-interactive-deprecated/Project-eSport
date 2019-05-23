@@ -219,8 +219,27 @@ $this->title = 'Turnier Details';
 
     <?php if (Yii::$app->user->identity instanceOf User && Yii::$app->user->identity->getId() <= 4): ?>
         <div>Hier seht ihr in Kürze die neuen Brackets, allerdings sehen sie noch grottig aus :P</div>
+
+        <h2>Winner Bracket</h2>
         <?php foreach ($brackets as $key => $bracket): ?>
-            <div>Bracket ID <?= $bracket->getEncounterId(); ?> in Runde <?= $bracket->getTournamentRound(); ?></div>
+            <?php if (!$bracket->getIsWinnerBracket()) continue; ?>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>&nbsp;</th>
+                        <th>Spieler 1</th>
+                        <th>Spieler 2</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Runde <?= $bracket->getTournamentRound(); ?><br>Bracket <?= $bracket->getEncounterId(); ?></td>
+                        <td><?= $bracket->getParticipant1(); ?></td>
+                        <td><?= $bracket->getParticipant2(); ?></td>
+                    </tr>
+                </tbody>
+            </table>
         <?php endforeach; ?>
+
     <?php endif; ?>
 </div>

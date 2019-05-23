@@ -132,6 +132,62 @@ class Bracket extends ActiveRecord
 	}
 
 	/**
+	 * @return string
+	 */
+	public function getParticipant1()
+	{
+		$class = NULL;
+		$vars = NULL;
+		if ($this->getPlayer1() !== NULL) {
+			$class = User::className();
+			$vars = ['user_1_id' => 'id'];
+		}
+		if ($this->getTeam1() !== NULL) {
+			$class = SubTeam::className();
+			$vars = ['team_1_id' => 'id'];
+		}
+
+		if (NULL === $class) {
+			return 'Empty Slot';
+		}
+		$slot = $this->hasOne($class, $vars);
+
+		if (NULL === $slot) {
+			return 'Empty Slot';
+		}
+
+		return ($slot instanceof User) ? $slot->getUsername() : $slot->getName();
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getParticipant2()
+	{
+		$class = NULL;
+		$vars = NULL;
+		if ($this->getPlayer2() !== NULL) {
+			$class = User::className();
+			$vars = ['user_2_id' => 'id'];
+		}
+		if ($this->getTeam2() !== NULL) {
+			$class = SubTeam::className();
+			$vars = ['team_2_id' => 'id'];
+		}
+
+		if (NULL === $class) {
+			return 'Empty Slot';
+		}
+		$slot = $this->hasOne($class, $vars);
+
+		if (NULL === $slot) {
+			return 'Empty Slot';
+		}
+
+		return ($slot instanceof User) ? $slot->getUsername() : $slot->getName();
+	}
+
+	/**
 	 * @param User|SubTeam
 	 */
 	public function setSpieler($participant)
