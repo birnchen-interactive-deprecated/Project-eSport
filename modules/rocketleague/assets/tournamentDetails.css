@@ -31,7 +31,7 @@
 .site-rl-tournament-details .winnerBracket,
 .site-rl-tournament-details .looserBracket {
 	display: flex;
-	float: 1 1 auto;
+	flex: 1 1 auto;
 	flex-direction: row;
 	justify-content: flex-start;
 }
