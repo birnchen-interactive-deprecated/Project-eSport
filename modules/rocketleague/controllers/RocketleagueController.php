@@ -398,7 +398,7 @@ class RocketleagueController extends BaseController
 
             $id++;
 
-            if (!$bracket1->isWinnerBracket()) {
+            if (!$bracket1->getIsWinnerBracket()) {
                 break;
             }
 
