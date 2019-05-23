@@ -21,7 +21,7 @@
 }
 
 .site-rl-tournament-details .scrollableBracket {
-	/*overflow-x: scroll;*/
+	overflow-x: auto;
 }
 
 .site-rl-tournament-details .winnerBracket,
