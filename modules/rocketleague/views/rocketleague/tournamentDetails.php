@@ -250,26 +250,6 @@ $this->title = 'Turnier Details';
 
             <?php endforeach; ?>
 
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>&nbsp;</th>
-                        <th>Spieler 1</th>
-                        <th>Spieler 2</th>
-                    </tr>
-                </thead>
-            <?php foreach ($brackets as $key => $bracket): ?>
-                <?php if (!$bracket->getIsWinnerBracket()) continue; ?>
-                    <tbody>
-                        <tr>
-                            <td>Runde <?= $bracket->getTournamentRound(); ?><br>Bracket <?= $bracket->getEncounterId(); ?></td>
-                            <td><?= $bracket->getParticipant1(); ?></td>
-                            <td><?= $bracket->getParticipant2(); ?></td>
-                        </tr>
-                    </tbody>
-            <?php endforeach; ?>
-            </table>
-            
             <h1>Looser Bracket</h1>
         </div>
 
