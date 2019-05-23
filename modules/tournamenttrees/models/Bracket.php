@@ -223,6 +223,8 @@ class Bracket extends ActiveRecord
 			}
 
 		}
+
+		return $return;
 	}
 
 	/**
