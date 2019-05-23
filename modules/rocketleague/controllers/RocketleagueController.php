@@ -571,16 +571,13 @@ class RocketleagueController extends BaseController
                 continue;
             }
 
-            $bracketRefs = $bracket->getBracketRefs();
-            // if (count($bracketRefs) === 2) {
-            //     continue;
-            // }
+            $bracketRefs = count($bracket->getBracketRefs());
 
             for ($b=$bracketRefs; $b<2; $b++) {
 
                 $looserBracket->winner_bracket = $bracket->getId();
                 $looserBracket->update();
-                
+
                 $looserBracket = next($initBracket);
 
             }
