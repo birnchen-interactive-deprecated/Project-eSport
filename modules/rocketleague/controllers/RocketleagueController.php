@@ -278,6 +278,7 @@ class RocketleagueController extends BaseController
                 $this->createConnectFinale($bracketArr, $tournament_id);
                 $countLooserBrackets = $this->connectLooserBrackets($bracketArr);
                 $this->changeLooserRounds($bracketArr, $countLooserBrackets);
+                $this->connectWinnerBracketsInLooser($bracketArr);
             }
 
         }
@@ -493,7 +494,6 @@ class RocketleagueController extends BaseController
 
     private function changeLooserRounds(&$bracketArr, $countLooserBrackets) {
 
-        // $firstLooserBracketId = NULL;
         $countFirstLooserBrackets = 0;
         $round = 0;
 
@@ -511,10 +511,6 @@ class RocketleagueController extends BaseController
             if (NULL === $looserBracket) {
                 continue;
             }
-
-            // if (NULL === $firstLooserBracketId) {
-            //     $firstLooserBracketId = $looserBracket->getId();
-            // }
 
             $round = $bracket->getTournamentRound() + 1;
             $looserBracket->tournament_round = $round;
@@ -554,20 +550,48 @@ class RocketleagueController extends BaseController
             }
 
         }
-        // foreach ($bracketArr as $key => $bracket) {
 
-        //     if ($bracket->getIsWinnerBracket()) {
-        //         continue;
-        //     }
+    }
 
-        //     if ($counter < $countFirstLooserBrackets) {
-        //         $round = $bracket->getTournamentRound();
-        //         $counter++;
-        //         continue;
-        //     }
+    private function connectWinnerBracketsInLooser(&$bracketArr) {
+        return;
+        $initBracket = $bracketArr;
 
-        //     $bracket
-        // }
+        $winnerBrackets = reset($initBracket);
+        while ($winnerBrackets->getIsWinnerBracket()) {
+            $winnerBrackets = next($initBracket);
+        }
+        $bracket1 = $winnerBrackets;
+        $bracket2 = next($initBracket);
+
+        $isVirtual = true;
+
+        foreach ($bracketArr as $key => $bracket) {
+            
+            if ($bracket->getIsWinnerBracket()) {
+                continue;
+            }
+
+            $bracket1->winner_bracket = $bracket->getId();
+            $bracket2->winner_bracket = $bracket->getId();
+
+            $bracket1->update();
+            $bracket2->update();
+
+            $bracket1 = next($initBracket);
+            $bracket2 = next($initBracket);
+
+            $id++;
+
+            if (!$bracket1->getIsWinnerBracket()) {
+                break;
+            }
+
+            if (false !== $bracket2 && !$bracket2->getIsWinnerBracket()) {
+                break;
+            }
+
+        }
 
     }
 
@@ -605,6 +629,10 @@ class RocketleagueController extends BaseController
 
         $highestWinnerBracket->winner_bracket = $finale1->getId();
         $highestWinnerBracket->update();
+
+        $lastBracket = end($bracketArr);
+        $lastBracket->winner_bracket = $finale1->getId();
+        $lastBracket->update();
 
     }
 
