@@ -132,10 +132,33 @@ class Bracket extends ActiveRecord
 	}
 
 	/**
-	 * @return string
+	 * @return array
 	 */
-	public function getParticipant1()
+	public function getBracketRefs()
 	{
+		$winner = $this->hasMany(Bracket::className(), ['id' => 'winner_bracket'])->all();
+		$looser = $this->hasMany(Bracket::className(), ['id' => 'looser_bracket'])->all();
+
+		$brackets = [];
+		while ($tmp = array_shift($looser)) {
+			$brackets[] = $tmp;
+		}
+		while ($tmp = array_shift($winner)) {
+			$brackets[] = $tmp;
+		}
+
+		return $brackets;
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getParticipants()
+	{
+		$return = [];
+
+		$refs = $this->getBracketRefs();
+
 		$class = NULL;
 		$vars = NULL;
 		if ($this->getTeam1()->one() !== NULL) {
@@ -148,35 +171,27 @@ class Bracket extends ActiveRecord
 		}
 
 		if (NULL === $class) {
-			$preText = 'Winner';
-			$preBracket = Bracket::getBracketByWinner($this->getId());
-			if (NULL === $preBracket) {
-				$preText = 'Looser';
-				$preBracket == Bracket::getBracketByLooser($this->getId());
+
+			if (count($refs) === 0) {
+				$return[] = 'FREILOS';
+			} else {
+				$preBracket = array_shift($refs);
+				$preText = ($preBracket->winner_bracket == $this->getId()) ? 'Winner' : 'Looser';
+				$return[] = ' von Runde ' . $preBracket->getTournamentRound() . ' Bracket ' . $preBracket->getEncounterId();
+			}
+		} else {
+			$slot = $this->hasOne($class, $vars)->one();
+			if ($slot instanceof User) {
+				$return[] = $slot->getUsername();
+			} else if ($slot instanceof SubTeam) {
+				$return[] = $slot->getName();
+			} else {
+				$return[] = '';
 			}
 
-			return (NULL === $preBracket) ? 'FREILOS' : $preText . ' von Runde ' . $preBracket->getTournamentRound() . ' Bracket ' . $preBracket->getEncounterId();
-		}
-		$slot = $this->hasOne($class, $vars)->one();
-
-		if (NULL === $slot) {
-			return '!! FEHLER-2 !!';
 		}
 
-		if ($slot instanceof User) {
-			return $slot->getUsername();
-		}
-		if ($slot instanceof SubTeam) {
-			return $slot->getName();
-		}
-		return 'nix';
-	}
 
-	/**
-	 * @return string
-	 */
-	public function getParticipant2()
-	{
 		$class = NULL;
 		$vars = NULL;
 		if ($this->getTeam2()->one() !== NULL) {
@@ -189,29 +204,108 @@ class Bracket extends ActiveRecord
 		}
 
 		if (NULL === $class) {
-			$preText = 'Winner';
-			$preBracket = Bracket::getBracketByWinner($this->getId());
-			if (NULL === $preBracket) {
-				$preText = 'Looser';
-				$preBracket == Bracket::getBracketByLooser($this->getId());
+
+			if (count($refs) === 0) {
+				$return[] = 'FREILOS';
+			} else {
+				$preBracket = array_shift($refs);
+				$preText = ($preBracket->winner_bracket == $this->getId()) ? 'Winner' : 'Looser';
+				$return[] = ' von Runde ' . $preBracket->getTournamentRound() . ' Bracket ' . $preBracket->getEncounterId();
+			}
+		} else {
+			$slot = $this->hasOne($class, $vars)->one();
+			if ($slot instanceof User) {
+				$return[] = $slot->getUsername();
+			} else if ($slot instanceof SubTeam) {
+				$return[] = $slot->getName();
+			} else {
+				$return[] = '';
 			}
 
-			return (NULL === $preBracket) ? 'FREILOS' : $preText . ' von Runde ' . $preBracket->getTournamentRound() . ' Bracket ' . $preBracket->getEncounterId();
 		}
-		$slot = $this->hasOne($class, $vars)->one();
-
-		if (NULL === $slot) {
-			return '!! FEHLER-2 !!';
-		}
-
-		if ($slot instanceof User) {
-			return $slot->getUsername();
-		}
-		if ($slot instanceof SubTeam) {
-			return $slot->getName();
-		}
-		return var_export($slot, true);
 	}
+
+	/**
+	 * @return string
+	 */
+	// public function getParticipant1()
+	// {
+	// 	$class = NULL;
+	// 	$vars = NULL;
+	// 	if ($this->getTeam1()->one() !== NULL) {
+	// 		$class = SubTeam::className();
+	// 		$vars = ['id' => 'team_1_id'];
+	// 	}
+	// 	if ($this->getPlayer1()->one() !== NULL) {
+	// 		$class = User::className();
+	// 		$vars = ['id' => 'user_1_id'];
+	// 	}
+
+	// 	if (NULL === $class) {
+	// 		$preText = 'Winner';
+	// 		$preBracket = Bracket::getBracketByWinner($this->getId());
+	// 		if (NULL === $preBracket) {
+	// 			$preText = 'Looser';
+	// 			$preBracket == Bracket::getBracketByLooser($this->getId());
+	// 		}
+
+	// 		return (NULL === $preBracket) ? 'FREILOS' : $preText . ' von Runde ' . $preBracket->getTournamentRound() . ' Bracket ' . $preBracket->getEncounterId();
+	// 	}
+	// 	$slot = $this->hasOne($class, $vars)->one();
+
+	// 	if (NULL === $slot) {
+	// 		return '!! FEHLER-2 !!';
+	// 	}
+
+	// 	if ($slot instanceof User) {
+	// 		return $slot->getUsername();
+	// 	}
+	// 	if ($slot instanceof SubTeam) {
+	// 		return $slot->getName();
+	// 	}
+	// 	return 'nix';
+	// }
+
+	/**
+	 * @return string
+	 */
+	// public function getParticipant2()
+	// {
+	// 	$class = NULL;
+	// 	$vars = NULL;
+	// 	if ($this->getTeam2()->one() !== NULL) {
+	// 		$class = SubTeam::className();
+	// 		$vars = ['id' => 'team_2_id'];
+	// 	}
+	// 	if ($this->getPlayer2()->one() !== NULL) {
+	// 		$class = User::className();
+	// 		$vars = ['id' => 'user_2_id'];
+	// 	}
+
+	// 	if (NULL === $class) {
+	// 		$preText = 'Winner';
+	// 		$preBracket = Bracket::getBracketByWinner($this->getId());
+	// 		if (NULL === $preBracket) {
+	// 			$preText = 'Looser';
+	// 			$preBracket == Bracket::getBracketByLooser($this->getId());
+	// 		}
+
+	// 		return (NULL === $preBracket) ? 'FREILOS' : $preText . ' von Runde ' . $preBracket->getTournamentRound() . ' Bracket ' . $preBracket->getEncounterId();
+	// 	}
+	// 	$slot = $this->hasOne($class, $vars)->one();
+
+	// 	if (NULL === $slot) {
+	// 		return '!! FEHLER-2 !!';
+	// 	}
+
+	// 	if ($slot instanceof User) {
+	// 		return $slot->getUsername();
+	// 	}
+	// 	if ($slot instanceof SubTeam) {
+	// 		return $slot->getName();
+	// 	}
+	// 	return var_export($slot, true);
+	// }
 
 	/**
 	 * @param User|SubTeam
