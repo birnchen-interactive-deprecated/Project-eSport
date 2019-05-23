@@ -554,15 +554,14 @@ class RocketleagueController extends BaseController
     }
 
     private function connectWinnerBracketsInLooser(&$bracketArr) {
-        return;
+        
         $initBracket = $bracketArr;
 
         $winnerBrackets = reset($initBracket);
         while ($winnerBrackets->getIsWinnerBracket()) {
             $winnerBrackets = next($initBracket);
         }
-        $bracket1 = $winnerBrackets;
-        $bracket2 = next($initBracket);
+        $looserBracket = $winnerBrackets;
 
         $isVirtual = true;
 
@@ -572,23 +571,18 @@ class RocketleagueController extends BaseController
                 continue;
             }
 
-            $bracket1->winner_bracket = $bracket->getId();
-            $bracket2->winner_bracket = $bracket->getId();
-
-            $bracket1->update();
-            $bracket2->update();
-
-            $bracket1 = next($initBracket);
-            $bracket2 = next($initBracket);
-
-            $id++;
-
-            if (!$bracket1->getIsWinnerBracket()) {
-                break;
+            $bracketRefs = $bracket->getBracketRefs();
+            if (count($bracketRefs) === 2) {
+                continue;
             }
 
-            if (false !== $bracket2 && !$bracket2->getIsWinnerBracket()) {
-                break;
+            for ($b=$bracketRefs; $b<2; $b++) {
+
+                $looserBracket->winner_bracket = $bracket->getId();
+                $looserBracket->update();
+                
+                $looserBracket = next($initBracket);
+
             }
 
         }
