@@ -51,6 +51,7 @@
 
 .site-rl-tournament-details .bracket {
 	border: 1px solid grey;
+	margin-bottom: 20px;
 }
 
 .site-rl-tournament-details .bracketParticipant {
