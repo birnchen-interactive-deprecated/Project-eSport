@@ -374,7 +374,6 @@ class RocketleagueController extends BaseController
 
         $initBracket = $bracketArr;
 
-        // Winner Brackets
         $bracket1 = reset($initBracket);
         $bracket2 = next($initBracket);
 
@@ -416,37 +415,48 @@ class RocketleagueController extends BaseController
 
     private function connectLooserBrackets(&$bracketArr) {
 
-        $initBracket = $bracketArr;
+        // $initBracket = $bracketArr;
 
-        // Looser Brackets
-        $bracket1 = reset($initBracket);
-        $bracket2 = next($initBracket);
-        $id = 0;
+        // $bracket1 = reset($initBracket);
+        // $bracket2 = next($initBracket);
+        // $id = 0;
 
-        foreach ($bracketArr as $key => $bracket) {
+        // foreach ($bracketArr as $key => $bracket) {
             
-            $encounterId = $bracket->getEncounterId();
-            if ($encounterId !== NULL) {
-                $id = $encounterId + 1;
-                continue;
-            }
+        //     $encounterId = $bracket->getEncounterId();
+        //     if ($encounterId !== NULL) {
+        //         $id = $encounterId + 1;
+        //         continue;
+        //     }
 
-            $bracket->encounter_id = $id;
-            $bracket->tournament_round = 1;
-            $bracket->update();
+        //     $bracket->encounter_id = $id;
+        //     $bracket->tournament_round = 1;
+        //     $bracket->update();
 
-            $bracket1->looser_bracket = $bracket->getId();
-            $bracket2->looser_bracket = $bracket->getId();
+        //     $bracket1->looser_bracket = $bracket->getId();
+        //     $bracket2->looser_bracket = $bracket->getId();
 
-            $bracket1->update();
-            $bracket2->update();
+        //     $bracket1->update();
+        //     $bracket2->update();
 
-            $bracket1 = next($initBracket);
-            $bracket2 = next($initBracket);
+        //     $bracket1 = next($initBracket);
+        //     $bracket2 = next($initBracket);
 
-            $id++;
+        //     $id++;
 
+        // }
+
+        $bracketsReverse = array_reverse($bracketArr);
+
+        $initBracket = $bracketArr;
+        $winnerBracket = reset($initBracket);
+        while ($winnerBracket->getIsWinnerBracket()) {
+            $winnerBracket = next($initBracket);
         }
+        $winnerBracket = prev($initBracket);
+
+        $winnerBracket->looser_bracket = $bracketsReverse[0]->getId();
+        $winnerBracket->update();
 
     }
 
