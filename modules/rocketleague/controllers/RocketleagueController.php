@@ -273,7 +273,7 @@ class RocketleagueController extends BaseController
             $this->setPlayersIntoBracket($bracketArr, $teilnehmer, $playersPerRound);
             $this->connectWinnerBrackets($bracketArr);
             if (true === $doubleElimination) {
-                $this->createConnectFinale($bracketArr);
+                $this->createConnectFinale($bracketArr, $tournament_id);
                 $this->connectLooserBrackets($bracketArr);
             }
 
@@ -450,7 +450,38 @@ class RocketleagueController extends BaseController
 
     }
 
-    private function createConnectFinale(&$bracketArr) {
+    private function createConnectFinale(&$bracketArr, $tournament_id) {
+
+        $finale1 = new Bracket();
+        $finale1->tournament_id = $tournament_id;
+        $finale1->best_of = 5;
+        $finale1->tournament_round = 1;
+        $finale1->is_winner_bracket = true;
+        $finale1->insert();
+
+        $finale2 = new Bracket();
+        $finale2->tournament_id = $tournament_id;
+        $finale2->best_of = 5;
+        $finale2->tournament_round = 1;
+        $finale2->is_winner_bracket = true;
+        $finale2->insert();
+
+        $highestWinnerRound = 0;
+        $highestWinnerBracket = NULL;
+        foreach ($bracketArr as $key => $bracket) {
+
+            if (!$bracket->getIsWinnerBracket()) {
+                continue;
+            }
+
+            if ($highestWinnerRound < $bracket->getTournamentRound()) {
+                $highestWinnerRound = $bracket->getTournamentRound();
+                $highestWinnerBracket = $bracket;
+            }
+        }
+
+        $highestWinnerBracket->winner_bracket = $finale1->getId();
+        $highestWinnerBracket->update();
 
     }
 
