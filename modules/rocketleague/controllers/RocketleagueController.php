@@ -384,7 +384,7 @@ class RocketleagueController extends BaseController
             }
 
             $bracket->encounter_id = $id;
-            $bracket->tournament_round = $bracket[$bracket1]->getTournamentRound() + 1;
+            $bracket->tournament_round = $bracket1->getTournamentRound() + 1;
             $bracket->update();
 
             $bracket1->winner_bracket = $bracket->getId();
@@ -398,11 +398,11 @@ class RocketleagueController extends BaseController
 
             $id++;
 
-            if (!$bracket[$bracket1]->isWinnerBracket()) {
+            if (!$bracket1->isWinnerBracket()) {
                 break;
             }
 
-            if (false !== $bracket[$bracket2] && !$bracket[$bracket2]->isWinnerBracket()) {
+            if (false !== $bracket2 && !$bracket2->isWinnerBracket()) {
                 break;
             }
 
