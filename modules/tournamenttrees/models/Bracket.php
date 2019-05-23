@@ -140,11 +140,11 @@ class Bracket extends ActiveRecord
 		$vars = NULL;
 		if ($this->getPlayer1() !== NULL) {
 			$class = User::className();
-			$vars = ['user_1_id' => 'id'];
+			$vars = ['id' => 'user_1_id'];
 		}
 		if ($this->getTeam1() !== NULL) {
 			$class = SubTeam::className();
-			$vars = ['team_1_id' => 'id'];
+			$vars = ['id' => 'team_1_id'];
 		}
 
 		if (NULL === $class) {
@@ -174,11 +174,11 @@ class Bracket extends ActiveRecord
 		$vars = NULL;
 		if ($this->getPlayer2() !== NULL) {
 			$class = User::className();
-			$vars = ['user_2_id' => 'id'];
+			$vars = ['id' => 'user_2_id'];
 		}
 		if ($this->getTeam2() !== NULL) {
 			$class = SubTeam::className();
-			$vars = ['team_2_id' => 'id'];
+			$vars = ['id' => 'team_2_id'];
 		}
 
 		if (NULL === $class) {
