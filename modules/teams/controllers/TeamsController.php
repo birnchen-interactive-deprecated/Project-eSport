@@ -27,7 +27,6 @@ use app\modules\user\models\formModels\ProfilePicForm;
 use app\modules\user\models\User;
 
 use app\modules\teams\models\formModels\SubTeamDetailsForm;
-use app\modules\teams\models\formModels\SubTeamMemberDetailsForm;
 use app\modules\teams\models\formModels\TeamDetailsForm;
 
 use app\widgets\Alert;
@@ -156,15 +155,17 @@ class TeamsController extends BaseController
             return $this->goHome();
         }
 
-        if (Yii::$app->user->identity->getId() != $teamDetails->captain_id && Yii::$app->user->identity->getId() != (($isSub) ? $teamDetails->deputy_id : $teamDetails->owner_id)) {
+        if(Yii::$app->user->identity->getId() != (($isSub)? SubTeam::findOne(['id' => $id])->getTeamCaptainId() : MainTeam::findOne(['id' => $id])->getOwnerId())
+            && Yii::$app->user->identity->getId() != (($isSub) ? SubTeam::findOne(['id' => $id])->getTeamDeputyId() : MainTeam::findOne(['id' => $id])->getDeputyId()))
+        {
             return $this->goHome();
         }
 
-        $model = ($isSub == true) ? SubTeamDetailsForm::getSubTeamForm($id) : $this->getTeamForm($id);
+        $model = ($isSub == true) ? SubTeamDetailsForm::getSubTeamForm($id) : TeamDetailsForm::getTeamForm($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->save()){
             Alert::addSuccess('succesfully changed the Team details');
-            return $this->redirect("sub-team-details?id=" . $id);
+            return ($isSub == true) ?  $this->redirect("sub-team-details?id=" . $id) : $this->redirect("team-details?id=" . $id);
         }
 
         $languageList = [];
