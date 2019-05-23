@@ -379,11 +379,10 @@ class RocketleagueController extends BaseController
             
             $id = $bracket->getEncounterId();
             if ($id !== NULL) {
-                $id++;
                 continue;
             }
 
-            $bracket->encounter_id = $id;
+            $bracket->encounter_id = $id+1;
             $bracket->tournament_round = $bracket1->getTournamentRound() + 1;
             $bracket->update();
 
@@ -416,11 +415,10 @@ class RocketleagueController extends BaseController
             
             $id = $bracket->getEncounterId();
             if ($id !== NULL) {
-                $id++;
                 continue;
             }
 
-            $bracket->encounter_id = $id;
+            $bracket->encounter_id = $id+1;
             $bracket->tournament_round = 1;
             $bracket->update();
 
