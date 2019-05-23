@@ -499,7 +499,7 @@ class RocketleagueController extends BaseController
                 continue;
             }
 
-            if (!$bracket->getTournamentRound() !== 1) {
+            if ($bracket->getTournamentRound() !== 1) {
                 continue;
             }
 
