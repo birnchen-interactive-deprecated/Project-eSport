@@ -372,9 +372,9 @@ class Tournament extends ActiveRecord
                 continue;
             }
 
-            if ($playersWithRLID < count($teamMembers)) {
-                continue;
-            }
+            // if ($playersWithRLID < count($teamMembers)) {
+            //     continue;
+            // }
 
             $isParticipating = $this->checkTeamParticipating($subTeam);
 
