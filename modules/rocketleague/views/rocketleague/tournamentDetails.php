@@ -221,16 +221,16 @@ $this->title = 'Turnier Details';
         <div>Hier seht ihr in Kürze die neuen Brackets, allerdings sehen sie noch grottig aus :P</div>
 
         <h2>Winner Bracket</h2>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>&nbsp;</th>
+                    <th>Spieler 1</th>
+                    <th>Spieler 2</th>
+                </tr>
+            </thead>
         <?php foreach ($brackets as $key => $bracket): ?>
             <?php if (!$bracket->getIsWinnerBracket()) continue; ?>
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>&nbsp;</th>
-                        <th>Spieler 1</th>
-                        <th>Spieler 2</th>
-                    </tr>
-                </thead>
                 <tbody>
                     <tr>
                         <td>Runde <?= $bracket->getTournamentRound(); ?><br>Bracket <?= $bracket->getEncounterId(); ?></td>
@@ -238,8 +238,8 @@ $this->title = 'Turnier Details';
                         <td><?= $bracket->getParticipant2(); ?></td>
                     </tr>
                 </tbody>
-            </table>
         <?php endforeach; ?>
+        </table>
 
     <?php endif; ?>
 </div>

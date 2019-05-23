@@ -156,7 +156,13 @@ class Bracket extends ActiveRecord
 			return 'Empty Slot';
 		}
 
-		return ($slot instanceof User) ? $slot->getUsername() : $slot->getName();
+		if ($slot instanceof User) {
+			return $slot->getUsername();
+		}
+		if ($slot instanceof SubTeam) {
+			return $slot->getName();
+		}
+		return 'nix';
 	}
 
 	/**
@@ -184,7 +190,13 @@ class Bracket extends ActiveRecord
 			return 'Empty Slot';
 		}
 
-		return ($slot instanceof User) ? $slot->getUsername() : $slot->getName();
+		if ($slot instanceof User) {
+			return $slot->getUsername();
+		}
+		if ($slot instanceof SubTeam) {
+			return $slot->getName();
+		}
+		return 'nix';
 	}
 
 	/**
