@@ -572,9 +572,9 @@ class RocketleagueController extends BaseController
             }
 
             $bracketRefs = $bracket->getBracketRefs();
-            if (count($bracketRefs) === 2) {
-                continue;
-            }
+            // if (count($bracketRefs) === 2) {
+            //     continue;
+            // }
 
             for ($b=$bracketRefs; $b<2; $b++) {
 
