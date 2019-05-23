@@ -366,11 +366,12 @@ class RocketleagueController extends BaseController
 
     private function connectBrackets(&$bracketArr) {
 
-        $initBracket = $bracketArr;
+        // $initBracket = $bracketArr;
 
         // Winner Brackets
-        $bracket1 = reset($initBracket);
-        $bracket2 = next($initBracket);
+        $b = 0;
+        $bracket1 = $b++;
+        $bracket2 = $b++;
 
         $id = 0;
 
@@ -382,33 +383,34 @@ class RocketleagueController extends BaseController
             }
 
             $bracket->encounter_id = $id;
-            $bracket->tournament_round = $bracket1->getTournamentRound() + 1;
+            $bracket->tournament_round = $bracket[$bracket1]->getTournamentRound() + 1;
             $bracket->update();
 
-            $bracket1->winner_bracket = $bracket->getId();
-            $bracket2->winner_bracket = $bracket->getId();
+            $bracket[$bracket1]->winner_bracket = $bracket->getId();
+            $bracket[$bracket2]->winner_bracket = $bracket->getId();
 
-            $bracket1->update();
-            $bracket2->update();
+            $bracket[$bracket1]->update();
+            $bracket[$bracket2]->update();
 
-            $bracket1 = next($initBracket);
-            $bracket2 = next($initBracket);
+            $bracket1 = $b++;
+            $bracket2 = $b++;
 
             $id++;
 
-            if (!$bracket1->isWinnerBracket()) {
+            if (!$bracket[$bracket1]->isWinnerBracket()) {
                 break;
             }
 
-            if (false !== $bracket2 && !$bracket2->isWinnerBracket()) {
+            if (false !== $bracket[$bracket2] && !$bracket[$bracket2]->isWinnerBracket()) {
                 break;
             }
 
         }
 
         // Looser Brackets
-        $bracket1 = reset($initBracket);
-        $bracket2 = next($initBracket);
+        $b = 0;
+        $bracket1 = $b++;
+        $bracket2 = $b++;
 
         foreach ($bracketArr as $key => $bracket) {
             
@@ -421,14 +423,14 @@ class RocketleagueController extends BaseController
             $bracket->tournament_round = 1;
             $bracket->update();
 
-            $bracket1->looser_bracket = $bracket->getId();
-            $bracket2->looser_bracket = $bracket->getId();
+            $bracket[$bracket1]->looser_bracket = $bracket->getId();
+            $bracket[$bracket2]->looser_bracket = $bracket->getId();
 
-            $bracket1->update();
-            $bracket2->update();
+            $bracket[$bracket1]->update();
+            $bracket[$bracket2]->update();
 
-            $bracket1 = next($initBracket);
-            $bracket2 = next($initBracket);
+            $bracket1 = $b++;
+            $bracket2 = $b++;
 
             $id++;
 
