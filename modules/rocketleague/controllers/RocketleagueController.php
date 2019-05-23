@@ -276,7 +276,8 @@ class RocketleagueController extends BaseController
             $this->connectWinnerBrackets($bracketArr);
             if (true === $doubleElimination) {
                 $this->createConnectFinale($bracketArr, $tournament_id);
-                $this->connectLooserBrackets($bracketArr);
+                $countLooserBrackets = $this->connectLooserBrackets($bracketArr);
+                $this->changeLooserRounds($bracketArr, $countLooserBrackets);
             }
 
         }
@@ -415,7 +416,7 @@ class RocketleagueController extends BaseController
     private function connectLooserBrackets(&$bracketArr) {
 
         $id = 0;
-        
+
         foreach ($bracketArr as $key => $bracket) {
             
             $encounterId = $bracket->getEncounterId();
@@ -472,6 +473,8 @@ class RocketleagueController extends BaseController
             $looserBracket = next($initBracketRevers);
         }
 
+        $countLooserBrackets = 0;
+
         while (false !== $looserBracket && !$looserBracket->getIsWinnerBracket()) {
             $winnerBracket->looser_bracket = $looserBracket->getId();
             $winnerBracket->update();
@@ -482,6 +485,31 @@ class RocketleagueController extends BaseController
             $winnerBracket = prev($initBracket);
 
             $looserBracket = prev($initBracketRevers);
+            $countLooserBrackets++;
+        }
+
+        return $countLooserBrackets;
+    }
+
+    private function changeLooserRounds(&$bracketArr, $countLooserBrackets) {
+
+        foreach ($bracketArr as $key => $bracket) {
+
+            if (!$bracket->getIsWinnerBracket()) {
+                continue;
+            }
+
+            if (!$bracket->getTournamentRound() !== 1) {
+                continue;
+            }
+
+            $looserBracket = $bracket->getLooserBracket()->one();
+            if (NULL === $looserBracket) {
+                continue;
+            }
+
+            $looserBracket->tournament_round = $bracket->getTournamentRound() + 1;
+            $looserBracket->update();
         }
 
     }
