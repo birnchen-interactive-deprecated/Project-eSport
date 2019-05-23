@@ -146,14 +146,14 @@ class Bracket extends ActiveRecord
 			$class = User::className();
 			$vars = ['id' => 'user_1_id'];
 		}
-// return var_export($class, true);
+
 		if (NULL === $class) {
-			return 'Empty Slot';
+			return '!! FEHLER-1 !!';
 		}
 		$slot = $this->hasOne($class, $vars)->one();
 
 		if (NULL === $slot) {
-			return 'Empty Slot';
+			return '!! FEHLER-2 !!';
 		}
 
 		if ($slot instanceof User) {
@@ -180,14 +180,14 @@ class Bracket extends ActiveRecord
 			$class = User::className();
 			$vars = ['id' => 'user_2_id'];
 		}
-// return var_export($class, true);
+
 		if (NULL === $class) {
-			return 'Empty Slot';
+			return '!! FEHLER-1 !!';
 		}
 		$slot = $this->hasOne($class, $vars)->one();
 
 		if (NULL === $slot) {
-			return 'Empty Slot';
+			return '!! FEHLER-2 !!';
 		}
 
 		if ($slot instanceof User) {
