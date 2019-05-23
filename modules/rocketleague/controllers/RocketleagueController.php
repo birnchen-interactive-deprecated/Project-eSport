@@ -458,6 +458,16 @@ class RocketleagueController extends BaseController
         $winnerBracket->looser_bracket = $bracketsReverse[0]->getId();
         $winnerBracket->update();
 
+        $winnerBracket = prev($initBracket);
+
+        $winnerBracket->looser_bracket = $bracketsReverse[2]->getId();
+        $winnerBracket->update();
+
+        $winnerBracket = prev($initBracket);
+
+        $winnerBracket->looser_bracket = $bracketsReverse[3]->getId();
+        $winnerBracket->update();
+
     }
 
     private function createConnectFinale(&$bracketArr, $tournament_id) {
