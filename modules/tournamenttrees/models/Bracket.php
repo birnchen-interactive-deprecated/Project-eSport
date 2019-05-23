@@ -158,6 +158,7 @@ class Bracket extends ActiveRecord
 		$return = [];
 
 		$refs = $this->getBracketRefs();
+		return $refs;
 
 		$class = NULL;
 		$vars = NULL;
@@ -367,7 +368,7 @@ class Bracket extends ActiveRecord
 
 			$out[$firstLevel][$secondLevel][] = $bracket;
 		}
-		
+
 		return $out;
 	}
 

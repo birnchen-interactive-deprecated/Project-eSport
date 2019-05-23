@@ -235,12 +235,12 @@ $this->title = 'Turnier Details';
                             $bracketEncounter = $bracket->getEncounterId();
                             $bracketParticipants = $bracket->getParticipants();
                         ?>
-                        
+
                         <div class="roundTitle">Runde <?= $bracketRound; ?></div>
                         <span>Bracket <?= $bracketEncounter; ?></span>
                         <div class="bracket">
-                            <div class="bracketParticipant"><?= $bracketParticipants[0]; ?></div>
-                            <div class="bracketParticipant"><?= $bracketParticipants[1]; ?></div>
+                            <div class="bracketParticipant"><?= var_export($bracketParticipants[0], true); ?></div>
+                            <div class="bracketParticipant"><?= var_export($bracketParticipants[1], true); ?></div>
                         </div>
 
                     <?php endforeach; ?>
