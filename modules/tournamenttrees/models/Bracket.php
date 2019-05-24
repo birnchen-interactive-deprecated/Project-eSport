@@ -315,7 +315,7 @@ class Bracket extends ActiveRecord
 
 		$type = (NULL !== $this->user_1_id) ? 'user' : 'team';
 
-		if ($winnerNumber === 1) {
+		if ($winnerNumber == 1) {
 			$winnerField = ('user' === $type) ? 'user_1_id' : 'team_1_id';
 			$looserField = ('user' === $type) ? 'user_2_id' : 'team_2_id';
 		} else {
