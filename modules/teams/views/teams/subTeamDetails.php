@@ -124,7 +124,7 @@ Yii::$app->MetaClass->writeMetaMainTeam($this, $teamDetails, $this->title);
                                     "userId" => $userId,
                                     "isSub" => true
                                 ],
-                                ['class' => "glyphicon glyphicon-remove",
+                                ['class' => "glyphicon glyphicon-download",
                                     'title' => "Remove Player"
                                 ]
                             )
@@ -167,7 +167,7 @@ Yii::$app->MetaClass->writeMetaMainTeam($this, $teamDetails, $this->title);
                                     "userId" => $invitabelPlayer->getId(),
                                     "sub" => false
                                 ],
-                                ['class' => "glyphicon glyphicon-remove",
+                                ['class' => "glyphicon glyphicon-upload",
                                     'title' => "Add Player"
                                 ]
                             )

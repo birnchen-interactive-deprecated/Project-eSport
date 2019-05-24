@@ -202,11 +202,18 @@ use app\modules\teams\models\SubTeamMember;
     public function getInvitableMembers($mode, $subTeamId, $gameId, $sort = true)
     {
         $members = [];
-        $members[] = $this->hasOne(User::className(), ['id' => 'owner_id'])->one();
+        $ownerInThisTeam = SubTeamMember::find()->where(['user_id' => 'owner_id', 'sub_team_id' => $subTeamId])->count();
+        $ownerInASubTeam = $this->hasOne(User::className(), ['id' => 'owner_id'])->one()->getSubTeamsMembership()->andWhere(['tournament_mode_id' => $mode, 'game_id' => $gameId])->count();
+
+        if ($ownerInASubTeam == 0 && $ownerInThisTeam == 0){
+                $members[] = $this->hasOne(User::className(), ['id' => 'owner_id'])->one();    
+            }
+
         foreach ($this->getTeamMember()->all() as $teamMemberKey => $teamMember)
         {
             $alreadyInThisTeam = SubTeamMember::find()->where(['user_id' => $teamMember->getUserId(), 'sub_team_id' => $subTeamId])->count();
             $alreadyInASubTeam = $teamMember->getUser()->one()->getSubTeamsMembership()->andWhere(['tournament_mode_id' => $mode, 'game_id' => $gameId])->count();
+
             if ($alreadyInASubTeam == 0 && $alreadyInThisTeam == 0){
                 $members[] = $teamMember->getUser()->one();    
             }
