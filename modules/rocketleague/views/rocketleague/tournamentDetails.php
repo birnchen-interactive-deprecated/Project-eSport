@@ -206,19 +206,12 @@ $this->title = 'Turnier Details';
         </tbody>
     </table>
 
-    <?php if ($now->diff($turnierStart)->invert == 1): ?>
-        <iframe src="https://challonge.com/de/<?= $challengeId; ?>/module" width="100%" height="500" frameborder="0"
-                scrolling="auto" allowtransparency="true"></iframe>
-    <?php else: ?>
-        <b>!!!</b> Hier erscheint nach Turnierstart der Turnierbaum <b>!!!</b>
-    <?php endif; ?>
-
-    <?php if (Yii::$app->user->identity instanceOf User && Yii::$app->user->identity->getId() === 4): ?>
-        <?= Html::a('Brackets erstellen', ['/rocketleague/create-brackets', 'tournament_id' => $tournament->getId()], ['class' => 'btn btn-success']); ?>
-    <?php endif; ?>
-
     <?php if (Yii::$app->user->identity instanceOf User && Yii::$app->user->identity->getId() <= 4): ?>
-        <div>Hier seht ihr in Kürze die neuen Brackets, allerdings sehen sie noch grottig aus :P</div>
+        <?php $btnText = (count($brackets['winner']) > 0) ? 'Brackets neu erstellen' : 'Brackets erstellen'; ?>
+        <?= Html::a($btnText, ['/rocketleague/create-brackets', 'tournament_id' => $tournament->getId()], ['class' => 'btn btn-success']); ?>
+    <?php endif; ?>
+
+    <?php if ($now->diff($turnierStart)->invert == 1 || (Yii::$app->user->identity instanceOf User && Yii::$app->user->identity->getId() <= 4)): ?>
 
         <div class="scrollableBracket">
             
@@ -236,6 +229,8 @@ $this->title = 'Turnier Details';
                             <?php
                                 $bracketEncounter = $bracket->getEncounterId();
                                 $bracketParticipants = $bracket->getParticipants();
+                                $bracketParticipants[0] = ($bracketParticipants[0] === NULL) ? 'FREILOS' : $bracketParticipants[0];
+                                $bracketParticipants[1] = ($bracketParticipants[1] === NULL) ? 'FREILOS' : $bracketParticipants[1];
                             ?>
 
                             <span class="bracketEncounter">Bracket <?= $bracketEncounter; ?></span>
@@ -265,6 +260,8 @@ $this->title = 'Turnier Details';
                             <?php
                                 $bracketEncounter = $bracket->getEncounterId();
                                 $bracketParticipants = $bracket->getParticipants();
+                                $bracketParticipants[0] = ($bracketParticipants[0] === NULL) ? 'FREILOS' : $bracketParticipants[0];
+                                $bracketParticipants[1] = ($bracketParticipants[1] === NULL) ? 'FREILOS' : $bracketParticipants[1];
                             ?>
 
                             <span class="bracketEncounter">Bracket <?= $bracketEncounter; ?></span>
@@ -282,5 +279,7 @@ $this->title = 'Turnier Details';
         </div>
 
 
+    <?php else: ?>
+        <b>!!!</b> Hier erscheint nach Turnierstart der Turnierbaum <b>!!!</b>
     <?php endif; ?>
 </div>

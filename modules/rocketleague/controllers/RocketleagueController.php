@@ -8,6 +8,8 @@
 
 namespace app\modules\rocketleague\controllers;
 
+use Yii;
+
 use app\widgets\Alert;
 
 use app\components\BaseController;
@@ -250,6 +252,21 @@ class RocketleagueController extends BaseController
      */
     public function actionCreateBrackets($tournament_id = null)
     {
+        $run = false;
+        if (Yii::$app->user->identity != NULL && Yii::$app->user->identity->getId() <= 4) {
+            $run = true;
+        }
+
+        if (false === $run) {
+            Alert::addError('Ungültige Aktion.');
+            return $this->redirect('tournament-details?id=' . $tournament_id);
+        }
+
+        $brackets = Bracket::getAllByTournamentFormatted($tournament_id);
+        if (count($brackets['winner']) > 0) {
+            Bracket::clearForTournament($tournament_id);
+        }
+
         $tournament = Tournament::getTournamentById($tournament_id);
         $bracketMode = $tournament->getBracketMode()->one();
         $participatingEntrys = $tournament->getParticipants()->all();
@@ -285,9 +302,7 @@ class RocketleagueController extends BaseController
 
         $ruleSet = $tournament->getRules();
 
-        // Alert::addError('');
         Alert::addSuccess('Brackets erfolgreich angelegt.');
-        // Alert::addInfo('your message');
 
         return $this->redirect('tournament-details?id=' . $tournament_id);
     }
@@ -467,7 +482,7 @@ class RocketleagueController extends BaseController
         }
 
         $countIns/= 2;
-        
+
         if (false === $winnerBracket) {
             return;
         }
