@@ -287,6 +287,8 @@ class Bracket extends ActiveRecord
 				$this->team_2_id = $id;
 			}
 		}
+		
+		$this->update();
 
 	}
 
