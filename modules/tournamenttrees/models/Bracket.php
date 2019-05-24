@@ -179,7 +179,7 @@ class Bracket extends ActiveRecord
 				$preText = ucfirst($preBracket['type']);
 				$preRound = $preBracket['bracket']->getTournamentRound();
 				$preRound = (998 == $preRound) ? 'Finale' : $preRound;
-				$return[] = $preText . ' von Runde ' . $preRound . ' Bracket ' . $preBracket['bracket']->getEncounterId();
+				$return[] = $preText . ' Runde ' . $preRound . ' Bracket ' . $preBracket['bracket']->getEncounterId();
 			}
 
 		} else {
@@ -222,7 +222,7 @@ class Bracket extends ActiveRecord
 				$preText = ucfirst($preBracket['type']);
 				$preRound = $preBracket['bracket']->getTournamentRound();
 				$preRound = (998 == $preRound) ? 'Finale' : $preRound;
-				$return[] = $preText . ' von Runde ' . $preRound . ' Bracket ' . $preBracket['bracket']->getEncounterId();
+				$return[] = $preText . ' Runde ' . $preRound . ' Bracket ' . $preBracket['bracket']->getEncounterId();
 			}
 
 		} else {
