@@ -277,8 +277,8 @@ class RocketleagueController extends BaseController
             if (true === $doubleElimination) {
                 $this->createConnectFinale($bracketArr, $tournament_id);
                 $countLooserBrackets = $this->connectLooserBrackets($bracketArr);
-                // $this->changeLooserRounds($bracketArr, $countLooserBrackets);
-                // $this->connectWinnerBracketsInLooser($bracketArr);
+                $this->changeLooserRounds($bracketArr, $countLooserBrackets);
+                $this->connectWinnerBracketsInLooser($bracketArr);
             }
 
         }
