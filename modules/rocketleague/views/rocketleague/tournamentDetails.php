@@ -229,6 +229,8 @@ $this->title = 'Turnier Details';
                             <?php
                                 $bracketEncounter = $bracket->getEncounterId();
                                 $bracketParticipants = $bracket->getParticipants();
+                                $bracketParticipants[0] = ($bracketParticipants[0] === NULL) ? 'FREILOS' : $bracketParticipants[0];
+                                $bracketParticipants[1] = ($bracketParticipants[1] === NULL) ? 'FREILOS' : $bracketParticipants[1];
                             ?>
 
                             <span class="bracketEncounter">Bracket <?= $bracketEncounter; ?></span>
@@ -258,6 +260,8 @@ $this->title = 'Turnier Details';
                             <?php
                                 $bracketEncounter = $bracket->getEncounterId();
                                 $bracketParticipants = $bracket->getParticipants();
+                                $bracketParticipants[0] = ($bracketParticipants[0] === NULL) ? 'FREILOS' : $bracketParticipants[0];
+                                $bracketParticipants[1] = ($bracketParticipants[1] === NULL) ? 'FREILOS' : $bracketParticipants[1];
                             ?>
 
                             <span class="bracketEncounter">Bracket <?= $bracketEncounter; ?></span>
