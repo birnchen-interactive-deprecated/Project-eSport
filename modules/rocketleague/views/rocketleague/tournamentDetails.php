@@ -236,6 +236,18 @@ $this->title = 'Turnier Details';
 
                         <?php foreach ($roundBrackets as $bracketKey => $bracket): ?>
                             <?php
+
+                                $bracketFinished = $bracket->checkisFinished();
+                                $class1 = '';
+                                $class2 = '';
+                                if ($bracketFinished === 1) {
+                                    $class1 = 'winner';
+                                    $class2 = 'looser';
+                                } else if ($bracketFinished === 2) {
+                                    $class1 = 'looser';
+                                    $class2 = 'winner';
+                                }
+
                                 $bracketEncounter = $bracket->getEncounterId();
                                 $bracketParticipants = $bracket->getParticipants();
                                 $bracketParticipants[0] = ($bracketParticipants[0] === NULL) ? 'FREILOS' : $bracketParticipants[0];
@@ -256,8 +268,8 @@ $this->title = 'Turnier Details';
 
                             <span class="bracketEncounter">Bracket <?= $bracketEncounter; ?> | Gamename and Password: <?= $rundenInfo; ?></span>
                             <div class="bracket">
-                                <div class="bracketParticipant"><?= $participant1; ?></div>
-                                <div class="bracketParticipant"><?= $participant2; ?></div>
+                                <div class="bracketParticipant <?= $class1; ?>"><?= $participant1; ?></div>
+                                <div class="bracketParticipant <?= $class2; ?>"><?= $participant2; ?></div>
                             </div>
 
                         <?php endforeach; ?>
