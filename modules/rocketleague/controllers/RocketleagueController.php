@@ -250,6 +250,16 @@ class RocketleagueController extends BaseController
      */
     public function actionCreateBrackets($tournament_id = null)
     {
+        $run = false;
+        if (Yii::$app->user->identity instanceOf User && Yii::$app->user->identity->getId() <= 4) {
+            $run = true;
+        }
+
+        if (false === $run) {
+            Alert::addError('Ungültige Aktion.');
+            return $this->redirect('tournament-details?id=' . $tournament_id);
+        }
+
         $brackets = Bracket::getAllByTournamentFormatted($tournament_id);
         if (count($brackets['winner']) > 0) {
             Bracket::clearForTournament($tournament_id);
