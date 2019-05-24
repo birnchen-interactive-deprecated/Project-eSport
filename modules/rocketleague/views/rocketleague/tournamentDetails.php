@@ -272,10 +272,12 @@ $this->title = 'Turnier Details';
 
                 <?php $round = 0; ?>
                 <?php foreach ($brackets['looser'] as $round => $roundBrackets): ?>
+                    <?php $firstBracket = reset($roundBrackets); ?>
 
                     <div class="bracketRound">
 
                         <div class="roundTitle">Runde <?= $round; ?></div>
+                        <div class="roundTitle">Best of <?= $firstBracket->getBestOf(); ?></div>
 
                         <?php foreach ($roundBrackets as $bracketKey => $bracket): ?>
                             <?php
