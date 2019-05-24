@@ -247,7 +247,7 @@ $this->title = 'Turnier Details';
                                 }
                             ?>
 
-                            <span class="bracketEncounter">Bracket <?= $bracketEncounter; ?></span>
+                            <span class="bracketEncounter">Bracket <?= $bracketEncounter; ?> | Spielname und Passwort: R<?= $round . str_pad($bracketEncounter, 2, '0', STR_PAD_LEFT); ?></span>
                             <div class="bracket">
                                 <div class="bracketParticipant"><?= $participant1; ?></div>
                                 <div class="bracketParticipant"><?= $participant2; ?></div>
