@@ -213,6 +213,13 @@ $this->title = 'Turnier Details';
 
     <?php if ($now->diff($turnierStart)->invert == 1 || (Yii::$app->user->identity instanceOf User && Yii::$app->user->identity->getId() <= 4)): ?>
 
+        <?php   
+            $isAdmin = false;     
+            if (Yii::$app->user->identity instanceOf User && Yii::$app->user->identity->getId() <= 4) {
+                $isAdmin = true;
+            }
+        ?>
+
         <div class="scrollableBracket">
             
             <h1>Winner Bracket</h1>
@@ -231,12 +238,19 @@ $this->title = 'Turnier Details';
                                 $bracketParticipants = $bracket->getParticipants();
                                 $bracketParticipants[0] = ($bracketParticipants[0] === NULL) ? 'FREILOS' : $bracketParticipants[0];
                                 $bracketParticipants[1] = ($bracketParticipants[1] === NULL) ? 'FREILOS' : $bracketParticipants[1];
+                                if ($isAdmin) {
+                                    $participant1 = Html::a($bracketParticipants[0], ['/rocketleague/move-player-in-bracket', 'tournament_id' => $tournament->getId(), 'winner' => 1, 'bracketId' => $bracket->getId()]);
+                                    $participant2 = Html::a($bracketParticipants[1], ['/rocketleague/move-player-in-bracket', 'tournament_id' => $tournament->getId(), 'winner' => 2, 'bracketId' => $bracket->getId()]);
+                                } else {
+                                    $participant1 = $bracketParticipants[0];
+                                    $participant2 = $bracketParticipants[1];
+                                }
                             ?>
 
                             <span class="bracketEncounter">Bracket <?= $bracketEncounter; ?></span>
                             <div class="bracket">
-                                <div class="bracketParticipant"><?= $bracketParticipants[0]; ?></div>
-                                <div class="bracketParticipant"><?= $bracketParticipants[1]; ?></div>
+                                <div class="bracketParticipant"><?= $participant1; ?></div>
+                                <div class="bracketParticipant"><?= $participant2; ?></div>
                             </div>
 
                         <?php endforeach; ?>
@@ -262,12 +276,19 @@ $this->title = 'Turnier Details';
                                 $bracketParticipants = $bracket->getParticipants();
                                 $bracketParticipants[0] = ($bracketParticipants[0] === NULL) ? 'FREILOS' : $bracketParticipants[0];
                                 $bracketParticipants[1] = ($bracketParticipants[1] === NULL) ? 'FREILOS' : $bracketParticipants[1];
+                                if ($isAdmin) {
+                                    $participant1 = Html::a($bracketParticipants[0], ['/rocketleague/move-player-in-bracket', 'tournament_id' => $tournament->getId(), 'winner' => 1, 'bracketId' => $bracket->getId()]);
+                                    $participant2 = Html::a($bracketParticipants[1], ['/rocketleague/move-player-in-bracket', 'tournament_id' => $tournament->getId(), 'winner' => 2, 'bracketId' => $bracket->getId()]);
+                                } else {
+                                    $participant1 = $bracketParticipants[0];
+                                    $participant2 = $bracketParticipants[1];
+                                }
                             ?>
 
                             <span class="bracketEncounter">Bracket <?= $bracketEncounter; ?></span>
                             <div class="bracket">
-                                <div class="bracketParticipant"><?= $bracketParticipants[0]; ?></div>
-                                <div class="bracketParticipant"><?= $bracketParticipants[1]; ?></div>
+                                <div class="bracketParticipant"><?= $participant1; ?></div>
+                                <div class="bracketParticipant"><?= $participant2; ?></div>
                             </div>
 
                         <?php endforeach; ?>
