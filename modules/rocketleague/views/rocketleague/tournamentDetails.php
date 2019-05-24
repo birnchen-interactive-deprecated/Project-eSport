@@ -326,6 +326,9 @@ $this->title = 'Turnier Details';
                             ?>
 
                             <span class="bracketEncounter">Bracket <?= $bracketEncounter; ?> | Gamename and Password: R<?= $round . str_pad($bracketEncounter, 2, '0', STR_PAD_LEFT); ?></span>
+                            <?php if (Yii::$app->user->identity instanceOf User && Yii::$app->user->identity->getId() <= 4): ?>
+                                <div><?= Html::a('Live Stream umschalten', ['/rocketleague/bracket-live-stream', 'tournament_id' => $tournament->getId(), 'bracketId' => $bracket->getId()]); ?></div>
+                            <?php endif; ?>
                             <div class="bracket <?= $liveStream; ?>">
                                 <div class="bracketParticipant <?= $class1; ?>"><?= $participant1; ?></div>
                                 <div class="bracketParticipant <?= $class2; ?>"><?= $participant2; ?></div>
