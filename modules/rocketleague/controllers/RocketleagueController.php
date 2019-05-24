@@ -8,6 +8,8 @@
 
 namespace app\modules\rocketleague\controllers;
 
+use Yii;
+
 use app\widgets\Alert;
 
 use app\components\BaseController;
