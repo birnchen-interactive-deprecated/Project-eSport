@@ -250,6 +250,17 @@ class RocketleagueController extends BaseController
      * @param null $tournament_id
      * @return string
      */
+    public function actionMovePlayerInBracket($tournament_id = null, $winner = null, $bracketId = null)
+    {
+        return $this->redirect('tournament-details?id=' . $tournament_id);
+    }
+
+    /**
+     * Rocket League Create Brackets
+     *
+     * @param null $tournament_id
+     * @return string
+     */
     public function actionCreateBrackets($tournament_id = null)
     {
         $run = false;
