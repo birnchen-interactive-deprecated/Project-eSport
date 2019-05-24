@@ -67,3 +67,14 @@
 .site-rl-tournament-details .bracketParticipant.looser {
 	background-color: #e6e6e6;
 }
+
+
+.site-rl-tournament-details .bracket.stream1 {
+	border: 3px solid #0000ff;
+}
+.site-rl-tournament-details .bracket.stream2 {
+	border: 3px solid #ee82ee;
+}
+.site-rl-tournament-details .bracket.stream3 {
+	border: 3px solid #ffa500;
+}

@@ -17,6 +17,7 @@ use app\modules\user\models\User;
  * @property int $tournament_id
  * @property int $best_of default:3
  * @property int $tournament_round
+ * @property int $live_stream
  * @property boolean $is_winner_bracket default:true
  * @property SubTeam|NULL $team_1_id
  * @property SubTeam|NULL $team_2_id
@@ -33,6 +34,18 @@ class Bracket extends ActiveRecord
     public static function tableName()
     {
         return 'bracket'; // Tabellenname gegebenenfalls ändern??
+    }
+
+    /**
+     * @return array
+     */
+    private function getLiveStreamClasses() {
+    	return [
+    		'',
+    		'stream1',
+    		'stream2',
+    		'stream3',
+    	];
     }
 
 	/**
@@ -73,6 +86,15 @@ class Bracket extends ActiveRecord
 	public function getTournamentRound()
 	{
 		return $this->tournament_round;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getLiveStreamClass()
+	{
+		$classes = $this->getLiveStreamClasses();
+		return $classes[$this->live_stream];
 	}
 
 	/**
