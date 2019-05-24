@@ -252,6 +252,29 @@ class RocketleagueController extends BaseController
      */
     public function actionMovePlayerInBracket($tournament_id = null, $winner = null, $bracketId = null)
     {
+        $run = false;
+        if (Yii::$app->user->identity != NULL && Yii::$app->user->identity->getId() <= 4) {
+            $run = true;
+        }
+
+        if (false === $run) {
+            Alert::addError('Ungültige Aktion.');
+            return $this->redirect('tournament-details?id=' . $tournament_id);
+        }
+
+        if ($winner !== 1 && $winner !== 2) {
+            Alert::addError('Der Sieger muss gesetzt sein.');
+            return $this->redirect('tournament-details?id=' . $tournament_id);
+        }
+
+        $bracket = Bracket::getById($bracketId);
+        if ($bracket->tournament_id !== $tournament_id) {
+            Alert::addError('Das Bracket ist nicht in diesem Turnier.');
+            return $this->redirect('tournament-details?id=' . $tournament_id);
+        }
+
+        $bracket->movePlayersNextRound($winner);
+
         return $this->redirect('tournament-details?id=' . $tournament_id);
     }
 

@@ -183,7 +183,7 @@ class Bracket extends ActiveRecord
 			}
 
 		} else {
-			
+
 			$slot = $this->hasOne($class, $vars)->one();
 			if ($slot instanceof User) {
 				$return[] = $slot->getUsername();
@@ -331,6 +331,15 @@ class Bracket extends ActiveRecord
 			$looserBracket->setSpielerByBackRef($this->$looserField, $type, $this->getId());
 		}
 
+	}
+
+	/**
+	 * @param int
+	 * @return static|null
+	 */
+	public static function getById($bracketId)
+	{
+		return static::findOne(['id' => $bracketId]);
 	}
 
 	/**
