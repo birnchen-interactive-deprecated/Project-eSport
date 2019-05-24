@@ -299,8 +299,11 @@ $this->title = 'Turnier Details';
             </div>
         </div>
 
-
     <?php else: ?>
         <b>!!!</b> Hier erscheint nach Turnierstart der Turnierbaum <b>!!!</b>
     <?php endif; ?>
+
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdo7W8BCQxO0ZglrrFiAHvSZtsu3GoIyq5mNa3Eeuuwdbfdpg/viewform?embedded=true" width="1055" height="700" frameborder="0" marginheight="0" marginwidth="0">Wird geladen...</iframe>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScNl-8L9WKZwcHmawQLwnIzj_GfqbyAVlHw4BCZ6dlE-M9Fcw/viewform?embedded=true" width="1055" height="700" frameborder="0" marginheight="0" marginwidth="0">Wird geladen...</iframe>
+
 </div>
