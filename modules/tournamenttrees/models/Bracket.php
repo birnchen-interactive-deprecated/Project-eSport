@@ -181,12 +181,20 @@ class Bracket extends ActiveRecord
 				$preRound = (998 == $preRound) ? 'Finale' : $preRound;
 				$return[] = $preText . ' von Runde ' . $preRound . ' Bracket ' . $preBracket['bracket']->getEncounterId();
 			}
+
 		} else {
+			
 			$slot = $this->hasOne($class, $vars)->one();
 			if ($slot instanceof User) {
 				$return[] = $slot->getUsername();
 			} else if ($slot instanceof SubTeam) {
-				$return[] = $slot->getName();
+				$show = $slot->getTeamShortCode();
+				if (empty($show)) {
+					$show = $slot->getName();
+					$show = str_replace(' ', '', $show);
+					$show = substr($show, 0, 6);
+				}
+				$return[] = $show;
 			} else {
 				$return[] = '';
 			}
@@ -216,12 +224,20 @@ class Bracket extends ActiveRecord
 				$preRound = (998 == $preRound) ? 'Finale' : $preRound;
 				$return[] = $preText . ' von Runde ' . $preRound . ' Bracket ' . $preBracket['bracket']->getEncounterId();
 			}
+
 		} else {
+
 			$slot = $this->hasOne($class, $vars)->one();
 			if ($slot instanceof User) {
 				$return[] = $slot->getUsername();
 			} else if ($slot instanceof SubTeam) {
-				$return[] = $slot->getName();
+				$show = $slot->getTeamShortCode();
+				if (empty($show)) {
+					$show = $slot->getName();
+					$show = str_replace(' ', '', $show);
+					$show = substr($show, 0, 6);
+				}
+				$return[] = $show;
 			} else {
 				$return[] = '';
 			}
