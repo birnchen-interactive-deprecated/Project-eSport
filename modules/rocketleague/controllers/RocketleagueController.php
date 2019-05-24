@@ -297,6 +297,7 @@ class RocketleagueController extends BaseController
                 $this->changeLooserRounds($bracketArr, $countLooserBrackets);
                 $this->connectWinnerBracketsInLooser($bracketArr);
             }
+            $this->moveFirstRoundTickets($bracketArr);
 
         }
 
@@ -598,6 +599,25 @@ class RocketleagueController extends BaseController
                 $looserBracket = next($initBracket);
 
             }
+
+        }
+
+    }
+
+    private function moveFirstRoundTickets(&$bracketArr) {
+        
+        foreach ($bracketArr as $key => $bracket) {
+            
+            if ($bracket->getTournamentRound() > 1) {
+                continue;
+            }
+
+            $participants = $bracket->getParticipants();
+            if ($participants[1] !== NULL) {
+                continue;
+            }
+
+            $bracket->movePlayersNextRound(1);
 
         }
 

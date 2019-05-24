@@ -259,6 +259,64 @@ class Bracket extends ActiveRecord
 
 	/**
 	 * @param int
+	 * @param int
+	 */
+	public function setSpielerByBackRef($id, $type, $preBracketId) {
+		
+		$refs = $this->getBracketRefs();
+
+		$bracket = reset($refs);
+		if (false === $bracket) {
+			return;
+		}
+
+		if ($bracket['bracket']->getId() === $preBracketId) {
+			if ($type === 'user') {
+				$this->user_1_id = $id;
+			} else {
+				$this->team_1_id = $id;
+			}
+		}
+
+		$bracket = next($refs);
+
+		if ($bracket['bracket']->getId() === $preBracketId) {
+			if ($type === 'user') {
+				$this->user_2_id = $id;
+			} else {
+				$this->team_2_id = $id;
+			}
+		}
+
+	}
+
+	/**
+	 * @param int 
+	 */
+	public function movePlayersNextRound($winnerNumber) {
+
+		$type = (NULL !== $this->user_1_id) ? 'user' : 'team';
+
+		if ($winnerNumber === 1) {
+			$winnerField = ('user' === $type) ? 'user_1_id' : 'team_1_id';
+			$looserField = ('user' === $type) ? 'user_2_id' : 'team_2_id';
+		} else {
+			$winnerField = ('user' === $type) ? 'user_2_id' : 'team_2_id';
+			$looserField = ('user' === $type) ? 'user_1_id' : 'team_1_id';
+		}
+
+		$winnerBracket = $this->getWinnerBracket()->one();
+		$looserBracket = $this->getLooserBracket()->one();
+
+		$winnerBracket->setSpielerByBackRef($this->$winnerField, $type, $this->getId());
+		if (NULL !== $looserBracket) {
+			$looserBracket->setSpielerByBackRef($this->$looserField, $type, $this->getId());
+		}
+
+	}
+
+	/**
+	 * @param int
 	 * @return static|null
 	 */
 	public static function getAllByTournament($tournament_id)
@@ -320,4 +378,5 @@ class Bracket extends ActiveRecord
 			$bracket->delete();
 		}
 	}
+
 }
