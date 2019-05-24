@@ -335,6 +335,35 @@ class Bracket extends ActiveRecord
 	}
 
 	/**
+	 * @return boolean|int
+	 */
+	public function checkisFinished()
+	{
+		$type = (NULL !== $this->user_1_id) ? 'user' : 'team';
+		$winnerBracket = $this->getWinnerBracket()->one();
+
+		if ($type === 'user') {
+
+			if ($this->user_1_id === $winnerBracket->user_1_id || $this->user_1_id === $winnerBracket->user_2_id) {
+				return 1;
+			} else if ($this->user_2_id === $winnerBracket->user_1_id || $this->user_2_id === $winnerBracket->user_2_id) {
+				return 2;
+			} 
+
+		} else {
+
+			if ($this->team_1_id === $winnerBracket->team_1_id || $this->team_1_id === $winnerBracket->team_2_id) {
+				return 1;
+			} else if ($this->team_2_id === $winnerBracket->team_1_id || $this->team_2_id === $winnerBracket->team_2_id) {
+				return 2;
+			} 
+
+		}
+
+		return false;
+	}
+
+	/**
 	 * @param int
 	 * @return static|null
 	 */
