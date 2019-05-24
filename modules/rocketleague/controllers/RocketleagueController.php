@@ -250,7 +250,7 @@ class RocketleagueController extends BaseController
      */
     public function actionCreateBrackets($tournament_id = null)
     {
-        $brackets = Bracket::getAllByTournamentFormatted($id);
+        $brackets = Bracket::getAllByTournamentFormatted($tournament_id);
         if (count($brackets['winner']) > 0) {
             Alert::addError('Brackets sind schon vorhanden.');
             return $this->redirect('tournament-details?id=' . $tournament_id);
