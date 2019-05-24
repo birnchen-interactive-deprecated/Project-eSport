@@ -283,6 +283,31 @@ class RocketleagueController extends BaseController
     }
 
     /**
+     */
+    public function actionBracketLiveStream($tournament_id = null, $bracketId = null)
+    {
+        $run = false;
+        if (Yii::$app->user->identity != NULL && Yii::$app->user->identity->getId() <= 4) {
+            $run = true;
+        }
+
+        if (false === $run) {
+            Alert::addError('Ungültige Aktion.');
+            return $this->redirect('tournament-details?id=' . $tournament_id);
+        }
+
+        $bracket = Bracket::getById($bracketId);
+        if ($bracket->tournament_id != $tournament_id) {
+            Alert::addError('Das Bracket ist nicht in diesem Turnier.');
+            return $this->redirect('tournament-details?id=' . $tournament_id);
+        }
+
+        $bracket->changeLiveStream();
+
+        return $this->redirect('tournament-details?id=' . $tournament_id);
+    }
+
+    /**
      * Rocket League Create Brackets
      *
      * @param null $tournament_id

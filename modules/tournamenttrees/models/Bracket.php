@@ -386,6 +386,15 @@ class Bracket extends ActiveRecord
 	}
 
 	/**
+	 *
+	 */
+	public function changeLiveStream()
+	{
+		$classes = $this->getLiveStreamClasses();
+		$this->live_stream = ($this->live_stream + 1) % count($classes);
+	}
+
+	/**
 	 * @param int
 	 * @return static|null
 	 */
