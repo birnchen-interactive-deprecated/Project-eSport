@@ -618,7 +618,7 @@ class RocketleagueController extends BaseController
             }
 
             $bracket->movePlayersNextRound(1);
-
+            Alert::addInfo($key);
         }
 
     }
