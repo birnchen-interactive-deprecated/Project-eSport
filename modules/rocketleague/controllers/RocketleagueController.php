@@ -306,6 +306,8 @@ class RocketleagueController extends BaseController
         $tournament = Tournament::getTournamentById($tournament_id);
         $bracketMode = $tournament->getBracketMode()->one();
         $participatingEntrys = $tournament->getParticipants()->all();
+        $x = reset($participatingEntrys);
+        Alert::addInfo(get_class($x));
         foreach ($participatingEntrys as $key => $entry) {
 
             if ($entry instanceof User) {
