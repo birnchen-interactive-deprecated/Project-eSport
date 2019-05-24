@@ -184,6 +184,7 @@ class Bracket extends ActiveRecord
 
 		} else {
 
+			array_shift($refs);
 			$slot = $this->hasOne($class, $vars)->one();
 			if ($slot instanceof User) {
 				$return[] = $slot->getUsername();
