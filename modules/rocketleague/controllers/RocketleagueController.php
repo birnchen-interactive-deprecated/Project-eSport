@@ -317,7 +317,7 @@ class RocketleagueController extends BaseController
 
             } else {
 
-                $participating = TeamParticipating::findPlayerCheckedIn($tournament_id, $entry->getId());
+                $participating = TeamParticipating::findTeamCheckedIn($tournament_id, $entry->getId());
                 if (NULL === $participating) {
                     $participatingEntrys[$key] = NULL;
                 }
