@@ -26,6 +26,16 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
             <br>
             Noch kein Team angelegt??? <br>
             Melde dich auf <a class="dclink" href="https://discord.gg/rk3qd9U">Discord</a> bei <b><i><u>Birnchen | Pierre#5366</u></i></b>.
+
+            <!-- fuer Birnchen
+                <div class="newsContainer">
+                    <div class="containerHeader">< !-- Kopfzeile "SEASON ENDE FÜR DIVISIONEN 2 & 3" -></div>
+                    <div class="containerBody">
+                        <div class="containerImage col-lg-3">< !-- Bild -></div>
+                        <div class="containerText col-lg-9">< !-- Text rechts davon -></div>
+                    </div>
+                </div>
+            -->
         </div>
 
         <div class="col-lg-3">
