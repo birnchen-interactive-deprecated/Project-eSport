@@ -245,9 +245,14 @@ $this->title = 'Turnier Details';
                                     $participant1 = $bracketParticipants[0];
                                     $participant2 = $bracketParticipants[1];
                                 }
+                                if (strpos($round, 'Finale')) {
+                                    $rundenInfo = 'Finale';
+                                } else {
+                                    $rundenInfo = 'R' . $round . str_pad($bracketEncounter, 2, '0', STR_PAD_LEFT);
+                                }
                             ?>
 
-                            <span class="bracketEncounter">Bracket <?= $bracketEncounter; ?> | Spielname und Passwort: R<?= $round . str_pad($bracketEncounter, 2, '0', STR_PAD_LEFT); ?></span>
+                            <span class="bracketEncounter">Bracket <?= $bracketEncounter; ?> | Spielname und Passwort: <?= $rundenInfo; ?></span>
                             <div class="bracket">
                                 <div class="bracketParticipant"><?= $participant1; ?></div>
                                 <div class="bracketParticipant"><?= $participant2; ?></div>
@@ -285,7 +290,7 @@ $this->title = 'Turnier Details';
                                 }
                             ?>
 
-                            <span class="bracketEncounter">Bracket <?= $bracketEncounter; ?></span>
+                            <span class="bracketEncounter">Bracket <?= $bracketEncounter; ?> | Spielname und Passwort: R<?= $round . str_pad($bracketEncounter, 2, '0', STR_PAD_LEFT); ?></span>
                             <div class="bracket">
                                 <div class="bracketParticipant"><?= $participant1; ?></div>
                                 <div class="bracketParticipant"><?= $participant2; ?></div>
