@@ -306,6 +306,25 @@ class RocketleagueController extends BaseController
         $tournament = Tournament::getTournamentById($tournament_id);
         $bracketMode = $tournament->getBracketMode()->one();
         $participatingEntrys = $tournament->getParticipants()->all();
+        foreach ($participatingEntrys as $key => $entry) {
+
+            if ($entry instanceof User) {
+
+                $participating = PlayerParticipating::findPlayerCheckedIn($tournament_id, $entry->getId());
+                if (NULL === $participating) {
+                    $participatingEntrys[$key] = NULL;
+                }
+
+            } else {
+
+                $participating = TeamParticipating::findPlayerCheckedIn($tournament_id, $entry->getId());
+                if (NULL === $participating) {
+                    $participatingEntrys[$key] = NULL;
+                }
+
+            }
+
+        }
 
         if (NULL !== $bracketMode) {
             $doubleElimination = ($bracketMode->getName() == 'Double Elimination') ? true : false;
