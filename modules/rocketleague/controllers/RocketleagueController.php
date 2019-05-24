@@ -264,7 +264,7 @@ class RocketleagueController extends BaseController
 
         $bracket = Bracket::getById($bracketId);
         if ($bracket->tournament_id !== $tournament_id) {
-            Alert::addError('Das Bracket ist nicht in diesem Turnier.');
+            Alert::addError('Das Bracket ist nicht in diesem Turnier. ' . var_export($bracketId, true));
             return $this->redirect('tournament-details?id=' . $tournament_id);
         }
 
