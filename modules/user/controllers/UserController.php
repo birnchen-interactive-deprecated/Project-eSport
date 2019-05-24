@@ -363,6 +363,12 @@ class UserController extends BaseController
         return $this->redirect("details?id=" . Yii::$app->user->identity->getId());
     }
 
+    /** Glyphicon Actions */
+    public function actionAddMainTeam()
+    {
+        
+    }
+
     public function actionInvitation($accept, $teamId)
     {
         $model = TeamInvitations::find()->where(['user_id' => Yii::$app->user->identity->getId(), 'main_team_id' => $teamId])->one();

@@ -211,7 +211,37 @@ class TeamsController extends BaseController
             ]);
     }
 
-    /** Glyphicon Actions */
+    public function actionAddSubTeam($teamId)
+    {
+        if (Yii::$app->user->isGuest || Yii::$app->user->identity == null) {
+            return $this->goHome();
+        }
+
+        if(Yii::$app->user->identity->getId() != MainTeam::findOne(['id' => $teamId])->getOwnerId()
+            && Yii::$app->user->identity->getId() != MainTeam::findOne(['id' => $teamId])->getDeputyId())
+        {
+            return $this->goHome();
+        }
+
+        $model = new SubTeam();
+
+        $model->main_team_id = $teamId;
+        $model->game_id = 1;
+        $model->tournament_mode_id = 1;
+        $model->headquater_id = MainTeam::findOne(['id' => $teamId])->getHeadquaterId();
+        $model->language_id = MainTeam::findOne(['id' => $teamId])->getLanguageId();
+        $model->captain_id = Yii::$app->user->identity->getId();
+        $model->name = 'PeSp generated Team';
+        $model->description = 'New team created by PeSp';
+
+        $model->save();
+
+
+        Alert::addSuccess('Team created');
+
+        return $this->redirect("team-details?id=" . $teamId);
+    }
+
     public function actionDeleteMember($teamId, $userId, $isSub = false)
     {
         if (Yii::$app->user->isGuest || Yii::$app->user->identity == null) {

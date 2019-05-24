@@ -218,7 +218,22 @@ Yii::$app->MetaClass->writeMetaUser($this, $model, $userInfo['nationality']);
             </div>
             <div class="teamBody clearfix">
                 <div class="col-xs-12 col-sm-6">
-                    <div class="mainTeam">Main Team:</div>
+                    <div class="mainTeam">
+                        Main Team:
+                        <?php if ($userInfo['isMySelfe']) : ?>
+                        <?php
+                            echo Html::a('',
+                                [
+                                    "add-main-team",
+                                    "id" => $model->id
+                                ],
+                                ['class' => "glyphicon glyphicon-new-window",
+                                    'title' => "Add Main Team"
+                                ]
+                            )
+                        ?>
+                    <?php endif; ?>
+                    </div>
                     <?php foreach ($mainTeams as $key => $mainTeam): ?>
                         <div class="teamEntry clearfix">
                             <div class="col-lg-12">

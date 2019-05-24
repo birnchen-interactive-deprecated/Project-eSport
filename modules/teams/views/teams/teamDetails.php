@@ -100,7 +100,22 @@ Yii::$app->MetaClass->writeMetaMainTeam($this, $teamDetails, $this->title);
             </div>
         </div>
         <div class="entry entrySubTeams clearfix">
-            <div class="col-xs-5 col-sm-3 col-lg-3">Sub Teams</div>
+            <div class="col-xs-5 col-sm-3 col-lg-3">
+                Sub Teams
+                <?php if ($teamInfo['isOwner'] || $teamInfo['isDeputy']) : ?>
+                    <?php
+                        echo Html::a('',
+                            [
+                                "add-sub-team",
+                                'teamId' => $teamDetails->getId()
+                            ],
+                            ['class' => "glyphicon glyphicon-new-window",
+                                'title' => "Add Sub Team"
+                            ]
+                        )
+                    ?>
+                <?php endif; ?>
+            </div>
             <div class="col-xs-7 col-sm-9 col-lg-9 context">
                 <?php foreach ($subTeams as $tournamentMode => $subTeamsPerMode): ?>
                     <div class="col-lg-12 tournamentMode clearfix"><?= $tournamentMode; ?></div>

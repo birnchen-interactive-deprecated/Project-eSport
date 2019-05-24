@@ -118,7 +118,8 @@ class SubTeamDetailsForm extends FormModel
 		return [
 			[ 'language_id', 'exist', 'targetClass' => Language::className(), 'targetAttribute' => 'id' ],
         	[ 'headquater_id', 'exist',	'targetClass' => Nationality::className(), 'targetAttribute' => 'id' ],
-			//[ 'game_id', 'exist', 'targetClass' => Games::className(), 'targetAttribute' => 'id' ],
+			[ 'game_id', 'exist', 'targetClass' => Games::className(), 'targetAttribute' => 'id' ],
+            [ 'tournament_mode_id', 'exist', 'targetClass' => TournamentMode::className(), 'targetAttribute' => 'id'],
 			[ ['captain_id', 'deputy_id', 'manager_id', 'trainer_id'], 'exist', 'targetClass' => User::className(), 'targetAttribute' => 'id' ],
 			[ ['game', 'main_team', 'short_code', 'main_short_code', 'description'], 'string' ],
         	[ 'twitter_channel', 'string' ],
@@ -139,6 +140,8 @@ class SubTeamDetailsForm extends FormModel
         	'main_team' => \app\modules\teams\Module::t('teams','main_team', $siteLanguage->locale),
         	'headquater_id' => \app\modules\teams\Module::t('teams','headquater_id', $siteLanguage->locale),
         	'language_id' => \app\modules\teams\Module::t('teams','language_id', $siteLanguage->locale),
+            'tournament_mode_id' => 'Tournament Mode',
+            'game_id' => 'Game',
             'game' => 'Game',
         	'captain_id' => \app\modules\teams\Module::t('teams','captain_id', $siteLanguage->locale),
         	'deputy_id' => \app\modules\teams\Module::t('teams','deputy_id', $siteLanguage->locale),
@@ -221,9 +224,17 @@ class SubTeamDetailsForm extends FormModel
 
         /** Default informations */
         $subTeam->name = $this->name;
-        $subTeam->game_id = $subTeam->game_id;
         $subTeam->headquater_id = $this->headquater_id;
         $subTeam->language_id = $this->language_id;
+
+        if($subTeam->tournament_mode_id == 1 || $subTeam->name == 'PeSp generated Team')
+        {
+            $subTeam->tournament_mode_id = $this->tournament_mode_id;
+            $subTeam->game_id = $this->game_id;
+        }
+
+        //$subTeam->tournament_mode_id = $subTeam->tournament_mode_id;
+        //$subTeam->game_id = $subTeam->game_id;
 
         /** Management Informations */
         $subTeam->captain_id = $this->captain_id;
