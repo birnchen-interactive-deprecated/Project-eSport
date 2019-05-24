@@ -328,7 +328,7 @@ class RocketleagueController extends BaseController
 
         }
 
-        array_filter($participatingEntrys);
+        $participatingEntrys = array_filter($participatingEntrys);
 
         if (NULL !== $bracketMode) {
             $doubleElimination = ($bracketMode->getName() == 'Double Elimination') ? true : false;
