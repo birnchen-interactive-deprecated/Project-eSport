@@ -231,7 +231,7 @@ $this->title = 'Turnier Details';
 
                     <div class="bracketRound">
 
-                        <div class="roundTitle">Runde <?= $round; ?></div>
+                        <div class="roundTitle">Round <?= $round; ?></div>
                         <div class="roundTitle">Best of <?= $firstBracket->getBestOf(); ?></div>
 
                         <?php foreach ($roundBrackets as $bracketKey => $bracket): ?>
@@ -254,7 +254,7 @@ $this->title = 'Turnier Details';
                                 }
                             ?>
 
-                            <span class="bracketEncounter">Bracket <?= $bracketEncounter; ?> | Spielname und Passwort: <?= $rundenInfo; ?></span>
+                            <span class="bracketEncounter">Bracket <?= $bracketEncounter; ?> | Gamename and Password: <?= $rundenInfo; ?></span>
                             <div class="bracket">
                                 <div class="bracketParticipant"><?= $participant1; ?></div>
                                 <div class="bracketParticipant"><?= $participant2; ?></div>
@@ -276,7 +276,7 @@ $this->title = 'Turnier Details';
 
                     <div class="bracketRound">
 
-                        <div class="roundTitle">Runde <?= $round; ?></div>
+                        <div class="roundTitle">Round <?= $round; ?></div>
                         <div class="roundTitle">Best of <?= $firstBracket->getBestOf(); ?></div>
 
                         <?php foreach ($roundBrackets as $bracketKey => $bracket): ?>
@@ -294,7 +294,7 @@ $this->title = 'Turnier Details';
                                 }
                             ?>
 
-                            <span class="bracketEncounter">Bracket <?= $bracketEncounter; ?> | Spielname und Passwort: R<?= $round . str_pad($bracketEncounter, 2, '0', STR_PAD_LEFT); ?></span>
+                            <span class="bracketEncounter">Bracket <?= $bracketEncounter; ?> | Gamename and Password: R<?= $round . str_pad($bracketEncounter, 2, '0', STR_PAD_LEFT); ?></span>
                             <div class="bracket">
                                 <div class="bracketParticipant"><?= $participant1; ?></div>
                                 <div class="bracketParticipant"><?= $participant2; ?></div>
