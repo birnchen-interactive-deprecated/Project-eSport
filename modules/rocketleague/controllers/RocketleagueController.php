@@ -262,14 +262,14 @@ class RocketleagueController extends BaseController
             return $this->redirect('tournament-details?id=' . $tournament_id);
         }
 
-        if ($winner !== 1 && $winner !== 2) {
-            Alert::addError('Der Sieger muss gesetzt sein.');
-            return $this->redirect('tournament-details?id=' . $tournament_id);
-        }
-
         $bracket = Bracket::getById($bracketId);
         if ($bracket->tournament_id !== $tournament_id) {
             Alert::addError('Das Bracket ist nicht in diesem Turnier.');
+            return $this->redirect('tournament-details?id=' . $tournament_id);
+        }
+
+        if ($winner !== 1 && $winner !== 2) {
+            Alert::addError('Der Sieger muss gesetzt sein. ' . var_export($winner, true));
             return $this->redirect('tournament-details?id=' . $tournament_id);
         }
 
