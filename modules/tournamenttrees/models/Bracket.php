@@ -181,12 +181,20 @@ class Bracket extends ActiveRecord
 				$preRound = (998 == $preRound) ? 'Finale' : $preRound;
 				$return[] = $preText . ' von Runde ' . $preRound . ' Bracket ' . $preBracket['bracket']->getEncounterId();
 			}
+
 		} else {
+			
 			$slot = $this->hasOne($class, $vars)->one();
 			if ($slot instanceof User) {
 				$return[] = $slot->getUsername();
 			} else if ($slot instanceof SubTeam) {
-				$return[] = $slot->getName();
+				$show = $slot->getTeamShortCode();
+				if (empty($show)) {
+					$show = $slot->getName();
+					$show = str_replace(' ', '', $show);
+					$show = substr($show, 0, 6);
+				}
+				$return[] = $show;
 			} else {
 				$return[] = '';
 			}
@@ -216,12 +224,20 @@ class Bracket extends ActiveRecord
 				$preRound = (998 == $preRound) ? 'Finale' : $preRound;
 				$return[] = $preText . ' von Runde ' . $preRound . ' Bracket ' . $preBracket['bracket']->getEncounterId();
 			}
+
 		} else {
+
 			$slot = $this->hasOne($class, $vars)->one();
 			if ($slot instanceof User) {
 				$return[] = $slot->getUsername();
 			} else if ($slot instanceof SubTeam) {
-				$return[] = $slot->getName();
+				$show = $slot->getTeamShortCode();
+				if (empty($show)) {
+					$show = $slot->getName();
+					$show = str_replace(' ', '', $show);
+					$show = substr($show, 0, 6);
+				}
+				$return[] = $show;
 			} else {
 				$return[] = '';
 			}
@@ -253,6 +269,66 @@ class Bracket extends ActiveRecord
 				$this->team_2_id = $participant->getId();
 			}
 
+		}
+
+	}
+
+	/**
+	 * @param int
+	 * @param int
+	 */
+	public function setSpielerByBackRef($id, $type, $preBracketId) {
+		
+		$refs = $this->getBracketRefs();
+
+		$bracket = reset($refs);
+		if (false === $bracket) {
+			return;
+		}
+
+		if ($bracket['bracket']->getId() === $preBracketId) {
+			if ($type === 'user') {
+				$this->user_1_id = $id;
+			} else {
+				$this->team_1_id = $id;
+			}
+		}
+
+		$bracket = next($refs);
+
+		if ($bracket['bracket']->getId() === $preBracketId) {
+			if ($type === 'user') {
+				$this->user_2_id = $id;
+			} else {
+				$this->team_2_id = $id;
+			}
+		}
+		
+		$this->update();
+
+	}
+
+	/**
+	 * @param int 
+	 */
+	public function movePlayersNextRound($winnerNumber) {
+
+		$type = (NULL !== $this->user_1_id) ? 'user' : 'team';
+
+		if ($winnerNumber === 1) {
+			$winnerField = ('user' === $type) ? 'user_1_id' : 'team_1_id';
+			$looserField = ('user' === $type) ? 'user_2_id' : 'team_2_id';
+		} else {
+			$winnerField = ('user' === $type) ? 'user_2_id' : 'team_2_id';
+			$looserField = ('user' === $type) ? 'user_1_id' : 'team_1_id';
+		}
+
+		$winnerBracket = $this->getWinnerBracket()->one();
+		$looserBracket = $this->getLooserBracket()->one();
+
+		$winnerBracket->setSpielerByBackRef($this->$winnerField, $type, $this->getId());
+		if (NULL !== $looserBracket) {
+			$looserBracket->setSpielerByBackRef($this->$looserField, $type, $this->getId());
 		}
 
 	}
@@ -320,4 +396,5 @@ class Bracket extends ActiveRecord
 			$bracket->delete();
 		}
 	}
+
 }
