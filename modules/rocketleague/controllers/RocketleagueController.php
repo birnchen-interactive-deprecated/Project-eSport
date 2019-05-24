@@ -250,6 +250,12 @@ class RocketleagueController extends BaseController
      */
     public function actionCreateBrackets($tournament_id = null)
     {
+        $brackets = Bracket::getAllByTournamentFormatted($id);
+        if (count($brackets['winner']) > 0) {
+            Alert::addError('Brackets sind schon vorhanden.');
+            return $this->redirect('tournament-details?id=' . $tournament_id);
+        }
+        
         $tournament = Tournament::getTournamentById($tournament_id);
         $bracketMode = $tournament->getBracketMode()->one();
         $participatingEntrys = $tournament->getParticipants()->all();
@@ -285,9 +291,7 @@ class RocketleagueController extends BaseController
 
         $ruleSet = $tournament->getRules();
 
-        // Alert::addError('');
         Alert::addSuccess('Brackets erfolgreich angelegt.');
-        // Alert::addInfo('your message');
 
         return $this->redirect('tournament-details?id=' . $tournament_id);
     }
@@ -467,7 +471,7 @@ class RocketleagueController extends BaseController
         }
 
         $countIns/= 2;
-        
+
         if (false === $winnerBracket) {
             return;
         }
