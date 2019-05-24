@@ -476,18 +476,18 @@ class RocketleagueController extends BaseController
 
         $countLooserBrackets = 0;
 
-        while (false !== $looserBracket && !$looserBracket->getIsWinnerBracket()) {
-            $winnerBracket->looser_bracket = $looserBracket->getId();
-            $winnerBracket->update();
-            $winnerBracket = prev($initBracket);
+        // while (false !== $looserBracket && !$looserBracket->getIsWinnerBracket()) {
+        //     $winnerBracket->looser_bracket = $looserBracket->getId();
+        //     $winnerBracket->update();
+        //     $winnerBracket = prev($initBracket);
 
-            $winnerBracket->looser_bracket = $looserBracket->getId();
-            $winnerBracket->update();
-            $winnerBracket = prev($initBracket);
+        //     $winnerBracket->looser_bracket = $looserBracket->getId();
+        //     $winnerBracket->update();
+        //     $winnerBracket = prev($initBracket);
 
-            $looserBracket = prev($initBracketRevers);
-            $countLooserBrackets++;
-        }
+        //     $looserBracket = prev($initBracketRevers);
+        //     $countLooserBrackets++;
+        // }
 
         return $countLooserBrackets;
     }
