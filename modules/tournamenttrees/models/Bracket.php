@@ -354,7 +354,7 @@ class Bracket extends ActiveRecord
 
 			if ($this->team_1_id === $winnerBracket->team_1_id && $winnerBracket->team_1_id != NULL || $this->team_1_id === $winnerBracket->team_2_id && $winnerBracket->team_2_id != NULL) {
 				return 1;
-			} else if ($this->team_2_id == =$winnerBracket->team_1_id && $winnerBracket->team_1_id != NULL || $this->team_2_id === $winnerBracket->team_2_id && $winnerBracket->team_2_id != NULL) {
+			} else if ($this->team_2_id === $winnerBracket->team_1_id && $winnerBracket->team_1_id != NULL || $this->team_2_id === $winnerBracket->team_2_id && $winnerBracket->team_2_id != NULL) {
 				return 2;
 			} 
 
