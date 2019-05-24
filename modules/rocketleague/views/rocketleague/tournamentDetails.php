@@ -245,7 +245,7 @@ $this->title = 'Turnier Details';
                                     $participant1 = $bracketParticipants[0];
                                     $participant2 = $bracketParticipants[1];
                                 }
-                                if (strpos($round, 'Finale')) {
+                                if (strpos($round, 'Finale') !== false) {
                                     $rundenInfo = 'Finale';
                                 } else {
                                     $rundenInfo = 'R' . $round . str_pad($bracketEncounter, 2, '0', STR_PAD_LEFT);
