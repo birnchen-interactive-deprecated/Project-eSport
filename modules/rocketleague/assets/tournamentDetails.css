@@ -61,3 +61,9 @@
 .site-rl-tournament-details .bracketParticipant {
     padding: 0 4px;
 }
+.site-rl-tournament-details .bracketParticipant.winner {
+	background-color: #a6ffa0;
+}
+.site-rl-tournament-details .bracketParticipant.looser {
+	background-color: #fba9a9;
+}
