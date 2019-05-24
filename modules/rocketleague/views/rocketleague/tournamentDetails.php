@@ -164,7 +164,7 @@ $this->title = 'Turnier Details';
                 <th>Spieler</th>
             <?php endif; ?>
             <th>Checked-In <span class="badge"><?= $countCheckedIn . ' / 32'; ?></span></th>
-            <th>Disqualifiziert</th>
+            <th>Hinweise</th>
         </tr>
         </thead>
         <tbody>
