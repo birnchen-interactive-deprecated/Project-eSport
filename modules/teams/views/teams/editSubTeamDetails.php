@@ -40,9 +40,18 @@ use yii\bootstrap\ActiveForm;
 
                         <?= $form->field($model, 'language_id')->dropDownList($languageList, ["class" => 'form-control form-control-color', 'prompt' => 'Bitte auswählen']) ?>
 
-                        <?= $form->field($model, 'game')->textInput(["class" => 'form-control form-control-color','readonly'=> true]) ?>
+                        <?php if($model->name == 'PeSp generated Team' || $model->tournament_mode_id == 1) : ?>
+                            <?= $form->field($model, 'game_id')->dropDownList($gamesList, ["class" => 'form-control form-control-color', 'prompt' => 'Bitte auswählen']) ?>
+                        <?php else : ?>
+                            <?= $form->field($model, 'game')->textInput(["class" => 'form-control form-control-color','readonly'=> true]) ?>
+                        <?php endif; ?>
 
-                        <?= $form->field($model, 'tournament_mode')->textInput(["class" => 'form-control form-control-color','readonly'=> true]) ?>
+
+                        <?php if($model->name == 'PeSp generated Team' || $model->tournament_mode_id == 1) : ?>
+                            <?= $form->field($model, 'tournament_mode_id')->dropDownList($tournamentModeList, ["class" => 'form-control form-control-color', 'prompt' => 'Bitte auswählen']) ?>
+                        <?php else : ?>
+                            <?= $form->field($model, 'tournament_mode')->textInput(["class" => 'form-control form-control-color','readonly'=> true]) ?>
+                        <?php endif; ?>
 
                         <!-- Management Informations -->
                         <?= $form->field($model, 'captain_id')->dropDownList($playerList, ["class" => 'form-control form-control-color', 'prompt' => 'Bitte auswählen']) ?>
