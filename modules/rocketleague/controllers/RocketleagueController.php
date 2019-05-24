@@ -444,11 +444,9 @@ class RocketleagueController extends BaseController
         }
         $winnerBracket = prev($initBracket);
 
-        $countIns = 0;
+        $countIns = 1;
 
         while (false !== $looserBracket && !$looserBracket->getIsWinnerBracket()) {
-
-            $countIns++;
 
             for ($c=1; $c<=$countIns; $c++) {
 
@@ -463,6 +461,8 @@ class RocketleagueController extends BaseController
             for ($c=1; $c<=$countIns; $c++) {
                 $looserBracket = prev($initBracketRevers);
             }
+
+            $countIns*= 2;
 
         }
 
