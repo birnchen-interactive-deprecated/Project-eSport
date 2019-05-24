@@ -392,4 +392,14 @@ class Bracket extends ActiveRecord
 	public static function getBracketByLooser($bracketId) {
 		return static::findOne(['looser_bracket' => $bracketId]);
 	}
+
+	/**
+	 * @param int
+	 */
+	public static function clearForTournament($tournament_id) {
+		$brackets = self::getAllByTournament($tournament_id);
+		foreach ($brackets as $key => $bracket) {
+			$bracket->delete();
+		}
+	}
 }
