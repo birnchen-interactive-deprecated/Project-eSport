@@ -443,7 +443,10 @@ class Tournament extends ActiveRecord
                 }
             }
 
-            if ($mainFound < $modeMaxPlayers) {
+            $modeSubPlayers = $this->getMode()->one()->getSubPlayer();
+            $modeMainPlayers = $modeMaxPlayers - $modeSubPlayers;
+
+            if ($mainFound < $modeMainPlayers) {
                 continue;
             }
 
