@@ -506,7 +506,7 @@ class Tournament extends ActiveRecord
      */
     private function checkTeamCheckedIn($subTeam)
     {
-        return TeamParticipating::findTeamCheckedIn($this->tournament_id, $subTeam->getId()) != null;
+        return TeamParticipating::findTeamCheckedIn($this->id, $subTeam->getId()) != null;
     }
 
 }
