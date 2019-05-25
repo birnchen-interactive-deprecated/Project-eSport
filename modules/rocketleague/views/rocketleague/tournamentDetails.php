@@ -208,7 +208,9 @@ $this->title = 'Turnier Details';
 
     <?php if (Yii::$app->user->identity instanceOf User && Yii::$app->user->identity->getId() <= 4): ?>
         <?php $btnText = (count($brackets['winner']) > 0) ? 'Brackets neu erstellen' : 'Brackets erstellen'; ?>
-        <?= Html::a($btnText, ['/rocketleague/create-brackets', 'tournament_id' => $tournament->getId()], ['class' => 'btn btn-success']); ?>
+        <?php if ($now->diff($turnierStart)->invert == 0 && $btnText === 'Brackets neu erstellen'): ?>
+            <?= Html::a($btnText, ['/rocketleague/create-brackets', 'tournament_id' => $tournament->getId()], ['class' => 'btn btn-success']); ?>
+        <?php endif; ?>
     <?php endif; ?>
 
     <?php if ($now->diff($turnierStart)->invert == 1 || (Yii::$app->user->identity instanceOf User && Yii::$app->user->identity->getId() <= 4)): ?>
