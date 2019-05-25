@@ -30,14 +30,14 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
                     <span class="headerDate">24.05.2019</span>
                 </div>
                 <div class="containerBody clearfix">
-                    <div class="containerImage col-lg-3"><img src="https://pbs.twimg.com/media/D7Xrs37UYAAt_xi?format=jpg&name=small" alt="" style="width: 100%;     padding-top: 12px;"></div>
+                    <div class="containerImage col-lg-3"><img src="https://pbs.twimg.com/media/D7Xrs37UYAAt_xi?format=jpg&name=small" alt="" style="width: 100%;     padding-top: 33px;"></div>
                     <div class="containerText col-lg-9">
                     Congratulations to <?= Html::a('xer02rl', ['/user/details', 'id' => '156']); ?> to this amazing win Today in 1v1.
-                    He beated up 15 other participating Players on the first Day of the new Season.
+                    He beated up 15 other participating Players on the first Day of the new Season.<br>
                     After a long Night he gets the First 20 Points for the 100€ Season Price.
                     <br><br>
-                    Second Place goes to <?= Html::a('Dongiii', ['/user/details', 'id' => '162']); ?> with 17 Points<br>
-                    Third PLace goes to  <?= Html::a('NoAvian', ['/user/details', 'id' => '38']); ?> with 15 Points<br>
+                    Second Place: <?= Html::a('Dongiii', ['/user/details', 'id' => '162']); ?> with 17 Points<br>
+                    Third Place: <?= Html::a('NoAvian', ['/user/details', 'id' => '38']); ?> with 15 Points<br>
                     </div>
                     <div class="containerAuthor">Birnchen</div>
                 </div>
