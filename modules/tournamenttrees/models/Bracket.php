@@ -211,7 +211,7 @@ class Bracket extends ActiveRecord
 			if ($slot instanceof User) {
 				$return[] = $slot->getUsername();
 			} else if ($slot instanceof SubTeam) {
-				$show = $slot->getTeamShortCode() . ' | ' . $slot->getName();
+				$show = $slot->getTeamShortCode() ;
 				if (empty($show)) {
 					$show = $slot->getName();
 					$show = str_replace(' ', '', $show);
@@ -254,7 +254,7 @@ class Bracket extends ActiveRecord
 			if ($slot instanceof User) {
 				$return[] = $slot->getUsername();
 			} else if ($slot instanceof SubTeam) {
-				$show = $slot->getTeamShortCode() . ' | ' . $slot->getName();
+				$show = $slot->getTeamShortCode();
 				if (empty($show)) {
 					$show = $slot->getName();
 					$show = str_replace(' ', '', $show);
