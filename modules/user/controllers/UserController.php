@@ -21,6 +21,7 @@ use app\modules\user\models\Nationality;
 use app\modules\user\models\User;
 use app\modules\user\models\TeamInvitations;
 
+use app\modules\teams\models\MainTeam;
 use app\modules\teams\models\MainTeamMember;
 
 use app\widgets\Alert;
@@ -366,7 +367,31 @@ class UserController extends BaseController
     /** Glyphicon Actions */
     public function actionAddMainTeam()
     {
-        
+        if (Yii::$app->user->isGuest || Yii::$app->user->identity == null) {
+            return $this->goHome();
+        }
+
+        $model = new MainTeam();
+        $model->headquater_id = 1;
+        $model->language_id = 1;
+        $model->owner_id = Yii::$app->user->identity->getId();
+        $model->name = Yii::$app->user->identity->getUsername() . '\'s new Main Team';
+        $model->short_code = Yii::$app->user->identity->getUsername().
+        $model->description = '240 Signs Description, 240 Zeichen Description';
+        $model->save();
+
+
+        Alert::addSuccess('Sub Team created');
+
+        //$this->redirect(array('/teams/edit-details'));
+
+        return $this->redirect(array('/teams/edit-details',
+            'id' => MainTeam::findOne(['owner_id' => $model->owner_id, 'name' => $model->name])->getId(),
+            'isSub'=>0)
+        );
+
+
+        //return $this->redirect(['teams/edit-details?id=' . MainTeam::findOne(['owner_id' => $model->owner_id, 'name' => $model->name])->getId() . '&isSub=0']);
     }
 
     public function actionInvitation($accept, $teamId)
