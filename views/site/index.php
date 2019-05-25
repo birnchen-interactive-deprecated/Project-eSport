@@ -18,6 +18,26 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
         <div class="col-lg-9 welcome">
             <div class="newsContainer">
                 <div class="containerHeader">
+                    <span class="headerKategorie"><img src="../images/gameLogos/1.webp">Rocket League</span>
+                    <span class="headerTitle">Gerta Cup Season 3 2v2 Day 1</span>
+                    <span class="headerDate">25.05.2019</span>
+                </div>
+                <div class="containerBody clearfix">
+                    <div class="containerImage col-lg-3"><img src="https://pbs.twimg.com/media/D7bEW_JUIAAGHkj?format=jpg&name=small" alt="" style="width: 100%;     padding-top: 33px;"></div>
+                    <div class="containerText col-lg-9">
+                        Congratulations to <?= Html::a('Stealth 7 eSports', ['/teams/sub-team-details', 'id' => '9']); ?> to this amazing win Today in 2v2.<br>
+                        They beat 8 other participating Teams on the first Day of the new Season.<br>
+                        After a long Fight they gets the First 20 Points for the 600€ Season Price Pool.
+                        <br><br>
+                        Second Place: <?= Html::a('ILV | Titanium White', ['/teams/sub-team-details', 'id' => '42']); ?> with 17 Points<br>
+                        Third Place: <?= Html::a('WarKidZ eSports', ['/teams/sub-team-details', 'id' => '37']); ?> with 15 Points<br>
+                    </div>
+                    <div class="containerAuthor">Birnchen</div>
+                </div>
+            </div>
+
+            <div class="newsContainer">
+                <div class="containerHeader">
                     <span class="headerKategorie"><img src="../images/PeSpLogos/pesp.png">Website</span>
                     <span class="headerTitle">Team up and get Ready</span>
                     <span class="headerDate">25.05.2019</span>
