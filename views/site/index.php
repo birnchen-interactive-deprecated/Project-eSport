@@ -23,7 +23,7 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
                     <span class="headerDate">25.05.2019</span>
                 </div>
                 <div class="containerBody clearfix">
-                    <div class="containerImage col-lg-3"><img src="../images/PeSpLogos/pesp.png" alt="" style="width: 100%; padding-top: 0px;"></div>
+                    <div class="containerImage col-lg-3"><img src="../images/PeSpLogos/pesp.png" alt="" style="width: 100%; padding-top: 25px;"></div>
                     <div class="containerText col-lg-9">
                         It's done!!!<br>                  
                         Players and teams can finally manage themselves.<br>
