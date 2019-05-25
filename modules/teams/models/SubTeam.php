@@ -264,7 +264,8 @@ class SubTeam extends ActiveRecord
         /** @var PlayerParticipating $isParticipating */
         //$isParticipating = $this->getPlayerParticipating()->where(['tournament_id' => $tournamentId])->one();
         //return $isParticipating->getDisqualified() != null;
-        return $this->disqualified;
+        //return $this->disqualified;
+        return false;
     }
 
     /**

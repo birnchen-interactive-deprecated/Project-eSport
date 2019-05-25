@@ -186,8 +186,8 @@ $this->title = 'Turnier Details';
             $checkInClass = (false === $checkInStatus) ? 'alert-danger' : 'alert-success';
 
             $disqStatus = $entry->getDisqualifiedStatus($tournament->getId());
-            $disqText = (false === $disqStatus) ? '' : 'Disqualifiziert';
-            $disqClass = (false === $disqStatus) ? '' : 'alert-danger';
+            $disqText = ($disqStatus) ? 'Disqualifiziert' : '';
+            $disqClass = ($disqStatus) ? 'alert-danger' : '';
             ?>
             <tr class="fold">
 
@@ -196,7 +196,7 @@ $this->title = 'Turnier Details';
                 </td>
 
                 <td class="nameCell"><?= $entryName; ?></td>
-                <?php if ('Team' === $userTeam): ?>
+                <?php if ('Team' == $userTeam): ?>
                     <td><?= $entry->getTeamMembersFormatted(); ?></td>
                 <?php endif; ?>
                 <td class="checkInCell <?= $checkInClass; ?>"><?= $checkInText ?></td>
