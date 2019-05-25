@@ -16,12 +16,7 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
     <main>
 
         <div class="col-lg-9 welcome">
-            Willkommen auf unserer Turnier Website.<br>
-            Besuch uns doch bei Fragen auf unserem <a class="dclink" href="https://discord.gg/rk3qd9U">Discord</a> Server.
-            <br>
-            <br>
-            Noch kein Team angelegt??? <br>
-            Melde dich auf <a class="dclink" href="https://discord.gg/rk3qd9U">Discord</a> bei <b><i><u>Birnchen | Pierre#5366</u></i></b>.
+            
 
             <div class="newsContainer">
                 <div class="containerHeader">
