@@ -231,7 +231,7 @@ class TeamsController extends BaseController
         $model->headquater_id = MainTeam::findOne(['id' => $teamId])->getHeadquaterId();
         $model->language_id = MainTeam::findOne(['id' => $teamId])->getLanguageId();
         $model->captain_id = Yii::$app->user->identity->getId();
-        $model->name = 'PeSp generated Team';
+        $model->name = Yii::$app->user->identity->username . '\'s new Sub Team';
         $model->description = 'New team created by PeSp';
 
         $model->save();
