@@ -185,9 +185,9 @@ $this->title = 'Turnier Details';
             $checkInText = (false === $checkInStatus) ? 'Not Checked In' : 'Checked In';
             $checkInClass = (false === $checkInStatus) ? 'alert-danger' : 'alert-success';
 
-            //$disqStatus = $entry->getDisqualifiedStatus($tournament->getId());
-            //$disqText = (false === $disqStatus) ? '' : 'Disqualifiziert';
-            //$disqClass = (false === $disqStatus) ? '' : 'alert-danger';
+            $disqStatus = $entry->getDisqualifiedStatus($tournament->getId());
+            $disqText = (false === $disqStatus) ? '' : 'Disqualifiziert';
+            $disqClass = (false === $disqStatus) ? '' : 'alert-danger';
             ?>
             <tr class="fold">
 
@@ -213,11 +213,11 @@ $this->title = 'Turnier Details';
         <?php endif; ?>
     <?php endif; ?>
 
-    <?php if ($now->diff($turnierStart)->invert == 1 || (Yii::$app->user->identity instanceOf User && Yii::$app->user->identity->getId() <= 4)): ?>
+    <?php if ($now->diff($turnierStart)->invert == 1 || (Yii::$app->user != null && Yii::$app->user->identity instanceOf User && Yii::$app->user->identity->getId() <= 4)): ?>
 
         <?php   
             $isAdmin = false;     
-            if (Yii::$app->user->identity instanceOf User && Yii::$app->user->identity->getId() <= 4) {
+            if (Yii::$app->user != null && Yii::$app->user->identity instanceOf User && Yii::$app->user->identity->getId() <= 4) {
                 $isAdmin = true;
             }
         ?>
@@ -257,7 +257,10 @@ $this->title = 'Turnier Details';
                                 $bracketParticipants[0] = ($bracketParticipants[0] === NULL) ? 'FREILOS' : $bracketParticipants[0];
                                 $bracketParticipants[1] = ($bracketParticipants[1] === NULL) ? 'FREILOS' : $bracketParticipants[1];
                                 if ($isAdmin) {
-                                    $participant1 = Html::a($bracketParticipants[0], ['/rocketleague/move-player-in-bracket', 'tournament_id' => $tournament->getId(), 'winner' => 1, 'bracketId' => $bracket->getId()]);
+                                    $participant1 = $bracketParticipants[0];
+                                        
+
+                                        //, ['/rocketleague/move-player-in-bracket', 'tournament_id' => $tournament->getId(), 'winner' => 1, 'bracketId' => $bracket->getId()]);
                                     $participant2 = Html::a($bracketParticipants[1], ['/rocketleague/move-player-in-bracket', 'tournament_id' => $tournament->getId(), 'winner' => 2, 'bracketId' => $bracket->getId()]);
                                 } else {
                                     $participant1 = $bracketParticipants[0];
@@ -275,7 +278,22 @@ $this->title = 'Turnier Details';
                                 <div><?= Html::a('Live Stream umschalten', ['/rocketleague/bracket-live-stream', 'tournament_id' => $tournament->getId(), 'bracketId' => $bracket->getId()]); ?></div>
                             <?php endif; ?>
                             <div class="bracket <?= $liveStream; ?>">
-                                <div class="bracketParticipant <?= $class1; ?>"><?= $participant1; ?></div>
+                                <div class="bracketParticipant <?= $class1; ?>">
+                                    <?= $participant1; ?>
+                                    <?php if ($isAdmin) {
+                                            echo Html::a('',
+                                                [
+                                                    "/rocketleague/move-player-in-bracket",
+                                                    'tournament_id' => $tournament->getId(),
+                                                    "winner" => 1,
+                                                    'bracketId' => $bracket->getId()
+                                                ],
+                                                ['class' => "glyphicon glyphicon-circle-arrow-right",
+                                                    'title' => "Edit Details"
+                                                ]
+                                            );
+                                        }?>
+                                </div>
                                 <div class="bracketParticipant <?= $class2; ?>"><?= $participant2; ?></div>
                             </div>
 

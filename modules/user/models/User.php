@@ -421,7 +421,7 @@ class User extends AbstractActiveRecord implements IdentityInterface
      */
     public function getPlayerParticipating()
     {
-        return $this->hasMany(PlayerParticipating::className(), ['user_id' => 'id']);
+        return $this->hasOne(PlayerParticipating::className(), ['user_id' => 'id']);
     }
 
     /**
@@ -442,7 +442,7 @@ class User extends AbstractActiveRecord implements IdentityInterface
     public function getDisqualifiedStatus($tournamentId)
     {
         /** @var PlayerParticipating $isParticipating */
-        //$isParticipating = $this->getPlayerParticipating()->where(['tournament_id' => $tournamentId])->one();
+        //return $this->getPlayerParticipating()->where(['tournament_id' => $tournamentId])->one()->getDisqualified();
         //return $isParticipating->getDisqualified() != null;
         return false;
     }

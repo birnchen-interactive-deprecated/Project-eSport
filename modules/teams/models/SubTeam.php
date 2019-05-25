@@ -256,6 +256,18 @@ class SubTeam extends ActiveRecord
     }
 
     /**
+     * @param $tournamentId
+     * @return string
+     */
+    public function getDisqualifiedStatus($tournamentId)
+    {
+        /** @var PlayerParticipating $isParticipating */
+        //$isParticipating = $this->getPlayerParticipating()->where(['tournament_id' => $tournamentId])->one();
+        //return $isParticipating->getDisqualified() != null;
+        return $this->disqualified;
+    }
+
+    /**
      * @return string team twitter account
      */
     public function getTeamTwitterAccount()

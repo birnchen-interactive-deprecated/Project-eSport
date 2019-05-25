@@ -20,6 +20,8 @@ if(Yii::$app->user->identity != null)
     $subTeams = $user->getSubTeamsOwnership();
 }
 
+$user = null;
+
 
 $now = new DateTime();
 $tz = new DateTimeZone('Europe/Vienna');
@@ -213,7 +215,7 @@ $this->title = 'RL Tournament Overview';
                     <td><?= $checkInBegin->format('H:i'); ?> - <?= $checkInEnd->format('H:i'); ?></td>
                     <td>
                         <?php
-                        if ($tournament->showRegisterBtn($subTeams, $user)) {
+                        if (Yii::$app->user != null && $tournament->showRegisterBtn($subTeams, $user)) {
                             $btns = $tournament->getRegisterBtns($subTeams, $user);
                             foreach ($btns as $btn) {
 

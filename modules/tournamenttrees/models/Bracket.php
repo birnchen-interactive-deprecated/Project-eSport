@@ -366,17 +366,17 @@ class Bracket extends ActiveRecord
 
 		if ($type === 'user') {
 
-			if ($this->user_1_id === $winnerBracket->user_1_id && $winnerBracket->user_1_id != NULL || $this->user_1_id === $winnerBracket->user_2_id && $winnerBracket->user_2_id != NULL) {
+			if ($winnerBracket != NULL && $this->user_1_id == $winnerBracket->user_1_id || $winnerBracket != NULL && $this->user_1_id == $winnerBracket->user_2_id) {
 				return 1;
-			} else if ($this->user_2_id === $winnerBracket->user_1_id  && $winnerBracket->user_1_id != NULL || $this->user_2_id === $winnerBracket->user_2_id && $winnerBracket->user_2_id != NULL) {
+			} else if ($winnerBracket != NULL && $this->user_2_id == $winnerBracket->user_1_id || $winnerBracket != NULL && $this->user_2_id == $winnerBracket->user_2_id) {
 				return 2;
 			} 
 
 		} else {
 
-			if ($this->team_1_id === $winnerBracket->team_1_id && $winnerBracket->team_1_id != NULL || $this->team_1_id === $winnerBracket->team_2_id && $winnerBracket->team_2_id != NULL) {
+			if ($winnerBracket != NULL && $this->team_1_id == $winnerBracket->team_1_id || $winnerBracket != NULL && $this->team_1_id == $winnerBracket->team_2_id) {
 				return 1;
-			} else if ($this->team_2_id === $winnerBracket->team_1_id && $winnerBracket->team_1_id != NULL || $this->team_2_id === $winnerBracket->team_2_id && $winnerBracket->team_2_id != NULL) {
+			} else if ($winnerBracket != NULL && $this->team_2_id == $winnerBracket->team_1_id || $winnerBracket != NULL && $this->team_2_id == $winnerBracket->team_2_id) {
 				return 2;
 			} 
 
