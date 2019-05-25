@@ -195,7 +195,10 @@ $this->title = 'Turnier Details';
                     <?= Html::img($imgPath . '.webp', ['class' => 'entry-logo', 'alt' => "profilePic", 'aria-label' => 'profilePic', 'onerror' =>'this.src="' . $imgPath . '.png"' ]); ?>
                 </td>
 
-                <td class="nameCell"><?= $entryName; ?></td>
+                <td class="nameCell">
+                    <?= ($entry instanceOf User) ? '' : $entry->getTeamShortCode() . ' | '; ?>
+                        <?= Html::a($entryName , (($entry instanceOf User) ? ['/user/details', 'id' => $entry->getId()] : ['/teams/sub-team-details', 'id' => $entry->getId()])); ?>
+                    </td>
                 <?php if ('Team' == $userTeam): ?>
                     <td><?= $entry->getTeamMembersFormatted(); ?></td>
                 <?php endif; ?>
