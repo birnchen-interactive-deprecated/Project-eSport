@@ -164,7 +164,7 @@ $this->title = 'Turnier Details';
                 <th>Spieler</th>
             <?php endif; ?>
             <th>Checked-In <span class="badge"><?= $countCheckedIn . ' / 32'; ?></span></th>
-            <th>Disqualifiziert</th>
+            <th>Hinweise</th>
         </tr>
         </thead>
         <tbody>
@@ -227,13 +227,29 @@ $this->title = 'Turnier Details';
                 
                 <?php $round = 0; ?>
                 <?php foreach ($brackets['winner'] as $round => $roundBrackets): ?>
+                    <?php $firstBracket = reset($roundBrackets); ?>
 
                     <div class="bracketRound">
 
-                        <div class="roundTitle">Runde <?= $round; ?></div>
+                        <div class="roundTitle">Round <?= $round; ?></div>
+                        <div class="roundTitle">Best of <?= $firstBracket->getBestOf(); ?></div>
 
                         <?php foreach ($roundBrackets as $bracketKey => $bracket): ?>
                             <?php
+
+                                $bracketFinished = $bracket->checkisFinished();
+                                $class1 = '';
+                                $class2 = '';
+                                if ($bracketFinished === 1) {
+                                    $class1 = 'winner';
+                                    $class2 = 'looser';
+                                } else if ($bracketFinished === 2) {
+                                    $class1 = 'looser';
+                                    $class2 = 'winner';
+                                }
+
+                                $liveStream = $bracket->getLiveStreamClass();
+
                                 $bracketEncounter = $bracket->getEncounterId();
                                 $bracketParticipants = $bracket->getParticipants();
                                 $bracketParticipants[0] = ($bracketParticipants[0] === NULL) ? 'FREILOS' : $bracketParticipants[0];
@@ -245,12 +261,20 @@ $this->title = 'Turnier Details';
                                     $participant1 = $bracketParticipants[0];
                                     $participant2 = $bracketParticipants[1];
                                 }
+                                if (strpos($round, 'Finale') !== false) {
+                                    $rundenInfo = 'Finale';
+                                } else {
+                                    $rundenInfo = 'R' . $round . str_pad($bracketEncounter, 2, '0', STR_PAD_LEFT);
+                                }
                             ?>
 
-                            <span class="bracketEncounter">Bracket <?= $bracketEncounter; ?></span>
-                            <div class="bracket">
-                                <div class="bracketParticipant"><?= $participant1; ?></div>
-                                <div class="bracketParticipant"><?= $participant2; ?></div>
+                            <span class="bracketEncounter">Bracket <?= $bracketEncounter; ?> | Gamename and Password: <?= $rundenInfo; ?></span>
+                            <?php if (Yii::$app->user->identity instanceOf User && Yii::$app->user->identity->getId() <= 4): ?>
+                                <div><?= Html::a('Live Stream umschalten', ['/rocketleague/bracket-live-stream', 'tournament_id' => $tournament->getId(), 'bracketId' => $bracket->getId()]); ?></div>
+                            <?php endif; ?>
+                            <div class="bracket <?= $liveStream; ?>">
+                                <div class="bracketParticipant <?= $class1; ?>"><?= $participant1; ?></div>
+                                <div class="bracketParticipant <?= $class2; ?>"><?= $participant2; ?></div>
                             </div>
 
                         <?php endforeach; ?>
@@ -265,13 +289,29 @@ $this->title = 'Turnier Details';
 
                 <?php $round = 0; ?>
                 <?php foreach ($brackets['looser'] as $round => $roundBrackets): ?>
+                    <?php $firstBracket = reset($roundBrackets); ?>
 
                     <div class="bracketRound">
 
-                        <div class="roundTitle">Runde <?= $round; ?></div>
+                        <div class="roundTitle">Round <?= $round; ?></div>
+                        <div class="roundTitle">Best of <?= $firstBracket->getBestOf(); ?></div>
 
                         <?php foreach ($roundBrackets as $bracketKey => $bracket): ?>
                             <?php
+
+                                $bracketFinished = $bracket->checkisFinished();
+                                $class1 = '';
+                                $class2 = '';
+                                if ($bracketFinished === 1) {
+                                    $class1 = 'winner';
+                                    $class2 = 'looser';
+                                } else if ($bracketFinished === 2) {
+                                    $class1 = 'looser';
+                                    $class2 = 'winner';
+                                }
+
+                                $liveStream = $bracket->getLiveStreamClass();
+
                                 $bracketEncounter = $bracket->getEncounterId();
                                 $bracketParticipants = $bracket->getParticipants();
                                 $bracketParticipants[0] = ($bracketParticipants[0] === NULL) ? 'FREILOS' : $bracketParticipants[0];
@@ -285,10 +325,13 @@ $this->title = 'Turnier Details';
                                 }
                             ?>
 
-                            <span class="bracketEncounter">Bracket <?= $bracketEncounter; ?></span>
-                            <div class="bracket">
-                                <div class="bracketParticipant"><?= $participant1; ?></div>
-                                <div class="bracketParticipant"><?= $participant2; ?></div>
+                            <span class="bracketEncounter">Bracket <?= $bracketEncounter; ?> | Gamename and Password: R<?= $round . str_pad($bracketEncounter, 2, '0', STR_PAD_LEFT); ?></span>
+                            <?php if (Yii::$app->user->identity instanceOf User && Yii::$app->user->identity->getId() <= 4): ?>
+                                <div><?= Html::a('Live Stream umschalten', ['/rocketleague/bracket-live-stream', 'tournament_id' => $tournament->getId(), 'bracketId' => $bracket->getId()]); ?></div>
+                            <?php endif; ?>
+                            <div class="bracket <?= $liveStream; ?>">
+                                <div class="bracketParticipant <?= $class1; ?>"><?= $participant1; ?></div>
+                                <div class="bracketParticipant <?= $class2; ?>"><?= $participant2; ?></div>
                             </div>
 
                         <?php endforeach; ?>
@@ -299,8 +342,11 @@ $this->title = 'Turnier Details';
             </div>
         </div>
 
-
     <?php else: ?>
         <b>!!!</b> Hier erscheint nach Turnierstart der Turnierbaum <b>!!!</b>
     <?php endif; ?>
+
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdo7W8BCQxO0ZglrrFiAHvSZtsu3GoIyq5mNa3Eeuuwdbfdpg/viewform?embedded=true" width="1055" height="1010" frameborder="0" marginheight="0" marginwidth="0">Wird geladen...</iframe>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScNl-8L9WKZwcHmawQLwnIzj_GfqbyAVlHw4BCZ6dlE-M9Fcw/viewform?embedded=true" width="1055" height="1340" frameborder="0" marginheight="0" marginwidth="0">Wird geladen...</iframe>
+
 </div>

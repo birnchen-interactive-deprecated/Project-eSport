@@ -20,6 +20,8 @@ use app\modules\tournaments\models\PlayerParticipating;
 use app\modules\tournaments\models\TeamParticipating;
 use app\modules\tournamenttrees\models\Bracket;
 
+use app\modules\user\models\User;
+
 class RocketleagueController extends BaseController
 {
 	/**
@@ -281,6 +283,31 @@ class RocketleagueController extends BaseController
     }
 
     /**
+     */
+    public function actionBracketLiveStream($tournament_id = null, $bracketId = null)
+    {
+        $run = false;
+        if (Yii::$app->user->identity != NULL && Yii::$app->user->identity->getId() <= 4) {
+            $run = true;
+        }
+
+        if (false === $run) {
+            Alert::addError('Ungültige Aktion.');
+            return $this->redirect('tournament-details?id=' . $tournament_id);
+        }
+
+        $bracket = Bracket::getById($bracketId);
+        if ($bracket->tournament_id != $tournament_id) {
+            Alert::addError('Das Bracket ist nicht in diesem Turnier.');
+            return $this->redirect('tournament-details?id=' . $tournament_id);
+        }
+
+        $bracket->changeLiveStream();
+
+        return $this->redirect('tournament-details?id=' . $tournament_id);
+    }
+
+    /**
      * Rocket League Create Brackets
      *
      * @param null $tournament_id
@@ -306,6 +333,27 @@ class RocketleagueController extends BaseController
         $tournament = Tournament::getTournamentById($tournament_id);
         $bracketMode = $tournament->getBracketMode()->one();
         $participatingEntrys = $tournament->getParticipants()->all();
+        foreach ($participatingEntrys as $key => $entry) {
+
+            if ($entry instanceof User) {
+
+                $participating = PlayerParticipating::findPlayerCheckedIn($tournament_id, $entry->getId());
+                if (NULL === $participating) {
+                    $participatingEntrys[$key] = NULL;
+                }
+
+            } else {
+
+                $participating = TeamParticipating::findTeamCheckedIn($tournament_id, $entry->getId());
+                if (NULL === $participating) {
+                    $participatingEntrys[$key] = NULL;
+                }
+
+            }
+
+        }
+
+        $participatingEntrys = array_filter($participatingEntrys);
 
         if (NULL !== $bracketMode) {
             $doubleElimination = ($bracketMode->getName() == 'Double Elimination') ? true : false;

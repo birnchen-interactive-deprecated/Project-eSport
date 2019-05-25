@@ -17,6 +17,7 @@ use app\modules\user\models\User;
  * @property int $tournament_id
  * @property int $best_of default:3
  * @property int $tournament_round
+ * @property int $live_stream
  * @property boolean $is_winner_bracket default:true
  * @property SubTeam|NULL $team_1_id
  * @property SubTeam|NULL $team_2_id
@@ -33,6 +34,18 @@ class Bracket extends ActiveRecord
     public static function tableName()
     {
         return 'bracket'; // Tabellenname gegebenenfalls ändern??
+    }
+
+    /**
+     * @return array
+     */
+    private function getLiveStreamClasses() {
+    	return [
+    		'',
+    		'stream1',
+    		'stream2',
+    		'stream3',
+    	];
     }
 
 	/**
@@ -73,6 +86,15 @@ class Bracket extends ActiveRecord
 	public function getTournamentRound()
 	{
 		return $this->tournament_round;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getLiveStreamClass()
+	{
+		$classes = $this->getLiveStreamClasses();
+		return $classes[$this->live_stream];
 	}
 
 	/**
@@ -179,11 +201,12 @@ class Bracket extends ActiveRecord
 				$preText = ucfirst($preBracket['type']);
 				$preRound = $preBracket['bracket']->getTournamentRound();
 				$preRound = (998 == $preRound) ? 'Finale' : $preRound;
-				$return[] = $preText . ' von Runde ' . $preRound . ' Bracket ' . $preBracket['bracket']->getEncounterId();
+				$return[] = $preText . ' Runde ' . $preRound . ' Bracket ' . $preBracket['bracket']->getEncounterId();
 			}
 
 		} else {
 
+			array_shift($refs);
 			$slot = $this->hasOne($class, $vars)->one();
 			if ($slot instanceof User) {
 				$return[] = $slot->getUsername();
@@ -222,7 +245,7 @@ class Bracket extends ActiveRecord
 				$preText = ucfirst($preBracket['type']);
 				$preRound = $preBracket['bracket']->getTournamentRound();
 				$preRound = (998 == $preRound) ? 'Finale' : $preRound;
-				$return[] = $preText . ' von Runde ' . $preRound . ' Bracket ' . $preBracket['bracket']->getEncounterId();
+				$return[] = $preText . ' Runde ' . $preRound . ' Bracket ' . $preBracket['bracket']->getEncounterId();
 			}
 
 		} else {
@@ -331,6 +354,44 @@ class Bracket extends ActiveRecord
 			$looserBracket->setSpielerByBackRef($this->$looserField, $type, $this->getId());
 		}
 
+	}
+
+	/**
+	 * @return boolean|int
+	 */
+	public function checkisFinished()
+	{
+		$type = (NULL !== $this->user_1_id) ? 'user' : 'team';
+		$winnerBracket = $this->getWinnerBracket()->one();
+
+		if ($type === 'user') {
+
+			if ($this->user_1_id === $winnerBracket->user_1_id && $winnerBracket->user_1_id != NULL || $this->user_1_id === $winnerBracket->user_2_id && $winnerBracket->user_2_id != NULL) {
+				return 1;
+			} else if ($this->user_2_id === $winnerBracket->user_1_id  && $winnerBracket->user_1_id != NULL || $this->user_2_id === $winnerBracket->user_2_id && $winnerBracket->user_2_id != NULL) {
+				return 2;
+			} 
+
+		} else {
+
+			if ($this->team_1_id === $winnerBracket->team_1_id && $winnerBracket->team_1_id != NULL || $this->team_1_id === $winnerBracket->team_2_id && $winnerBracket->team_2_id != NULL) {
+				return 1;
+			} else if ($this->team_2_id === $winnerBracket->team_1_id && $winnerBracket->team_1_id != NULL || $this->team_2_id === $winnerBracket->team_2_id && $winnerBracket->team_2_id != NULL) {
+				return 2;
+			} 
+
+		}
+
+		return false;
+	}
+
+	/**
+	 */
+	public function changeLiveStream()
+	{
+		$classes = $this->getLiveStreamClasses();
+		$this->live_stream = ($this->live_stream + 1) % count($classes);
+		$this->update();
 	}
 
 	/**
