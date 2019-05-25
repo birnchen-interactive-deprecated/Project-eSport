@@ -314,7 +314,7 @@ class SubTeam extends ActiveRecord
             $members[] = $teamMember->getUser()->one();
         }
 
-        if ($sort) {
+        if (true) {
             usort($members, function($a, $b) {
                 return $a->getUsername() > $b->getUsername();
             });
@@ -405,6 +405,9 @@ class SubTeam extends ActiveRecord
     public function getTeamMembersFormatted()
     {
         $users = $this->getSubTeamMembers()->orderBy('is_sub')->all();
+        //$users = SubTeam::findOne(['id' => 1])->getSubTeamMembers();
+
+        //print_r($users); die();
 
         $userString = array_map(function ($arr) {
             $userName = $arr->getUser()->one()->getUsername();

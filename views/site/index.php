@@ -48,7 +48,7 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
                         It's done!!!<br>                  
                         Players and teams can finally manage themselves.<br>
                         <br>
-                        Players:<br>
+                        Team Captains:<br>
                         Go to your account and click on the button next to Main Team. Congratulations you have created your first own team with us.<br>
                         <br>
                         Teams:<br>
