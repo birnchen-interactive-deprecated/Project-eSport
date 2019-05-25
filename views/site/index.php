@@ -32,7 +32,7 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
                         Go to your account and click on the button next to Main Team. Congratulations you have created your first own team with us.<br>
                         <br>
                         Teams:<br>
-                        Go to your Main Team (via Account) and click on the button next to Sub Teams. Congratulations you have created your first own team with us.
+                        Go to your Main Team (via Account) and click on the button next to Sub Teams. Congratulations you have created your first own sub team with us.
                         <br>
                     </div>
                     <div class="containerAuthor">Birnchen</div>
