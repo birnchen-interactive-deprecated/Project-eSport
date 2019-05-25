@@ -34,7 +34,7 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
                     <div class="containerText col-lg-9">
                     Congratulations to <?= Html::a('xer02rl', ['/user/details', 'id' => '156']); ?> to this amazing win Today in 1v1.
                     He beated up 15 other participating Players on the first Day of the new Season.<br>
-                    After a long Night he gets the First 20 Points for the 100€ Season Price.
+                    After a long Night he gets the First 20 Points for the 600€ Season Price Pool.
                     <br><br>
                     Second Place: <?= Html::a('Dongiii', ['/user/details', 'id' => '162']); ?> with 17 Points<br>
                     Third Place: <?= Html::a('NoAvian', ['/user/details', 'id' => '38']); ?> with 15 Points<br>
