@@ -237,9 +237,9 @@ class TeamsController extends BaseController
         $model->save();
 
 
-        Alert::addSuccess('Team created');
+        Alert::addSuccess('Sub Team created');
 
-        return $this->redirect("team-details?id=" . $teamId);
+        return $this->redirect('edit-details?id=' . SubTeam::findOne(['main_team_id' => $teamId, 'name' => $model->name])->getId() . '&isSub=1');
     }
 
     public function actionDeleteMember($teamId, $userId, $isSub = false)
