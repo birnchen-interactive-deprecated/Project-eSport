@@ -19,11 +19,31 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
             <div class="newsContainer">
                 <div class="containerHeader">
                     <span class="headerKategorie"><img src="../images/gameLogos/1.webp">Rocket League</span>
+                    <span class="headerTitle">Gerta Cup Season 3 3v3 Day 1</span>
+                    <span class="headerDate">26.05.2019</span>
+                </div>
+                <div class="containerBody clearfix">
+                    <div class="containerImage col-lg-3"><img src="h../images/news/gerta-cup.webp" alt="" style="width: 100%;     padding-top: 33px;"></div>
+                    <div class="containerText col-lg-9">
+                        Congratulations to <?= Html::a('Wind and Rain', ['/teams/sub-team-details', 'id' => '58']); ?> to hardly fighted win Today in 3v3.<br>
+                        They beat 14 other participating Teams on the first Day of the new Season.<br>
+                        After a realy long Fight over two B05's they gets the First 20 Points for the 600€ Season Price Pool, and are 20 Points closer to Qualify for the PeSp Masters 2019 in Cologne.
+                        <br><br>
+                        Second Place: <?= Html::a('FreezeUnit Team B', ['/teams/sub-team-details', 'id' => '57']); ?> with 17 Points<br>
+                        Third Place: <?= Html::a('Esport BERG', ['/teams/sub-team-details', 'id' => '23']); ?> with 15 Points<br>
+                    </div>
+                    <div class="containerAuthor">Birnchen</div>
+                </div>
+            </div>
+
+            <div class="newsContainer">
+                <div class="containerHeader">
+                    <span class="headerKategorie"><img src="../images/gameLogos/1.webp">Rocket League</span>
                     <span class="headerTitle">Gerta Cup Season 3 2v2 Day 1</span>
                     <span class="headerDate">25.05.2019</span>
                 </div>
                 <div class="containerBody clearfix">
-                    <div class="containerImage col-lg-3"><img src="https://pbs.twimg.com/media/D7bEW_JUIAAGHkj?format=jpg&name=small" alt="" style="width: 100%;     padding-top: 33px;"></div>
+                    <div class="containerImage col-lg-3"><img src="../images/news/gerta-cup.webp" alt="" style="width: 100%;     padding-top: 33px;"></div>
                     <div class="containerText col-lg-9">
                         Congratulations to <?= Html::a('Stealth 7 eSports', ['/teams/sub-team-details', 'id' => '9']); ?> to this amazing win Today in 2v2.<br>
                         They beat 8 other participating Teams on the first Day of the new Season.<br>
@@ -43,7 +63,7 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
                     <span class="headerDate">25.05.2019</span>
                 </div>
                 <div class="containerBody clearfix">
-                    <div class="containerImage col-lg-3"><img src="../images/PeSpLogos/pesp.png" alt="" style="width: 100%; padding-top: 25px;"></div>
+                    <div class="containerImage col-lg-3"><img src="../images/news/technic.webp" alt="" style="width: 100%; padding-top: 25px;"></div>
                     <div class="containerText col-lg-9">
                         It's done!!!<br>                  
                         Players and teams can finally manage themselves.<br>
@@ -66,7 +86,7 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
                     <span class="headerDate">24.05.2019</span>
                 </div>
                 <div class="containerBody clearfix">
-                    <div class="containerImage col-lg-3"><img src="https://pbs.twimg.com/media/D7Xrs37UYAAt_xi?format=jpg&name=small" alt="" style="width: 100%;     padding-top: 33px;"></div>
+                    <div class="containerImage col-lg-3"><img src="../images/news/gerta-cup.webp" alt="" style="width: 100%;     padding-top: 33px;"></div>
                     <div class="containerText col-lg-9">
                         Congratulations to <?= Html::a('xer02rl', ['/user/details', 'id' => '156']); ?> to this amazing win Today in 1v1.<br>
                         He beat 15 other participating Players on the first Day of the new Season.<br>
