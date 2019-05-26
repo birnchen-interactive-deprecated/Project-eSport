@@ -23,7 +23,7 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
                     <span class="headerDate">26.05.2019</span>
                 </div>
                 <div class="containerBody clearfix">
-                    <div class="containerImage col-lg-3"><img src="../images/news/gerta-cup.webp" alt="" style="width: 100%;     padding-top: 33px;"></div>
+                    <div class="containerImage col-lg-3"><img src="../images/news/gerta-cup.webp" alt="" style="width: 100%; padding-top: 50px;"></div>
                     <div class="containerText col-lg-9">
                         Congratulations to <?= Html::a('Wind and Rain', ['/teams/sub-team-details', 'id' => '58']); ?> to hardly fighted win Today in 3v3.<br>
                         They beat 14 other participating Teams on the first Day of the new Season.<br>
@@ -43,7 +43,7 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
                     <span class="headerDate">25.05.2019</span>
                 </div>
                 <div class="containerBody clearfix">
-                    <div class="containerImage col-lg-3"><img src="../images/news/gerta-cup.webp" alt="" style="width: 100%;     padding-top: 33px;"></div>
+                    <div class="containerImage col-lg-3"><img src="../images/news/gerta-cup.webp" alt="" style="width: 100%;     padding-top: 40px;"></div>
                     <div class="containerText col-lg-9">
                         Congratulations to <?= Html::a('Stealth 7 eSports', ['/teams/sub-team-details', 'id' => '9']); ?> to this amazing win Today in 2v2.<br>
                         They beat 8 other participating Teams on the first Day of the new Season.<br>
@@ -63,7 +63,7 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
                     <span class="headerDate">25.05.2019</span>
                 </div>
                 <div class="containerBody clearfix">
-                    <div class="containerImage col-lg-3"><img src="../images/news/technic.webp" alt="" style="width: 100%; padding-top: 25px;"></div>
+                    <div class="containerImage col-lg-3"><img src="../images/news/technic.webp" alt="" style="width: 100%; padding-top: 60px;"></div>
                     <div class="containerText col-lg-9">
                         It's done!!!<br>                  
                         Players and teams can finally manage themselves.<br>
