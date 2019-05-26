@@ -386,8 +386,9 @@ li.teamName > ul {
 }
 
 .containerAuthor {
-    position: absolute;
     bottom: 6px;
-    right: 7px;
     font-size: 14px;
+    width: 100%;
+    height: 10%;
+    text-align: right;
 }
