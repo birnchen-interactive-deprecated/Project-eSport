@@ -20,6 +20,8 @@ use app\modules\tournaments\models\PlayerParticipating;
 use app\modules\tournaments\models\TeamParticipating;
 use app\modules\tournamenttrees\models\Bracket;
 
+use app\modules\tournamenttrees\models\formModels\EncounterDetailsForm;
+
 use app\modules\user\models\User;
 
 class RocketleagueController extends BaseController
@@ -280,6 +282,37 @@ class RocketleagueController extends BaseController
         Alert::addSuccess('Bracket erfolgreich abgeschlossen.');
 
         return $this->redirect('tournament-details?id=' . $tournament_id);
+    }
+
+    /**
+     * Close Bracket by Player
+     */
+    public function actionCloseBracket($tournament_id = null, $bracketId = null)
+    {
+        /** Sicherheitsbereich */
+        if (Yii::$app->user->isGuest || Yii::$app->user->identity == null) {
+            return $this->goHome();
+        }
+
+        $bracket = Bracket::getById($bracketId);
+        if ($bracket->tournament_id != $tournament_id) {
+            Alert::addError('Das Bracket ist nicht in diesem Turnier.');
+            return $this->redirect('tournament-details?id=' . $tournament_id);
+        }
+
+        /** End of Sicherheitsbereich */
+
+        $model = EncounterDetailsForm::getEncounterForm($tournament_id, $bracketId);
+        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->save()){
+            $winner = $model->winnerId;
+            Alert::addSuccess('Alle daten erfolgreich eingetragen.');
+            return $this->redirect('move-player-in-bracket?tournament_id=' . $tournament_id . '?winner' . $winner . '?bracketId=' . $bracketId);
+        }
+
+        return $this->render('editEncounterDetails',
+            [
+                //'id' => $id,
+            ]);
     }
 
     /**

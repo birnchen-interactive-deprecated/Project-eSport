@@ -96,6 +96,14 @@ class SubTeam extends ActiveRecord
     }
 
     /**
+     * @return int tournament mode id
+     */
+    public function getTournamentModeMaxPlayers()
+    {
+        return $this->hasOne(TournamentMode::className(), ['id' => 'tournament_mode_id'])->one()->getMaxPlayer();
+    }
+
+    /**
      * @return ActiveQuery
      */
     public function getTournamentMode()
@@ -330,6 +338,22 @@ class SubTeam extends ActiveRecord
     public function getSubTeamMainMembers()
     {
         return $this->hasMany(SubTeamMember::className(), ['sub_team_id' => 'id', 'is_sub' => 0]);
+    }
+
+    /**
+     * @return ActiveQuery
+     */
+    public function getSubTeamMembersCount()
+    {
+        return $this->hasMany(SubTeamMember::className(), ['sub_team_id' => 'id'])->count();
+    }
+
+    /**
+     * @return ActiveQuery
+     */
+    public function getSubTeamMainMembersCount()
+    {
+        return $this->hasMany(SubTeamMember::className(), ['sub_team_id' => 'id', 'is_sub' => 0])->count();
     }
 
     /**

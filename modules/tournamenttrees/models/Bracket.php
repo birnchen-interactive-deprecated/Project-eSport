@@ -114,11 +114,43 @@ class Bracket extends ActiveRecord
 	}
 
 	/**
+	 * @return bool
+	 */
+	public function isManageable($id)
+	{
+		if ($this->getTeam1()->one() !== NULL) {
+			$team = $this->getTeam1()->one();
+
+			//if($team != null)
+			//{
+				if($team->getTeamCaptainId() == $id || $team->getTeamDeputyId() == $id)
+				return true;
+			//}
+		}
+		if ($this->getPlayer1()->one() !== NULL) {
+			
+		}
+
+        return false;
+	}
+
+	/**
 	 * @return ActiveQuery|NULL
 	 */
 	public function getTeam2()
 	{
 		return $this->hasOne(SubTeam::className(), ['id' => 'team_2_id']);
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function isTeam2Manager($id)
+	{
+		$team = $this->hasOne(SubTeam::className(), ['id' => 'team_2_id']);
+		
+		//if($team->getTeamCaptainId() == $id || $team->getTeamDeputyId() == $id)
+			return true;
 	}
 
 	/**

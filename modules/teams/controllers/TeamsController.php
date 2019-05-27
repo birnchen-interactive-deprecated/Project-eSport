@@ -348,18 +348,29 @@ class TeamsController extends BaseController
             return $this->goHome();
         }
 
-        $model = new SubTeamMember();
+        $subTeam = SubTeam::findOne(['id' => $teamId]);
 
-        $model->user_id = $userId;
-        $model->sub_team_id = $teamId;
-        $model->is_sub = $sub;
+        if($subTeam->getSubTeamMembersCount() < $subTeam->getTournamentModeMaxPlayers())
+        {
+            $model = new SubTeamMember();
 
-        $model->save();
+            $model->user_id = $userId;
+            $model->sub_team_id = $teamId;
 
-        Alert::addSuccess('User Added');
-        
-        return $this->redirect("sub-team-details?id=" . $teamId);
+            $model->is_sub = $sub;
 
+            $model->save();
+
+            Alert::addSuccess('User Added');
+            
+            return $this->redirect("sub-team-details?id=" . $teamId);
+        }
+        else
+        {
+            Alert::addError('Maximum Players for this Tournament Moe reached');
+            
+            return $this->redirect("sub-team-details?id=" . $teamId);
+        }
     }
 
     public function actionSetMemberSubstitution($subTeamId, $userId)
