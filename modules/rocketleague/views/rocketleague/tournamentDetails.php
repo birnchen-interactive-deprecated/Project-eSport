@@ -210,7 +210,7 @@ $this->title = 'Turnier Details';
     </table>
 
     <!-- Google Ads bereich -->
-
+    
     <!-- Google Ads bereich -->
 
     <?php if (Yii::$app->user->identity instanceOf User && Yii::$app->user->identity->getId() <= 4): ?>
