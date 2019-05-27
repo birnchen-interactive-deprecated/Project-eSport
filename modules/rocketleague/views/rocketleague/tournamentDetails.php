@@ -290,7 +290,7 @@ $this->title = 'Turnier Details';
                                     <div class="bracketParticipant <?= $class1; ?>">
                                         <?= $participant1; ?>
                                         <!-- Captains/Deputy Area -->
-                                        <?php if($bracket->isManageable($user->getId()) || $isAdmin) : ?>
+                                        <?php if($bracket->isManageable($user->getId())) : ?>
                                             <div class="takeWinner" style="float: right;">
                                                     <?php echo Html::a('',
                                                         [
@@ -326,7 +326,7 @@ $this->title = 'Turnier Details';
                                     <div class="bracketParticipant <?= $class2; ?>">
                                         <?= $participant2; ?>
                                         <!-- Captains/Deputy Area -->
-                                        <?php if($bracket->isManageable($user->getId()) || $isAdmin) : ?>
+                                        <?php if($bracket->isManageable($user->getId())) : ?>
                                             <div class="takeWinner" style="float: right;">
                                                     <?php echo Html::a('',
                                                         [

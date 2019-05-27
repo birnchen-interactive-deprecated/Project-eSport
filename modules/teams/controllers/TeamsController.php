@@ -336,7 +336,7 @@ class TeamsController extends BaseController
         }        
     }
 
-    public function actionAddMemberToTeam($teamId, $userId, $sub)
+    public function actionAddMemberToTeam($teamId, $userId)
     {
         if (Yii::$app->user->isGuest || Yii::$app->user->identity == null) {
             return $this->goHome();
@@ -350,18 +350,21 @@ class TeamsController extends BaseController
 
         $subTeam = SubTeam::findOne(['id' => $teamId]);
 
-        if($subTeam->getSubTeamMembersCount() < $subTeam->getTournamentModeMaxPlayers())
+        if($subTeam->getSubTeamMembers()->count() < $subTeam->getTournamentModeMaxPlayers())
         {
             $model = new SubTeamMember();
 
             $model->user_id = $userId;
             $model->sub_team_id = $teamId;
 
-            $model->is_sub = $sub;
+            if($subTeam->getSubTeamMainMembersCount() >= $subTeam->getTournamentModeMaxMainPlayers())
+                $model->is_sub = true;
+            else
+                $model->is_sub = false;
 
             $model->save();
 
-            Alert::addSuccess('User Added');
+            Alert::addSuccess('User Added as ' . (($model->is_sub) ? 'Substitude' : 'Player'));
             
             return $this->redirect("sub-team-details?id=" . $teamId);
         }
@@ -380,10 +383,37 @@ class TeamsController extends BaseController
 
         if($model != null)
         {
-            $model->is_sub = !$model->is_sub;
-            $model->save();
+            $subTeam = SubTeam::findOne(['id' => $subTeamId]);
 
-            Alert::addSuccess('User ' . $model->getUser()->one()->getUsername() . ' set from ' . (($model->is_sub) ? 'Main Player' : 'Substitude') . ' to '. (($model->is_sub) ? 'Substitude' : 'Main Player'));
+
+            if($model->is_sub)
+            {
+                if($subTeam->getSubTeamMainMembersCount() >= $subTeam->getTournamentModeMaxMainPlayers())
+                {
+                    Alert::addError('Too much Main Players in this Team');
+                    return $this->redirect("sub-team-details?id=" . $subTeamId);
+                }
+                else
+                {
+                    $model->is_sub = false;
+                    Alert::addSuccess('User ' . $model->getUser()->one()->getUsername() . ' set from ' . (($model->is_sub) ? 'Main Player' : 'Substitude') . ' to '. (($model->is_sub) ? 'Substitude' : 'Main Player'));
+                }
+            }
+            else
+            {
+                if($subTeam->getSubTeamSubMembersCount() >= $subTeam->getTournamentModeMaxSubPlayers())
+                {
+                    Alert::addError('Too much sub Players in this Team');
+                    return $this->redirect("sub-team-details?id=" . $subTeamId);
+                }
+                else
+                {
+                    $model->is_sub = true;
+                    Alert::addSuccess('User ' . $model->getUser()->one()->getUsername() . ' set from ' . (($model->is_sub) ? 'Main Player' : 'Substitude') . ' to '. (($model->is_sub) ? 'Substitude' : 'Main Player'));
+                }
+            }
+
+            $model->save();
 
             //Alert::addError("Pierre ist doof"); 
             //Alert::addInfo("Pierre ist doof"); 

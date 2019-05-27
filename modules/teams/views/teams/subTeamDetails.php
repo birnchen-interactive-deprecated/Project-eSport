@@ -165,7 +165,6 @@ Yii::$app->MetaClass->writeMetaMainTeam($this, $teamDetails, $this->title);
                                     "add-member-to-team",
                                     "teamId" => $teamDetails->getId(),
                                     "userId" => $invitabelPlayer->getId(),
-                                    "sub" => false
                                 ],
                                 ['class' => "glyphicon glyphicon-upload",
                                     'title' => "Add Player"

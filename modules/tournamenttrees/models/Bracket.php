@@ -118,20 +118,25 @@ class Bracket extends ActiveRecord
 	 */
 	public function isManageable($id)
 	{
-		if ($this->getTeam1()->one() !== NULL) {
+		if ($this->getTeam1()->one() !== NULL && !$this->checkIfBracketClosed()) {
 			$team = $this->getTeam1()->one();
 
-			//if($team != null)
-			//{
-				if($team->getTeamCaptainId() == $id || $team->getTeamDeputyId() == $id)
+			if($team->getTeamCaptainId() == $id || $team->getTeamDeputyId() == $id)
 				return true;
-			//}
 		}
 		if ($this->getPlayer1()->one() !== NULL) {
-			
+			return false;
 		}
 
         return false;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function checkIfBracketClosed()
+	{
+		return true;
 	}
 
 	/**
