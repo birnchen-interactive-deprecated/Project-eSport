@@ -25,7 +25,7 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
                 <div class="containerBody clearfix">
                     <div class="containerImage col-lg-3"><img src="../images/news/gerta-cup.webp" alt="" style="width: 100%; padding-top: 50px;"></div>
                     <div class="containerText col-lg-9">
-                        Congratulations to <?= Html::a('Wind and Rain', ['/teams/sub-team-details', 'id' => '58']); ?> to hardly fighted win Today in 3v3.<br>
+                        Congratulations to <?= Html::a('Wind and Rain', ['/teams/sub-team-details', 'id' => '58']); ?> for this hardly fighted win Today in 3v3.<br>
                         They beat 14 other participating Teams on the first Day of the new Season.<br>
                         After a realy long Fight over two B05's they gets the First 20 Points for the 600€ Season Price Pool, and are 20 Points closer to Qualify for the PeSp Masters 2019 in Cologne.
                         <br><br>
@@ -45,7 +45,7 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
                 <div class="containerBody clearfix">
                     <div class="containerImage col-lg-3"><img src="../images/news/gerta-cup.webp" alt="" style="width: 100%;     padding-top: 40px;"></div>
                     <div class="containerText col-lg-9">
-                        Congratulations to <?= Html::a('Stealth 7 eSports', ['/teams/sub-team-details', 'id' => '9']); ?> to this amazing win Today in 2v2.<br>
+                        Congratulations to <?= Html::a('Stealth 7 eSports', ['/teams/sub-team-details', 'id' => '9']); ?> for this amazing win Today in 2v2.<br>
                         They beat 8 other participating Teams on the first Day of the new Season.<br>
                         After a long Fight they gets the First 20 Points for the 600€ Season Price Pool.
                         <br><br>
@@ -88,7 +88,7 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
                 <div class="containerBody clearfix">
                     <div class="containerImage col-lg-3"><img src="../images/news/gerta-cup.webp" alt="" style="width: 100%;     padding-top: 33px;"></div>
                     <div class="containerText col-lg-9">
-                        Congratulations to <?= Html::a('xer02rl', ['/user/details', 'id' => '156']); ?> to this amazing win Today in 1v1.<br>
+                        Congratulations to <?= Html::a('xer02rl', ['/user/details', 'id' => '156']); ?> for this amazing win Today in 1v1.<br>
                         He beat 15 other participating Players on the first Day of the new Season.<br>
                         After a long Night he gets the First 20 Points for the 600€ Season Price Pool.
                         <br><br>
