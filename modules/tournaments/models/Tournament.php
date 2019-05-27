@@ -278,10 +278,10 @@ class Tournament extends ActiveRecord
      */
     public function showRegisterBtn($subTeams, $user) {
         if ($this->getMode()->one()->getMaxPlayer() == 1) {
-
             if (NULL === $user) {
                 return false;
             }
+            
 
             $gameFound = false;
             $userGames = $user->getGames()->all();
@@ -335,7 +335,9 @@ class Tournament extends ActiveRecord
         $retArr = array();
         foreach ($subTeams as $key => $subTeam) {
 
-            if ($subTeam->getTournamentModeId() !== $this->getModeId()) {
+
+            if ($subTeam->getTournamentModeId() != $this->getModeId()) {
+
                 continue;
             }
 
@@ -369,6 +371,7 @@ class Tournament extends ActiveRecord
                     }
                     $playersWithRLID++;
                 }
+                
 
             }
 
@@ -379,6 +382,8 @@ class Tournament extends ActiveRecord
             if ($playersWithRLID < count($teamMembers)) {
                 continue;
             }
+
+
 
             $isParticipating = $this->checkTeamParticipating($subTeam);
 
@@ -431,7 +436,6 @@ class Tournament extends ActiveRecord
         }
 
         foreach ($subTeams as $key => $subTeam) {
-
             if ($subTeam->getTournamentModeId() !== $this->getModeId()) {
                 continue;
             }

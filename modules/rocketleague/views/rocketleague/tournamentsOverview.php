@@ -14,13 +14,12 @@ usort($tournamentList, function ($a, $b) {
 });
 
 $subTeams = [];
+$user = null;
 if(Yii::$app->user->identity != null)
 {
     $user = Yii::$app->user->identity;
     $subTeams = $user->getSubTeamsOwnership();
 }
-
-$user = null;
 
 
 $now = new DateTime();
@@ -216,6 +215,7 @@ $this->title = 'RL Tournament Overview';
                     <td>
                         <?php
                         if (Yii::$app->user != null && $tournament->showRegisterBtn($subTeams, $user)) {
+                            
                             $btns = $tournament->getRegisterBtns($subTeams, $user);
                             foreach ($btns as $btn) {
 
