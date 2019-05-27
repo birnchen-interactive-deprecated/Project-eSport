@@ -108,7 +108,7 @@ $this->title = 'RL Tournament Overview';
             <tbody>
             <?php foreach ($runningTurnier as $tournament): ?>
                 <tr>
-                    <td><?= Html::a($tournament->showRealTournamentName(), ['/rocketleague/tournament-details', 'id' => $tournament->getId()]) ?>
+                    <td><?= '[' . $tournament->getMode()->one()->getName() . '] ' . Html::a($tournament->showRealTournamentName(), ['/rocketleague/tournament-details', 'id' => $tournament->getId()]) ?>
                         <span class="badge"><?= count($tournament->getParticipants()->all()); ?></span></td>
                     <td><?= $tournament->getDtStartingTime(); ?></td>
                     <td>Running</td>
@@ -116,7 +116,7 @@ $this->title = 'RL Tournament Overview';
             <?php endforeach; ?>
             <?php foreach ($preRunningTurnier as $tournament): ?>
                 <tr>
-                    <td><?= Html::a($tournament->showRealTournamentName(), ['/rocketleague/tournament-details', 'id' => $tournament->getId()]) ?>
+                    <td><?= '[' . $tournament->getMode()->one()->getName() . '] ' . Html::a($tournament->showRealTournamentName(), ['/rocketleague/tournament-details', 'id' => $tournament->getId()]) ?>
                         <span class="badge"><?= count($tournament->getParticipants()->all()); ?></span></td>
                     <td><?= $tournament->getDtStartingTime(); ?></td>
                     <td>Preparing</td>
@@ -147,7 +147,7 @@ $this->title = 'RL Tournament Overview';
                 $checkInEnd = new DateTime($tournament->getDtCheckinClose());
                 ?>
                 <tr>
-                    <td><?= Html::a($tournament->showRealTournamentName(), ['/rocketleague/tournament-details', 'id' => $tournament->getId()]) ?>
+                    <td><?= '[' . $tournament->getMode()->one()->getName() . '] ' . Html::a($tournament->showRealTournamentName(), ['/rocketleague/tournament-details', 'id' => $tournament->getId()]) ?>
                         <span class="badge"><?= count($tournament->getParticipants()->all()); ?></span></td>
                     <td><?= $checkInBegin->format('Y-m-d'); ?></td>
                     <td><?= $checkInBegin->format('H:i'); ?> - <?= $checkInEnd->format('H:i'); ?></td>
@@ -176,7 +176,7 @@ $this->title = 'RL Tournament Overview';
                 $checkInEnd = new DateTime($tournament->getDtCheckinClose());
                 ?>
                 <tr>
-                    <td><?= Html::a($tournament->showRealTournamentName(), ['/rocketleague/tournament-details', 'id' => $tournament->getId()]); ?> <span
+                    <td><?= '[' . $tournament->getMode()->one()->getName() . '] ' . Html::a($tournament->showRealTournamentName(), ['/rocketleague/tournament-details', 'id' => $tournament->getId()]); ?> <span
                                 class="badge"><?= count($tournament->getParticipants()->all()); ?></span></td>
                     <td><?= $checkInBegin->format('Y-m-d'); ?></td>
                     <td><?= $checkInBegin->format('H:i'); ?> - <?= $checkInEnd->format('H:i'); ?></td>
@@ -208,7 +208,7 @@ $this->title = 'RL Tournament Overview';
                 $checkInEnd = new DateTime($tournament->getDtCheckinClose());
                 ?>
                 <tr>
-                    <td><?= Html::a($tournament->showRealTournamentName(), ['/rocketleague/tournament-details', 'id' => $tournament->getId()]) ?>
+                    <td><?= '[' . $tournament->getMode()->one()->getName() . '] ' . Html::a($tournament->showRealTournamentName(), ['/rocketleague/tournament-details', 'id' => $tournament->getId()]) ?>
                         <span class="badge"><?= count($tournament->getParticipants()->all()); ?></span></td>
                     <td><?= //TODO:: Yii::$app->formatter->asDatetime($tournament->getDtStartingTime()) überall
                          $tournament->getDtStartingTime(); ?></td>
@@ -253,7 +253,7 @@ $this->title = 'RL Tournament Overview';
             <tbody>
             <?php foreach ($plannedTurnier as $tournament): ?>
                 <tr class="fold">
-                    <td><?= Html::a($tournament->showRealTournamentName(), ['/rocketleague/tournament-details', 'id' => $tournament->getId()]) ?></td>
+                    <td><?= '[' . $tournament->getMode()->one()->getName() . '] ' . Html::a($tournament->showRealTournamentName(), ['/rocketleague/tournament-details', 'id' => $tournament->getId()]) ?></td>
                     <td><?= $tournament->getDtStartingTime(); ?></td>
                 </tr>
             <?php endforeach; ?>
@@ -276,7 +276,7 @@ $this->title = 'RL Tournament Overview';
             <tbody>
             <?php foreach ($archivTurnier as $tournament): ?>
                 <tr class="fold">
-                    <td><?= Html::a($tournament->showRealTournamentName(), ['/rocketleague/tournament-details', 'id' => $tournament->getId()]) ?></td>
+                    <td><?= '[' . $tournament->getMode()->one()->getName() . '] ' . Html::a($tournament->showRealTournamentName(), ['/rocketleague/tournament-details', 'id' => $tournament->getId()]) ?></td>
                     <td><?= $tournament->getDtStartingTime(); ?></td>
                 </tr>
             <?php endforeach; ?>
