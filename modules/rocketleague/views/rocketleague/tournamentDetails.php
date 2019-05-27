@@ -209,6 +209,10 @@ $this->title = 'Turnier Details';
         </tbody>
     </table>
 
+    <!-- Google Ads bereich -->
+
+    <!-- Google Ads bereich -->
+
     <?php if (Yii::$app->user->identity instanceOf User && Yii::$app->user->identity->getId() <= 4): ?>
         <?php $btnText = (count($brackets['winner']) > 0) ? 'Brackets neu erstellen' : 'Brackets erstellen'; ?>
         <?php if ($now->diff($turnierStart)->invert == 0 && $btnText === 'Brackets erstellen'): ?>

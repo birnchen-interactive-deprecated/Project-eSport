@@ -255,7 +255,8 @@ class Tournament extends ActiveRecord
 
         $dayName = $this->getName();
 
-        return '[' . $modeName . ']' . $cupName . ' ' . $season . ' ' . $dayName;
+        //return '[' . $modeName . '] ' . $cupName . ' ' . $season . ' ' . $dayName;
+        return $cupName . ' ' . $season . ' ' . $dayName;
     }
 
     /**

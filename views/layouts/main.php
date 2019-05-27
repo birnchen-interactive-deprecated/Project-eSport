@@ -94,6 +94,13 @@ if (Yii::$app->user->isGuest) {
         gtag('config', 'UA-140319651-1');
         gtag('set', {'user_id': '<?php echo $userID; ?>'}); // Legen Sie die User ID mithilfe des Parameters "user_id" des angemeldeten Nutzers fest.
     </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-8480651532892152",
+        enable_page_level_ads: true
+    });
+    </script>
 
     <?php $this->head() ?>
 </head>
