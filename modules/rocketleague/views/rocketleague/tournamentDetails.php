@@ -216,7 +216,14 @@ $this->title = 'Turnier Details';
     </table>
 
     <!-- Google Ads bereich -->
-    
+        <!-- Tournament Bracket -->
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:468px;height:60px"
+             data-ad-client="ca-pub-8480651532892152"
+             data-ad-slot="3583958654"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
     <!-- Google Ads bereich -->
 
     <?php if (Yii::$app->user->identity instanceOf User && Yii::$app->user->identity->getId() <= 4): ?>
