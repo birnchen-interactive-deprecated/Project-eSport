@@ -23,6 +23,7 @@ use app\modules\tournamenttrees\models\Bracket;
 use app\modules\tournamenttrees\models\formModels\EncounterDetailsForm;
 
 use app\modules\user\models\User;
+use app\modules\user\models\Language;
 
 class RocketleagueController extends BaseController
 {
