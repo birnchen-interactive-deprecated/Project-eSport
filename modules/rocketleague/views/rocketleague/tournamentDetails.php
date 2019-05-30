@@ -170,7 +170,7 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
             <?php if ('Team' === $userTeam): ?>
                 <th><?= \app\modules\rocketleague\Module::t('details', 'Spieler', $siteLanguage->locale) ?></th>
             <?php endif; ?>
-            <th><?= \app\modules\rocketleague\Module::t('details', 'checkedin', $siteLanguage->locale) ?><span class="badge"><?= $countCheckedIn . ' / 32'; ?></span></th>
+            <th><?= \app\modules\rocketleague\Module::t('details', 'checkedinstatus', $siteLanguage->locale) ?><span class="badge"><?= $countCheckedIn . ' / 32'; ?></span></th>
             <th><?= \app\modules\rocketleague\Module::t('details', 'notes', $siteLanguage->locale) ?></th>
         </tr>
         </thead>

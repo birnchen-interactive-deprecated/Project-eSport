@@ -9,7 +9,7 @@ return [
 	'participants' => 'Participants',
 	'User' => 'Player',
 	'Team' => 'Teams',
-	'checkedin' => 'Checked-in Status',
+	'checkedinstatus' => 'Checked-in Status',
 	'notes' => 'Notes',
 	'notcheckedin' => 'not checkedin',
 	'checkedin' => 'checkedin',
