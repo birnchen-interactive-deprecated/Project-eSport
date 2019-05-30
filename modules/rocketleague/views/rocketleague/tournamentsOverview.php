@@ -195,10 +195,10 @@ $this->title = 'RL Tournament Overview';
                             class="badge"><?= count($registerTurnier); ?></span></th>
             </tr>
             <tr class="bg-info">
-                <th>Turniername</th>
-                <th>Startdatum</th>
-                <th>Checkin Zeitraum</th>
-                <th>Register</th>
+                <th><?= \app\modules\rocketleague\Module::t('overview', 'tournamentname', $siteLanguage->locale) ?></th>
+                <th><?= \app\modules\rocketleague\Module::t('overview', 'startingdate', $siteLanguage->locale) ?></th>
+                <th><?= \app\modules\rocketleague\Module::t('overview', 'checkinduration', $siteLanguage->locale) ?></th>
+                <th><?= \app\modules\rocketleague\Module::t('overview', 'chooseyourteam', $siteLanguage->locale) ?></th>
             </tr>
             </thead>
             <tbody>

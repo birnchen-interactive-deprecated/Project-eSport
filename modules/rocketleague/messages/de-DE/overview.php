@@ -15,7 +15,8 @@ return [
 	'checkin' => 'Checkin',
 	'checkindate' => 'Checkin Datum',
 	'checkinduration' => 'Checkin Dauer',
-	'tournamentregistration' => 'Registrierung',
+	'tournamentregistration' => 'Für Registrierung Offen',
 	'tournamentplaning' => 'Geplante Turniere',
 	'tournamentachive' => 'Turnier Archive',
+	'chooseyourteam' => 'Team Auswählen',
 ];

@@ -18,4 +18,5 @@ return [
 	'tournamentregistration' => 'Open for Registration',
 	'tournamentplaning' => 'Planed Tournaments',
 	'tournamentachive' => 'Tournament Achive',
+	'chooseyourteam' => 'Choose your Team',
 ];
