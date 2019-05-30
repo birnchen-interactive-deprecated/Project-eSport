@@ -17,6 +17,6 @@ return [
 	'checkinduration' => 'Checkin Duration',
 	'tournamentregistration' => 'Open for Registration',
 	'tournamentplaning' => 'Planed Tournaments',
-	'tournamentachive' => 'Tournament Achive',
+	'tournamentachive' => 'Tournament Archive',
 	'chooseyourteam' => 'Choose your Team',
 ];
