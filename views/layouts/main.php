@@ -3,6 +3,7 @@
 /* 
  * @var $this yii\web\View
  * @var $socialMedia array
+ * @var siteLanguage
 */
 
 use app\assets\AppAsset;
@@ -10,12 +11,15 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
+
 use app\widgets\Alert;
 
+use app\modules\user\models\Language;
 use app\modules\user\models\TeamInvitations;
 
 AppAsset::register($this);
 
+Yii::$app->language = (Yii::$app->user->identity != null) ? Yii::$app->user->identity->getLanguage()->one()->getLocale() : 'en';
 $visible = (Yii::$app->user->isGuest) ? false : true;
 $userID = (Yii::$app->user->isGuest) ? null : Yii::$app->user->identity->getId();
 
@@ -47,29 +51,29 @@ if (array_key_exists("r", $_REQUEST) && $_REQUEST['r'] == 'events/overview') {
 }
 
 $navigation = array(
-    array('label' => 'Home', 'url' => ['/site/index'], 'linkOptions' => ['aria-label' => 'Home Button', 'title' => 'Home Button']),
-    array('label' => 'News', 'items' => array(
+    array('label' => Yii::t('app', 'home'), 'url' => ['/site/index'], 'linkOptions' => ['aria-label' => 'Home Button', 'title' => 'Home Button']),
+    array('label' => Yii::t('app', 'news'), 'items' => array(
         array('label' => 'Rocket League', 'url' => ['/rocketleague/news'], 'linkOptions' =>  ['aria-label' => 'RL News Button']),
     )),
-    array('label' => 'Player', 'url' => ['/user/overview'], 'linkOptions' => ['aria-label' => 'Player Button', 'title' => 'Player Button']),
-    array('label' => 'Teams', 'items' => array(
+    array('label' => Yii::t('app', 'player'), 'url' => ['/user/overview'], 'linkOptions' => ['aria-label' => 'Player Button', 'title' => 'Player Button']),
+    array('label' => Yii::t('app', 'teams'), 'items' => array(
         array('label' => 'Rocket League', 'url' => ['/rocketleague/teams-overview'], 'linkOptions' =>  ['aria-label' => 'Rocket League Button']),
     )),
-    array('label' => 'Turniere', 'items' => array(
+    array('label' => Yii::t('app', 'tournaments'), 'items' => array(
         array('label' => 'Rocket League', 'url' => ['/rocketleague/tournaments'], 'linkOptions' =>  ['aria-label' => 'RL Tournaments Button']),
     )),
-    array('label' => 'Jobs', 'url' => ['/company/jobs'], 'linkOptions' => ['aria-label' => 'Jobs Button']),
-    array('label' => 'Events', 'url' => ['/events/overview'], 'linkOptions' => ['aria-label' => 'Events Button', 'style' => 'color: #a0ce4e']),
+    array('label' => Yii::t('app', 'jobs'), 'url' => ['/company/jobs'], 'linkOptions' => ['aria-label' => 'Jobs Button']),
+    array('label' => Yii::t('app', 'events'), 'url' => ['/events/overview'], 'linkOptions' => ['aria-label' => 'Events Button', 'style' => 'color: #a0ce4e']),
 
 );
 if (Yii::$app->user->isGuest) {
-    $navigation[] = array('label' => 'Login', 'url' => ['/user/login'], 'linkOptions' => ['aria-label' => 'Login Button']);
+    $navigation[] = array('label' => Yii::t('app', 'login'), 'url' => ['/user/login'], 'linkOptions' => ['aria-label' => 'Login Button']);
 } else {
     $navigation[] = array('label' => '' . Yii::$app->user->identity->username . '', 'visible' => $visible, 'items' => array(
-        array('label' => 'Account', 'url' => ['/user/details', 'id' => Yii::$app->user->identity->getId()], 'linkOptions' => ['aria-label' => 'Account Button']),
+        array('label' => Yii::t('app', 'account'), 'url' => ['/user/details', 'id' => Yii::$app->user->identity->getId()], 'linkOptions' => ['aria-label' => 'Account Button']),
         array('label' => 'My Teams', 'url' => ['/site/my-teams'], 'linkOptions' => ['aria-label' => 'My Teams Button']),
         array('label' => 'My Tournaments', 'url' => ['/site/my-tournaments'], 'linkOptions' => ['aria-label' => 'My Tournaments Button']),
-        array('label' => 'Logout', 'url' => ['/site/logout'], 'linkOptions' => ['data-method' => 'post', 'aria-label' => 'Logout Button'], ['aria-label' => 'Logout Button']),
+        array('label' => Yii::t('app', 'logout'), 'url' => ['/site/logout'], 'linkOptions' => ['data-method' => 'post', 'aria-label' => 'Logout Button'], ['aria-label' => 'Logout Button']),
     ));
 }
 
