@@ -240,6 +240,7 @@ class RocketleagueController extends BaseController
      */
     public function actionTournamentDetails($id = null)
     {
+        $siteLanguage = (Yii::$app->user->identity != null) ? Yii::$app->user->identity->getLanguage()->one() : Language::findByLocale('en-US');
         $tournament = Tournament::getTournamentById($id);
         $ruleSet = $tournament->getRules();
 
@@ -253,6 +254,7 @@ class RocketleagueController extends BaseController
                 'ruleSet' => $ruleSet,
                 'participatingEntrys' => $participatingEntrys,
                 'brackets' => $brackets,
+                'siteLanguage' => $siteLanguage,
             ]
         );
     }

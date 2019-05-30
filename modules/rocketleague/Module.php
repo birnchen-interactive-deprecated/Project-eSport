@@ -28,10 +28,10 @@ use Yii;
  			'basePath' => '@app/modules/rocketleague/messages',
  			'fileMap' => [
  				'modules/rocketleague/overview' => 'overview.php',
- 				//'modules/user/login' => 'login.php',
- 				//'modules/user/register' => 'register.php',
- 				//'modules/user/account' => 'account.php',
- 				//'modules/user/userDetails' => 'userDetails.php',
+ 				'modules/rocketleague/details' => 'lodetailsgin.php',
+ 				//'modules/rocketleague/register' => 'register.php',
+ 				//'modules/rocketleague/account' => 'account.php',
+ 				//'modules/rocketleague/userDetails' => 'userDetails.php',
  			],
  		];
 
@@ -41,10 +41,10 @@ use Yii;
  			'basePath' => '@app/modules/rocketleague/messages',
  			'fileMap' => [
  				'modules/rocketleague/overview' => 'overview.php',
- 				//'modules/user/login' => 'login.php',
- 				//'modules/user/register' => 'register.php',
- 				//'modules/user/account' => 'account.php',
- 				//'modules/user/userDetails' => 'userDetails.php',
+ 				'modules/rocketleague/details' => 'details.php',
+ 				//'modules/rocketleague/register' => 'register.php',
+ 				//'modules/rocketleague/account' => 'account.php',
+ 				//'modules/rocketleague/userDetails' => 'userDetails.php',
  			],
  		];
  	}

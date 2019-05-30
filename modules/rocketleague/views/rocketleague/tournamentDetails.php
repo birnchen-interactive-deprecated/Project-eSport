@@ -5,6 +5,7 @@
  * @var $ruleSet array
  * @var $participatingEntrys array
  * @var $brackets array
+ * @var $siteLanguage
  */
 
 use app\modules\tournaments\models\TeamParticipating;
@@ -70,7 +71,7 @@ $turnierStart = new DateTime($tournament->getDtStartingTime());
 
 $challengeId = 'gerta' . $tournament->getModeId() . '_' . $turnierStart->format('ymd');
 
-$this->title = 'Turnier Details';
+$this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails', $siteLanguage->locale) ?>;
 ?>
 <div class="site-rl-tournament-details">
 
@@ -83,8 +84,8 @@ $this->title = 'Turnier Details';
                 <th class="namedHeader" colspan="2"><?= $ruleSet['baseSet']; ?></th>
             </tr>
             <tr class="bg-warning fold">
-                <th>Paragraph</th>
-                <th>Reglement</th>
+                <th><?= \app\modules\rocketleague\Module::t('overview', 'paragraph', $siteLanguage->locale) ?></th>
+                <th><?= \app\modules\rocketleague\Module::t('overview', 'reglement', $siteLanguage->locale) ?></th>
             </tr>
             </thead>
             <tbody>
@@ -103,11 +104,11 @@ $this->title = 'Turnier Details';
     <table class="points foldable table table-bordered table-striped table-hover">
         <thead>
         <tr class="bg-warning">
-            <th class="namedHeader" colspan="2">Punktetabelle</th>
+            <th class="namedHeader" colspan="2"><?= \app\modules\rocketleague\Module::t('details', 'points', $siteLanguage->locale) ?></th>
         </tr>
         <tr class="bg-warning fold">
-            <th width="50%" style="text-align: right">Platzierung</th>
-            <th width="50%">Punkte</th>
+            <th width="50%" style="text-align: right"><?= \app\modules\rocketleague\Module::t('details', 'placement', $siteLanguage->locale) ?></th>
+            <th width="50%"><?= \app\modules\rocketleague\Module::t('details', 'points', $siteLanguage->locale) ?></th>
         </tr>
         </thead>
         <tbody>
@@ -162,15 +163,15 @@ $this->title = 'Turnier Details';
     <table class="participants foldable table table-bordered table-striped table-hover">
         <thead>
         <tr class="bg-success">
-            <th class="namedHeader" colspan="5">Registrierungen</span></th>
+            <th class="namedHeader" colspan="5"><?= \app\modules\rocketleague\Module::t('details', 'participants', $siteLanguage->locale) ?></span></th>
         </tr>
         <tr class="bg-success">
-            <th colspan="2"><?= $userTeam; ?> <span class="badge"><?= count($participatingEntrys); ?></th>
+            <th colspan="2"><?= \app\modules\rocketleague\Module::t('details', $userTeam, $siteLanguage->locale); ?><span class="badge"><?= count($participatingEntrys); ?></th>
             <?php if ('Team' === $userTeam): ?>
-                <th>Spieler</th>
+                <th><?= \app\modules\rocketleague\Module::t('details', 'Spieler', $siteLanguage->locale) ?></th>
             <?php endif; ?>
-            <th>Checked-In <span class="badge"><?= $countCheckedIn . ' / 32'; ?></span></th>
-            <th>Hinweise</th>
+            <th><?= \app\modules\rocketleague\Module::t('details', 'checkedin', $siteLanguage->locale) ?><span class="badge"><?= $countCheckedIn . ' / 32'; ?></span></th>
+            <th><?= \app\modules\rocketleague\Module::t('details', 'notes', $siteLanguage->locale) ?></th>
         </tr>
         </thead>
         <tbody>
