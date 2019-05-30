@@ -10,6 +10,7 @@ return [
 	'User' => 'Spieler',
 	'Team' => 'Teams',
 	'checkedin' => 'Checked-in Status',
-	'notes' => 'Hinweise'
-
+	'notes' => 'Hinweise',
+	'notcheckedin' => 'nicht eingecheckt',
+	'checkedin' => 'eingecheckt',
 ];

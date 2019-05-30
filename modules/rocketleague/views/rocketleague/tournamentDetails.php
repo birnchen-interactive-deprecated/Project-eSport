@@ -84,8 +84,8 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
                 <th class="namedHeader" colspan="2"><?= $ruleSet['baseSet']; ?></th>
             </tr>
             <tr class="bg-warning fold">
-                <th><?= \app\modules\rocketleague\Module::t('overview', 'paragraph', $siteLanguage->locale) ?></th>
-                <th><?= \app\modules\rocketleague\Module::t('overview', 'reglement', $siteLanguage->locale) ?></th>
+                <th><?= \app\modules\rocketleague\Module::t('details', 'paragraph', $siteLanguage->locale) ?></th>
+                <th><?= \app\modules\rocketleague\Module::t('details', 'reglement', $siteLanguage->locale) ?></th>
             </tr>
             </thead>
             <tbody>
@@ -189,7 +189,7 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
             $entryName = ($entry instanceOf User) ? $entry->getUsername() : $entry->getName();
 
             $checkInStatus = $entry->getCheckInStatus($tournament->getId());
-            $checkInText = (false === $checkInStatus) ? 'Not Checked In' : 'Checked In';
+            $checkInText = (false === $checkInStatus) ? \app\modules\rocketleague\Module::t('details', 'notcheckedin', $siteLanguage->locale) : \app\modules\rocketleague\Module::t('details', 'checkedin', $siteLanguage->locale);
             $checkInClass = (false === $checkInStatus) ? 'alert-danger' : 'alert-success';
 
             $disqStatus = $entry->getDisqualifiedStatus($tournament->getId());

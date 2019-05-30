@@ -3,12 +3,14 @@
 return [
 	'tournamentdetails' => 'Tournament Details',
 	'paragraph' => 'Paragraph',
-	'reglement' =>'Rukles',
+	'reglement' =>'Rules',
 	'placement' => 'Placement',
 	'points' => 'Points',
 	'participants' => 'Participants',
 	'User' => 'Player',
 	'Team' => 'Teams',
 	'checkedin' => 'Checked-in Status',
-	'notes' => 'Notes'
+	'notes' => 'Notes',
+	'notcheckedin' => 'not checkedin',
+	'checkedin' => 'checkedin',
 ];
