@@ -7,7 +7,7 @@ return [
 
 	'tournamentoverview' => 'Tournament Overview',
 	'runningtournaments' => 'Running Tournaments',
-	'tournamentname' => 'Tournametn Name',
+	'tournamentname' => 'Tournament Name',
 	'startingdate' => 'Starting Date',
 	'status' => 'Status',
 	'running' => 'Running',
