@@ -247,8 +247,8 @@ $this->title = 'RL Tournament Overview';
                             class="badge"><?= count($plannedTurnier); ?></span></th>
             </tr>
             <tr class="bg-warning fold">
-                <th>Turniername</th>
-                <th>Startdatum</th>
+                <th><?= \app\modules\rocketleague\Module::t('overview', 'tournamentname', $siteLanguage->locale) ?></th>
+                <th><?= \app\modules\rocketleague\Module::t('overview', 'startingdate', $siteLanguage->locale) ?></th>
             </tr>
             </thead>
             <tbody>
