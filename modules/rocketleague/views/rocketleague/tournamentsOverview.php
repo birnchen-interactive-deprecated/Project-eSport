@@ -2,6 +2,7 @@
 
 /* @var $this yii\web\View
  * @var $tournamentList array<Tournaments>
+ * @var $siteLanguage
  */
 
 use yii\bootstrap\ActiveForm;
@@ -89,19 +90,19 @@ $this->title = 'RL Tournament Overview';
 ?>
 <div class="site-rl-tournament-overview">
 
-    <h1>Rocket League Tournament Overview</h1>
+    <h1>Rocket League <?= \app\modules\rocketleague\Module::t('overview', 'tournamentoverview', $siteLanguage->locale) ?></h1>
 
     <?php if (count($runningTurnier) > 0 || count($preRunningTurnier) > 0): ?>
         <table class="turnierStatus table table-bordered table-striped table-hover">
             <thead>
             <tr class="bg-success">
-                <th class="namedHeader" colspan="3">Laufende Turniere <span
+                <th class="namedHeader" colspan="3"><?= \app\modules\rocketleague\Module::t('overview', 'runningtournaments', $siteLanguage->locale) ?><span
                             class="badge"><?= (count($runningTurnier) + count($preRunningTurnier)); ?></span></th>
             </tr>
             <tr class="bg-success">
-                <th>Turniername</th>
-                <th>Startdatum</th>
-                <th>Status</th>
+                <th><?= \app\modules\rocketleague\Module::t('overview', 'tournamentname', $siteLanguage->locale) ?></th>
+                <th><?= \app\modules\rocketleague\Module::t('overview', 'startingdate', $siteLanguage->locale) ?></th>
+                <th><?= \app\modules\rocketleague\Module::t('overview', 'status', $siteLanguage->locale) ?></th>
             </tr>
             </thead>
             <tbody>
@@ -110,7 +111,7 @@ $this->title = 'RL Tournament Overview';
                     <td><?= '[' . $tournament->getMode()->one()->getName() . '] ' . Html::a($tournament->showRealTournamentName(), ['/rocketleague/tournament-details', 'id' => $tournament->getId()]) ?>
                         <span class="badge"><?= count($tournament->getParticipants()->all()); ?></span></td>
                     <td><?= $tournament->getDtStartingTime(); ?></td>
-                    <td>Running</td>
+                    <td><?= \app\modules\rocketleague\Module::t('overview', 'running', $siteLanguage->locale) ?></td>
                 </tr>
             <?php endforeach; ?>
             <?php foreach ($preRunningTurnier as $tournament): ?>
@@ -118,7 +119,7 @@ $this->title = 'RL Tournament Overview';
                     <td><?= '[' . $tournament->getMode()->one()->getName() . '] ' . Html::a($tournament->showRealTournamentName(), ['/rocketleague/tournament-details', 'id' => $tournament->getId()]) ?>
                         <span class="badge"><?= count($tournament->getParticipants()->all()); ?></span></td>
                     <td><?= $tournament->getDtStartingTime(); ?></td>
-                    <td>Preparing</td>
+                    <td><?= \app\modules\rocketleague\Module::t('overview', 'preparing', $siteLanguage->locale) ?></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
@@ -129,14 +130,14 @@ $this->title = 'RL Tournament Overview';
         <table class="turnierStatus table table-bordered table-striped table-hover">
             <thead>
             <tr class="bg-success">
-                <th class="namedHeader" colspan="4">Check In Turniere <span
+                <th class="namedHeader" colspan="4"><?= \app\modules\rocketleague\Module::t('overview', 'checkin', $siteLanguage->locale) ?><span
                             class="badge"><?= (count($checkInTurnier) + count($preCheckInTurnier)); ?></span></th>
             </tr>
             <tr class="bg-success">
-                <th>Turniername</th>
-                <th>Checkin Datum</th>
-                <th>Checkin Zeitraum</th>
-                <th>Checkin</th>
+                <th><?= \app\modules\rocketleague\Module::t('overview', 'tournamentname', $siteLanguage->locale) ?></th>
+                <th><?= \app\modules\rocketleague\Module::t('overview', 'checkindate', $siteLanguage->locale) ?></th>
+                <th><?= \app\modules\rocketleague\Module::t('overview', 'checkinduration', $siteLanguage->locale) ?></th>
+                <th><?= \app\modules\rocketleague\Module::t('overview', 'checkin', $siteLanguage->locale) ?></th>
             </tr>
             </thead>
             <tbody>
@@ -190,7 +191,7 @@ $this->title = 'RL Tournament Overview';
         <table class="turnierStatus table table-bordered table-striped table-hover">
             <thead>
             <tr class="bg-info">
-                <th class="namedHeader" colspan="4">Registration Turniere <span
+                <th class="namedHeader" colspan="4"><?= \app\modules\rocketleague\Module::t('overview', 'tournamentregistration', $siteLanguage->locale) ?><span
                             class="badge"><?= count($registerTurnier); ?></span></th>
             </tr>
             <tr class="bg-info">
@@ -242,7 +243,7 @@ $this->title = 'RL Tournament Overview';
         <table class="turnierStatus foldable table table-bordered table-striped table-hover">
             <thead>
             <tr class="bg-warning">
-                <th class="namedHeader" colspan="2">Geplante Turniere <span
+                <th class="namedHeader" colspan="2"><?= \app\modules\rocketleague\Module::t('overview', 'tournamentplaning', $siteLanguage->locale) ?><span
                             class="badge"><?= count($plannedTurnier); ?></span></th>
             </tr>
             <tr class="bg-warning fold">
@@ -265,12 +266,12 @@ $this->title = 'RL Tournament Overview';
         <table class="turnierStatus foldable table table-bordered table-striped table-hover">
             <thead>
             <tr class="bg-warning">
-                <th class="namedHeader" colspan="2">Turnier Archive <span
+                <th class="namedHeader" colspan="2"><?= \app\modules\rocketleague\Module::t('overview', 'tournamentachive', $siteLanguage->locale) ?><span
                             class="badge"><?= count($archivTurnier); ?></span></th>
             </tr>
             <tr class="bg-warning fold">
-                <th>Turniername</th>
-                <th>Startdatum</th>
+                <th><?= \app\modules\rocketleague\Module::t('overview', 'tournamentname', $siteLanguage->locale) ?></th>
+                <th><?= \app\modules\rocketleague\Module::t('overview', 'startingdate', $siteLanguage->locale) ?></th>
             </tr>
             </thead>
             <tbody>

@@ -150,6 +150,8 @@ class RocketleagueController extends BaseController
      */
     public function actionTournaments()
     {
+        $siteLanguage = (Yii::$app->user->identity != null) ? Yii::$app->user->identity->getLanguage()->one() : Language::findByLocale('en-US');
+
         if (is_array($_POST) && isset($_POST['tournamentId'])) {
 
             if (isset($_POST['user'])) {
@@ -223,6 +225,7 @@ class RocketleagueController extends BaseController
         return $this->render('tournamentsOverview',
             [
                 'tournamentList' => $tournamentList,
+                'siteLanguage' => $siteLanguage,
             ]
         );
     }
