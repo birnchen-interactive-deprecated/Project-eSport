@@ -104,11 +104,11 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
     <table class="points foldable table table-bordered table-striped table-hover">
         <thead>
         <tr class="bg-warning">
-            <th class="namedHeader" colspan="2"><?= \app\modules\rocketleague\Module::t('details', 'points', $siteLanguage->locale) ?></th>
+            <th class="namedHeader" colspan="2"><?= \app\modules\rocketleague\Module::t('details', 'pointstable', $siteLanguage->locale) ?></th>
         </tr>
         <tr class="bg-warning fold">
             <th width="50%" style="text-align: right"><?= \app\modules\rocketleague\Module::t('details', 'placement', $siteLanguage->locale) ?></th>
-            <th width="50%"><?= \app\modules\rocketleague\Module::t('details', 'pointstable', $siteLanguage->locale) ?></th>
+            <th width="50%"><?= \app\modules\rocketleague\Module::t('details', 'points', $siteLanguage->locale) ?></th>
         </tr>
         </thead>
         <tbody>
