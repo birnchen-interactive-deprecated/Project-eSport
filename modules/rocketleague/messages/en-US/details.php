@@ -6,6 +6,7 @@ return [
 	'reglement' =>'Rules',
 	'placement' => 'Placement',
 	'points' => 'Points',
+	'pointstable' => 'Points Table',
 	'participants' => 'Participants',
 	'User' => 'Player',
 	'Team' => 'Teams',

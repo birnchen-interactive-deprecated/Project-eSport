@@ -108,7 +108,7 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
         </tr>
         <tr class="bg-warning fold">
             <th width="50%" style="text-align: right"><?= \app\modules\rocketleague\Module::t('details', 'placement', $siteLanguage->locale) ?></th>
-            <th width="50%"><?= \app\modules\rocketleague\Module::t('details', 'points', $siteLanguage->locale) ?></th>
+            <th width="50%"><?= \app\modules\rocketleague\Module::t('details', 'pointstable', $siteLanguage->locale) ?></th>
         </tr>
         </thead>
         <tbody>
@@ -168,7 +168,7 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
         <tr class="bg-success">
             <th colspan="2"><?= \app\modules\rocketleague\Module::t('details', $userTeam, $siteLanguage->locale); ?><span class="badge"><?= count($participatingEntrys); ?></th>
             <?php if ('Team' === $userTeam): ?>
-                <th><?= \app\modules\rocketleague\Module::t('details', 'Spieler', $siteLanguage->locale) ?></th>
+                <th><?= \app\modules\rocketleague\Module::t('details', 'User', $siteLanguage->locale) ?></th>
             <?php endif; ?>
             <th><?= \app\modules\rocketleague\Module::t('details', 'checkedinstatus', $siteLanguage->locale) ?><span class="badge"><?= $countCheckedIn . ' / 32'; ?></span></th>
             <th><?= \app\modules\rocketleague\Module::t('details', 'notes', $siteLanguage->locale) ?></th>
