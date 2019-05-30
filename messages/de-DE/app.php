@@ -10,4 +10,10 @@ return [
     'login' => 'Anmeldung',
     'account' => 'Profil',
     'logout' => 'Abmelden',
+
+
+    'imprint' => 'Impressum',
+    'gtc' => 'AGB',
+    'privacy' => 'Datenschutz',
+    'trademark' => 'Project-eSport ist eine Marke der Birnchen Interactive.',
 ];

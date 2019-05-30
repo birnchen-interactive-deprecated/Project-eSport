@@ -32,6 +32,7 @@ use Yii;
  				'modules/user/register' => 'register.php',
  				'modules/user/account' => 'account.php',
  				'modules/user/userDetails' => 'userDetails.php',
+ 				'modules/user/overview' => 'overview.php',
  			],
  		];
 
@@ -45,6 +46,7 @@ use Yii;
  				'modules/user/register' => 'register.php',
  				'modules/user/account' => 'account.php',
  				'modules/user/userDetails' => 'userDetails.php',
+ 				'modules/user/overview' => 'overview.php',
  			],
  		];
  	}

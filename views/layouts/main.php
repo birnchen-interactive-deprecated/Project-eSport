@@ -71,8 +71,8 @@ if (Yii::$app->user->isGuest) {
 } else {
     $navigation[] = array('label' => '' . Yii::$app->user->identity->username . '', 'visible' => $visible, 'items' => array(
         array('label' => Yii::t('app', 'account'), 'url' => ['/user/details', 'id' => Yii::$app->user->identity->getId()], 'linkOptions' => ['aria-label' => 'Account Button']),
-        array('label' => 'My Teams', 'url' => ['/site/my-teams'], 'linkOptions' => ['aria-label' => 'My Teams Button']),
-        array('label' => 'My Tournaments', 'url' => ['/site/my-tournaments'], 'linkOptions' => ['aria-label' => 'My Tournaments Button']),
+        //array('label' => 'My Teams', 'url' => ['/site/my-teams'], 'linkOptions' => ['aria-label' => 'My Teams Button']),
+        //array('label' => 'My Tournaments', 'url' => ['/site/my-tournaments'], 'linkOptions' => ['aria-label' => 'My Tournaments Button']),
         array('label' => Yii::t('app', 'logout'), 'url' => ['/site/logout'], 'linkOptions' => ['data-method' => 'post', 'aria-label' => 'Logout Button'], ['aria-label' => 'Logout Button']),
     ));
 }
@@ -142,12 +142,12 @@ if (Yii::$app->user->isGuest) {
 <footer class="footer">
     <div class="container">
         <div class="col-sm-3 col-lg-3 left_side">
-            <span><?= Html::a('Impressum', ['/company/imprint']); ?></span>
-            <span><?= Html::a('AGB', ['/company/gtc']); ?></span>
-            <span><?= Html::a('Datenschutz', ['/company/privacy']); ?></span>
+            <span><?= Html::a(Yii::t('app', 'imprint'), ['/company/imprint']); ?></span>
+            <span><?= Html::a(Yii::t('app', 'gtc'), ['/company/gtc']); ?></span>
+            <span><?= Html::a(Yii::t('app', 'privacy'), ['/company/privacy']); ?></span>
         </div>
         <div class="col-sm-6 col-lg-6 middle">
-            Project-eSport ist eine Marke der Birnchen Interactive. &copy; 2016 - <?= date('Y'); ?>
+            <?= Yii::t('app', 'trademark') ?> &copy; 2016 - <?= date('Y'); ?>
         </div>
         <div class="col-sm-3 col-lg-3 right_side">
             <span><?= $twitterLink; ?></span>

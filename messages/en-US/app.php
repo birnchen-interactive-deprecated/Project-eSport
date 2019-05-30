@@ -10,4 +10,10 @@ return [
     'login' => 'Login',
     'account' => 'Profile',
     'logout' => 'Logout',
+
+
+    'imprint' => 'Imprint',
+    'gtc' => 'GTC',
+    'privacy' => 'Privacy',
+    'trademark' => 'Project-eSport is a Trademark Marke of Birnchen Interactive.',
 ];

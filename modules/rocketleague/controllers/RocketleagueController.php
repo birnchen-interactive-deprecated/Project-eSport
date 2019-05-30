@@ -81,6 +81,8 @@ class RocketleagueController extends BaseController
      */
     public function actionNewsDetails($pos)
     {
+        $siteLanguage = (Yii::$app->user->identity != null) ? Yii::$app->user->identity->getLanguage()->one() : Language::findByLocale('en-US');
+
         libxml_use_internal_errors(true);
         $xml = simplexml_load_file($_SERVER['DOCUMENT_ROOT'] . '/../modules/rss_feeds/rocketLeague/rl_feed.xml');
 
@@ -121,6 +123,7 @@ class RocketleagueController extends BaseController
             [
                 'data' => $data,
                 'pos' => $pos,
+                '$siteLanguage' => $siteLanguage,
             ]);
     }
 
@@ -132,10 +135,12 @@ class RocketleagueController extends BaseController
     public function actionTeamsOverview()
     {
         $teamHierarchy = SubTeam::getTeamHierarchyByGame(1);
+        $siteLanguage = (Yii::$app->user->identity != null) ? Yii::$app->user->identity->getLanguage()->one() : Language::findByLocale('en-US');
 
         return $this->render('teamsOverview',
             [
                 'teamHierarchy' => $teamHierarchy,
+                'siteLanguage' => $siteLanguage,
             ]
         );
     }

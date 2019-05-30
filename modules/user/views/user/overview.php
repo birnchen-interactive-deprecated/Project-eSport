@@ -4,6 +4,7 @@
  * @var $pagination array
  * @var $sortedPaginatedUsers array
  * @var $isMainTeamManager array
+ * @var $siteLanguage
  */
 
 use yii\helpers\Html;
@@ -18,13 +19,13 @@ $this->title = 'Player Overview';
 <div class="site-player-overview">
 	<div class="playerRow clearfix">
         	<!-- summe Y aller col-lg-X darf 12 nicht ueberschreiten, sonst bricht es um -->
-        	<div class="col-lg-1">Avatar</div>
-	        <div class="col-lg-2">Username</div>
-	        <div class="col-lg-2">Main Teams</div>
-	        <div class="col-lg-2">Sub Teams</div>
-	        <div class="col-lg-2">Games</div>
+        	<div class="col-lg-1"><?= \app\modules\user\Module::t('overview', 'avatar', $siteLanguage->locale) ?></div>
+	        <div class="col-lg-2"><?= \app\modules\user\Module::t('overview', 'username', $siteLanguage->locale) ?></div>
+	        <div class="col-lg-2"><?= \app\modules\user\Module::t('overview', 'mainteam', $siteLanguage->locale) ?></div>
+	        <div class="col-lg-2"><?= \app\modules\user\Module::t('overview', 'subteam', $siteLanguage->locale) ?></div>
+	        <div class="col-lg-2"><?= \app\modules\user\Module::t('overview', 'games', $siteLanguage->locale) ?></div>
 	        <?php if($isMainTeamManager) : ?>
-	        	<div class="col-lg-2">Invite Player</div>
+	        	<div class="col-lg-2"><?= \app\modules\user\Module::t('overview', 'invite', $siteLanguage->locale) ?></div>
 	        	<div class="col-lg-1"><!-- Container 3 --></div>
 	        <?php else: ?>
 	        	<div class="col-lg-2"><!-- Container 2 --></div>

@@ -2,6 +2,7 @@
 
 /* @var $this yii\web\View
  * @var $teamHierarchy array
+ * @var $siteLanguage
  */
 
 use yii\helpers\Html;
@@ -24,7 +25,7 @@ $this->title = 'RL Teams Overview';
 
             <div class="teamHeader col-lg-12">
                 <?= Html::a($mainTeam->getName() , ['/teams/team-details', 'id' => $mainTeam->getId()]); ?>
-                <span class="mainTeamOwner"> (Owner: <?= Html::a($mainTeamOwner , ['/user/details', 'id' => $mainTeam->getOwnerId()]); ?>)</span>
+                <span class="mainTeamOwner"> (<?= \app\modules\rocketleague\Module::t('overview', 'owner', $siteLanguage->locale) ?> <?= Html::a($mainTeamOwner , ['/user/details', 'id' => $mainTeam->getOwnerId()]); ?>)</span>
             </div>
 
             <div class="col-sm-4 teamLogo">
@@ -35,7 +36,7 @@ $this->title = 'RL Teams Overview';
                 <?php foreach ($hierarchy['subTeams'] as $tournamentMode => $subTeams): ?>
                     
                     <div class="col-sm-6 col-lg-6 modeContainer">
-                        <div class="modeName">Turniermodus: <?= $tournamentMode; ?></div>
+                        <div class="modeName"><?= \app\modules\rocketleague\Module::t('overview', 'tournamentmode', $siteLanguage->locale) ?> <?= $tournamentMode; ?></div>
                         <?php foreach ($subTeams as $key => $subHierarchy):
                 			$subTeam = $subHierarchy['subTeam'];
                 			$subTeamName = $subTeam->getTeamName();
@@ -43,7 +44,7 @@ $this->title = 'RL Teams Overview';
 
                             <div class="subTeam">
                                 <?= Html::a($subTeamName , ['/teams/sub-team-details', 'id' => $subTeam->getId()]); ?>
-                                <span class="subTeamOwner"> (Captain: <?= Html::a($subTeamManager , ['/user/details', 'id' => $subTeam->getTeamCaptainId()]); ?>)</span>
+                                <span class="subTeamOwner"> (<?= \app\modules\rocketleague\Module::t('overview', 'captain', $siteLanguage->locale) ?> <?= Html::a($subTeamManager , ['/user/details', 'id' => $subTeam->getTeamCaptainId()]); ?>)</span>
                             </div>
 
                             <?php if (false): ?>

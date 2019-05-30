@@ -25,9 +25,9 @@ use Yii;
  		Yii::$app->i18n->translations['modules/rocketleague/*'] = [
  			'class' => 'yii\i18n\PhpMessageSource',
  			'sourceLanguage' => 'de',
- 			'basePath' => '@app/modules/user/messages',
+ 			'basePath' => '@app/modules/rocketleague/messages',
  			'fileMap' => [
- 				//'modules/user/user' => 'user.php',
+ 				'modules/rocketleague/overview' => 'overview.php',
  				//'modules/user/login' => 'login.php',
  				//'modules/user/register' => 'register.php',
  				//'modules/user/account' => 'account.php',
@@ -38,9 +38,9 @@ use Yii;
  		Yii::$app->i18n->translations['modules/rocketleague/*'] = [
  			'class' => 'yii\i18n\PhpMessageSource',
  			'sourceLanguage' => 'en',
- 			'basePath' => '@app/modules/user/messages',
+ 			'basePath' => '@app/modules/rocketleague/messages',
  			'fileMap' => [
- 				//'modules/user/user' => 'user.php',
+ 				'modules/rocketleague/overview' => 'overview.php',
  				//'modules/user/login' => 'login.php',
  				//'modules/user/register' => 'register.php',
  				//'modules/user/account' => 'account.php',
@@ -54,6 +54,6 @@ use Yii;
      */
  	public static function t($category, $message, $language = null, $params = [])
  	{
- 		return Yii::t('modules/user/' . $category, $message, $params, $language);
+ 		return Yii::t('modules/rocketleague/' . $category, $message, $params, $language);
  	}
  }
