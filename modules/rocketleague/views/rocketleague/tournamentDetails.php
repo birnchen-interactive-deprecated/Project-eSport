@@ -71,7 +71,7 @@ $turnierStart = new DateTime($tournament->getDtStartingTime());
 
 $challengeId = 'gerta' . $tournament->getModeId() . '_' . $turnierStart->format('ymd');
 
-$this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails', $siteLanguage->locale) ?>;
+$this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails', $siteLanguage->locale);
 ?>
 <div class="site-rl-tournament-details">
 
