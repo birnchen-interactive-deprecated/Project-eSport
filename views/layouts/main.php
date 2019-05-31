@@ -54,7 +54,7 @@ $navigation = array(
     array('label' => Yii::t('app', 'home'), 'url' => ['/site/index'], 'linkOptions' => ['aria-label' => 'Home Button', 'title' => 'Home Button']),
     array('label' => Yii::t('app', 'news'), 'items' => array(
         array('label' => 'Rocket League', 'url' => ['/rocketleague/news'], 'linkOptions' =>  ['aria-label' => 'RL News Button']),
-        array('label' => 'Mariokart 8', 'url' => ['/mariokartdeluxe/news'], 'linkOptions' =>  ['aria-label' => 'Mariokart 8 Delyxe Button']),
+        array('label' => 'Nintendo', 'url' => ['/mariokartdeluxe/news'], 'linkOptions' =>  ['aria-label' => 'Nintendo News Button']),
     )),
     array('label' => Yii::t('app', 'player'), 'url' => ['/user/overview'], 'linkOptions' => ['aria-label' => 'Player Button', 'title' => 'Player Button']),
     array('label' => Yii::t('app', 'teams'), 'items' => array(
