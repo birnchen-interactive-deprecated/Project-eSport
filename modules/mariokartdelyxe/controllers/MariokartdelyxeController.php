@@ -62,9 +62,12 @@ class MariokartdelyxeController extends BaseController
                     break;
                 }
 
+                $itemHtml = $item->{'content:encoded'}->__toString();
+                $itemHtml = preg_replace('/(<img.*?)(-190-95-)(.*?>)/', '$1-630-315-$3', $itemHtml);
+
                 $data[$key++] = [
                     'title' => $item->title->__toString(),
-                    'html' => $item->description->__toString(),
+                    'html' => $itemHtml,
                 ];
 
             }
@@ -112,7 +115,7 @@ class MariokartdelyxeController extends BaseController
                     break;
                 }
 
-                $itemHtml = $item->description->__toString();
+                $itemHtml = $item->{'content:encoded'}->__toString();
                 $itemHtml = preg_replace('/(<img.*?)(-190-95-)(.*?>)/', '$1-630-315-$3', $itemHtml);
 
                 $data[$key++] = [
