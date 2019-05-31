@@ -34,9 +34,97 @@ class MariokartdelyxeController extends BaseController
      */
     public function actionNews()
     {
+        libxml_use_internal_errors(true);
+        $xml = simplexml_load_file($_SERVER['DOCUMENT_ROOT'] . '/../modules/rss_feeds/mariokartdelyxe/mk8d_feed.xml');
+
+        $data = [
+            [
+                'title' => '',
+                'html' => '',
+            ],
+            [
+                'title' => '',
+                'html' => '',
+            ],
+            [
+                'title' => '',
+                'html' => '',
+            ],
+        ];
+
+        $xmlError = libxml_get_errors();
+        if (empty($xmlError)) {
+
+            $key = 0;
+            foreach ($xml->channel->item as $item) {
+
+                if (3 === $key) {
+                    break;
+                }
+
+                $data[$key++] = [
+                    'title' => $item->title->__toString(),
+                    'html' => $item->description->__toString(),
+                ];
+
+            }
+        }
+
         return $this->render('news',
             [
-                //'data' => $data,
+                'data' => $data,
+            ]);
+    }
+
+    /**
+     * @param $pos
+     * @return string
+     */
+    public function actionNewsDetails($pos)
+    {
+        $siteLanguage = (Yii::$app->user->identity != null) ? Yii::$app->user->identity->getLanguage()->one() : Language::findByLocale('en-US');
+
+        libxml_use_internal_errors(true);
+        $xml = simplexml_load_file($_SERVER['DOCUMENT_ROOT'] . '/../modules/rss_feeds/mariokartdelyxe/mk8d_feed.xml');
+
+        $data = [
+            [
+                'title' => '',
+                'html' => '',
+            ],
+            [
+                'title' => '',
+                'html' => '',
+            ],
+            [
+                'title' => '',
+                'html' => '',
+            ],
+        ];
+
+        $xmlError = libxml_get_errors();
+        if (empty($xmlError)) {
+
+            $key = 0;
+            foreach ($xml->channel->item as $item) {
+
+                if (3 === $key) {
+                    break;
+                }
+
+                $data[$key++] = [
+                    'title' => $item->title->__toString(),
+                    'html' => $item->description->__toString(),
+                ];
+
+            }
+        }
+        
+        return $this->render('newsDetails',
+            [
+                'data' => $data,
+                'pos' => $pos,
+                '$siteLanguage' => $siteLanguage,
             ]);
     }
 
