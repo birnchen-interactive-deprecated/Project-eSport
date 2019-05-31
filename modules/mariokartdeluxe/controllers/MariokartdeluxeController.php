@@ -6,7 +6,7 @@
  * Time: 16:11
  */
 
-namespace app\modules\mariokartdelyxe\controllers;
+namespace app\modules\mariokartdeluxe\controllers;
 
 use Yii;
 
@@ -25,7 +25,7 @@ use app\modules\tournamenttrees\models\formModels\EncounterDetailsForm;
 use app\modules\user\models\User;
 use app\modules\user\models\Language;
 
-class MariokartdelyxeController extends BaseController
+class MariokartdeluxeController extends BaseController
 {
 	/**
      * Mario Kart 8 Delyxe News Page

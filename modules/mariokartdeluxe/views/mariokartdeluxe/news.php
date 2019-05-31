@@ -12,9 +12,9 @@ $this->registerLinkTag(['rel' => 'canonical', 'href' => 'https://project-esport.
 
 Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
 
-$bigNews = Html::a('<h1>' . $data[0]['title'] . '</h1><p>' . strip_tags($data[0]['html'], '<img><div><br><b><u>') . '</p>', ['/mariokartdelyxe/news-details', 'pos' => 0]);
-$smallNews1 = Html::a('<h1>' . $data[1]['title'] . '</h1><p>' . strip_tags($data[1]['html'], '<img><div><br><b><u>') . '</p>', ['/mariokartdelyxe/news-details', 'pos' => 1]);
-$smallNews2 = Html::a('<h1>' . $data[2]['title'] . '</h1><p>' . strip_tags($data[2]['html'], '<img><div><br><b><u>') . '</p>', ['/mariokartdelyxe/news-details', 'pos' => 2]);
+$bigNews = Html::a('<h1>' . $data[0]['title'] . '</h1><p>' . strip_tags($data[0]['html'], '<img><div><br><b><u>') . '</p>', ['/mariokartdeluxe/news-details', 'pos' => 0]);
+$smallNews1 = Html::a('<h1>' . $data[1]['title'] . '</h1><p>' . strip_tags($data[1]['html'], '<img><div><br><b><u>') . '</p>', ['/mariokartdeluxe/news-details', 'pos' => 1]);
+$smallNews2 = Html::a('<h1>' . $data[2]['title'] . '</h1><p>' . strip_tags($data[2]['html'], '<img><div><br><b><u>') . '</p>', ['/mariokartdeluxe/news-details', 'pos' => 2]);
 
 ?>
 

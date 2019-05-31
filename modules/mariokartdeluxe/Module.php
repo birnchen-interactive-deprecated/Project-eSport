@@ -1,12 +1,12 @@
 <?php
 
-namespace app\modules\mariokartdelyxe;
+namespace app\modules\mariokartdeluxe;
 
 use Yii;
 
 /**
  * Class Module
- * @package app\modules\mariokartdelyxe
+ * @package app\modules\mariokartdeluxe
  */
  class Module extends \yii\base\Module
  {
@@ -22,29 +22,29 @@ use Yii;
  	 */
  	public function registerTranslations()
  	{
- 		Yii::$app->i18n->translations['modules/mariokartdelyxe/*'] = [
+ 		Yii::$app->i18n->translations['modules/mariokartdeluxe/*'] = [
  			'class' => 'yii\i18n\PhpMessageSource',
  			'sourceLanguage' => 'de',
- 			'basePath' => '@app/modules/mariokartdelyxe/messages',
+ 			'basePath' => '@app/modules/mariokartdeluxe/messages',
  			'fileMap' => [
- 				'modules/mariokartdelyxe/overview' => 'overview.php',
- 				'modules/mariokartdelyxe/details' => 'details.php',
- 				//'modules/mariokartdelyxe/register' => 'register.php',
- 				//'modules/mariokartdelyxe/account' => 'account.php',
- 				//'modules/mariokartdelyxe/userDetails' => 'userDetails.php',
+ 				'modules/mariokartdeluxe/overview' => 'overview.php',
+ 				'modules/mariokartdeluxe/details' => 'details.php',
+ 				//'modules/mariokartdeluxe/register' => 'register.php',
+ 				//'modules/mariokartdeluxe/account' => 'account.php',
+ 				//'modules/mariokartdeluxe/userDetails' => 'userDetails.php',
  			],
  		];
 
- 		Yii::$app->i18n->translations['modules/mariokartdelyxe/*'] = [
+ 		Yii::$app->i18n->translations['modules/mariokartdeluxe/*'] = [
  			'class' => 'yii\i18n\PhpMessageSource',
  			'sourceLanguage' => 'en',
- 			'basePath' => '@app/modules/mariokartdelyxe/messages',
+ 			'basePath' => '@app/modules/mariokartdeluxe/messages',
  			'fileMap' => [
- 				'modules/mariokartdelyxe/overview' => 'overview.php',
- 				'modules/mariokartdelyxe/details' => 'details.php',
- 				//'modules/mariokartdelyxe/register' => 'register.php',
- 				//'modules/mariokartdelyxe/account' => 'account.php',
- 				//'modules/mariokartdelyxe/userDetails' => 'userDetails.php',
+ 				'modules/mariokartdeluxe/overview' => 'overview.php',
+ 				'modules/mariokartdeluxe/details' => 'details.php',
+ 				//'modules/mariokartdeluxe/register' => 'register.php',
+ 				//'modules/mariokartdeluxe/account' => 'account.php',
+ 				//'modules/mariokartdeluxe/userDetails' => 'userDetails.php',
  			],
  		];
  	}
@@ -54,6 +54,6 @@ use Yii;
      */
  	public static function t($category, $message, $language = null, $params = [])
  	{
- 		return Yii::t('modules/mariokartdelyxe/' . $category, $message, $params, $language);
+ 		return Yii::t('modules/mariokartdeluxe/' . $category, $message, $params, $language);
  	}
  }

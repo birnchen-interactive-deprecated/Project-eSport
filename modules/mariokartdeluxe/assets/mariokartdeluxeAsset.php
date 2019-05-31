@@ -1,12 +1,12 @@
 <?php
 
-namespace app\modules\mariokartdelyxe\assets;
+namespace app\modules\mariokartdeluxe\assets;
 
 use yii\web\AssetBundle;
 
-class MariokartdelyxeAsset extends AssetBundle
+class MariokartdeluxeAsset extends AssetBundle
 {
-    public $sourcePath = '@app/modules/mariokartdelyxe/assets';
+    public $sourcePath = '@app/modules/mariokartdeluxe/assets';
 
     public $js = [
     	'https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js',

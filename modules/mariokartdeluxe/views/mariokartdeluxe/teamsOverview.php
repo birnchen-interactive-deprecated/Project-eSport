@@ -7,7 +7,7 @@
 
 use yii\helpers\Html;
 
-app\modules\mariokartdelyxe\assets\mariokartdelyxeAsset::register($this);
+app\modules\mariokartdeluxe\assets\mariokartdeluxeAsset::register($this);
 
 $this->title = 'Mariokart 8 Teams Overview';
 ?>
@@ -25,7 +25,7 @@ $this->title = 'Mariokart 8 Teams Overview';
 
             <div class="teamHeader col-lg-12">
                 <?= Html::a($mainTeam->getName() , ['/teams/team-details', 'id' => $mainTeam->getId()]); ?>
-                <span class="mainTeamOwner"> (<?= \app\modules\mariokartdelyxe\Module::t('overview', 'owner', $siteLanguage->locale) ?> <?= Html::a($mainTeamOwner , ['/user/details', 'id' => $mainTeam->getOwnerId()]); ?>)</span>
+                <span class="mainTeamOwner"> (<?= \app\modules\mariokartdeluxe\Module::t('overview', 'owner', $siteLanguage->locale) ?> <?= Html::a($mainTeamOwner , ['/user/details', 'id' => $mainTeam->getOwnerId()]); ?>)</span>
             </div>
 
             <div class="col-sm-4 teamLogo">
@@ -36,7 +36,7 @@ $this->title = 'Mariokart 8 Teams Overview';
                 <?php foreach ($hierarchy['subTeams'] as $tournamentMode => $subTeams): ?>
                     
                     <div class="col-sm-6 col-lg-6 modeContainer">
-                        <div class="modeName"><?= \app\modules\mariokartdelyxe\Module::t('overview', 'tournamentmode', $siteLanguage->locale) ?> <?= $tournamentMode; ?></div>
+                        <div class="modeName"><?= \app\modules\mariokartdeluxe\Module::t('overview', 'tournamentmode', $siteLanguage->locale) ?> <?= $tournamentMode; ?></div>
                         <?php foreach ($subTeams as $key => $subHierarchy):
                 			$subTeam = $subHierarchy['subTeam'];
                 			$subTeamName = $subTeam->getTeamName();
@@ -44,7 +44,7 @@ $this->title = 'Mariokart 8 Teams Overview';
 
                             <div class="subTeam">
                                 <?= Html::a($subTeamName , ['/teams/sub-team-details', 'id' => $subTeam->getId()]); ?>
-                                <span class="subTeamOwner"> (<?= \app\modules\mariokartdelyxe\Module::t('overview', 'captain', $siteLanguage->locale) ?> <?= Html::a($subTeamManager , ['/user/details', 'id' => $subTeam->getTeamCaptainId()]); ?>)</span>
+                                <span class="subTeamOwner"> (<?= \app\modules\mariokartdeluxe\Module::t('overview', 'captain', $siteLanguage->locale) ?> <?= Html::a($subTeamManager , ['/user/details', 'id' => $subTeam->getTeamCaptainId()]); ?>)</span>
                             </div>
 
                             <?php if (false): ?>
