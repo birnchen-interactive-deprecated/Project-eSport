@@ -9,7 +9,7 @@ use yii\helpers\Html;
 
 app\modules\mariokartdeluxe\assets\mariokartdeluxeAsset::register($this);
 
-$this->title = 'Mariokart 8 Teams Overview';
+$this->title = 'Mariokart 8 DX Teams Overview';
 ?>
 
 <div class="site-rl-team-details">

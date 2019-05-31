@@ -86,7 +86,7 @@ usort($archivTurnier, function ($a, $b) {
     return $a->getDtStartingTime() < $b->getDtStartingTime();
 });
 
-$this->title = 'Mariokart 8 Delyxe Tournament Overview';
+$this->title = 'Mariokart 8 DX Tournament Overview';
 ?>
 <div class="site-rl-tournament-overview">
 
