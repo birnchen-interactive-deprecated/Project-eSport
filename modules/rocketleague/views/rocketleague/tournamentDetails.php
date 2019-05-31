@@ -298,7 +298,7 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
                                     <div class="bracketParticipant <?= $class1; ?>">
                                         <?= $participant1; ?>
                                         <!-- Captains/Deputy Area -->
-                                        <?php if($user != null && $bracket->isManageable($user->getId())) : ?>
+                                        <?php if($user != null && $bracket->isManageable($user->getId()) || $isAdmin) : ?>
                                             <div class="takeWinner" style="float: right;">
                                                     <?php echo Html::a('',
                                                         [
@@ -334,7 +334,7 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
                                     <div class="bracketParticipant <?= $class2; ?>">
                                         <?= $participant2; ?>
                                         <!-- Captains/Deputy Area -->
-                                        <?php if($user != null && $bracket->isManageable($user->getId())) : ?>
+                                        <?php if($user != null && $bracket->isManageable($user->getId()) || $isAdmin) : ?>
                                             <div class="takeWinner" style="float: right;">
                                                     <?php echo Html::a('',
                                                         [
