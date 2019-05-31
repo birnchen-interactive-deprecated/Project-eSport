@@ -90,7 +90,7 @@ $this->title = 'Mariokart 8 DX Tournament Overview';
 ?>
 <div class="site-rl-tournament-overview">
 
-    <h1>Mariokart 8 Delyxe <?= \app\modules\mariokartdeluxe\Module::t('overview', 'tournamentoverview', $siteLanguage->locale) ?></h1>
+    <h1>Mariokart 8 DX <?= \app\modules\mariokartdeluxe\Module::t('overview', 'tournamentoverview', $siteLanguage->locale) ?></h1>
 
     <?php if (count($runningTurnier) > 0 || count($preRunningTurnier) > 0): ?>
         <table class="turnierStatus table table-bordered table-striped table-hover">
