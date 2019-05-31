@@ -1,0 +1,15 @@
+.site-rl-tournament-overview > h1 {
+	text-align: center;
+}
+
+table.foldable .namedHeader {
+	cursor: pointer;
+}
+
+table.foldable tr.fold {
+	display: none;
+}
+
+table.foldable.foldable_open tr.fold {
+	display: table-row;
+}

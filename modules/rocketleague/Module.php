@@ -28,7 +28,7 @@ use Yii;
  			'basePath' => '@app/modules/rocketleague/messages',
  			'fileMap' => [
  				'modules/rocketleague/overview' => 'overview.php',
- 				'modules/rocketleague/details' => 'lodetailsgin.php',
+ 				'modules/rocketleague/details' => 'details.php',
  				//'modules/rocketleague/register' => 'register.php',
  				//'modules/rocketleague/account' => 'account.php',
  				//'modules/rocketleague/userDetails' => 'userDetails.php',

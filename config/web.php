@@ -76,6 +76,7 @@ $config = [
                 'rules/<action>' => 'rules/rules/<action>',
                 'events/<action>' => 'events/events/<action>',
                 'tournamenttrees/<action>' => 'tournamenttrees/tournamenttrees/<action>',
+                'mariokartdelyxe/<action>' => 'mariokartdelyxe/mariokartdelyxe/<action>',
             ],
         ],
         'i18n' => [
@@ -108,7 +109,7 @@ $config = [
         'rules' => 'app\modules\rules\Module',
         'events' => 'app\modules\events\Module',
         'tournamenttrees' => 'app\modules\tournamenttrees\Module',
-        //'core' => 'app\modules\core\Module',
+        'mariokartdelyxe' => 'app\modules\mariokartdelyxe\Module',
         //'rbac' => 'app\modules\rbac\Module',
     ],
     'params' => $params,

@@ -54,13 +54,16 @@ $navigation = array(
     array('label' => Yii::t('app', 'home'), 'url' => ['/site/index'], 'linkOptions' => ['aria-label' => 'Home Button', 'title' => 'Home Button']),
     array('label' => Yii::t('app', 'news'), 'items' => array(
         array('label' => 'Rocket League', 'url' => ['/rocketleague/news'], 'linkOptions' =>  ['aria-label' => 'RL News Button']),
+        array('label' => 'Mariokart 8', 'url' => ['/mariokartdelyxe/news'], 'linkOptions' =>  ['aria-label' => 'Mariokart 8 Delyxe Button']),
     )),
     array('label' => Yii::t('app', 'player'), 'url' => ['/user/overview'], 'linkOptions' => ['aria-label' => 'Player Button', 'title' => 'Player Button']),
     array('label' => Yii::t('app', 'teams'), 'items' => array(
         array('label' => 'Rocket League', 'url' => ['/rocketleague/teams-overview'], 'linkOptions' =>  ['aria-label' => 'Rocket League Button']),
+        array('label' => 'Mariokart 8', 'url' => ['/mariokartdelyxe/teams-overview'], 'linkOptions' =>  ['aria-label' => 'Mariokart 8 Delyxe']),
     )),
     array('label' => Yii::t('app', 'tournaments'), 'items' => array(
         array('label' => 'Rocket League', 'url' => ['/rocketleague/tournaments'], 'linkOptions' =>  ['aria-label' => 'RL Tournaments Button']),
+        array('label' => 'Mariokart 8', 'url' => ['/mariokartdelyxe/tournaments'], 'linkOptions' =>  ['aria-label' => 'Mariokart 8 Delye Button']),
     )),
     array('label' => Yii::t('app', 'jobs'), 'url' => ['/company/jobs'], 'linkOptions' => ['aria-label' => 'Jobs Button']),
     array('label' => Yii::t('app', 'events'), 'url' => ['/events/overview'], 'linkOptions' => ['aria-label' => 'Events Button', 'style' => 'color: #a0ce4e']),
