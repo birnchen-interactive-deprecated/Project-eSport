@@ -25,11 +25,6 @@ use yii\bootstrap\ActiveForm;
                 <div class="panel-body panel-color">
 
                     <div class="col-md-12">
-
-                        <!-- Default informations -->
-                        
-
-                        <!-- Management Informations -->
                         
                     </div>
 

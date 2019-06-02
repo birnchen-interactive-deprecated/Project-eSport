@@ -14,11 +14,14 @@ use app\widgets\Alert;
 
 use app\components\BaseController;
 
+
 use app\modules\teams\models\SubTeam;
 use app\modules\tournaments\models\Tournament;
 use app\modules\tournaments\models\PlayerParticipating;
 use app\modules\tournaments\models\TeamParticipating;
+
 use app\modules\tournamenttrees\models\Bracket;
+use app\modules\tournamenttrees\models\TournamentEncounter;
 
 use app\modules\tournamenttrees\models\formModels\EncounterDetailsForm;
 
@@ -357,7 +360,7 @@ class RocketleagueController extends BaseController
      * @param null $tournament_id
      * @return string
      */
-    public function actionCreateBrackets($tournament_id = null)
+    public function actionCreateBrackets($tournament_id = null, $bracketId = null)
     {
         $run = false;
         if (Yii::$app->user->identity != NULL && Yii::$app->user->identity->getId() <= 4) {
@@ -434,6 +437,36 @@ class RocketleagueController extends BaseController
         Alert::addSuccess('Brackets erfolgreich angelegt.');
 
         return $this->redirect('tournament-details?id=' . $tournament_id);
+    }
+
+    public function actionBracketDetails($tournament_id = null, $bracketId = null)
+    {
+        $siteLanguage = (Yii::$app->user->identity != null) ? Yii::$app->user->identity->getLanguage()->one() : Language::findByLocale('en-US');
+
+        $brackteInformations = TournamentEncounter::findOne(['tournament_id' => $tournament_id, 'bracket_id' => $bracketId]);
+        $tournamentMode = Tournament::findOne(['id' => $tournament_id])->getModeId();
+        
+        switch ($tournamentMode) {
+            case 1: // 1v1
+                # code...
+                break;
+            case 2: // 2v2
+                # code...
+                break;
+            case 3: // 3v3
+                # code...
+                break;
+            
+            default:
+                # code...
+                break;
+        }
+
+        return $this->render('bracketDetails',
+            [
+                'siteLanguage' => $siteLanguage,
+            ]
+        );
     }
 
     private function createWinnerBracket(&$bracketArr, $tournament_id, $teilnehmer, $bracketSizeInRound) {
@@ -694,9 +727,7 @@ class RocketleagueController extends BaseController
                 $counter = 0;
                 $round++;
             }
-
         }
-
     }
 
     private function connectWinnerBracketsInLooser(&$bracketArr) {
@@ -725,11 +756,8 @@ class RocketleagueController extends BaseController
                 $looserBracket->update();
 
                 $looserBracket = next($initBracket);
-
             }
-
         }
-
     }
 
     private function moveFirstRoundTickets(&$bracketArr) {
@@ -747,7 +775,6 @@ class RocketleagueController extends BaseController
 
             $bracket->movePlayersNextRound(1);
         }
-
     }
 
     private function createConnectFinale(&$bracketArr, $tournament_id) {
@@ -792,7 +819,5 @@ class RocketleagueController extends BaseController
         $lastBracket = end($bracketArr);
         $lastBracket->winner_bracket = $finale1->getId();
         $lastBracket->update();
-
     }
-
 }
