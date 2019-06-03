@@ -13,6 +13,8 @@ use yii\bootstrap\ActiveForm;
 use app\modules\user\models\User;
 use app\modules\teams\models\SubTeam;
 
+app\modules\rocketleague\assets\rocketleagueAsset::register($this);
+
 $imgLeft  = ($player_left  instanceof User) ? '/images/userAvatar/' . $player_left->id  : '/images/teams/subTeams/' . $player_left->id;
 $imgRight = ($player_right instanceof User) ? '/images/userAvatar/' . $player_right->id : '/images/teams/subTeams/' . $player_right->id;
 
