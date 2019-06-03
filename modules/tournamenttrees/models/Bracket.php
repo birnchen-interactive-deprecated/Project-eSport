@@ -114,32 +114,6 @@ class Bracket extends ActiveRecord
 	}
 
 	/**
-	 * @return bool
-	 */
-	public function isManageable($id)
-	{
-		if ($this->getTeam1()->one() !== NULL && !$this->checkIfBracketClosed()) {
-			$team = $this->getTeam1()->one();
-
-			if($team->getTeamCaptainId() == $id || $team->getTeamDeputyId() == $id)
-				return true;
-		}
-		if ($this->getPlayer1()->one() !== NULL) {
-			return false;
-		}
-
-        return false;
-	}
-
-	/**
-	 * @return bool
-	 */
-	public function checkIfBracketClosed()
-	{
-		return true;
-	}
-
-	/**
 	 * @return ActiveQuery|NULL
 	 */
 	public function getTeam2()
@@ -305,6 +279,80 @@ class Bracket extends ActiveRecord
 		}
 
 		return $return;
+	}
+
+	/**
+	 * @param User | NULL
+	 * @param SubTeam | NULL
+	 * @param int
+	 * @return bool
+	 */
+	public function isManageable($user, $subTeam, $player_one_two)
+	{
+		if ($this->getPlayer1->one() !== NULL) {
+
+			$p1 = $this->getPlayer1()->one();
+			$u1 = User::findIdentity($p1);
+
+			$p2 = $this->getPlayer2()->one();
+			$u2 = User::findIdentity($p2);
+
+			if (1 === $player_one_two && $p1 !== NULL && $u1->getId() == $user->getId()) {
+				return true;
+			}
+
+			if (2 === $player_one_two && $p2 !== NULL && $u2->getId() == $user->getId()) {
+				return true;
+			}
+
+			return false;
+		}
+
+		if ($this->getTeam1->one() !== NULL) {
+
+			$team1 = $this->getTeam1->one();
+			$st1 = SubTeam::findIdentity($team1);
+
+			$team2 = $this->getTeam2->one();
+			$st2 = SubTeam::findIdentity($team2);
+
+			if (1 === $player_one_two) {
+				
+				if ($team1 !== NULL && ($st1->getTeamCaptainId() == $user->getId() || $st1->getTeamDeputyId() == $user->getId())) {
+					return true;
+				}
+				return false;
+
+			}
+			if (2 === $player_one_two) {
+
+				if ($team2 !== NULL && ($st2->getTeamCaptainId() == $user->getId() || $st2->getTeamDeputyId() == $user->getId())) {
+					return true;
+				}
+				return false;
+
+			}
+
+			// if ($this->getTeam1()->one() !== NULL && !$this->checkIfBracketClosed()) {
+			// 	$team = $this->getTeam1()->one();
+
+			// 	if($team->getTeamCaptainId() == $id || $team->getTeamDeputyId() == $id) {
+			// 		return true;
+			// 	}
+			// }
+
+			return false;
+		}
+
+        return false;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function checkIfBracketClosed()
+	{
+		return true;
 	}
 
 	/**

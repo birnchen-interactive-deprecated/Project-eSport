@@ -287,7 +287,7 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
                                     $rundenInfo = 'R' . $round . str_pad($bracketEncounter, 2, '0', STR_PAD_LEFT);
                                 }
                             ?>
-                            <?php if($participant1 != 'FREILOS' && $participant2 != 'FREILOS') : ?>
+                            <?php if ($participant1 != 'FREILOS' && $participant2 != 'FREILOS') : ?>
                                 <span class="bracketEncounter">Bracket <?= $bracketEncounter; ?> | Gamename and Password: <?= $rundenInfo; ?></span>
                                 <?php if (Yii::$app->user->identity instanceOf User && Yii::$app->user->identity->getId() <= 4): ?>
                                     <div>
@@ -298,7 +298,7 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
                                     <div class="bracketParticipant <?= $class1; ?>">
                                         <?= $participant1; ?>
                                         <!-- Captains/Deputy Area -->
-                                        <?php if($user != null && $bracket->isManageable($user->getId())) : ?>
+                                        <?php if ($bracket->isManageable($user, $subTeam, 1)) : ?>
                                             <div class="takeWinner" style="float: right;">
                                                 <?php echo Html::a('',
                                                     [
@@ -348,7 +348,7 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
                                     <div class="bracketParticipant <?= $class2; ?>">
                                         <?= $participant2; ?>
                                         <!-- Captains/Deputy Area -->
-                                        <?php if($user != null && $bracket->isManageable($user->getId()) || $isAdmin) : ?>
+                                        <?php if ($bracket->isManageable($user, $subTeam, 2)) : ?>
                                             <div class="takeWinner" style="float: right;">
                                                     <?php echo Html::a('',
                                                         [
