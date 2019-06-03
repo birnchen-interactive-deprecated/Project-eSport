@@ -3,38 +3,34 @@
 /* @var $this yii\web\View *
  * @var $form yii\bootstrap\ActiveForm
  * @var $id int
+ * @var $player_left User | SubTeam
+ * @var $player_right User | SubTeam
  */
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
+$imgLeft  = ($player_left  instanceof User) ? '/images/userAvatar/' . $player_left->id  : '/images/teams/subTeams/' . $player_left->id;
+$imgRight = ($player_right instanceof User) ? '/images/userAvatar/' . $player_right->id : '/images/teams/subTeams/' . $player_right->id;
 
 ?>
 <div class="site-editEncounterDetails">
 	<?php $form = ActiveForm::begin([
-        'id' => 'tencounter-details-form',
+        'id' => 'encounter-details-form',
         'options' => ['class' => 'form-vertical']
     ]); ?>
 
-    <div class="col-md-12">
-        <div class="col-md-6">
-            <div class="panel panel-default panel-color">
-                <div class="panel-heading panel-color">
-                    <h3 class="panel-title panel-color">Encounter Details</h3>
-                </div>
-                <div class="panel-body panel-color">
-
-                    <div class="col-md-12">
-                        
-                    </div>
-
-                </div>
-            </div>
+    <div class="col-lg-12">
+        <h1>Encounter Details</h1>
+        <div class="col-lg-6">
+            <?= Html::img($imgLeft  . '.webp', ['class' => 'entry-logo', 'alt' => "profilePic", 'aria-label' => 'profilePic', 'onerror' =>'this.src="' . $imgPath . '.png"' ]); ?>
         </div>
-
+        <div class="col-lg-6">
+            <?= Html::img($imgRight . '.webp', ['class' => 'entry-logo', 'alt' => "profilePic", 'aria-label' => 'profilePic', 'onerror' =>'this.src="' . $imgPath . '.png"' ]); ?>
+        </div>
     </div>
 
-    <div class="col-md-12">
+    <div class="col-lg-12">
         <?= Html::submitButton("Speichern", ['class' => 'btn mediumButton pull-right']) ?>
     </div>
     <?php ActiveForm::end(); ?>

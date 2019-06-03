@@ -458,4 +458,12 @@ class SubTeam extends ActiveRecord
 
         return implode('<br>', $userString);
     }
+
+    /**
+     * @inheritdoc
+     */
+    public static function findIdentity($id)
+    {
+        return static::findOne(['id' => $id]);
+    }
 }
