@@ -320,12 +320,23 @@ class RocketleagueController extends BaseController
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->save()){
             $winner = $model->winnerId;
             Alert::addSuccess('Alle daten erfolgreich eingetragen.');
-            return $this->redirect('move-player-in-bracket?tournament_id=' . $tournament_id . '?winner' . $winner . '?bracketId=' . $bracketId);
+            return $this->redirect('move-player-in-bracket?tournament_id=' . $tournament_id . '&winner' . $winner . '&bracketId=' . $bracketId);
+        }
+
+        $player_left = NULL;
+        $player_right = NULL;
+        if ($bracket->team_1_id === NULL) {
+            $player_left  = User::findIdentity($bracket->user_1_id);
+            $player_right = User::findIdentity($bracket->user_2_id);
+        } else {
+            $player_left  = SubTeam::findIdentity($bracket->team_1_id);
+            $player_right = SubTeam::findIdentity($bracket->team_2_id);
         }
 
         return $this->render('editEncounterDetails',
             [
-                //'id' => $id,
+                'player_left' => $player_left,
+                'player_right' => $player_right,
             ]);
     }
 
