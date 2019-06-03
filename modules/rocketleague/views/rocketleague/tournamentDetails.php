@@ -361,6 +361,19 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
                                                         ]
                                                     ); ?>
                                                 </div>
+                                        <?php else : ?>
+                                            <div class="takeWinner" style="float: right;">
+                                                <?php echo Html::a('',
+                                                    [
+                                                        "/rocketleague/bracket-details",
+                                                        'tournament_id' => $tournament->getId(),
+                                                        'bracketId' => $bracket->getId()
+                                                    ],
+                                                    ['class' => "glyphicon glyphicon-search",
+                                                        'title' => "Complete Encounter"
+                                                    ]
+                                                ); ?>
+                                            </div>
                                         <?php endif; ?>
                                         <!-- End of Captains/Deputy Area -->
                                         <!-- Administrative Area -->
