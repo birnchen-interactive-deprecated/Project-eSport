@@ -434,6 +434,36 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
                             <div class="bracket <?= $liveStream; ?>">
                                 <div class="bracketParticipant <?= $class1; ?>">
                                     <?= $participant1; ?>
+                                    <!-- Captains/Deputy Area -->
+                                    <?php if ($bracket->isManageable($user, $subTeam, 1)) : ?>
+                                        <div class="takeWinner" style="float: right;">
+                                            <?php echo Html::a('',
+                                                [
+                                                    "/rocketleague/close-bracket",
+                                                    'tournament_id' => $tournament->getId(),
+                                                    'winner' => 1,
+                                                    'bracketId' => $bracket->getId()
+                                                ],
+                                                ['class' => "glyphicon glyphicon-cloud-upload",
+                                                    'title' => "Complete Encounter"
+                                                ]
+                                            ); ?>
+                                        </div>
+                                    <?php else : ?>
+                                        <div class="takeWinner" style="float: right;">
+                                            <?php echo Html::a('',
+                                                [
+                                                    "/rocketleague/bracket-details",
+                                                    'tournament_id' => $tournament->getId(),
+                                                    'bracketId' => $bracket->getId()
+                                                ],
+                                                ['class' => "glyphicon glyphicon-search",
+                                                    'title' => "Complete Encounter"
+                                                ]
+                                            ); ?>
+                                        </div>
+                                    <?php endif; ?>
+                                    <!-- End of Captains/Deputy Area -->
                                     <?php if ($isAdmin) : ?>
                                         <div class="takeWinner" style="float: right;">
                                             <?php echo Html::a('',
@@ -452,6 +482,36 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
                                 </div>
                                 <div class="bracketParticipant <?= $class2; ?>">
                                     <?= $participant2; ?>
+                                    <!-- Captains/Deputy Area -->
+                                    <?php if ($bracket->isManageable($user, $subTeam, 1)) : ?>
+                                        <div class="takeWinner" style="float: right;">
+                                            <?php echo Html::a('',
+                                                [
+                                                    "/rocketleague/close-bracket",
+                                                    'tournament_id' => $tournament->getId(),
+                                                    'winner' => 1,
+                                                    'bracketId' => $bracket->getId()
+                                                ],
+                                                ['class' => "glyphicon glyphicon-cloud-upload",
+                                                    'title' => "Complete Encounter"
+                                                ]
+                                            ); ?>
+                                        </div>
+                                    <?php else : ?>
+                                        <div class="takeWinner" style="float: right;">
+                                            <?php echo Html::a('',
+                                                [
+                                                    "/rocketleague/bracket-details",
+                                                    'tournament_id' => $tournament->getId(),
+                                                    'bracketId' => $bracket->getId()
+                                                ],
+                                                ['class' => "glyphicon glyphicon-search",
+                                                    'title' => "Complete Encounter"
+                                                ]
+                                            ); ?>
+                                        </div>
+                                    <?php endif; ?>
+                                    <!-- End of Captains/Deputy Area -->
                                     <?php if ($isAdmin) : ?>
                                         <div class="takeWinner" style="float: right;">
                                             <?php echo Html::a('',
