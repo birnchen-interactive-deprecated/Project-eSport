@@ -43,13 +43,13 @@ $playerNameR = ($player_right  instanceof User) ? $player_right->getUsername() :
         <h1>Encounter Details</h1>
         <div class="col-lg-6">
             <div class="playerDetails">
-                <span><?= $playerNameL; ?></span>
+                <div class="playerName"><?= $playerNameL; ?></div>
                 <?= Html::img($imgLeft  . '.webp', ['class' => 'entry-logo', 'alt' => "profilePic", 'aria-label' => 'profilePic', 'onerror' =>'this.src="' . $imgPath . '.png"' ]); ?>
             </div>
         </div>
         <div class="col-lg-6">
             <div class="playerDetails">
-                <span><?= $playerNameR; ?></span>
+                <div class="playerName"><?= $playerNameR; ?></div>
                 <?= Html::img($imgRight . '.webp', ['class' => 'entry-logo', 'alt' => "profilePic", 'aria-label' => 'profilePic', 'onerror' =>'this.src="' . $imgPath . '.png"' ]); ?>
             </div>
         </div>
