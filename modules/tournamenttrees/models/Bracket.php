@@ -289,7 +289,7 @@ class Bracket extends ActiveRecord
 	 */
 	public function isManageable($user, $subTeam, $player_one_two)
 	{
-		if ($this->getPlayer1->one() !== NULL) {
+		if ($this->getPlayer1()->one() !== NULL) {
 
 			$p1 = $this->getPlayer1()->one();
 			$u1 = User::findIdentity($p1);
@@ -308,12 +308,12 @@ class Bracket extends ActiveRecord
 			return false;
 		}
 
-		if ($this->getTeam1->one() !== NULL) {
+		if ($this->getTeam1()->one() !== NULL) {
 
-			$team1 = $this->getTeam1->one();
+			$team1 = $this->getTeam1()->one();
 			$st1 = SubTeam::findIdentity($team1);
 
-			$team2 = $this->getTeam2->one();
+			$team2 = $this->getTeam2()->one();
 			$st2 = SubTeam::findIdentity($team2);
 
 			if (1 === $player_one_two) {
