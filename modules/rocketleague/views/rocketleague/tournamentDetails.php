@@ -334,6 +334,7 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
                                                     [
                                                         "/rocketleague/move-player-in-bracket",
                                                         'tournament_id' => $tournament->getId(),
+                                                        'winner' => 1,
                                                         'bracketId' => $bracket->getId()
                                                     ],
                                                     ['class' => "glyphicon glyphicon-circle-arrow-right",
@@ -353,7 +354,6 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
                                                         [
                                                             "/rocketleague/close-bracket",
                                                             'tournament_id' => $tournament->getId(),
-                                                            'winner' => 1,
                                                             'bracketId' => $bracket->getId()
                                                         ],
                                                         ['class' => "glyphicon glyphicon-cloud-upload",
