@@ -297,6 +297,9 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
                                 <div class="bracket <?= $liveStream; ?>">
                                     <div class="bracketParticipant <?= $class1; ?>">
                                         <?= $participant1; ?>
+                                        <?php if ($user->getId() == 4): ?>
+                                            <?= $user->getId(); ?>
+                                        <?php endif; ?>
                                         <!-- Captains/Deputy Area -->
                                         <?php if ($bracket->isManageable($user, $subTeam, 1)) : ?>
                                             <div class="takeWinner" style="float: right;">
