@@ -63,11 +63,11 @@ $playerNameR = ($player_right  instanceof User) ? $player_right->getUsername() :
                         <?php for ($b=1; $b <= $best_of; $b++): ?>
                             <tr>
                                 <td><?= $b; ?></td>
-                                <td><input type="text" name="p1_points"></td>
-                                <td><input type="text" name="p1_goals"></td>
-                                <td><input type="text" name="p1_assists"></td>
-                                <td><input type="text" name="p1_safes"></td>
-                                <td><input type="text" name="p1_shots"></td>
+                                <td><input type="text" name="p1_points" size="3"></td>
+                                <td><input type="text" name="p1_goals" size="2"></td>
+                                <td><input type="text" name="p1_assists" size="2"></td>
+                                <td><input type="text" name="p1_safes" size="2"></td>
+                                <td><input type="text" name="p1_shots" size="2"></td>
                             </tr>
                         <?php endfor; ?>
                     </tbody>
@@ -93,11 +93,11 @@ $playerNameR = ($player_right  instanceof User) ? $player_right->getUsername() :
                         <?php for ($b=1; $b <= $best_of; $b++): ?>
                             <tr>
                                 <td><?= $b; ?></td>
-                                <td><input type="text" name="p2_points"></td>
-                                <td><input type="text" name="p2_goals"></td>
-                                <td><input type="text" name="p2_assists"></td>
-                                <td><input type="text" name="p2_safes"></td>
-                                <td><input type="text" name="p2_shots"></td>
+                                <td><input type="text" name="p2_points" size="3"></td>
+                                <td><input type="text" name="p2_goals" size="2"></td>
+                                <td><input type="text" name="p2_assists" size="2"></td>
+                                <td><input type="text" name="p2_safes" size="2"></td>
+                                <td><input type="text" name="p2_shots" size="2"></td>
                             </tr>
                         <?php endfor; ?>
                     </tbody>
