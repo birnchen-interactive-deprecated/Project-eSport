@@ -81,6 +81,10 @@
 
 
 
+.site-editEncounterDetails h1 {
+	text-align: center;
+}
+
 .site-editEncounterDetails .playerDetails {
 	text-align: center;
 }
@@ -91,5 +95,14 @@
 }
 
 .site-editEncounterDetails .entry-logo {
+	margin-bottom: 20px;
 	width: 250px;
+}
+
+.site-editEncounterDetails table {
+	margin: 0 auto;
+}
+
+.site-editEncounterDetails table th {
+	text-align: center;
 }
