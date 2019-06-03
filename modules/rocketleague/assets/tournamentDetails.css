@@ -78,3 +78,9 @@
 .site-rl-tournament-details .bracket.stream3 {
 	border: 3px solid #ffa500;
 }
+
+
+
+.site-editEncounterDetails .player-details {
+	text-align: center;
+}

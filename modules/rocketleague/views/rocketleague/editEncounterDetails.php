@@ -28,6 +28,9 @@ if (!is_file($_SERVER['DOCUMENT_ROOT'] . '/' . $imgRight . '.webp')) {
     }
 }
 
+$playerNameL = ($player_left  instanceof User) ? $player_left->getUsername() : $player_left->getName();
+$playerNameR = ($player_right  instanceof User) ? $player_right->getUsername() : $player_right->getName();
+
 
 ?>
 <div class="site-editEncounterDetails">
@@ -39,10 +42,16 @@ if (!is_file($_SERVER['DOCUMENT_ROOT'] . '/' . $imgRight . '.webp')) {
     <div class="col-lg-12">
         <h1>Encounter Details</h1>
         <div class="col-lg-6">
-            <?= Html::img($imgLeft  . '.webp', ['class' => 'entry-logo', 'alt' => "profilePic", 'aria-label' => 'profilePic', 'onerror' =>'this.src="' . $imgPath . '.png"' ]); ?>
+            <div class="playerDetails">
+                <span><?= $playerNameL; ?></span>
+                <?= Html::img($imgLeft  . '.webp', ['class' => 'entry-logo', 'alt' => "profilePic", 'aria-label' => 'profilePic', 'onerror' =>'this.src="' . $imgPath . '.png"' ]); ?>
+            </div>
         </div>
         <div class="col-lg-6">
-            <?= Html::img($imgRight . '.webp', ['class' => 'entry-logo', 'alt' => "profilePic", 'aria-label' => 'profilePic', 'onerror' =>'this.src="' . $imgPath . '.png"' ]); ?>
+            <div class="playerDetails">
+                <span><?= $playerNameR; ?></span>
+                <?= Html::img($imgRight . '.webp', ['class' => 'entry-logo', 'alt' => "profilePic", 'aria-label' => 'profilePic', 'onerror' =>'this.src="' . $imgPath . '.png"' ]); ?>
+            </div>
         </div>
     </div>
 
