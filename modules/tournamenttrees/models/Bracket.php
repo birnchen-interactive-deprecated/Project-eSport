@@ -292,16 +292,13 @@ class Bracket extends ActiveRecord
 		if ($this->getPlayer1()->one() !== NULL) {
 
 			$p1 = $this->getPlayer1()->one();
-			$u1 = User::findIdentity($p1);
-
 			$p2 = $this->getPlayer2()->one();
-			$u2 = User::findIdentity($p2);
 
-			if (1 === $player_one_two && $p1 !== NULL && $u1->getId() == $user->getId()) {
+			if (1 === $player_one_two && $p1 !== NULL && $p1->getId() == $user->getId()) {
 				return true;
 			}
 
-			if (2 === $player_one_two && $p2 !== NULL && $u2->getId() == $user->getId()) {
+			if (2 === $player_one_two && $p2 !== NULL && $p2->getId() == $user->getId()) {
 				return true;
 			}
 
@@ -311,14 +308,11 @@ class Bracket extends ActiveRecord
 		if ($this->getTeam1()->one() !== NULL) {
 
 			$team1 = $this->getTeam1()->one();
-			$st1 = SubTeam::findIdentity($team1);
-
 			$team2 = $this->getTeam2()->one();
-			$st2 = SubTeam::findIdentity($team2);
 
 			if (1 === $player_one_two) {
 				
-				if ($team1 !== NULL && ($st1->getTeamCaptainId() == $user->getId() || $st1->getTeamDeputyId() == $user->getId())) {
+				if ($team1 !== NULL && ($team1->getTeamCaptainId() == $user->getId() || $team1->getTeamDeputyId() == $user->getId())) {
 					return true;
 				}
 				return false;
@@ -326,7 +320,7 @@ class Bracket extends ActiveRecord
 			}
 			if (2 === $player_one_two) {
 
-				if ($team2 !== NULL && ($st2->getTeamCaptainId() == $user->getId() || $st2->getTeamDeputyId() == $user->getId())) {
+				if ($team2 !== NULL && ($team2->getTeamCaptainId() == $user->getId() || $team2->getTeamDeputyId() == $user->getId())) {
 					return true;
 				}
 				return false;
