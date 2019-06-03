@@ -56,7 +56,7 @@ $playerNameR = ($player_right  instanceof User) ? $player_right->getUsername() :
     </div>
 
     <div class="col-lg-12">
-        <?= Html::submitButton("Speichern", ['class' => 'btn mediumButton pull-right']) ?>
+        <?= Html::submitButton("Speichern", ['class' => 'btn']) ?>
     </div>
     <?php ActiveForm::end(); ?>
 </div>

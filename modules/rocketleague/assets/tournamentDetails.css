@@ -84,3 +84,12 @@
 .site-editEncounterDetails .playerDetails {
 	text-align: center;
 }
+
+.site-editEncounterDetails .playerName {
+	font-size: 36px;
+	font-weight: bold;
+}
+
+.site-editEncounterDetails .entry-logo {
+	width: 250px;
+}
