@@ -8,6 +8,7 @@
  * @var best_of int
  * @var round int
  * @var bracketID int
+ * @var tournament_id int
  */
 
 use yii\helpers\Html;
@@ -110,6 +111,7 @@ $playerNameR = ($player_right  instanceof User) ? $player_right->getUsername() :
     </div>
 
     <div class="col-lg-12">
+        <?= Html::a('Back to Tournament', ['/rocketleague/tournament-details', 'id' => $tournament_id], ['class' => 'btn btn-alert']); ?>
         <?= Html::submitButton("Speichern", ['class' => 'btn']) ?>
     </div>
     <?php ActiveForm::end(); ?>
