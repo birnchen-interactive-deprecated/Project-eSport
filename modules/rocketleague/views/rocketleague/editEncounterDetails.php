@@ -86,11 +86,11 @@ $playerNameR = ($player_right  instanceof User) ? $player_right->getUsername() :
                     <?php foreach ($players_left as $key => $player): ?>
                         <tr>
                             <td><?= $player->getUsername(); ?></td>
-                            <td><input type="text" name="xxx"></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td class="encounterField"><input class="encounterInput" type="text" name=""></td>
+                            <td class="encounterField"><input class="encounterInput" type="text" name=""></td>
+                            <td class="encounterField"><input class="encounterInput" type="text" name=""></td>
+                            <td class="encounterField"><input class="encounterInput" type="text" name=""></td>
+                            <td class="encounterField"><input class="encounterInput" type="text" name=""></td>
                         </tr>
 
                     <?php endforeach; ?>
