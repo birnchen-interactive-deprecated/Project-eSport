@@ -111,7 +111,7 @@ $playerNameR = ($player_right  instanceof User) ? $player_right->getUsername() :
     </div>
 
     <div class="col-lg-12">
-        <?= Html::button('Back to Tournament', ['/rocketleague/tournament-details', 'id' => $tournament_id], ['class' => 'btn btn-warning']); ?>
+        <?= Html::a('Back to Tournament', ['/rocketleague/tournament-details', 'id' => $tournament_id], ['class' => 'btn btn-warning']); ?>
         <?= Html::submitButton("Speichern", ['class' => 'btn']) ?>
     </div>
     <?php ActiveForm::end(); ?>
