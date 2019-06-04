@@ -5,6 +5,8 @@
  * @var $id int
  * @var $player_left User | SubTeam
  * @var $player_right User | SubTeam
+ * @var players_left array[User]
+ * @var players_right array[User]
  * @var best_of int
  * @var round int
  * @var bracketID int
