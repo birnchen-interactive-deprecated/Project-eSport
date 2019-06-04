@@ -11,6 +11,7 @@
  * @var round int
  * @var bracketID int
  * @var tournament_id int
+ * @var bracket_id int
  */
 
 use yii\helpers\Html;
@@ -47,6 +48,9 @@ $playerNameR = ($player_right  instanceof User) ? $player_right->getUsername() :
         'options' => ['class' => 'form-vertical']
     ]); ?>
 
+    <input type="hidden" name="tournament_id" value="<?= $tournament_id; ?>">
+    <input type="hidden" name="bracket_id" value="<?= $bracket_id; ?>">
+
     <div class="col-lg-12 encounterHeader">
         <h1>Encounter Details</h1>
         <h1>Round <?= $round; ?> / Bracket <?= $bracketID; ?></h1>
@@ -70,101 +74,66 @@ $playerNameR = ($player_right  instanceof User) ? $player_right->getUsername() :
         <h2 class="col-lg-12 encounterGameHeader">Spiel <?= $b; ?></h2>
 
         <div class="col-lg-6 encounterGameBody">
-            <div class="col-lg-2">Player</div>
-            <div class="col-lg-2">Points</div>
-            <div class="col-lg-2">Goals</div>
-            <div class="col-lg-2">Assists</div>
-            <div class="col-lg-2">Saves</div>
-            <div class="col-lg-2">Shots</div>
+            <table class="table table-striped table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>Player</th>
+                        <th>Points</th>
+                        <th>Goals</th>
+                        <th>Assists</th>
+                        <th>Saves</th>
+                        <th>Shots</th>
+                    </tr>
+                </thead>
 
-            <?php foreach ($players_left as $key => $player): ?>
-                
-                <div class="col-lg-2"><?= $player->getUsername(); ?></div>
-                <div class="col-lg-2"></div>
-                <div class="col-lg-2"></div>
-                <div class="col-lg-2"></div>
-                <div class="col-lg-2"></div>
-                <div class="col-lg-2"></div>
+                <tbody>
+                    <?php foreach ($players_left as $key => $player): ?>
+                        <tr>
+                            <td><?= $player->getUsername(); ?></td>
+                            <td class="encounterField"><input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $player->getId(); ?>][points]" placeholder="empty"></td>
+                            <td class="encounterField"><input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $player->getId(); ?>][goals]" placeholder="empty"></td>
+                            <td class="encounterField"><input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $player->getId(); ?>][assists]" placeholder="empty"></td>
+                            <td class="encounterField"><input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $player->getId(); ?>][saves]" placeholder="empty"></td>
+                            <td class="encounterField"><input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $player->getId(); ?>][shots]" placeholder="empty"></td>
+                        </tr>
 
-            <?php endforeach; ?>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+
         </div>
 
         <div class="col-lg-6 encounterGameBody">
-            <div class="col-lg-2">Player</div>
-            <div class="col-lg-2">Points</div>
-            <div class="col-lg-2">Goals</div>
-            <div class="col-lg-2">Assists</div>
-            <div class="col-lg-2">Saves</div>
-            <div class="col-lg-2">Shots</div>
+            <table class="table table-striped table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>Player</th>
+                        <th>Points</th>
+                        <th>Goals</th>
+                        <th>Assists</th>
+                        <th>Saves</th>
+                        <th>Shots</th>
+                    </tr>
+                </thead>
 
-            <?php foreach ($players_left as $key => $player): ?>
-                
-                <div class="col-lg-2"><?= $player->getUsername(); ?></div>
-                <div class="col-lg-2"></div>
-                <div class="col-lg-2"></div>
-                <div class="col-lg-2"></div>
-                <div class="col-lg-2"></div>
-                <div class="col-lg-2"></div>
+                <tbody>
+                    <?php foreach ($players_right as $key => $player): ?>
+                        <tr>
+                            <td><?= $player->getUsername(); ?></td>
+                            <td class="encounterField"><input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $player->getId(); ?>][points]" placeholder="empty"></td>
+                            <td class="encounterField"><input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $player->getId(); ?>][goals]" placeholder="empty"></td>
+                            <td class="encounterField"><input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $player->getId(); ?>][assists]" placeholder="empty"></td>
+                            <td class="encounterField"><input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $player->getId(); ?>][saves]" placeholder="empty"></td>
+                            <td class="encounterField"><input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $player->getId(); ?>][shots]" placeholder="empty"></td>
+                        </tr>
 
-            <?php endforeach; ?>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+
         </div>
 
         <?php endfor; ?>
-
-        <?php if (false): ?>
-        <div class="col-lg-6">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Game</th>
-                        <th>Points</th>
-                        <th>Goals</th>
-                        <th>Assists</th>
-                        <th>Safes</th>
-                        <th>Shots</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php for ($b=1; $b <= $best_of; $b++): ?>
-                        <tr>
-                            <td><?= $b; ?></td>
-                            <td><input type="text" name="p1_points[<?= $b; ?>]" size="3"></td>
-                            <td><input type="text" name="p1_goals[<?= $b; ?>]" size="2"></td>
-                            <td><input type="text" name="p1_assists[<?= $b; ?>]" size="2"></td>
-                            <td><input type="text" name="p1_safes[<?= $b; ?>]" size="2"></td>
-                            <td><input type="text" name="p1_shots[<?= $b; ?>]" size="2"></td>
-                        </tr>
-                    <?php endfor; ?>
-                </tbody>
-            </table>            
-        </div>
-        <div class="col-lg-6">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Game</th>
-                        <th>Points</th>
-                        <th>Goals</th>
-                        <th>Assists</th>
-                        <th>Safes</th>
-                        <th>Shots</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php for ($b=1; $b <= $best_of; $b++): ?>
-                        <tr>
-                            <td><?= $b; ?></td>
-                            <td><input type="text" name="p2_points[<?= $b; ?>]" size="3"></td>
-                            <td><input type="text" name="p2_goals[<?= $b; ?>]" size="2"></td>
-                            <td><input type="text" name="p2_assists[<?= $b; ?>]" size="2"></td>
-                            <td><input type="text" name="p2_safes[<?= $b; ?>]" size="2"></td>
-                            <td><input type="text" name="p2_shots[<?= $b; ?>]" size="2"></td>
-                        </tr>
-                    <?php endfor; ?>
-                </tbody>
-            </table>
-        </div>
-        <?php endif; ?>
 
     </div>
 
