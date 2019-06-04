@@ -73,24 +73,24 @@ $playerNameR = ($player_right  instanceof User) ? $player_right->getUsername() :
             <table class="table table-striped table-hover table-bordered">
                 <thead>
                     <tr>
-                        <th class="col-lg-4">Player</th>
-                        <th class="col-lg-2">Points</th>
-                        <th class="col-lg-2">Goals</th>
-                        <th class="col-lg-1">Assists</th>
-                        <th class="col-lg-1">Saves</th>
-                        <th class="col-lg-2">Shots</th>
+                        <th>Player</th>
+                        <th>Points</th>
+                        <th>Goals</th>
+                        <th>Assists</th>
+                        <th>Saves</th>
+                        <th>Shots</th>
                     </tr>
                 </thead>
 
                 <tbody>
                     <?php foreach ($players_left as $key => $player): ?>
                         <tr>
-                            <td class="col-lg-4"><?= $player->getUsername(); ?></td>
-                            <td class="col-lg-2"></td>
-                            <td class="col-lg-2"></td>
-                            <td class="col-lg-1"></td>
-                            <td class="col-lg-1"></td>
-                            <td class="col-lg-2"></td>
+                            <td><?= $player->getUsername(); ?></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
 
                     <?php endforeach; ?>
@@ -103,24 +103,24 @@ $playerNameR = ($player_right  instanceof User) ? $player_right->getUsername() :
             <table class="table table-striped table-hover table-bordered">
                 <thead>
                     <tr>
-                        <th class="col-lg-4">Player</th>
-                        <th class="col-lg-2">Points</th>
-                        <th class="col-lg-2">Goals</th>
-                        <th class="col-lg-1">Assists</th>
-                        <th class="col-lg-1">Saves</th>
-                        <th class="col-lg-2">Shots</th>
+                        <th>Player</th>
+                        <th>Points</th>
+                        <th>Goals</th>
+                        <th>Assists</th>
+                        <th>Saves</th>
+                        <th>Shots</th>
                     </tr>
                 </thead>
 
                 <tbody>
                     <?php foreach ($players_right as $key => $player): ?>
                         <tr>
-                            <td class="col-lg-4"><?= $player->getUsername(); ?></td>
-                            <td class="col-lg-2"></td>
-                            <td class="col-lg-2"></td>
-                            <td class="col-lg-1"></td>
-                            <td class="col-lg-1"></td>
-                            <td class="col-lg-2"></td>
+                            <td><?= $player->getUsername(); ?></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
 
                     <?php endforeach; ?>
