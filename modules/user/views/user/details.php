@@ -27,6 +27,8 @@ $this->registerLinkTag(['rel' => 'canonical', 'href' => 'https://project-esport.
 /** twitter/facebook/google Metatag */
 Yii::$app->MetaClass->writeMetaUser($this, $model, $userInfo['nationality']);
 
+$isAdmin = (Yii::$app->user->identity->getId() <= 4)? true : false;
+
 /** $synonym = ($gender_id == 1) ? 'synonym_m' : ($gender_id == 2) ? 'synonym_w' : 'synonym_d'; */
 ?>
 
@@ -239,6 +241,20 @@ Yii::$app->MetaClass->writeMetaUser($this, $model, $userInfo['nationality']);
                             <div class="col-lg-12">
                                 <?= Html::a($mainTeam['team']->getName(), ['/teams/team-details', 'id' => $mainTeam['team']->getId()]); ?>
                                 <?= ($mainTeam['owner']) ? '(owner)' : '(member)'; ?>
+                                <?php if ($isAdmin) : ?>
+                                    <?php
+                                        echo Html::a('',
+                                            [
+                                                "delete-main-team",
+                                                "id" => $mainTeam['team']->getId(),
+                                                'userId' => $model->id
+                                            ],
+                                            ['class' => "glyphicon glyphicon-remove",
+                                                'title' => "Delete Main Team"
+                                            ]
+                                        )
+                                    ?>
+                                <?php endif; ?>
                             </div>
                         </div>
                     <?php endforeach; ?>
