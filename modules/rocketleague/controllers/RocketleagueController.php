@@ -335,8 +335,17 @@ class RocketleagueController extends BaseController
             $player_left  = SubTeam::findIdentity($bracket->team_1_id);
             $player_right = SubTeam::findIdentity($bracket->team_2_id);
 
-            $players_left = $player_left->getSubTeamMembers();
-            $players_right = $player_right->getSubTeamMembers();
+            $members_left = $player_left->getSubTeamMembers();
+            $members_right = $player_right->getSubTeamMembers();
+
+            foreach ($members_left as $key => $member) {
+                $players_left[] = $member->getUser();
+            }
+
+            foreach ($members_right as $key => $member) {
+                $players_right[] = $member->getUser();
+            }
+
         }
 
         return $this->render('editEncounterDetails',
