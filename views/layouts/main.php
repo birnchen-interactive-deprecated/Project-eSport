@@ -35,10 +35,10 @@ if($visible)
 
 
 /** Footer Images SEO 04.06.2019 */
-$twitterImg = Html::img('../images/socialMedia/Twitter_Logo_Blue.webp', ['height' => '49px', 'aria-labelledby' => 'twitterImage', 'onerror' => 'this.src=\'../images/socialMedia/Twitter_Logo_Blue.png\'']);
+$twitterImg = Html::img('../images/socialMedia/Twitter_Logo_Blue.webp', ['height' => '49px', 'aria-labelledby' => 'twitterImage', 'alt' => 'twitter.webp', 'onerror' => 'this.src=\'../images/socialMedia/Twitter_Logo_Blue.png\'']);
 $twitterLink = Html::a($twitterImg, 'https://twitter.com/esport_project', ['target' => '_blank','id' => 'twitterImage', 'rel' =>'noopener', 'aria-label' => 'Follow us on twitter']);
 
-$discordImg = Html::img('../images/socialMedia/Discord-Logo-White.webp', ['height' => '49px', 'aria-labelledby' => 'discordImage', 'onerror' => 'this.src=\'../images/socialMedia/Discord-Logo-White.png\'', 'style' => 'padding: 5px 0; ']);
+$discordImg = Html::img('../images/socialMedia/Discord-Logo-White.webp', ['height' => '49px', 'aria-labelledby' => 'discordImage', 'alt' => 'discord.webp', 'onerror' => 'this.src=\'../images/socialMedia/Discord-Logo-White.png\'', 'style' => 'padding: 5px 0; ']);
 $discordLink = Html::a($discordImg, 'https://discord.gg/rk3qd9U', ['target' => '_blank','id' => 'discordImage', 'rel' =>'noopener', 'aria-label' => 'Join our Discord Server']);
 
 /** some stuff */
