@@ -298,7 +298,7 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
                                     <div class="bracketParticipant <?= $class1; ?>">
                                         <?= $participant1; ?>
                                         <!-- Captains/Deputy Area -->
-                                        <?php if ($bracket->isManageable($user, $subTeam, 1)) : ?>
+                                        <?php if ($isAdmin || $bracket->isManageable($user, $subTeam, 1)) : ?>
                                             <div class="takeWinner" style="float: right;">
                                                 <?php echo Html::a('',
                                                     [
@@ -347,7 +347,7 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
                                     <div class="bracketParticipant <?= $class2; ?>">
                                         <?= $participant2; ?>
                                         <!-- Captains/Deputy Area -->
-                                        <?php if ($bracket->isManageable($user, $subTeam, 2)) : ?>
+                                        <?php if ($isAdmin || $bracket->isManageable($user, $subTeam, 2)) : ?>
                                             <div class="takeWinner" style="float: right;">
                                                     <?php echo Html::a('',
                                                         [
@@ -447,7 +447,7 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
                                 <div class="bracketParticipant <?= $class1; ?>">
                                     <?= $participant1; ?>
                                     <!-- Captains/Deputy Area -->
-                                    <?php if ($bracket->isManageable($user, $subTeam, 1)) : ?>
+                                    <?php if ($isAdmin || $bracket->isManageable($user, $subTeam, 1)) : ?>
                                         <div class="takeWinner" style="float: right;">
                                             <?php echo Html::a('',
                                                 [
@@ -494,7 +494,7 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
                                 <div class="bracketParticipant <?= $class2; ?>">
                                     <?= $participant2; ?>
                                     <!-- Captains/Deputy Area -->
-                                    <?php if ($bracket->isManageable($user, $subTeam, 2)) : ?>
+                                    <?php if ($isAdmin || $bracket->isManageable($user, $subTeam, 2)) : ?>
                                         <div class="takeWinner" style="float: right;">
                                             <?php echo Html::a('',
                                                 [
