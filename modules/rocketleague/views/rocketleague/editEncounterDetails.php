@@ -65,6 +65,19 @@ $playerNameR = ($player_right  instanceof User) ? $player_right->getUsername() :
     </div>
 
     <div class="col-lg-12 encounterBody">
+        <?php for ($b=1; $b <= $best_of; $b++): ?>
+
+        <h2 class="col-lg-12 encounterGameHeader">Spiel <?= $b; ?></h2>
+
+        <div class="col-lg-6 encounterGameBody">
+        </div>
+
+        <div class="col-lg-6 encounterGameBody">
+        </div>
+
+        <?php endfor; ?>
+
+        <?php if (false): ?>
         <div class="col-lg-6">
             <table>
                 <thead>
@@ -117,6 +130,8 @@ $playerNameR = ($player_right  instanceof User) ? $player_right->getUsername() :
                 </tbody>
             </table>
         </div>
+        <?php endif; ?>
+
     </div>
 
     <div class="col-lg-12 encounterFooter">
