@@ -47,72 +47,79 @@ $playerNameR = ($player_right  instanceof User) ? $player_right->getUsername() :
         'options' => ['class' => 'form-vertical']
     ]); ?>
 
-    <div class="col-lg-12">
+    <div class="col-lg-12 encounterHeader">
         <h1>Encounter Details</h1>
         <h1>Round <?= $round; ?> / Bracket <?= $bracketID; ?></h1>
         <div class="col-lg-6">
             <div class="playerDetails">
                 <div class="playerName"><?= $playerNameL; ?></div>
                 <?= Html::img($imgLeft  . '.webp', ['class' => 'entry-logo', 'alt' => "profilePic", 'aria-label' => 'profilePic', 'onerror' =>'this.src="' . $imgPath . '.png"' ]); ?>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Game</th>
-                            <th>Points</th>
-                            <th>Goals</th>
-                            <th>Assists</th>
-                            <th>Safes</th>
-                            <th>Shots</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php for ($b=1; $b <= $best_of; $b++): ?>
-                            <tr>
-                                <td><?= $b; ?></td>
-                                <td><input type="text" name="p1_points[<?= $b; ?>]" size="3"></td>
-                                <td><input type="text" name="p1_goals[<?= $b; ?>]" size="2"></td>
-                                <td><input type="text" name="p1_assists[<?= $b; ?>]" size="2"></td>
-                                <td><input type="text" name="p1_safes[<?= $b; ?>]" size="2"></td>
-                                <td><input type="text" name="p1_shots[<?= $b; ?>]" size="2"></td>
-                            </tr>
-                        <?php endfor; ?>
-                    </tbody>
-                </table>
             </div>
         </div>
         <div class="col-lg-6">
             <div class="playerDetails">
                 <div class="playerName"><?= $playerNameR; ?></div>
                 <?= Html::img($imgRight . '.webp', ['class' => 'entry-logo', 'alt' => "profilePic", 'aria-label' => 'profilePic', 'onerror' =>'this.src="' . $imgPath . '.png"' ]); ?>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Game</th>
-                            <th>Points</th>
-                            <th>Goals</th>
-                            <th>Assists</th>
-                            <th>Safes</th>
-                            <th>Shots</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php for ($b=1; $b <= $best_of; $b++): ?>
-                            <tr>
-                                <td><?= $b; ?></td>
-                                <td><input type="text" name="p2_points[<?= $b; ?>]" size="3"></td>
-                                <td><input type="text" name="p2_goals[<?= $b; ?>]" size="2"></td>
-                                <td><input type="text" name="p2_assists[<?= $b; ?>]" size="2"></td>
-                                <td><input type="text" name="p2_safes[<?= $b; ?>]" size="2"></td>
-                                <td><input type="text" name="p2_shots[<?= $b; ?>]" size="2"></td>
-                            </tr>
-                        <?php endfor; ?>
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>
 
-    <div class="col-lg-12">
+    <div class="col-lg-12 encounterBody">
+        <div class="col-lg-6">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Game</th>
+                        <th>Points</th>
+                        <th>Goals</th>
+                        <th>Assists</th>
+                        <th>Safes</th>
+                        <th>Shots</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php for ($b=1; $b <= $best_of; $b++): ?>
+                        <tr>
+                            <td><?= $b; ?></td>
+                            <td><input type="text" name="p1_points[<?= $b; ?>]" size="3"></td>
+                            <td><input type="text" name="p1_goals[<?= $b; ?>]" size="2"></td>
+                            <td><input type="text" name="p1_assists[<?= $b; ?>]" size="2"></td>
+                            <td><input type="text" name="p1_safes[<?= $b; ?>]" size="2"></td>
+                            <td><input type="text" name="p1_shots[<?= $b; ?>]" size="2"></td>
+                        </tr>
+                    <?php endfor; ?>
+                </tbody>
+            </table>            
+        </div>
+        <div class="col-lg-6">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Game</th>
+                        <th>Points</th>
+                        <th>Goals</th>
+                        <th>Assists</th>
+                        <th>Safes</th>
+                        <th>Shots</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php for ($b=1; $b <= $best_of; $b++): ?>
+                        <tr>
+                            <td><?= $b; ?></td>
+                            <td><input type="text" name="p2_points[<?= $b; ?>]" size="3"></td>
+                            <td><input type="text" name="p2_goals[<?= $b; ?>]" size="2"></td>
+                            <td><input type="text" name="p2_assists[<?= $b; ?>]" size="2"></td>
+                            <td><input type="text" name="p2_safes[<?= $b; ?>]" size="2"></td>
+                            <td><input type="text" name="p2_shots[<?= $b; ?>]" size="2"></td>
+                        </tr>
+                    <?php endfor; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="col-lg-12 encounterFooter">
         <?= Html::a('Back to Tournament', ['/rocketleague/tournament-details', 'id' => $tournament_id], ['class' => 'btn btn-warning']); ?>
         <?= Html::submitButton("Speichern", ['class' => 'btn']) ?>
     </div>

@@ -106,3 +106,8 @@
 .site-editEncounterDetails table th {
 	text-align: center;
 }
+
+.site-editEncounterDetails .encounterHeader,
+.site-editEncounterDetails .encounterBody {
+	margin: 0 0 10px;
+}
