@@ -62,8 +62,8 @@ class UserGameForm extends FormModel
         $model = UserGames::find()->where(['game_id' => $this->game_id, 'platform_id' => $this->platform_id, 'user_id' => Yii::$app->user->identity->getId()])->one();
 
         if ($model) {
-            $this->addError('game_id', "du bist doof");
-            $this->addError('platform_id', "oder du bist doof");
+            $this->addError('game_id', "Game ID bereits auf dieser Plattform registriert");
+            $this->addError('platform_id', "Platform bereits mit diesem Spiel registriert");
         }
     }
 
