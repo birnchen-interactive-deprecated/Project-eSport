@@ -389,9 +389,20 @@ class UserController extends BaseController
             'id' => MainTeam::findOne(['owner_id' => $model->owner_id, 'name' => $model->name])->getId(),
             'isSub'=>0)
         );
+    }
 
+    public function actionDeleteMainTeam($id, $userId)
+    {
+        if (Yii::$app->user->isGuest || Yii::$app->user->identity == null) {
+            return $this->goHome();
+        }
 
-        //return $this->redirect(['teams/edit-details?id=' . MainTeam::findOne(['owner_id' => $model->owner_id, 'name' => $model->name])->getId() . '&isSub=0']);
+        $model = MainTeam::find()->where(['id' => $id])->one();
+        $model->delete();
+
+        Alert::addSuccess('Main Team Deleted');
+
+        return $this->redirect("details?id=" . $userId);
     }
 
     public function actionInvitation($accept, $teamId)
