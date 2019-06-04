@@ -338,6 +338,8 @@ class RocketleagueController extends BaseController
                 'player_left' => $player_left,
                 'player_right' => $player_right,
                 'best_of' => $bracket->getBestOf(),
+                'round' => $bracket->getTournamentRound(),
+                'bracketID' => $bracket->getEncounterId(),
             ]);
     }
 

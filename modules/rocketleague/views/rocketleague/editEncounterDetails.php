@@ -6,6 +6,8 @@
  * @var $player_left User | SubTeam
  * @var $player_right User | SubTeam
  * @var best_of int
+ * @var round int
+ * @var brackedID int
  */
 
 use yii\helpers\Html;
@@ -44,6 +46,7 @@ $playerNameR = ($player_right  instanceof User) ? $player_right->getUsername() :
 
     <div class="col-lg-12">
         <h1>Encounter Details</h1>
+        <h1>Round <?= $round; ?> / Bracket <?= $brackedID; ?></h1>
         <div class="col-lg-6">
             <div class="playerDetails">
                 <div class="playerName"><?= $playerNameL; ?></div>
@@ -51,7 +54,7 @@ $playerNameR = ($player_right  instanceof User) ? $player_right->getUsername() :
                 <table>
                     <thead>
                         <tr>
-                            <th>Round</th>
+                            <th>Game</th>
                             <th>Points</th>
                             <th>Goals</th>
                             <th>Assists</th>
@@ -81,7 +84,7 @@ $playerNameR = ($player_right  instanceof User) ? $player_right->getUsername() :
                 <table>
                     <thead>
                         <tr>
-                            <th>Round</th>
+                            <th>Game</th>
                             <th>Points</th>
                             <th>Goals</th>
                             <th>Assists</th>
