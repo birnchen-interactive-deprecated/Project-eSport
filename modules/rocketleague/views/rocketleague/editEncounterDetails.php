@@ -70,43 +70,63 @@ $playerNameR = ($player_right  instanceof User) ? $player_right->getUsername() :
         <h2 class="col-lg-12 encounterGameHeader">Spiel <?= $b; ?></h2>
 
         <div class="col-lg-6 encounterGameBody">
-            <div class="col-lg-3">Player</div>
-            <div class="col-lg-3">Points</div>
-            <div class="col-lg-2">Goals</div>
-            <div class="col-lg-1">Assists</div>
-            <div class="col-lg-1">Saves</div>
-            <div class="col-lg-2">Shots</div>
+            <table class="table table-striped table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th class="col-lg-4">Player</th>
+                        <th class="col-lg-2">Points</th>
+                        <th class="col-lg-2">Goals</th>
+                        <th class="col-lg-1">Assists</th>
+                        <th class="col-lg-1">Saves</th>
+                        <th class="col-lg-2">Shots</th>
+                    </tr>
+                </thead>
 
-            <?php foreach ($players_left as $key => $player): ?>
-                
-                <div class="col-lg-3"><?= $player->getUsername(); ?></div>
-                <div class="col-lg-3"></div>
-                <div class="col-lg-2"></div>
-                <div class="col-lg-1"></div>
-                <div class="col-lg-1"></div>
-                <div class="col-lg-2"></div>
+                <tbody>
+                    <?php foreach ($players_left as $key => $player): ?>
+                        <tr>
+                            <td class="col-lg-4"><?= $player->getUsername(); ?></td>
+                            <td class="col-lg-2"></td>
+                            <td class="col-lg-2"></td>
+                            <td class="col-lg-1"></td>
+                            <td class="col-lg-1"></td>
+                            <td class="col-lg-2"></td>
+                        </tr>
 
-            <?php endforeach; ?>
+                    <?php endforeach; ?>
+                </tbody>
+            </div>
+
         </div>
 
         <div class="col-lg-6 encounterGameBody">
-            <div class="col-lg-3">Player</div>
-            <div class="col-lg-3">Points</div>
-            <div class="col-lg-2">Goals</div>
-            <div class="col-lg-1">Assists</div>
-            <div class="col-lg-1">Saves</div>
-            <div class="col-lg-2">Shots</div>
+            <table class="table table-striped table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th class="col-lg-4">Player</th>
+                        <th class="col-lg-2">Points</th>
+                        <th class="col-lg-2">Goals</th>
+                        <th class="col-lg-1">Assists</th>
+                        <th class="col-lg-1">Saves</th>
+                        <th class="col-lg-2">Shots</th>
+                    </tr>
+                </thead>
 
-            <?php foreach ($players_right as $key => $player): ?>
-                
-                <div class="col-lg-3"><?= $player->getUsername(); ?></div>
-                <div class="col-lg-3"></div>
-                <div class="col-lg-2"></div>
-                <div class="col-lg-1"></div>
-                <div class="col-lg-1"></div>
-                <div class="col-lg-2"></div>
+                <tbody>
+                    <?php foreach ($players_right as $key => $player): ?>
+                        <tr>
+                            <td class="col-lg-4"><?= $player->getUsername(); ?></td>
+                            <td class="col-lg-2"></td>
+                            <td class="col-lg-2"></td>
+                            <td class="col-lg-1"></td>
+                            <td class="col-lg-1"></td>
+                            <td class="col-lg-2"></td>
+                        </tr>
 
-            <?php endforeach; ?>
+                    <?php endforeach; ?>
+                </tbody>
+            </div>
+
         </div>
 
         <?php endfor; ?>
