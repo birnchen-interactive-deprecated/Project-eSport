@@ -328,16 +328,27 @@ class RocketleagueController extends BaseController
         if ($bracket->team_1_id === NULL) {
             $player_left  = User::findIdentity($bracket->user_1_id);
             $player_right = User::findIdentity($bracket->user_2_id);
+
+            $players_left = [$player_left];
+            $players_right = [$player_right];
         } else {
             $player_left  = SubTeam::findIdentity($bracket->team_1_id);
             $player_right = SubTeam::findIdentity($bracket->team_2_id);
+
+            $players_left = $player_left->getSubTeamMembers();
+            $players_right = $player_right->getSubTeamMembers();
         }
 
         return $this->render('editEncounterDetails',
             [
                 'player_left' => $player_left,
                 'player_right' => $player_right,
+                'players_left' => $players_left,
+                'players_right' => $players_right,
                 'best_of' => $bracket->getBestOf(),
+                'round' => $bracket->getTournamentRound(),
+                'bracketID' => $bracket->getEncounterId(),
+                'tournament_id' => $bracket->tournament_id,
             ]);
     }
 

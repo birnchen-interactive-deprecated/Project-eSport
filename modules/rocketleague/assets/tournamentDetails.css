@@ -99,10 +99,11 @@
 	width: 250px;
 }
 
-.site-editEncounterDetails table {
-	margin: 0 auto;
+.site-editEncounterDetails .encounterHeader,
+.site-editEncounterDetails .encounterBody {
+	margin: 0 0 10px;
 }
 
-.site-editEncounterDetails table th {
+.site-editEncounterDetails .encounterGameHeader {
 	text-align: center;
 }

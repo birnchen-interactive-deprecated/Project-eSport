@@ -5,7 +5,12 @@
  * @var $id int
  * @var $player_left User | SubTeam
  * @var $player_right User | SubTeam
+ * @var players_left array[User]
+ * @var players_right array[User]
  * @var best_of int
+ * @var round int
+ * @var bracketID int
+ * @var tournament_id int
  */
 
 use yii\helpers\Html;
@@ -42,71 +47,129 @@ $playerNameR = ($player_right  instanceof User) ? $player_right->getUsername() :
         'options' => ['class' => 'form-vertical']
     ]); ?>
 
-    <div class="col-lg-12">
+    <div class="col-lg-12 encounterHeader">
         <h1>Encounter Details</h1>
+        <h1>Round <?= $round; ?> / Bracket <?= $bracketID; ?></h1>
         <div class="col-lg-6">
             <div class="playerDetails">
                 <div class="playerName"><?= $playerNameL; ?></div>
                 <?= Html::img($imgLeft  . '.webp', ['class' => 'entry-logo', 'alt' => "profilePic", 'aria-label' => 'profilePic', 'onerror' =>'this.src="' . $imgPath . '.png"' ]); ?>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Round</th>
-                            <th>Points</th>
-                            <th>Goals</th>
-                            <th>Assists</th>
-                            <th>Safes</th>
-                            <th>Shots</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php for ($b=1; $b <= $best_of; $b++): ?>
-                            <tr>
-                                <td><?= $b; ?></td>
-                                <td><input type="text" name="p1_points[<?= $b; ?>]" size="3"></td>
-                                <td><input type="text" name="p1_goals[<?= $b; ?>]" size="2"></td>
-                                <td><input type="text" name="p1_assists[<?= $b; ?>]" size="2"></td>
-                                <td><input type="text" name="p1_safes[<?= $b; ?>]" size="2"></td>
-                                <td><input type="text" name="p1_shots[<?= $b; ?>]" size="2"></td>
-                            </tr>
-                        <?php endfor; ?>
-                    </tbody>
-                </table>
             </div>
         </div>
         <div class="col-lg-6">
             <div class="playerDetails">
                 <div class="playerName"><?= $playerNameR; ?></div>
                 <?= Html::img($imgRight . '.webp', ['class' => 'entry-logo', 'alt' => "profilePic", 'aria-label' => 'profilePic', 'onerror' =>'this.src="' . $imgPath . '.png"' ]); ?>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Round</th>
-                            <th>Points</th>
-                            <th>Goals</th>
-                            <th>Assists</th>
-                            <th>Safes</th>
-                            <th>Shots</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php for ($b=1; $b <= $best_of; $b++): ?>
-                            <tr>
-                                <td><?= $b; ?></td>
-                                <td><input type="text" name="p2_points[<?= $b; ?>]" size="3"></td>
-                                <td><input type="text" name="p2_goals[<?= $b; ?>]" size="2"></td>
-                                <td><input type="text" name="p2_assists[<?= $b; ?>]" size="2"></td>
-                                <td><input type="text" name="p2_safes[<?= $b; ?>]" size="2"></td>
-                                <td><input type="text" name="p2_shots[<?= $b; ?>]" size="2"></td>
-                            </tr>
-                        <?php endfor; ?>
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>
 
-    <div class="col-lg-12">
+    <div class="col-lg-12 encounterBody">
+        <?php for ($b=1; $b <= $best_of; $b++): ?>
+
+        <h2 class="col-lg-12 encounterGameHeader">Spiel <?= $b; ?></h2>
+
+        <div class="col-lg-6 encounterGameBody">
+            <div class="col-lg-2">Player</div>
+            <div class="col-lg-2">Points</div>
+            <div class="col-lg-2">Goals</div>
+            <div class="col-lg-2">Assists</div>
+            <div class="col-lg-2">Saves</div>
+            <div class="col-lg-2">Shots</div>
+
+            <?php foreach ($players_left as $key => $player): ?>
+                
+                <div class="col-lg-2"><?= $player->getUsername(); ?></div>
+                <div class="col-lg-2"></div>
+                <div class="col-lg-2"></div>
+                <div class="col-lg-2"></div>
+                <div class="col-lg-2"></div>
+                <div class="col-lg-2"></div>
+
+            <?php endforeach; ?>
+        </div>
+
+        <div class="col-lg-6 encounterGameBody">
+            <div class="col-lg-2">Player</div>
+            <div class="col-lg-2">Points</div>
+            <div class="col-lg-2">Goals</div>
+            <div class="col-lg-2">Assists</div>
+            <div class="col-lg-2">Saves</div>
+            <div class="col-lg-2">Shots</div>
+
+            <?php foreach ($players_left as $key => $player): ?>
+                
+                <div class="col-lg-2"><?= $player->getUsername(); ?></div>
+                <div class="col-lg-2"></div>
+                <div class="col-lg-2"></div>
+                <div class="col-lg-2"></div>
+                <div class="col-lg-2"></div>
+                <div class="col-lg-2"></div>
+
+            <?php endforeach; ?>
+        </div>
+
+        <?php endfor; ?>
+
+        <?php if (false): ?>
+        <div class="col-lg-6">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Game</th>
+                        <th>Points</th>
+                        <th>Goals</th>
+                        <th>Assists</th>
+                        <th>Safes</th>
+                        <th>Shots</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php for ($b=1; $b <= $best_of; $b++): ?>
+                        <tr>
+                            <td><?= $b; ?></td>
+                            <td><input type="text" name="p1_points[<?= $b; ?>]" size="3"></td>
+                            <td><input type="text" name="p1_goals[<?= $b; ?>]" size="2"></td>
+                            <td><input type="text" name="p1_assists[<?= $b; ?>]" size="2"></td>
+                            <td><input type="text" name="p1_safes[<?= $b; ?>]" size="2"></td>
+                            <td><input type="text" name="p1_shots[<?= $b; ?>]" size="2"></td>
+                        </tr>
+                    <?php endfor; ?>
+                </tbody>
+            </table>            
+        </div>
+        <div class="col-lg-6">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Game</th>
+                        <th>Points</th>
+                        <th>Goals</th>
+                        <th>Assists</th>
+                        <th>Safes</th>
+                        <th>Shots</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php for ($b=1; $b <= $best_of; $b++): ?>
+                        <tr>
+                            <td><?= $b; ?></td>
+                            <td><input type="text" name="p2_points[<?= $b; ?>]" size="3"></td>
+                            <td><input type="text" name="p2_goals[<?= $b; ?>]" size="2"></td>
+                            <td><input type="text" name="p2_assists[<?= $b; ?>]" size="2"></td>
+                            <td><input type="text" name="p2_safes[<?= $b; ?>]" size="2"></td>
+                            <td><input type="text" name="p2_shots[<?= $b; ?>]" size="2"></td>
+                        </tr>
+                    <?php endfor; ?>
+                </tbody>
+            </table>
+        </div>
+        <?php endif; ?>
+
+    </div>
+
+    <div class="col-lg-12 encounterFooter">
+        <?= Html::a('Back to Tournament', ['/rocketleague/tournament-details', 'id' => $tournament_id], ['class' => 'btn btn-warning']); ?>
         <?= Html::submitButton("Speichern", ['class' => 'btn']) ?>
     </div>
     <?php ActiveForm::end(); ?>
