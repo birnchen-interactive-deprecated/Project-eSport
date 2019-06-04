@@ -95,7 +95,7 @@ $playerNameR = ($player_right  instanceof User) ? $player_right->getUsername() :
 
                     <?php endforeach; ?>
                 </tbody>
-            </div>
+            </table>
 
         </div>
 
@@ -125,7 +125,7 @@ $playerNameR = ($player_right  instanceof User) ? $player_right->getUsername() :
 
                     <?php endforeach; ?>
                 </tbody>
-            </div>
+            </table>
 
         </div>
 
