@@ -99,7 +99,20 @@
 	width: 250px;
 }
 
-.site-editEncounterDetails .encounterHeader,
+.site-editEncounterDetails .encounterHeader {
+	margin: 0 0 10px;
+	position: relative;
+}
+
+.site-editEncounterDetails .encounterVs {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	font-size: 48px;
+	font-weight: bold;
+	transform: translate(-50%, -50%);
+}
+
 .site-editEncounterDetails .encounterBody {
 	margin: 0 0 10px;
 }

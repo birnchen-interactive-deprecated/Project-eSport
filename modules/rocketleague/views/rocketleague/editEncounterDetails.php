@@ -66,12 +66,13 @@ $playerNameR = ($player_right  instanceof User) ? $player_right->getUsername() :
                 <?= Html::img($imgRight . '.webp', ['class' => 'entry-logo', 'alt' => "profilePic", 'aria-label' => 'profilePic', 'onerror' =>'this.src="' . $imgPath . '.png"' ]); ?>
             </div>
         </div>
+        <div class="encounterVs">VS.</div>
     </div>
 
     <div class="col-lg-12 encounterBody">
         <?php for ($b=1; $b <= $best_of; $b++): ?>
 
-        <h2 class="col-lg-12 encounterGameHeader">Spiel <?= $b; ?></h2>
+        <h2 class="col-lg-12 encounterGameHeader">Game <?= $b; ?></h2>
 
         <div class="col-lg-6 encounterGameBody">
             <table class="table table-striped table-hover table-bordered">
@@ -139,7 +140,7 @@ $playerNameR = ($player_right  instanceof User) ? $player_right->getUsername() :
 
     <div class="col-lg-12 encounterFooter">
         <?= Html::a('Back to Tournament', ['/rocketleague/tournament-details', 'id' => $tournament_id], ['class' => 'btn btn-warning']); ?>
-        <?= Html::submitButton("Speichern", ['class' => 'btn']) ?>
+        <?= Html::submitButton("Submit", ['class' => 'btn']) ?>
     </div>
     <?php ActiveForm::end(); ?>
 </div>
