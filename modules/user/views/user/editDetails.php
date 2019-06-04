@@ -13,8 +13,6 @@ use yii\bootstrap\ActiveForm;
 
 use kartik\date\DatePicker;
 
-\app\modules\user\assets\UserAsset::register($this);
-
 ?>
 <div class="site-editDetails">
 	<?php $form = ActiveForm::begin([

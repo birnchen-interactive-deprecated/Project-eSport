@@ -4,7 +4,7 @@ namespace app\modules\user\assets;
 
 use yii\web\AssetBundle;
 
-class UserAsset extends AssetBundle
+class UserTwitterAsset extends AssetBundle
 {
     public $sourcePath = '@app/modules/user/assets';
 
@@ -15,8 +15,4 @@ class UserAsset extends AssetBundle
     public $jsOptions = [
    		'async' => 'true'
 	];
-    
-    public $css = [
-        'accountOverview.css'
-    ];
 }

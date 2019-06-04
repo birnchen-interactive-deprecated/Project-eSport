@@ -17,6 +17,7 @@ use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 
 \app\modules\user\assets\UserAsset::register($this);
+\app\modules\user\assets\UserTwitterAsset::register($this);
 
 /** Browser Title */
 $this->title = $model->username . '\'s Player profile';

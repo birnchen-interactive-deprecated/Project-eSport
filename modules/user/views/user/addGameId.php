@@ -10,8 +10,6 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-\app\modules\user\assets\UserAsset::register($this);
-
 ?>
 
 <div class="site-addGame">
