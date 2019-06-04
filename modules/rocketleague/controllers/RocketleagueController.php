@@ -342,14 +342,26 @@ class RocketleagueController extends BaseController
                 if (NULL === $member) {
                     continue;
                 }
-                $players_left[] = $member->getUser();
+
+                $user = $member->getUser()->one();
+                if (NULL === $user) {
+                    continue;
+                }
+
+                $players_left[] = $user;
             }
 
             foreach ($members_right as $key => $member) {
                 if (NULL === $member) {
                     continue;
                 }
-                $players_right[] = $member->getUser();
+
+                $user = $member->getUser()->one();
+                if (NULL === $user) {
+                    continue;
+                }
+
+                $players_right[] = $user;
             }
 
         }
