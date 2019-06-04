@@ -70,9 +70,43 @@ $playerNameR = ($player_right  instanceof User) ? $player_right->getUsername() :
         <h2 class="col-lg-12 encounterGameHeader">Spiel <?= $b; ?></h2>
 
         <div class="col-lg-6 encounterGameBody">
+            <div class="col-lg-2">Player</div>
+            <div class="col-lg-2">Points</div>
+            <div class="col-lg-2">Goals</div>
+            <div class="col-lg-2">Assists</div>
+            <div class="col-lg-2">Saves</div>
+            <div class="col-lg-2">Shots</div>
+
+            <?php foreach ($players_left as $key => $player): ?>
+                
+                <div class="col-lg-2"><?= $player->getUsername(); ?></div>
+                <div class="col-lg-2"></div>
+                <div class="col-lg-2"></div>
+                <div class="col-lg-2"></div>
+                <div class="col-lg-2"></div>
+                <div class="col-lg-2"></div>
+
+            <?php endforeach; ?>
         </div>
 
         <div class="col-lg-6 encounterGameBody">
+            <div class="col-lg-2">Player</div>
+            <div class="col-lg-2">Points</div>
+            <div class="col-lg-2">Goals</div>
+            <div class="col-lg-2">Assists</div>
+            <div class="col-lg-2">Saves</div>
+            <div class="col-lg-2">Shots</div>
+
+            <?php foreach ($players_left as $key => $player): ?>
+                
+                <div class="col-lg-2"><?= $player->getUsername(); ?></div>
+                <div class="col-lg-2"></div>
+                <div class="col-lg-2"></div>
+                <div class="col-lg-2"></div>
+                <div class="col-lg-2"></div>
+                <div class="col-lg-2"></div>
+
+            <?php endforeach; ?>
         </div>
 
         <?php endfor; ?>
