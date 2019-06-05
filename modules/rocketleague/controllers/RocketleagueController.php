@@ -328,7 +328,24 @@ class RocketleagueController extends BaseController
 
         // Formular Captain-Style
         if (is_array($_POST) && isset($_POST['points'])) {
-            Alert::addInfo('Funktioniert.');
+
+            foreach ($_POST['points'] as $gameRound => $playerArr) {
+                
+                foreach ($playerArr as $playerId => $points) {
+                    
+                    $encounter = new TournamentEncounter();
+                    $encounter->setBracketId($_POST['bracket_id']);
+                    $encounter->setTournamentId($_POST['tournament_id']);
+                    $encounter->setGameRound($gameRound);
+                    $encounter->setDataForPlayer($playerId, $points);
+                    $encounter->save();
+
+                    break 2;
+
+                }
+
+            }
+
         }
 
         $player_left = NULL;
