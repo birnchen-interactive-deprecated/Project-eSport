@@ -334,6 +334,8 @@ class RocketleagueController extends BaseController
                 
                 if (is_array($_FILES) && array_key_exists('screen', $_FILES) && array_key_exists($gameRound, $_FILES['screen'])) {
                     
+                    Alert::addInfo($_FILES['screen'][$gameRound]['tmp_name']);
+
                     $filePathPng = $_FILES['screen'][$gameRound]['tmp_name'];
                     $filePathWebp = dirname($filePathPng) . '/screen_' . $tournament_id . '_' . $bracketId . '_' . $gameRound . '.webp';
 
