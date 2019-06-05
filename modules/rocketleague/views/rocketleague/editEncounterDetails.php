@@ -41,7 +41,6 @@ if (!is_file($_SERVER['DOCUMENT_ROOT'] . '/' . $imgRight . '.webp')) {
 $playerNameL = ($player_left  instanceof User) ? $player_left->getUsername() : $player_left->getName();
 $playerNameR = ($player_right  instanceof User) ? $player_right->getUsername() : $player_right->getName();
 
-var_dump($encounterData);
 ?>
 <div class="site-editEncounterDetails">
 	<?php $form = ActiveForm::begin([
