@@ -450,6 +450,8 @@ class RocketleagueController extends BaseController
 
         $encounterData = TournamentEncounter::getDataFromTournamentBracket($tournament_id, $bracketId);
 
+        $encounterScreen = TournamentEncounterScreens::getScreensFromTournamentBracket($tournament_id, $bracketId);
+
         return $this->render('editEncounterDetails',
             [
                 'player_left' => $player_left,
@@ -462,6 +464,7 @@ class RocketleagueController extends BaseController
                 'tournament_id' => $bracket->tournament_id,
                 'bracket_id' => $bracketId,
                 'encounterData' => $encounterData,
+                'encounterScreen' => $encounterScreen,
             ]);
     }
 

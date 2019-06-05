@@ -13,6 +13,7 @@
  * @var tournament_id int
  * @var bracket_id int
  * @var encounterData array
+ * @var encounterScreen array
  */
 
 use yii\helpers\Html;
@@ -73,6 +74,9 @@ $playerNameR = ($player_right  instanceof User) ? $player_right->getUsername() :
         <?php for ($b=1; $b <= $best_of; $b++): ?>
 
         <h2 class="col-lg-12 encounterGameHeader">Game <?= $b; ?></h2>
+        <?php if (array_key_exists($b, $encounterScreen)): ?>
+            <img class="encounterScreen" src="data:image/webp;base64,<?= $encounterScreen[$b]; ?>" alt="Screenshot Game <?= $b; ?>">
+        <?php endif; ?>
         <div class="encounterScreenshot">Screenshot: <input type="file" name="screen_<?= $b; ?>"></div>
 
         <div class="col-lg-6 encounterGameBody">

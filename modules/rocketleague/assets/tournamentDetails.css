@@ -121,6 +121,10 @@
 	text-align: center;
 }
 
+.site-editEncounterDetails .encounterScreen {
+	width: 800px;
+}
+
 .site-editEncounterDetails .encounterScreenshot {
     text-align: center;
     margin: 0 0 10px;

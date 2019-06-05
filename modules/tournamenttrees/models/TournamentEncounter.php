@@ -103,15 +103,15 @@ class TournamentEncounter extends ActiveRecord
 		$output = [];
 		foreach ($encounters as $key => $encounter) {
 
-			$game_round = $encounter['game_round'];
-			$player_id = $encounter['player_id'];
+			$game_round = $encounter->game_round;
+			$player_id = $encounter->player_id;
 
 			$output[$game_round][$player_id] = [
-				'points'  => $encounter['points'],
-				'goals'   => $encounter['goals'],
-				'assists' => $encounter['assists'],
-				'saves'   => $encounter['saves'],
-				'shots'   => $encounter['shots'],
+				'points'  => $encounter->points,
+				'goals'   => $encounter->goals,
+				'assists' => $encounter->assists,
+				'saves'   => $encounter->saves,
+				'shots'   => $encounter->shots,
 			];
 
 		}

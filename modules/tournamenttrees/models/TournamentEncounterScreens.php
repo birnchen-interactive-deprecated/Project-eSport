@@ -76,6 +76,24 @@ class TournamentEncounterScreens extends ActiveRecord {
 	/**
 	 * @return array
 	 */
+	public static function getScreensFromTournamentBracket($tournament_id, $bracket_id)
+	{
+		$screens = self::findAll(['tournament_id' => $tournament_id, 'bracket_id' => $bracket_id]);
+
+		$output = [];
+		foreach ($screens as $key => $screen) {
+
+			$game_round = $screen->game_round;
+			$output[$game_round] = base64_encode($screen->screenshot);
+			
+		}
+
+		return $output;
+	}
+
+	/**
+	 * @return array
+	 */
 	public static function getByFullKey($tournament_id, $bracket_id, $game_round)
 	{
 		return self::findOne(['tournament_id' => $tournament_id, 'bracket_id' => $bracket_id, 'game_round' => $game_round]);
