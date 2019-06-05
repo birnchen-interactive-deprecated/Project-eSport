@@ -401,7 +401,7 @@ class RocketleagueController extends BaseController
 
         }
 
-        $encounterData = TournamentEncounter::getDataFromTournamentBracket($tournament_id, $bracket_id);
+        $encounterData = TournamentEncounter::getDataFromTournamentBracket($tournament_id, $bracketId);
 
         return $this->render('editEncounterDetails',
             [
