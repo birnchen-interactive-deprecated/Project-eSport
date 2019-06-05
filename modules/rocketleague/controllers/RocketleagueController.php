@@ -334,12 +334,10 @@ class RocketleagueController extends BaseController
                 
                 $screenshotKey = 'screen_' . $gameRound;
 
-                Alert::addInfo($screenshotKey);
-
                 if (is_array($_FILES) && array_key_exists($screenshotKey, $_FILES)) {
                     
                     $filePathPng = $_FILES[$screenshotKey]['tmp_name'];
-                    
+
                     if (file_exists($filePathPng)) {
 
                         $filePathWebp = sys_get_temp_dir() . '/screen_' . $tournament_id . '_' . $bracketId . '_' . $gameRound . '.webp';
@@ -347,7 +345,7 @@ class RocketleagueController extends BaseController
                         $cmd = escapeshellcmd('cwebp ' . $filePathPng . ' -o ' . $filePathWebp);
                         shell_exec($cmd);
 
-                        $webp_content = file_get_contents($filePathPng);
+                        $webp_content = file_get_contents($filePathWebp);
 
                         $encounterScreen = TournamentEncounterScreens::getByFullKey($tournament_id, $bracketId, $gameRound);
                         if (!$encounterScreen instanceof TournamentEncounterScreens) {
