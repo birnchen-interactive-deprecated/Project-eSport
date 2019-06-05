@@ -332,7 +332,7 @@ class RocketleagueController extends BaseController
 
             foreach ($_POST['points'] as $gameRound => $playerArr) {
                 
-                Alert::addInfo(implode(' ', array_keys($_FILES)));
+                Alert::addInfo(implode(' ', array_keys($_FILES['screen'])));
 
                 if (is_array($_FILES) && array_key_exists('screen', $_FILES) && array_key_exists($gameRound, $_FILES['screen'])) {
                     
