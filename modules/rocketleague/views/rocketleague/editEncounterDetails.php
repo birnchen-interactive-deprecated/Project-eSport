@@ -45,7 +45,7 @@ $playerNameR = ($player_right  instanceof User) ? $player_right->getUsername() :
 <div class="site-editEncounterDetails">
 	<?php $form = ActiveForm::begin([
         'id' => 'encounter-details-form',
-        'options' => ['class' => 'form-vertical']
+        'options' => ['class' => 'form-vertical', 'enctype' => 'multipart/form-data']
     ]); ?>
 
     <input type="hidden" name="tournament_id" value="<?= $tournament_id; ?>">
