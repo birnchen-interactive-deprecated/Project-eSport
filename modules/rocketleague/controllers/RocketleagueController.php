@@ -345,12 +345,22 @@ class RocketleagueController extends BaseController
                         continue;
                     }
 
-                    $encounter = new TournamentEncounter();
-                    $encounter->setBracketId($_POST['bracket_id']);
-                    $encounter->setTournamentId($_POST['tournament_id']);
-                    $encounter->setGameRound($gameRound);
-                    $encounter->setDataForPlayer($playerId, $points);
-                    $encounter->save();
+                    $encounter = TournamentEncounter::getByFullKey($tournament_id, $bracketId, $gameRound, $playerId);
+
+                    if (!$encounter instanceof TournamentEncounter) {
+                        // neuer Encounter
+                        $encounter = new TournamentEncounter();
+                        $encounter->setBracketId($_POST['bracket_id']);
+                        $encounter->setTournamentId($_POST['tournament_id']);
+                        $encounter->setGameRound($gameRound);
+                        $encounter->setPlayerId($playerId);
+                        $encounter->setData($points);
+                        $encounter->save();
+                    } else {
+                        // Daten überschreiben
+                        $encounter->setData($points);
+                        $encounter->update();
+                    }
 
                 }
 

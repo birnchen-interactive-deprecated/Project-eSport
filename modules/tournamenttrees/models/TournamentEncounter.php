@@ -71,12 +71,18 @@ class TournamentEncounter extends ActiveRecord
 
 	/**
 	 * @param int
-	 * @param array
 	 */
-	public function setDataForPlayer($player_id, $pointsArr)
+	public function setPlayerId($player_id)
 	{
 		$this->player_id = $player_id;
+	}
 
+	/**
+	 * @param int
+	 * @param array
+	 */
+	public function setData($pointsArr)
+	{
 		// im Array müssen die gleichen Felder sein, wie hier beschrieben:
 		// points, goals, assists, saves, shots
 		foreach ($pointsArr as $key => $value) {
@@ -107,10 +113,15 @@ class TournamentEncounter extends ActiveRecord
 				'saves'   => $encounter['saves'],
 				'shots'   => $encounter['shots'],
 			];
-			
+
 		}
 
 		return $output;
+	}
+
+	public static function getByFullKey($tournament_id, $bracket_id, $game_round, $player_id)
+	{
+		return self::findOne(['tournament_id' => $tournament_id, 'bracket_id' => $bracket_id, 'game_round' => $game_round, 'player_id' => $player_id]);
 	}
 
 }
