@@ -352,10 +352,14 @@ class RocketleagueController extends BaseController
                         $encounterScreen->setScreenshot($webp_content);
                         $encounterScreen->save();
 
+                        Alert::addInfo('Neuen Screen gespeichert?');
+
                     } else {
                         // screenshot updaten
                         $encounterScreen->setScreenshot($webp_content);
                         $encounterScreen->update();
+
+                        Alert::addInfo('Screen Update machen?');
 
                     }
 
