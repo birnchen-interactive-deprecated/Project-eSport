@@ -316,11 +316,19 @@ class RocketleagueController extends BaseController
 
         /** End of Sicherheitsbereich */
 
+        // EncounterForm Yii-Style
+        /*
         $model = EncounterDetailsForm::getEncounterForm($tournament_id, $bracketId);
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->save()){
             $winner = $model->winnerId;
             Alert::addSuccess('Alle daten erfolgreich eingetragen.');
             return $this->redirect('move-player-in-bracket?tournament_id=' . $tournament_id . '&winner' . $winner . '&bracketId=' . $bracketId);
+        }
+        */
+
+        // Formular Captain-Style
+        if (is_array($_POST) && isset($_POST['points'])) {
+            Alert::addInfo('Funktioniert.');
         }
 
         $player_left = NULL;
