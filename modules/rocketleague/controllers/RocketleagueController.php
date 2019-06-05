@@ -340,8 +340,6 @@ class RocketleagueController extends BaseController
                     $encounter->setDataForPlayer($playerId, $points);
                     $encounter->save();
 
-                    break 2;
-
                 }
 
             }
