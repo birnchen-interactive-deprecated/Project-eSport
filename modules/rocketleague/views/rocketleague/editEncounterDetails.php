@@ -248,7 +248,9 @@ $playerNameR = ($player_right  instanceof User) ? $player_right->getUsername() :
 
     <div class="col-lg-12 encounterFooter">
         <?= Html::a('Back to Tournament', ['/rocketleague/tournament-details', 'id' => $tournament_id], ['class' => 'btn btn-warning']); ?>
-        <?= Html::submitButton("Submit", ['class' => 'btn']) ?>
+        <?php if ($editable): ?>
+            <?= Html::submitButton("Submit", ['class' => 'btn']) ?>
+        <?php endif; ?>
     </div>
     <?php ActiveForm::end(); ?>
 </div>
