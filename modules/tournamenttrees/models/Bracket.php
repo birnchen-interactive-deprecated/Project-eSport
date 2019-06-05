@@ -291,6 +291,10 @@ class Bracket extends ActiveRecord
 	{
 		if ($this->getPlayer1()->one() !== NULL) {
 
+			if (NULL === $user) {
+				return false;
+			}
+
 			$p1 = $this->getPlayer1()->one();
 			$p2 = $this->getPlayer2()->one();
 
