@@ -583,6 +583,8 @@ class RocketleagueController extends BaseController
     {
         $siteLanguage = (Yii::$app->user->identity != null) ? Yii::$app->user->identity->getLanguage()->one() : Language::findByLocale('en-US');
 
+        $bracket = Bracket::getById($bracketId);
+        
         $player_left = NULL;
         $player_right = NULL;
         if ($bracket->team_1_id === NULL) {
