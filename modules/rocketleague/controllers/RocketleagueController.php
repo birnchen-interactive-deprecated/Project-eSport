@@ -333,6 +333,18 @@ class RocketleagueController extends BaseController
                 
                 foreach ($playerArr as $playerId => $points) {
                     
+                    $allowed = false;
+                    foreach ($points as $key => $value) {
+                        if (is_numeric($value)) {
+                            $allowed = true;
+                        }
+                    }
+
+                    if (false === $allowed) {
+                        // wenn bei dem Spieler keine Werte ausgefüllt wurden, nicht in die DB reinschreiben.
+                        continue;
+                    }
+
                     $encounter = new TournamentEncounter();
                     $encounter->setBracketId($_POST['bracket_id']);
                     $encounter->setTournamentId($_POST['tournament_id']);
@@ -389,6 +401,8 @@ class RocketleagueController extends BaseController
 
         }
 
+        $encounterData = TournamentEncounter::getDataFromTournamentBracket($tournament_id, $bracket_id);
+
         return $this->render('editEncounterDetails',
             [
                 'player_left' => $player_left,
@@ -400,6 +414,7 @@ class RocketleagueController extends BaseController
                 'bracketID' => $bracket->getEncounterId(),
                 'tournament_id' => $bracket->tournament_id,
                 'bracket_id' => $bracketId,
+                'encounterData' => $encounterData,
             ]);
     }
 

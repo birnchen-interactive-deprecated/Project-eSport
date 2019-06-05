@@ -12,6 +12,7 @@
  * @var bracketID int
  * @var tournament_id int
  * @var bracket_id int
+ * @var encounterData array
  */
 
 use yii\helpers\Html;
@@ -90,13 +91,33 @@ $playerNameR = ($player_right  instanceof User) ? $player_right->getUsername() :
 
                 <tbody>
                     <?php foreach ($players_left as $key => $player): ?>
+                        <?php
+                            $playerId = $player->getId();
+
+                            $points = '';
+                            $goals = '';
+                            $assists = '';
+                            $saves = '';
+                            $shots = '';
+                            if (array_key_exists($b, $encounterData)) {
+                                if (array_key_exists($playerId, $encounterData[$b])) {
+
+                                    $points = $encounterData[$b][$playerId]['points'];
+                                    $goals = $encounterData[$b][$playerId]['goals'];
+                                    $assists = $encounterData[$b][$playerId]['assists'];
+                                    $saves = $encounterData[$b][$playerId]['saves'];
+                                    $shots = $encounterData[$b][$playerId]['shots'];
+
+                                }
+                            }
+                        ?>
                         <tr>
                             <td><?= $player->getUsername(); ?></td>
-                            <td class="encounterField"><input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $player->getId(); ?>][points]" placeholder="empty"></td>
-                            <td class="encounterField"><input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $player->getId(); ?>][goals]" placeholder="empty"></td>
-                            <td class="encounterField"><input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $player->getId(); ?>][assists]" placeholder="empty"></td>
-                            <td class="encounterField"><input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $player->getId(); ?>][saves]" placeholder="empty"></td>
-                            <td class="encounterField"><input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $player->getId(); ?>][shots]" placeholder="empty"></td>
+                            <td class="encounterField"><input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $playerId; ?>][points]" placeholder="empty" value="<?= $points; ?>"></td>
+                            <td class="encounterField"><input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $playerId; ?>][goals]" placeholder="empty" value="<?= $goals; ?>"></td>
+                            <td class="encounterField"><input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $playerId; ?>][assists]" placeholder="empty" value="<?= $assists; ?>"></td>
+                            <td class="encounterField"><input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $playerId; ?>][saves]" placeholder="empty" value="<?= $saves; ?>"></td>
+                            <td class="encounterField"><input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $playerId; ?>][shots]" placeholder="empty" value="<?= $shots; ?>"></td>
                         </tr>
 
                     <?php endforeach; ?>
@@ -120,13 +141,33 @@ $playerNameR = ($player_right  instanceof User) ? $player_right->getUsername() :
 
                 <tbody>
                     <?php foreach ($players_right as $key => $player): ?>
+                        <?php
+                            $playerId = $player->getId();
+
+                            $points = '';
+                            $goals = '';
+                            $assists = '';
+                            $saves = '';
+                            $shots = '';
+                            if (array_key_exists($b, $encounterData)) {
+                                if (array_key_exists($playerId, $encounterData[$b])) {
+
+                                    $points = $encounterData[$b][$playerId]['points'];
+                                    $goals = $encounterData[$b][$playerId]['goals'];
+                                    $assists = $encounterData[$b][$playerId]['assists'];
+                                    $saves = $encounterData[$b][$playerId]['saves'];
+                                    $shots = $encounterData[$b][$playerId]['shots'];
+
+                                }
+                            }
+                        ?>
                         <tr>
                             <td><?= $player->getUsername(); ?></td>
-                            <td class="encounterField"><input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $player->getId(); ?>][points]" placeholder="empty"></td>
-                            <td class="encounterField"><input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $player->getId(); ?>][goals]" placeholder="empty"></td>
-                            <td class="encounterField"><input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $player->getId(); ?>][assists]" placeholder="empty"></td>
-                            <td class="encounterField"><input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $player->getId(); ?>][saves]" placeholder="empty"></td>
-                            <td class="encounterField"><input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $player->getId(); ?>][shots]" placeholder="empty"></td>
+                            <td class="encounterField"><input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $playerId; ?>][points]" placeholder="empty" value="<?= $points; ?>"></td>
+                            <td class="encounterField"><input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $playerId; ?>][goals]" placeholder="empty" value="<?= $goals; ?>"></td>
+                            <td class="encounterField"><input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $playerId; ?>][assists]" placeholder="empty" value="<?= $assists; ?>"></td>
+                            <td class="encounterField"><input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $playerId; ?>][saves]" placeholder="empty" value="<?= $saves; ?>"></td>
+                            <td class="encounterField"><input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $playerId; ?>][shots]" placeholder="empty" value="<?= $shots; ?>"></td>
                         </tr>
 
                     <?php endforeach; ?>

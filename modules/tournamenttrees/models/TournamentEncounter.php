@@ -82,7 +82,35 @@ class TournamentEncounter extends ActiveRecord
 		foreach ($pointsArr as $key => $value) {
 			$this->$key = $value;
 		}
-		
+
+	}
+
+	/**
+	 * @param int
+	 * @param int
+	 * return array
+	 */
+	public static function getDataFromTournamentBracket($tournament_id, $bracket_id)
+	{
+		$encounters = self::findAll(['tournament_id' => $tournament_id, 'bracket_id' => $bracket_id]);
+
+		$output = [];
+		foreach ($encounters as $key => $encounter) {
+
+			$game_round = $encounter['game_round'];
+			$player_id = $encounter['player_id'];
+
+			$output[$game_round][$player_id] = [
+				'points'  => $encounter['points'],
+				'goals'   => $encounter['goals'],
+				'assists' => $encounter['assists'],
+				'saves'   => $encounter['saves'],
+				'shots'   => $encounter['shots'],
+			];
+			
+		}
+
+		return $output;
 	}
 
 }
