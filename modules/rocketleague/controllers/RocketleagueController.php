@@ -334,32 +334,36 @@ class RocketleagueController extends BaseController
                 
                 $screenshotKey = 'screen_' . $gameRound;
 
+                Alert::addInfo($screenshotKey);
+
                 if (is_array($_FILES) && array_key_exists($screenshotKey, $_FILES)) {
                     
-                    $filePathPng = $_FILES[$screenshotKey]['tmp_name'];
-                    // $filePathWebp = sys_get_temp_dir() . '/screen_' . $tournament_id . '_' . $bracketId . '_' . $gameRound . '.webp';
+                    Alert::addInfo($_FILES['screenshotKey']['tmp_name']);
 
-                    // $cmd = escapeshellcmd('cwebp ' . $filePathPng . ' -o ' . $filePathWebp);
-                    // shell_exec($cmd);
+                    // $filePathPng = $_FILES[$screenshotKey]['tmp_name'];
+                    // // $filePathWebp = sys_get_temp_dir() . '/screen_' . $tournament_id . '_' . $bracketId . '_' . $gameRound . '.webp';
 
-                    $webp_content = file_get_contents($filePathPng);
+                    // // $cmd = escapeshellcmd('cwebp ' . $filePathPng . ' -o ' . $filePathWebp);
+                    // // shell_exec($cmd);
 
-                    $encounterScreen = TournamentEncounterScreens::getByFullKey($tournament_id, $bracketId, $gameRound);
-                    if (!$encounterScreen instanceof TournamentEncounterScreens) {
-                        // neuer Screenshot
-                        $encounterScreen = new TournamentEncounterScreens();
-                        $encounterScreen->setBracketId($_POST['bracket_id']);
-                        $encounterScreen->setTournamentId($_POST['tournament_id']);
-                        $encounterScreen->setGameRound($gameRound);
-                        $encounterScreen->setScreenshot($webp_content);
-                        $encounterScreen->save();
+                    // $webp_content = file_get_contents($filePathPng);
 
-                    } else {
-                        // screenshot updaten
-                        $encounterScreen->setScreenshot($webp_content);
-                        $encounterScreen->update();
+                    // $encounterScreen = TournamentEncounterScreens::getByFullKey($tournament_id, $bracketId, $gameRound);
+                    // if (!$encounterScreen instanceof TournamentEncounterScreens) {
+                    //     // neuer Screenshot
+                    //     $encounterScreen = new TournamentEncounterScreens();
+                    //     $encounterScreen->setBracketId($_POST['bracket_id']);
+                    //     $encounterScreen->setTournamentId($_POST['tournament_id']);
+                    //     $encounterScreen->setGameRound($gameRound);
+                    //     $encounterScreen->setScreenshot($webp_content);
+                    //     $encounterScreen->save();
 
-                    }
+                    // } else {
+                    //     // screenshot updaten
+                    //     $encounterScreen->setScreenshot($webp_content);
+                    //     $encounterScreen->update();
+
+                    // }
 
                 }
 
