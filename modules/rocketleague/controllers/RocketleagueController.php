@@ -332,11 +332,11 @@ class RocketleagueController extends BaseController
 
             foreach ($_POST['points'] as $gameRound => $playerArr) {
                 
-                Alert::addInfo(implode(' ', array_keys($_FILES['screen'])));
+                $screenshotKey = 'screen_' . $gameRound;
 
-                if (is_array($_FILES) && array_key_exists('screen', $_FILES) && array_key_exists($gameRound, $_FILES['screen'])) {
+                if (is_array($_FILES) && array_key_exists($screenshotKey, $_FILES)) {
                     
-                    $filePathPng = $_FILES['screen'][$gameRound]['tmp_name'];
+                    $filePathPng = $_FILES[$screenshotKey][$gameRound]['tmp_name'];
                     $filePathWebp = dirname($filePathPng) . '/screen_' . $tournament_id . '_' . $bracketId . '_' . $gameRound . '.webp';
 
                     $cmd = escapeshellcmd('cwebp ' . $filePathPng . ' -o ' . $filePathWebp);
