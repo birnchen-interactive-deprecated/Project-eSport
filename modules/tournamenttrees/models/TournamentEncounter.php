@@ -119,6 +119,9 @@ class TournamentEncounter extends ActiveRecord
 		return $output;
 	}
 
+	/**
+	 * @return array
+	 */
 	public static function getByFullKey($tournament_id, $bracket_id, $game_round, $player_id)
 	{
 		return self::findOne(['tournament_id' => $tournament_id, 'bracket_id' => $bracket_id, 'game_round' => $game_round, 'player_id' => $player_id]);

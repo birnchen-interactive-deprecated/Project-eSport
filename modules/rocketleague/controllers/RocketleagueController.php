@@ -22,6 +22,7 @@ use app\modules\tournaments\models\TeamParticipating;
 
 use app\modules\tournamenttrees\models\Bracket;
 use app\modules\tournamenttrees\models\TournamentEncounter;
+use app\modules\tournamenttrees\models\TournamentEncounterScreens;
 
 use app\modules\tournamenttrees\models\formModels\EncounterDetailsForm;
 
@@ -331,6 +332,35 @@ class RocketleagueController extends BaseController
 
             foreach ($_POST['points'] as $gameRound => $playerArr) {
                 
+                if (is_array($_FILES) && array_key_exists('screen', $_FILES) && array_key_exists($gameRound, $_FILES['screen'])) {
+                    
+                    $filePathPng = $_FILES['screen'][$gameRound]['tmp_name'];
+                    $filePathWebp = dirname($filePathPng) . '/screen_' . $tournament_id . '_' . $bracketId . '_' . $gameRound . '.webp';
+
+                    $cmd = escapeshellcmd('cwebp ' . $filePathPng . ' -o ' . $filePathWebp);
+                    shell_exec($cmd);
+
+                    $webp_content = file_get_contents($filePathWebp);
+
+                    $encounterScreen = TournamentEncounterScreens::getByFullKey($tournament_id, $bracketId, $gameRound);
+                    if (!$encounterScreen instanceof TournamentEncounterScreens) {
+                        // neuer Screenshot
+                        $encounterScreen = new TournamentEncounterScreens();
+                        $encounterScreen->setBracketId($_POST['bracket_id']);
+                        $encounterScreen->setTournamentId($_POST['tournament_id']);
+                        $encounterScreen->setGameRound($gameRound);
+                        $encounterScreen->setScreenshot($webp_content);
+                        $encounterScreen->save();
+
+                    } else {
+                        // screenshot updaten
+                        $encounterScreen->setScreenshot($webp_content);
+                        $encounterScreen->update();
+
+                    }
+
+                }
+
                 foreach ($playerArr as $playerId => $points) {
                     
                     $allowed = false;
