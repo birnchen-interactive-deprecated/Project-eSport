@@ -121,6 +121,15 @@
 	text-align: center;
 }
 
+.site-editEncounterDetails .encounterScreenshot {
+    text-align: center;
+    margin: 0 0 10px;
+}
+
+.site-editEncounterDetails .encounterScreenshot input[type="file"] {
+    display: inline-block;
+}
+
 .site-editEncounterDetails .encounterField {
 	padding: 0;
 	position: relative;
@@ -138,3 +147,4 @@
     text-align: right;
     width: 100%;
 }
+
