@@ -332,10 +332,10 @@ class RocketleagueController extends BaseController
 
             foreach ($_POST['points'] as $gameRound => $playerArr) {
                 
+                Alert::addInfo(implode(' ', array_keys($_FILES)));
+
                 if (is_array($_FILES) && array_key_exists('screen', $_FILES) && array_key_exists($gameRound, $_FILES['screen'])) {
                     
-                    Alert::addInfo($_FILES['screen'][$gameRound]['tmp_name']);
-
                     $filePathPng = $_FILES['screen'][$gameRound]['tmp_name'];
                     $filePathWebp = dirname($filePathPng) . '/screen_' . $tournament_id . '_' . $bracketId . '_' . $gameRound . '.webp';
 
@@ -354,14 +354,10 @@ class RocketleagueController extends BaseController
                         $encounterScreen->setScreenshot($webp_content);
                         $encounterScreen->save();
 
-                        Alert::addInfo('Neuen Screen gespeichert?');
-
                     } else {
                         // screenshot updaten
                         $encounterScreen->setScreenshot($webp_content);
                         $encounterScreen->update();
-
-                        Alert::addInfo('Screen Update machen?');
 
                     }
 
