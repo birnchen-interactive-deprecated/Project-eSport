@@ -73,6 +73,7 @@ $playerNameR = ($player_right  instanceof User) ? $player_right->getUsername() :
         <?php for ($b=1; $b <= $best_of; $b++): ?>
 
         <h2 class="col-lg-12 encounterGameHeader">Game <?= $b; ?></h2>
+        <h2 class="encounterGameHeader">Screenshot: <input type="file" name="screen[<?= $b; ?>]"></h2>
 
         <div class="col-lg-6 encounterGameBody">
             <table class="table table-striped table-hover table-bordered">
