@@ -465,6 +465,7 @@ class RocketleagueController extends BaseController
                 'bracket_id' => $bracketId,
                 'encounterData' => $encounterData,
                 'encounterScreen' => $encounterScreen,
+                'editable' => true,
             ]);
     }
 
@@ -582,30 +583,68 @@ class RocketleagueController extends BaseController
     {
         $siteLanguage = (Yii::$app->user->identity != null) ? Yii::$app->user->identity->getLanguage()->one() : Language::findByLocale('en-US');
 
-        $brackteInformations = TournamentEncounter::findOne(['tournament_id' => $tournament_id, 'bracket_id' => $bracketId]);
-        $tournamentMode = Tournament::findOne(['id' => $tournament_id])->getModeId();
-        
-        switch ($tournamentMode) {
-            case 1: // 1v1
-                # code...
-                break;
-            case 2: // 2v2
-                # code...
-                break;
-            case 3: // 3v3
-                # code...
-                break;
-            
-            default:
-                # code...
-                break;
+        $player_left = NULL;
+        $player_right = NULL;
+        if ($bracket->team_1_id === NULL) {
+            $player_left  = User::findIdentity($bracket->user_1_id);
+            $player_right = User::findIdentity($bracket->user_2_id);
+
+            $players_left = [$player_left];
+            $players_right = [$player_right];
+        } else {
+            $player_left  = SubTeam::findIdentity($bracket->team_1_id);
+            $player_right = SubTeam::findIdentity($bracket->team_2_id);
+
+            $members_left = $player_left->getSubTeamMembers()->all();
+            $members_right = $player_right->getSubTeamMembers()->all();
+
+            foreach ($members_left as $key => $member) {
+                if (NULL === $member) {
+                    continue;
+                }
+
+                $user = $member->getUser()->one();
+                if (NULL === $user) {
+                    continue;
+                }
+
+                $players_left[] = $user;
+            }
+
+            foreach ($members_right as $key => $member) {
+                if (NULL === $member) {
+                    continue;
+                }
+
+                $user = $member->getUser()->one();
+                if (NULL === $user) {
+                    continue;
+                }
+
+                $players_right[] = $user;
+            }
+
         }
 
-        return $this->render('bracketDetails',
+        $encounterData = TournamentEncounter::getDataFromTournamentBracket($tournament_id, $bracketId);
+
+        $encounterScreen = TournamentEncounterScreens::getScreensFromTournamentBracket($tournament_id, $bracketId);
+
+        return $this->render('editEncounterDetails',
             [
-                'siteLanguage' => $siteLanguage,
-            ]
-        );
+                'player_left' => $player_left,
+                'player_right' => $player_right,
+                'players_left' => $players_left,
+                'players_right' => $players_right,
+                'best_of' => $bracket->getBestOf(),
+                'round' => $bracket->getTournamentRound(),
+                'bracketID' => $bracket->getEncounterId(),
+                'tournament_id' => $bracket->tournament_id,
+                'bracket_id' => $bracketId,
+                'encounterData' => $encounterData,
+                'encounterScreen' => $encounterScreen,
+                'editable' => false,
+            ]);
     }
 
     private function createWinnerBracket(&$bracketArr, $tournament_id, $teilnehmer, $bracketSizeInRound) {
