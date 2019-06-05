@@ -217,7 +217,8 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
     </table>
 
     <!-- Google Ads bereich -->
-        <!-- Tournament Bracket -->
+    <!-- Tournament Bracket -->
+    <div align="center">
         <ins class="adsbygoogle"
              style="display:inline-block;width:468px;height:60px"
              data-ad-client="ca-pub-8480651532892152"
@@ -225,6 +226,7 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
         <script>
         (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
+    </div>
     <!-- Google Ads bereich -->
 
     <?php if (Yii::$app->user->identity instanceOf User && Yii::$app->user->identity->getId() <= 4): ?>
