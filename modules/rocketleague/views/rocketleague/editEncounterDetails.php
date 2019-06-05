@@ -199,11 +199,41 @@ $playerNameR = ($player_right  instanceof User) ? $player_right->getUsername() :
                         ?>
                         <tr>
                             <td><?= $player->getUsername(); ?></td>
-                            <td class="encounterField"><input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $playerId; ?>][points]" placeholder="empty" value="<?= $points; ?>"></td>
-                            <td class="encounterField"><input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $playerId; ?>][goals]" placeholder="empty" value="<?= $goals; ?>"></td>
-                            <td class="encounterField"><input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $playerId; ?>][assists]" placeholder="empty" value="<?= $assists; ?>"></td>
-                            <td class="encounterField"><input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $playerId; ?>][saves]" placeholder="empty" value="<?= $saves; ?>"></td>
-                            <td class="encounterField"><input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $playerId; ?>][shots]" placeholder="empty" value="<?= $shots; ?>"></td>
+                            <td class="encounterField">
+                                <?php if($editable): ?>
+                                    <input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $playerId; ?>][points]" placeholder="empty" value="<?= $points; ?>">
+                                <?php else: ?>
+                                    <span class="encounterInput"><?= $points; ?></span>
+                                <?php endif; ?>
+                            </td>
+                            <td class="encounterField">
+                                <?php if($editable): ?>
+                                    <input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $playerId; ?>][goals]" placeholder="empty" value="<?= $goals; ?>">
+                                <?php else: ?>
+                                    <span class="encounterInput"><?= $goals; ?></span>
+                                <?php endif; ?>
+                            </td>
+                            <td class="encounterField">
+                                <?php if($editable): ?>
+                                    <input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $playerId; ?>][assists]" placeholder="empty" value="<?= $assists; ?>">
+                                <?php else: ?>
+                                    <span class="encounterInput"><?= $assists; ?></span>
+                                <?php endif; ?>
+                            </td>
+                            <td class="encounterField">
+                                <?php if($editable): ?>
+                                    <input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $playerId; ?>][saves]" placeholder="empty" value="<?= $saves; ?>">
+                                <?php else: ?>
+                                    <span class="encounterInput"><?= $saves; ?></span>
+                                <?php endif; ?>
+                            </td>
+                            <td class="encounterField">
+                                <?php if($editable): ?>
+                                    <input class="encounterInput" type="text" name="points[<?= $b; ?>][<?= $playerId; ?>][shots]" placeholder="empty" value="<?= $shots; ?>">
+                                <?php else: ?>
+                                    <span class="encounterInput"><?= $shots; ?></span>
+                                <?php endif; ?>
+                            </td>
                         </tr>
 
                     <?php endforeach; ?>
