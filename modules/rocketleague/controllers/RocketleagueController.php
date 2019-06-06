@@ -517,8 +517,14 @@ class RocketleagueController extends BaseController
         $encounterConfirm = TournamentEncounterConfirm::getByFullKey($tournament_id, $bracket_id);
         if ($encounterConfirm instanceof TournamentEncounterConfirm) {
 
-            $encounterConfirm->player_1_confirm = ($manageable1) ? $user->getId() : NULL;
-            $encounterConfirm->player_2_confirm = ($manageable2) ? $user->getId() : NULL;
+            if ($manageable1) {
+                $encounterConfirm->player_1_confirm = $user->getId();
+            }
+
+            if ($manageable2) {
+                $encounterConfirm->player_2_confirm = $user->getId();
+            }
+            
             $encounterConfirm->update();
 
         } else {
