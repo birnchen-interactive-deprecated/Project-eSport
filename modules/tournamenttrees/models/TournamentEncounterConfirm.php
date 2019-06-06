@@ -71,4 +71,26 @@ class TournamentEncounterConfirm extends ActiveRecord {
 		return false;
 	}
 
+	/**
+	 * @return bool
+	 */
+	public static function isBothConfirmed($tournament_id, $bracket_id)
+	{
+		$encounterConfirm = self::findOne(['tournament_id' => $tournament_id, 'bracket_id' => $bracket_id]);
+
+		if (NULL === $encounterConfirm) {
+			return false;
+		}
+
+		if ($encounterConfirm->player_1_confirm === NULL) {
+			return false;
+		}
+
+		if ($encounterConfirm->player_2_confirm === NULL) {
+			return false;
+		}
+
+		return true;
+	}
+
 }

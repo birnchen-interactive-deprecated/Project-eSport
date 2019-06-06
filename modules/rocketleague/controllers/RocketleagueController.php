@@ -470,6 +470,9 @@ class RocketleagueController extends BaseController
         $isConfirmeable = TournamentEncounterConfirm::isConfirmeable($tournament_id, $bracketId, $manageable1, $manageable2);
         $confirmable = $confirmable && $isConfirmeable;
 
+        $isBothConfirmed = TournamentEncounterConfirm::isBothConfirmed($tournament_id, $bracketId);
+        $editable = $editable || !$isBothConfirmed;
+
         return $this->render('editEncounterDetails',
             [
                 'player_left' => $player_left,
