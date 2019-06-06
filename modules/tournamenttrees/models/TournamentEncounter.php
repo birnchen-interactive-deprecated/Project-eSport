@@ -145,7 +145,7 @@ class TournamentEncounter extends ActiveRecord
 		$encounters = self::findAll(['tournament_id' => $tournament_id, 'bracket_id' => $bracket_id]);
 
 		if (count($encounters) == 0) {
-			return false;
+			return ['left' => [], 'right' => []];
 		}
 
 		$players_left = self::getPlayers($bracket_id, 'left');
