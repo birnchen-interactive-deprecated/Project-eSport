@@ -349,7 +349,7 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
                                             </div>
                                         <?php endif ?>
                                         <!-- End of Administrative Area -->
-                                        <div style="float:right;">
+                                        <div class="takeWinner" style="float:right;">
                                             <?php foreach ($goals['left'] as $key => $goal): ?>
                                                 <div class="goals" style="float:left;"><?= $goal; ?></div>
                                             <?php endforeach; ?>
@@ -403,7 +403,7 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
                                             </div>
                                         <?php endif ?>
                                         <!-- End of Administrative Area -->
-                                        <div style="float:right;">
+                                        <div class="takeWinner" style="float:right;">
                                             <?php foreach ($goals['right'] as $key => $goal): ?>
                                                 <div class="goals" style="float:left;"><?= $goal; ?></div>
                                             <?php endforeach; ?>
@@ -508,7 +508,7 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
                                             ); ?>
                                         </div>
                                     <?php endif ?>
-                                    <div style="float:right;">
+                                    <div class="takeWinner" style="float:right;">
                                         <?php foreach ($goals['left'] as $key => $goal): ?>
                                             <div class="goals" style="float:left;"><?= $goal; ?></div>
                                         <?php endforeach; ?>
@@ -560,7 +560,7 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
                                             ); ?>
                                         </div>
                                     <?php endif ?>
-                                    <div style="float:right;">
+                                    <div class="takeWinner" style="float:right;">
                                         <?php foreach ($goals['right'] as $key => $goal): ?>
                                             <div class="goals" style="float:left;"><?= $goal; ?></div>
                                         <?php endforeach; ?>
