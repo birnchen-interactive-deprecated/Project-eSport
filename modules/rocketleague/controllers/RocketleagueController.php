@@ -624,6 +624,10 @@ class RocketleagueController extends BaseController
             $winner = TournamentEncounter::getWinner($tournament_id, $bracket_id, $players_left, $players_right, $bracket->getBestOf());
             $bracket->movePlayersNextRound($winner);
 
+            Alert::addSuccess('Bracket finished.');
+
+        } else {
+            Alert::addSuccess('Bracketresults confirmed.<br>Opponent has to confirm, to close the bracket.');
         }
 
         return $this->redirect('close-bracket?tournament_id=' . $tournament_id . '&bracketId=' . $bracket_id);
