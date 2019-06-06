@@ -493,14 +493,14 @@ class RocketleagueController extends BaseController
 
     /**
      */
-    public function actionConfirmResult($tournament_id = null, $bracketId = null)
+    public function actionConfirmResult($tournament_id = null, $bracket_id = null)
     {
         /** Sicherheitsbereich */
         if (Yii::$app->user->isGuest || Yii::$app->user->identity == null) {
             return $this->goHome();
         }
 
-        $bracket = Bracket::getById($bracketId);
+        $bracket = Bracket::getById($bracket_id);
         if ($bracket->tournament_id != $tournament_id) {
             Alert::addError('Das Bracket ist nicht in diesem Turnier.');
             return $this->redirect('tournament-details?id=' . $tournament_id);
@@ -514,7 +514,7 @@ class RocketleagueController extends BaseController
         $manageable1 = $bracket->isManageable($user, 1);
         $manageable2 = $bracket->isManageable($user, 2);
 
-        $encounterConfirm = TournamentEncounterConfirm::getByFullKey($tournament_id, $bracketId);
+        $encounterConfirm = TournamentEncounterConfirm::getByFullKey($tournament_id, $bracket_id);
         if ($encounterConfirm instanceof TournamentEncounterConfirm) {
 
             $encounterConfirm->player_1_confirm = ($manageable1) ? $user->getId() : NULL;
@@ -525,14 +525,14 @@ class RocketleagueController extends BaseController
             
             $encounterConfirm = new TournamentEncounterConfirm();
             $encounterConfirm->tournament_id = $tournament_id;
-            $encounterConfirm->bracket_id = $bracketId;
+            $encounterConfirm->bracket_id = $bracket_id;
             $encounterConfirm->player_1_confirm = ($manageable1) ? $user->getId() : NULL;
             $encounterConfirm->player_2_confirm = ($manageable2) ? $user->getId() : NULL;
             $encounterConfirm->save();
 
         }
 
-        return $this->redirect('close-bracket?tournament_id=' . $tournament_id . '&bracketId=' . $bracketId);
+        return $this->redirect('close-bracket?tournament_id=' . $tournament_id . '&bracketId=' . $bracket_id);
 
     }
 
