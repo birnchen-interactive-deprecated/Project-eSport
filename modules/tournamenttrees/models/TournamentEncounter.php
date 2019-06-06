@@ -45,6 +45,14 @@ class TournamentEncounter extends ActiveRecord
 		return $this->tournament_id;
 	}
 
+    /**
+     * @return ActiveQuery
+     */
+    public function getTournament()
+    {
+        return $this->hasOne(Tournament::className(), ['id' => 'tournament_id']);
+    }
+
 	/**
 	 * @param int
 	 */
@@ -125,6 +133,48 @@ class TournamentEncounter extends ActiveRecord
 	public static function getByFullKey($tournament_id, $bracket_id, $game_round, $player_id)
 	{
 		return self::findOne(['tournament_id' => $tournament_id, 'bracket_id' => $bracket_id, 'game_round' => $game_round, 'player_id' => $player_id]);
+	}
+
+	/**
+	 * @param int
+	 * @param int
+	 * @return bool
+	 */
+	public static function checkSubmitable($tournament_id, $bracket_id, $players_left, $players_right)
+	{
+		$encounters = self::findAll(['tournament_id' => $tournament_id, 'bracket_id' => $bracket_id]);
+
+		if (count($encounters) == 0) {
+			return false;
+		}
+
+		// $tournament = $encounters[0]->getTournament();
+		// $tournamentMode = $tournament->getMode();
+		// $maxPlayers = $tournamentMode->getMaxPlayers();
+
+		// $subPlayers = $tournamentMode->getSubPlayers();
+		// $mainPlayers = $maxPlayers - $subPlayers;
+
+		$leftGoals = [];
+		$rightGoals = [];
+
+		foreach ($encounters as $key => $encounter) {
+
+			foreach ($players_left as $key => $player) {
+				if ($player->getId() == $encounter->player_id) {
+					$leftGoals[$encounter->game_round] += $encounter->goals;
+				}
+			}
+
+			foreach ($players_right as $key => $player) {
+				if ($player->getId() == $encounter->player_id) {
+					$rightGoals[$encounter->game_round] += $encounter->goals;
+				}
+			}
+
+		}
+
+		return [$leftGoals, $rightGoals];
 	}
 
 }

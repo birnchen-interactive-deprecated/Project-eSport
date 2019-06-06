@@ -15,6 +15,7 @@
  * @var encounterData array
  * @var encounterScreen array
  * @var editable bool
+ * @var submitable bool
  */
 
 use yii\helpers\Html;
@@ -42,6 +43,8 @@ if (!is_file($_SERVER['DOCUMENT_ROOT'] . '/' . $imgRight . '.webp')) {
 
 $playerNameL = ($player_left  instanceof User) ? $player_left->getUsername() : $player_left->getName();
 $playerNameR = ($player_right  instanceof User) ? $player_right->getUsername() : $player_right->getName();
+
+var_dump($submitable);
 
 ?>
 <div class="site-editEncounterDetails">
@@ -249,7 +252,10 @@ $playerNameR = ($player_right  instanceof User) ? $player_right->getUsername() :
     <div class="col-lg-12 encounterFooter">
         <?= Html::a('Back to Tournament', ['/rocketleague/tournament-details', 'id' => $tournament_id], ['class' => 'btn btn-warning']); ?>
         <?php if ($editable): ?>
-            <?= Html::submitButton("Submit", ['class' => 'btn']) ?>
+            <?= Html::submitButton("Save Screens & Results", ['class' => 'btn']) ?>
+        <?php endif; ?>
+        <?php if ($submitable): ?>
+            <?= Html::a('Confirm Screens & Results', ['/rocketleague/confirm-result', 'tournament_id' => $tournament_id, 'bracket_id' => $bracket_id], ['class' => 'btn btn-success']); ?>
         <?php endif; ?>
     </div>
     <?php ActiveForm::end(); ?>

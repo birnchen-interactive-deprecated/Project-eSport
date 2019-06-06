@@ -5,7 +5,7 @@ namespace app\modules\tournamenttrees\models;
 use yii\db\ActiveRecord;
 
 /**
- * Class TournamentEncounter
+ * Class TournamentEncounterScreens
  * @package app\modules\tournamenttree\models
  *
  * @property int $bracket_id
