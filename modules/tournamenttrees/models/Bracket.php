@@ -247,7 +247,7 @@ class Bracket extends ActiveRecord
 
 		            $img = Html::img($imgPath . '.webp', ['class' => 'bracketIcon', 'alt' => "profilePic", 'aria-label' => 'profilePic', 'onerror' =>'this.src="' . $imgPath . '.png"' ]);
 
-					$show = $slot->getName();
+					$show = $img . $slot->getName();
 					$show = str_replace(' ', '', $show);
 					$show = substr($show, 0, 6);
 				}
@@ -296,7 +296,7 @@ class Bracket extends ActiveRecord
 	            }
 
 	            $img = Html::img($imgPath . '.webp', ['class' => 'bracketIcon', 'alt' => "profilePic", 'aria-label' => 'profilePic', 'onerror' =>'this.src="' . $imgPath . '.png"' ]);
-				$return[] = $slot->getUsername();
+				$return[] = $img . $slot->getUsername();
 			} else if ($slot instanceof SubTeam) {
 				$show = $slot->getTeamShortCode();
 				if (empty($show)) {
@@ -311,7 +311,7 @@ class Bracket extends ActiveRecord
 
 		            $img = Html::img($imgPath . '.webp', ['class' => 'bracketIcon', 'alt' => "profilePic", 'aria-label' => 'profilePic', 'onerror' =>'this.src="' . $imgPath . '.png"' ]);
 
-					$show = $slot->getName();
+					$show = $img . $slot->getName();
 					$show = str_replace(' ', '', $show);
 					$show = substr($show, 0, 6);
 				}
