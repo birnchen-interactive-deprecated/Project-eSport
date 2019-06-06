@@ -514,6 +514,10 @@ class RocketleagueController extends BaseController
             $editable = $editable && !$isBothConfirmed;
         }
 
+        if ($user->getId() <= 4) {
+            $editable = true;
+        }
+
         return $this->render('editEncounterDetails',
             [
                 'player_left' => $player_left,
