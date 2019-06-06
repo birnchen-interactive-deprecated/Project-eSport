@@ -140,7 +140,7 @@ class TournamentEncounter extends ActiveRecord
 	 * @param int
 	 * @return bool
 	 */
-	public static function checkConfirmable($tournament_id, $bracket_id, $players_left, $players_right, $best_of)
+	public static function getWinner($tournament_id, $bracket_id, $players_left, $players_right, $best_of)
 	{
 		$encounters = self::findAll(['tournament_id' => $tournament_id, 'bracket_id' => $bracket_id]);
 
@@ -188,8 +188,12 @@ class TournamentEncounter extends ActiveRecord
 			}
 		}
 
-		if ($leftWins == $minGames || $rightWins == $minGames) {
-			return true;
+		if ($leftWins == $minGames) {
+			return 1;
+		}
+
+		if ($rightWins == $minGames) {
+			return 2;
 		}
 
 		return false;

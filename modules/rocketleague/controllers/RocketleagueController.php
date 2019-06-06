@@ -295,6 +295,32 @@ class RocketleagueController extends BaseController
 
         $bracket->movePlayersNextRound($winner);
 
+        $encounterConfirm = TournamentEncounterConfirm::getByFullKey($tournament_id, $bracketId);
+        if ($encounterConfirm instanceof TournamentEncounterConfirm) {
+
+            if (empty($encounterConfirm->player_1_confirm)) {
+                $encounterConfirm->player_1_confirm = 0;
+            }
+
+            if (empty($encounterConfirm->player_2_confirm)) {
+                $encounterConfirm->player_2_confirm = 0;
+            }
+
+            $encounterConfirm->update();
+
+        } else {
+            
+            $encounterConfirm = new TournamentEncounterConfirm();
+            $encounterConfirm->tournament_id = $tournament_id;
+            $encounterConfirm->bracket_id = $bracket_id;
+            $encounterConfirm->player_1_confirm = 0;
+            $encounterConfirm->player_2_confirm = 0;
+            $encounterConfirm->save();
+
+        }
+
+
+
         Alert::addSuccess('Bracket erfolgreich abgeschlossen.');
 
         return $this->redirect('tournament-details?id=' . $tournament_id);
@@ -402,6 +428,13 @@ class RocketleagueController extends BaseController
 
                 }
 
+                $encounterConfirm = TournamentEncounterConfirm::getByFullKey($tournament_id, $bracketId);
+                if ($encounterConfirm instanceof TournamentEncounterConfirm) {
+                    $encounterConfirm->player_1_confirm = NULL;
+                    $encounterConfirm->player_2_confirm = NULL;
+                    $encounterConfirm->update();
+                }
+
             }
 
         }
@@ -454,7 +487,8 @@ class RocketleagueController extends BaseController
         $encounterScreen = TournamentEncounterScreens::getScreensFromTournamentBracket($tournament_id, $bracketId);
 
         $editable = true;
-        $confirmable = TournamentEncounter::checkConfirmable($tournament_id, $bracketId, $players_left, $players_right, $bracket->getBestOf());
+        $winner = TournamentEncounter::getWinner($tournament_id, $bracketId, $players_left, $players_right, $bracket->getBestOf());
+        $confirmable = (false == $winner) ? false : true;
 
         $user = Yii::$app->user->identity;
 
@@ -543,7 +577,52 @@ class RocketleagueController extends BaseController
 
         }
 
-        $isBothConfirmed = $encounterConfirm->isBothConfirmed($tournament_id, $bracketId);
+        $isBothConfirmed = $encounterConfirm->isBothConfirmed($tournament_id, $bracket_id);
+        if (true === $isBothConfirmed) {
+
+            if ($bracket->team_1_id === NULL) {
+                $players_left  = [User::findIdentity($bracket->user_1_id)];
+                $players_right = [User::findIdentity($bracket->user_2_id)];
+
+            } else {
+                $player_left  = SubTeam::findIdentity($bracket->team_1_id);
+                $player_right = SubTeam::findIdentity($bracket->team_2_id);
+
+                $members_left = $player_left->getSubTeamMembers()->all();
+                $members_right = $player_right->getSubTeamMembers()->all();
+
+                foreach ($members_left as $key => $member) {
+                    if (NULL === $member) {
+                        continue;
+                    }
+
+                    $user = $member->getUser()->one();
+                    if (NULL === $user) {
+                        continue;
+                    }
+
+                    $players_left[] = $user;
+                }
+
+                foreach ($members_right as $key => $member) {
+                    if (NULL === $member) {
+                        continue;
+                    }
+
+                    $user = $member->getUser()->one();
+                    if (NULL === $user) {
+                        continue;
+                    }
+
+                    $players_right[] = $user;
+                }
+
+            }
+
+            $winner = TournamentEncounter::getWinner($tournament_id, $bracket_id, $players_left, $players_right, $bracket->getBestOf());
+            $bracket->movePlayersNextRound($winner);
+
+        }
 
         return $this->redirect('close-bracket?tournament_id=' . $tournament_id . '&bracketId=' . $bracket_id);
 
