@@ -4,6 +4,10 @@ namespace app\modules\tournamenttrees\models;
 
 use yii\db\ActiveRecord;
 
+use app\modules\tournamenttrees\models\Bracket;
+use app\modules\teams\models\SubTeam;
+use app\modules\user\models\User;
+
 /**
  * Class TournamentEncounter
  * @package app\modules\tournamenttree\models
@@ -135,18 +139,115 @@ class TournamentEncounter extends ActiveRecord
 		return self::findOne(['tournament_id' => $tournament_id, 'bracket_id' => $bracket_id, 'game_round' => $game_round, 'player_id' => $player_id]);
 	}
 
-	/**
-	 * @param int
-	 * @param int
-	 * @return bool
-	 */
-	public static function getWinner($tournament_id, $bracket_id, $players_left, $players_right, $best_of)
+	public static function getGoals($tournament_id, $bracket_id, $best_of)
 	{
 		$encounters = self::findAll(['tournament_id' => $tournament_id, 'bracket_id' => $bracket_id]);
 
 		if (count($encounters) == 0) {
 			return false;
 		}
+
+		$players_left = self::getPlayers($bracket_id, 'left');
+		$players_right = self::getPlayers($bracket_id, 'right');
+
+		$leftGoals = [];
+		$rightGoals = [];
+
+		foreach ($encounters as $key => $encounter) {
+
+			foreach ($players_left as $key => $player) {
+				if ($player->getId() == $encounter->player_id) {
+					$leftGoals[$encounter->game_round] += $encounter->goals;
+				}
+			}
+
+			foreach ($players_right as $key => $player) {
+				if ($player->getId() == $encounter->player_id) {
+					$rightGoals[$encounter->game_round] += $encounter->goals;
+				}
+			}
+		}
+
+		return ['left' => $leftGoals, 'right' => $rightGoals];
+	}
+
+	/**
+	 * @param int
+	 * @param string
+	 * @return array
+	 */
+	public static function getPlayers($bracket_id, $left_right)
+	{
+		$bracket = Bracket::getById($bracket_id);
+
+        if ($bracket->team_1_id === NULL) {
+        	if ('left' === $left_right) {
+	            $player  = User::findIdentity($bracket->user_1_id);
+	            $player_arr = [$player];
+	        } else if ('right' === $left_right) {
+    	        $player = User::findIdentity($bracket->user_2_id);
+            	$player_arr = [$player];
+	        }
+
+        } else {
+        	if ('left' === $left_right) {
+
+	            $player  = SubTeam::findIdentity($bracket->team_1_id);
+            	$members = $player->getSubTeamMembers()->all();
+
+	            foreach ($members as $key => $member) {
+	                if (NULL === $member) {
+	                    continue;
+	                }
+
+	                $user = $member->getUser()->one();
+	                if (NULL === $user) {
+	                    continue;
+	                }
+
+	                $player_arr[] = $user;
+	            }
+
+        	} else  if ('right' === $left_right) {
+
+	            $player = SubTeam::findIdentity($bracket->team_2_id);
+	            $members = $player->getSubTeamMembers()->all();
+
+	            foreach ($members as $key => $member) {
+	                if (NULL === $member) {
+	                    continue;
+	                }
+
+	                $user = $member->getUser()->one();
+	                if (NULL === $user) {
+	                    continue;
+	                }
+
+	                $player_arr[] = $user;
+	            }
+        	}
+
+        }
+
+        return $player_arr;
+
+	}
+
+	/**
+	 * @param int
+	 * @param int
+	 * @return bool
+	 */
+	public static function getWinner($tournament_id, $bracket_id, $best_of)
+	{
+		$encounters = self::findAll(['tournament_id' => $tournament_id, 'bracket_id' => $bracket_id]);
+
+		if (count($encounters) == 0) {
+			return false;
+		}
+
+		$players_left = self::getPlayers($bracket_id, 'left');
+		$players_right = self::getPlayers($bracket_id, 'right');
 
 		$leftGoals = [];
 		$rightGoals = [];

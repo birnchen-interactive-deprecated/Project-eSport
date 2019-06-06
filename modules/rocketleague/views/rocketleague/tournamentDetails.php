@@ -288,6 +288,8 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
                                 } else {
                                     $rundenInfo = 'R' . $round . str_pad($bracketEncounter, 2, '0', STR_PAD_LEFT);
                                 }
+
+                                $goals = TournamentEncounter::getGoals($tournament->getId(), $bracket->getId(), $bracket->getBestOf());
                             ?>
                             <?php if ($participant1 != 'FREILOS' && $participant2 != 'FREILOS') : ?>
                                 <span class="bracketEncounter">Bracket <?= $bracketEncounter; ?> | Gamename and Password: <?= $rundenInfo; ?></span>
@@ -345,6 +347,11 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
                                             </div>
                                         <?php endif ?>
                                         <!-- End of Administrative Area -->
+                                        <div style="float:right;">
+                                            <?php foreach ($goals['left'] as $key => $goal): ?>
+                                                <div class="goals" style="float:left;"><?= $goal; ?></div>
+                                            <?php endforeach; ?>
+                                        </div>
                                     </div>
                                     <div class="bracketParticipant <?= $class2; ?>">
                                         <?= $participant2; ?>
@@ -394,6 +401,11 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
                                             </div>
                                         <?php endif ?>
                                         <!-- End of Administrative Area -->
+                                        <div style="float:right;">
+                                            <?php foreach ($goals['right'] as $key => $goal): ?>
+                                                <div class="goals" style="float:left;"><?= $goal; ?></div>
+                                            <?php endforeach; ?>
+                                        </div>
                                     </div>
                                 </div>
                             <?php endif; ?>
@@ -439,6 +451,8 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
 
                                 $participant1 = $bracketParticipants[0];
                                 $participant2 = $bracketParticipants[1];
+
+                                $goals = TournamentEncounter::getGoals($tournament->getId(), $bracket->getId(), $bracket->getBestOf());
                             ?>
 
                             <span class="bracketEncounter">Bracket <?= $bracketEncounter; ?> | Gamename and Password: R<?= $round . str_pad($bracketEncounter, 2, '0', STR_PAD_LEFT); ?></span>
@@ -492,6 +506,11 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
                                             ); ?>
                                         </div>
                                     <?php endif ?>
+                                    <div style="float:right;">
+                                        <?php foreach ($goals['left'] as $key => $goal): ?>
+                                            <div class="goals" style="float:left;"><?= $goal; ?></div>
+                                        <?php endforeach; ?>
+                                    </div>
                                 </div>
                                 <div class="bracketParticipant <?= $class2; ?>">
                                     <?= $participant2; ?>
@@ -539,6 +558,11 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
                                             ); ?>
                                         </div>
                                     <?php endif ?>
+                                    <div style="float:right;">
+                                        <?php foreach ($goals['right'] as $key => $goal): ?>
+                                            <div class="goals" style="float:left;"><?= $goal; ?></div>
+                                        <?php endforeach; ?>
+                                    </div>
                                 </div>
                             </div>
 
