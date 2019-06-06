@@ -82,7 +82,7 @@ var_dump($submitable);
             <img class="encounterScreen" src="data:image/webp;base64,<?= $encounterScreen[$b]; ?>" alt="Screenshot Game <?= $b; ?>">
         <?php endif; ?>
         <?php if ($editable): ?>
-            <div class="encounterScreenshot">Screenshot: <input type="file" name="screen_<?= $b; ?>"></div>
+            <div class="col-lg-12 encounterScreenshot">Screenshot: <input type="file" name="screen_<?= $b; ?>"></div>
         <?php endif; ?>
 
         <div class="col-lg-6 encounterGameBody">
