@@ -22,6 +22,7 @@ use app\modules\tournaments\models\TeamParticipating;
 
 use app\modules\tournamenttrees\models\Bracket;
 use app\modules\tournamenttrees\models\TournamentEncounter;
+use app\modules\tournamenttrees\models\TournamentEncounterConfirm;
 use app\modules\tournamenttrees\models\TournamentEncounterScreens;
 
 use app\modules\tournamenttrees\models\formModels\EncounterDetailsForm;
