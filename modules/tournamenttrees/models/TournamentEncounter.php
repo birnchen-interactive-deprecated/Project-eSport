@@ -140,20 +140,13 @@ class TournamentEncounter extends ActiveRecord
 	 * @param int
 	 * @return bool
 	 */
-	public static function checkSubmitable($tournament_id, $bracket_id, $players_left, $players_right)
+	public static function checkConfirmable($tournament_id, $bracket_id, $players_left, $players_right, $best_of)
 	{
 		$encounters = self::findAll(['tournament_id' => $tournament_id, 'bracket_id' => $bracket_id]);
 
 		if (count($encounters) == 0) {
 			return false;
 		}
-
-		// $tournament = $encounters[0]->getTournament();
-		// $tournamentMode = $tournament->getMode();
-		// $maxPlayers = $tournamentMode->getMaxPlayers();
-
-		// $subPlayers = $tournamentMode->getSubPlayers();
-		// $mainPlayers = $maxPlayers - $subPlayers;
 
 		$leftGoals = [];
 		$rightGoals = [];
@@ -174,7 +167,32 @@ class TournamentEncounter extends ActiveRecord
 
 		}
 
-		return [$leftGoals, $rightGoals];
+		$minGames = ceil($best_of / 2);
+
+		if (count($leftGoals) != count($rightGoals)) {
+			return false;
+		}
+
+		if (count($leftGoals) < $minGames) {
+			return false;
+		}
+
+		$leftWins = 0;
+		$rightWins = 0;
+
+		foreach ($leftGoals as $round => $value) {
+			if ($leftGoals[$round] > $rightGoals[$round]) {
+				$leftWins++;
+			} else if ($leftGoals[$round] < $rightGoals[$round]) {
+				$rightWins++;
+			}
+		}
+
+		if ($leftWins == $minGames || $rightWins == $minGames) {
+			return true;
+		}
+
+		return false;
 	}
 
 }

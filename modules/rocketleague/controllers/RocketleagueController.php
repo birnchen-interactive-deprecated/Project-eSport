@@ -452,7 +452,7 @@ class RocketleagueController extends BaseController
 
         $encounterScreen = TournamentEncounterScreens::getScreensFromTournamentBracket($tournament_id, $bracketId);
 
-        $submitable = TournamentEncounter::checkSubmitable($tournament_id, $bracketId, $players_left, $players_right);
+        $confirmable = TournamentEncounter::checkConfirmable($tournament_id, $bracketId, $players_left, $players_right, $bracket->getBestOf());
 
         return $this->render('editEncounterDetails',
             [
@@ -468,7 +468,7 @@ class RocketleagueController extends BaseController
                 'encounterData' => $encounterData,
                 'encounterScreen' => $encounterScreen,
                 'editable' => true,
-                'submitable' => $submitable,
+                'confirmable' => $confirmable,
             ]);
     }
 

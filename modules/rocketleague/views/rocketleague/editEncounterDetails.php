@@ -15,7 +15,7 @@
  * @var encounterData array
  * @var encounterScreen array
  * @var editable bool
- * @var submitable bool
+ * @var confirmable bool
  */
 
 use yii\helpers\Html;
@@ -43,8 +43,6 @@ if (!is_file($_SERVER['DOCUMENT_ROOT'] . '/' . $imgRight . '.webp')) {
 
 $playerNameL = ($player_left  instanceof User) ? $player_left->getUsername() : $player_left->getName();
 $playerNameR = ($player_right  instanceof User) ? $player_right->getUsername() : $player_right->getName();
-
-var_dump($submitable);
 
 ?>
 <div class="site-editEncounterDetails">
@@ -253,9 +251,9 @@ var_dump($submitable);
         <?= Html::a('Back to Tournament', ['/rocketleague/tournament-details', 'id' => $tournament_id], ['class' => 'btn btn-warning']); ?>
         <?php if ($editable): ?>
             <?= Html::submitButton("Save Screens & Results", ['class' => 'btn']) ?>
-        <?php endif; ?>
-        <?php if ($submitable): ?>
-            <?= Html::a('Confirm Screens & Results', ['/rocketleague/confirm-result', 'tournament_id' => $tournament_id, 'bracket_id' => $bracket_id], ['class' => 'btn btn-success']); ?>
+
+            <?php $attributes = ($confirmable) ? ['class' => 'btn btn-success'] : ['class' => 'btn btn-success', 'disabled' => 'disabled']; ?>
+            <?= Html::a('Confirm Screens & Results', ['/rocketleague/confirm-result', 'tournament_id' => $tournament_id, 'bracket_id' => $bracket_id], $attributes); ?>
         <?php endif; ?>
     </div>
     <?php ActiveForm::end(); ?>
