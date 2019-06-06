@@ -466,6 +466,9 @@ class RocketleagueController extends BaseController
         $editable = $editable && $manageable;
         $confirmable = $confirmable && $manageable;
 
+        $isConfirmeable = TournamentEncounterConfirm::isConfirmeable($tournament_id, $bracketId, $manageable1, $manageable2);
+        $confirmable = $confirmable && $isConfirmeable;
+
         return $this->render('editEncounterDetails',
             [
                 'player_left' => $player_left,
