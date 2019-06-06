@@ -234,24 +234,25 @@ class Bracket extends ActiveRecord
 	            $img = Html::img($imgPath . '.webp', ['class' => 'bracketIcon', 'alt' => "profilePic", 'aria-label' => 'profilePic', 'onerror' =>'this.src="' . $imgPath . '.png"' ]);
 				$return[] = $img . $slot->getUsername();
 			} else if ($slot instanceof SubTeam) {
+
+	            $imgPath = '/images/teams/subTeams/' . $slot->id;
+
+	            if (!is_file($_SERVER['DOCUMENT_ROOT'] . '/' . $imgPath . '.webp')) {
+	                if (!is_file($_SERVER['DOCUMENT_ROOT'] . '/' . $imgPath . '.png')) {
+	                    $imgPath = '/images/userAvatar/default';
+	                }
+	            }
+
+	            $img = Html::img($imgPath . '.webp', ['class' => 'bracketIcon', 'alt' => "profilePic", 'aria-label' => 'profilePic', 'onerror' =>'this.src="' . $imgPath . '.png"' ]);
+
 				$show = $slot->getTeamShortCode() ;
 				if (empty($show)) {
 
-		            $imgPath = '/images/teams/subTeams/' . $slot->id;
-
-		            if (!is_file($_SERVER['DOCUMENT_ROOT'] . '/' . $imgPath . '.webp')) {
-		                if (!is_file($_SERVER['DOCUMENT_ROOT'] . '/' . $imgPath . '.png')) {
-		                    $imgPath = '/images/userAvatar/default';
-		                }
-		            }
-
-		            $img = Html::img($imgPath . '.webp', ['class' => 'bracketIcon', 'alt' => "profilePic", 'aria-label' => 'profilePic', 'onerror' =>'this.src="' . $imgPath . '.png"' ]);
-
-					$show = $img . $slot->getName();
+					$show = $slot->getName();
 					$show = str_replace(' ', '', $show);
 					$show = substr($show, 0, 6);
 				}
-				$return[] = $show;
+				$return[] = $img . $show;
 			} else {
 				$return[] = '';
 			}
@@ -298,24 +299,25 @@ class Bracket extends ActiveRecord
 	            $img = Html::img($imgPath . '.webp', ['class' => 'bracketIcon', 'alt' => "profilePic", 'aria-label' => 'profilePic', 'onerror' =>'this.src="' . $imgPath . '.png"' ]);
 				$return[] = $img . $slot->getUsername();
 			} else if ($slot instanceof SubTeam) {
+
+	            $imgPath = '/images/teams/subTeams/' . $slot->id;
+
+	            if (!is_file($_SERVER['DOCUMENT_ROOT'] . '/' . $imgPath . '.webp')) {
+	                if (!is_file($_SERVER['DOCUMENT_ROOT'] . '/' . $imgPath . '.png')) {
+	                    $imgPath = '/images/userAvatar/default';
+	                }
+	            }
+
+	            $img = Html::img($imgPath . '.webp', ['class' => 'bracketIcon', 'alt' => "profilePic", 'aria-label' => 'profilePic', 'onerror' =>'this.src="' . $imgPath . '.png"' ]);
+
 				$show = $slot->getTeamShortCode();
 				if (empty($show)) {
 
-		            $imgPath = '/images/teams/subTeams/' . $slot->id;
-
-		            if (!is_file($_SERVER['DOCUMENT_ROOT'] . '/' . $imgPath . '.webp')) {
-		                if (!is_file($_SERVER['DOCUMENT_ROOT'] . '/' . $imgPath . '.png')) {
-		                    $imgPath = '/images/userAvatar/default';
-		                }
-		            }
-
-		            $img = Html::img($imgPath . '.webp', ['class' => 'bracketIcon', 'alt' => "profilePic", 'aria-label' => 'profilePic', 'onerror' =>'this.src="' . $imgPath . '.png"' ]);
-
-					$show = $img . $slot->getName();
+					$show = $slot->getName();
 					$show = str_replace(' ', '', $show);
 					$show = substr($show, 0, 6);
 				}
-				$return[] = $show;
+				$return[] = $img . $show;
 			} else {
 				$return[] = '';
 			}
