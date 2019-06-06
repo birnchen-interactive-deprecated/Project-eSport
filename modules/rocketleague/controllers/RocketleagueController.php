@@ -312,7 +312,7 @@ class RocketleagueController extends BaseController
             
             $encounterConfirm = new TournamentEncounterConfirm();
             $encounterConfirm->tournament_id = $tournament_id;
-            $encounterConfirm->bracket_id = $bracket_id;
+            $encounterConfirm->bracket_id = $bracketId;
             $encounterConfirm->player_1_confirm = 0;
             $encounterConfirm->player_2_confirm = 0;
             $encounterConfirm->save();
