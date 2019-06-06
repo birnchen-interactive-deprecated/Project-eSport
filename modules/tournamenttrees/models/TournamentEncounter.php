@@ -8,7 +8,6 @@ use app\modules\tournamenttrees\models\Bracket;
 use app\modules\teams\models\SubTeam;
 use app\modules\user\models\User;
 
-use app\modules\tournamenttrees\models\TournamentEncounter;
 
 /**
  * Class TournamentEncounter

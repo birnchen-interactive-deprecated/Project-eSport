@@ -15,6 +15,8 @@ use app\modules\teams\models\SubTeam;
 
 use app\modules\user\models\User;
 
+use app\modules\tournamenttrees\models\TournamentEncounter;
+
 use yii\helpers\Html;
 
 app\modules\rocketleague\assets\rocketleagueAsset::register($this);
