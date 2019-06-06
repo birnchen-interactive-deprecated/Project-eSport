@@ -8,6 +8,8 @@ use app\modules\teams\models\SubTeam;
 use app\modules\tournaments\models\Tournament;
 use app\modules\user\models\User;
 
+use yii\helpers\Html;
+
 /**
  * Class Bracket
  * @package app\modules\tournamenttree\models
@@ -220,10 +222,31 @@ class Bracket extends ActiveRecord
 			array_shift($refs);
 			$slot = $this->hasOne($class, $vars)->one();
 			if ($slot instanceof User) {
-				$return[] = $slot->getUsername();
+
+	            $imgPath = '/images/userAvatar/' . $slot->id;
+
+	            if (!is_file($_SERVER['DOCUMENT_ROOT'] . '/' . $imgPath . '.webp')) {
+	                if (!is_file($_SERVER['DOCUMENT_ROOT'] . '/' . $imgPath . '.png')) {
+	                    $imgPath = Yii::getAlias("@web") . '/images/userAvatar/default';
+	                }
+	            }
+
+	            $img = Html::img($imgPath . '.webp', ['class' => 'bracketIcon', 'alt' => "profilePic", 'aria-label' => 'profilePic', 'onerror' =>'this.src="' . $imgPath . '.png"' ]);
+				$return[] = $img . $slot->getUsername();
 			} else if ($slot instanceof SubTeam) {
 				$show = $slot->getTeamShortCode() ;
 				if (empty($show)) {
+
+		            $imgPath = '/images/teams/subTeams/' . $slot->id;
+
+		            if (!is_file($_SERVER['DOCUMENT_ROOT'] . '/' . $imgPath . '.webp')) {
+		                if (!is_file($_SERVER['DOCUMENT_ROOT'] . '/' . $imgPath . '.png')) {
+		                    $imgPath = Yii::getAlias("@web") . '/images/userAvatar/default';
+		                }
+		            }
+
+		            $img = Html::img($imgPath . '.webp', ['class' => 'bracketIcon', 'alt' => "profilePic", 'aria-label' => 'profilePic', 'onerror' =>'this.src="' . $imgPath . '.png"' ]);
+
 					$show = $slot->getName();
 					$show = str_replace(' ', '', $show);
 					$show = substr($show, 0, 6);
@@ -263,10 +286,31 @@ class Bracket extends ActiveRecord
 
 			$slot = $this->hasOne($class, $vars)->one();
 			if ($slot instanceof User) {
+
+	            $imgPath = '/images/userAvatar/' . $slot->id;
+
+	            if (!is_file($_SERVER['DOCUMENT_ROOT'] . '/' . $imgPath . '.webp')) {
+	                if (!is_file($_SERVER['DOCUMENT_ROOT'] . '/' . $imgPath . '.png')) {
+	                    $imgPath = Yii::getAlias("@web") . '/images/userAvatar/default';
+	                }
+	            }
+
+	            $img = Html::img($imgPath . '.webp', ['class' => 'bracketIcon', 'alt' => "profilePic", 'aria-label' => 'profilePic', 'onerror' =>'this.src="' . $imgPath . '.png"' ]);
 				$return[] = $slot->getUsername();
 			} else if ($slot instanceof SubTeam) {
 				$show = $slot->getTeamShortCode();
 				if (empty($show)) {
+
+		            $imgPath = '/images/teams/subTeams/' . $slot->id;
+
+		            if (!is_file($_SERVER['DOCUMENT_ROOT'] . '/' . $imgPath . '.webp')) {
+		                if (!is_file($_SERVER['DOCUMENT_ROOT'] . '/' . $imgPath . '.png')) {
+		                    $imgPath = Yii::getAlias("@web") . '/images/userAvatar/default';
+		                }
+		            }
+
+		            $img = Html::img($imgPath . '.webp', ['class' => 'bracketIcon', 'alt' => "profilePic", 'aria-label' => 'profilePic', 'onerror' =>'this.src="' . $imgPath . '.png"' ]);
+
 					$show = $slot->getName();
 					$show = str_replace(' ', '', $show);
 					$show = substr($show, 0, 6);
