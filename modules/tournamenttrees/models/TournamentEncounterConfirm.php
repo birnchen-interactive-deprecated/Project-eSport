@@ -42,29 +42,15 @@ class TournamentEncounterConfirm extends ActiveRecord {
 	}
 
 	/**
-	 * @return array
-	 */
-	public static function getByFullKey($tournament_id, $bracket_id)
-	{
-		return self::findOne(['tournament_id' => $tournament_id, 'bracket_id' => $bracket_id]);
-	}
-
-	/**
 	 * @return bool
 	 */
-	public static function isConfirmeable($tournament_id, $bracket_id, $left, $right)
+	public function isConfirmeable($tournament_id, $bracket_id, $left, $right)
 	{
-		$encounterConfirm = self::findOne(['tournament_id' => $tournament_id, 'bracket_id' => $bracket_id]);
-
-		if (NULL === $encounterConfirm) {
+		if ($left && $this->player_1_confirm === NULL) {
 			return true;
 		}
 
-		if ($left && $encounterConfirm->player_1_confirm === NULL) {
-			return true;
-		}
-
-		if ($right && $encounterConfirm->player_2_confirm === NULL) {
+		if ($right && $this->player_2_confirm === NULL) {
 			return true;
 		}
 
@@ -74,23 +60,25 @@ class TournamentEncounterConfirm extends ActiveRecord {
 	/**
 	 * @return bool
 	 */
-	public static function isBothConfirmed($tournament_id, $bracket_id)
+	public function isBothConfirmed($tournament_id, $bracket_id)
 	{
-		$encounterConfirm = self::findOne(['tournament_id' => $tournament_id, 'bracket_id' => $bracket_id]);
-
-		if (NULL === $encounterConfirm) {
+		if ($this->player_1_confirm === NULL) {
 			return false;
 		}
 
-		if ($encounterConfirm->player_1_confirm === NULL) {
-			return false;
-		}
-
-		if ($encounterConfirm->player_2_confirm === NULL) {
+		if ($this->player_2_confirm === NULL) {
 			return false;
 		}
 
 		return true;
+	}
+
+	/**
+	 * @return array
+	 */
+	public static function getByFullKey($tournament_id, $bracket_id)
+	{
+		return self::findOne(['tournament_id' => $tournament_id, 'bracket_id' => $bracket_id]);
 	}
 
 }

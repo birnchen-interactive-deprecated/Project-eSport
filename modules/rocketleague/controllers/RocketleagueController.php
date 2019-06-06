@@ -467,11 +467,15 @@ class RocketleagueController extends BaseController
         $editable = $editable && $manageable;
         $confirmable = $confirmable && $manageable;
 
-        $isConfirmeable = TournamentEncounterConfirm::isConfirmeable($tournament_id, $bracketId, $manageable1, $manageable2);
-        $confirmable = $confirmable && $isConfirmeable;
+        $encounterConfirm = TournamentEncounterConfirm::getByFullKey($tournament_id, $bracket_id);
 
-        $isBothConfirmed = TournamentEncounterConfirm::isBothConfirmed($tournament_id, $bracketId);
-        $editable = $editable && !$isBothConfirmed;
+        if (NULL !== $encounterConfirm) {
+            $isConfirmeable = $encounterConfirm->isConfirmeable($tournament_id, $bracketId, $manageable1, $manageable2);
+            $confirmable = $confirmable && $isConfirmeable;
+
+            $isBothConfirmed = $encounterConfirm->isBothConfirmed($tournament_id, $bracketId);
+            $editable = $editable && !$isBothConfirmed;
+        }
 
         return $this->render('editEncounterDetails',
             [
@@ -537,6 +541,8 @@ class RocketleagueController extends BaseController
             $encounterConfirm->save();
 
         }
+
+        $isBothConfirmed = $encounterConfirm->isBothConfirmed($tournament_id, $bracketId);
 
         return $this->redirect('close-bracket?tournament_id=' . $tournament_id . '&bracketId=' . $bracket_id);
 
