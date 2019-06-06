@@ -247,13 +247,19 @@ $playerNameR = ($player_right  instanceof User) ? $player_right->getUsername() :
 
     </div>
 
-    <div class="col-lg-12 encounterFooter">
-        <?= Html::a('Back to Tournament', ['/rocketleague/tournament-details', 'id' => $tournament_id], ['class' => 'btn btn-warning']); ?>
+    <div class="col-lg-12 encounterFooter clearfix">
+        <div class="col-lg-5">
+            <?= Html::a('Back to Tournament', ['/rocketleague/tournament-details', 'id' => $tournament_id], ['class' => 'btn btn-warning']); ?>
+        </div>
         <?php if ($editable): ?>
-            <?= Html::submitButton("Save Screens & Results", ['class' => 'btn']) ?>
+            <div class="col-lg-4">
+                <?= Html::submitButton("Save Screens & Results", ['class' => 'btn']) ?>
+            </div>
 
-            <?php $attributes = ($confirmable) ? ['class' => 'btn btn-success'] : ['class' => 'btn btn-success', 'disabled' => 'disabled']; ?>
-            <?= Html::a('Confirm Screens & Results', ['/rocketleague/confirm-result', 'tournament_id' => $tournament_id, 'bracket_id' => $bracket_id], $attributes); ?>
+            <div class="col-lg-3" style="text-align: right;">
+                <?php $attributes = ($confirmable) ? ['class' => 'btn btn-success'] : ['class' => 'btn btn-success', 'disabled' => 'disabled']; ?>
+                <?= Html::a('Confirm Screens & Results', ['/rocketleague/confirm-result', 'tournament_id' => $tournament_id, 'bracket_id' => $bracket_id], $attributes); ?>
+            </div>
         <?php endif; ?>
     </div>
     <?php ActiveForm::end(); ?>
