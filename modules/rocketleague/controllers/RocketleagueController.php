@@ -470,6 +470,7 @@ class RocketleagueController extends BaseController
         $encounterConfirm = TournamentEncounterConfirm::getByFullKey($tournament_id, $bracket_id);
 
         if ($encounterConfirm instanceof TournamentEncounterConfirm) {
+            Alert::addInfo('Test');
             $isConfirmeable = $encounterConfirm->isConfirmeable($tournament_id, $bracketId, $manageable1, $manageable2);
             $confirmable = $confirmable && $isConfirmeable;
 
