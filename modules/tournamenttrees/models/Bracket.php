@@ -227,7 +227,7 @@ class Bracket extends ActiveRecord
 
 	            if (!is_file($_SERVER['DOCUMENT_ROOT'] . '/' . $imgPath . '.webp')) {
 	                if (!is_file($_SERVER['DOCUMENT_ROOT'] . '/' . $imgPath . '.png')) {
-	                    $imgPath = Yii::getAlias("@web") . '/images/userAvatar/default';
+	                    $imgPath = $_SERVER['DOCUMENT_ROOT'] . '/images/userAvatar/default';
 	                }
 	            }
 
@@ -241,7 +241,7 @@ class Bracket extends ActiveRecord
 
 		            if (!is_file($_SERVER['DOCUMENT_ROOT'] . '/' . $imgPath . '.webp')) {
 		                if (!is_file($_SERVER['DOCUMENT_ROOT'] . '/' . $imgPath . '.png')) {
-		                    $imgPath = Yii::getAlias("@web") . '/images/userAvatar/default';
+		                    $imgPath = $_SERVER['DOCUMENT_ROOT'] . '/images/userAvatar/default';
 		                }
 		            }
 
@@ -291,7 +291,7 @@ class Bracket extends ActiveRecord
 
 	            if (!is_file($_SERVER['DOCUMENT_ROOT'] . '/' . $imgPath . '.webp')) {
 	                if (!is_file($_SERVER['DOCUMENT_ROOT'] . '/' . $imgPath . '.png')) {
-	                    $imgPath = Yii::getAlias("@web") . '/images/userAvatar/default';
+	                    $imgPath = $_SERVER['DOCUMENT_ROOT'] . '/images/userAvatar/default';
 	                }
 	            }
 
@@ -305,7 +305,7 @@ class Bracket extends ActiveRecord
 
 		            if (!is_file($_SERVER['DOCUMENT_ROOT'] . '/' . $imgPath . '.webp')) {
 		                if (!is_file($_SERVER['DOCUMENT_ROOT'] . '/' . $imgPath . '.png')) {
-		                    $imgPath = Yii::getAlias("@web") . '/images/userAvatar/default';
+		                    $imgPath = $_SERVER['DOCUMENT_ROOT'] . '/images/userAvatar/default';
 		                }
 		            }
 
