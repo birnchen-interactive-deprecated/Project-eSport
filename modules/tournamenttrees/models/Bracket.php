@@ -287,7 +287,7 @@ class Bracket extends ActiveRecord
 	 * @param int
 	 * @return bool
 	 */
-	public function isManageable($user, $subTeam, $player_one_two)
+	public function isManageable($user, $player_one_two)
 	{
 		if (NULL === $user) {
 			return false;
@@ -330,14 +330,6 @@ class Bracket extends ActiveRecord
 				return false;
 
 			}
-
-			// if ($this->getTeam1()->one() !== NULL && !$this->checkIfBracketClosed()) {
-			// 	$team = $this->getTeam1()->one();
-
-			// 	if($team->getTeamCaptainId() == $id || $team->getTeamDeputyId() == $id) {
-			// 		return true;
-			// 	}
-			// }
 
 			return false;
 		}

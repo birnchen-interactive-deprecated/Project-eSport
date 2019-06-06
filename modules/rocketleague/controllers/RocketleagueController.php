@@ -452,7 +452,19 @@ class RocketleagueController extends BaseController
 
         $encounterScreen = TournamentEncounterScreens::getScreensFromTournamentBracket($tournament_id, $bracketId);
 
+        $editable = true;
         $confirmable = TournamentEncounter::checkConfirmable($tournament_id, $bracketId, $players_left, $players_right, $bracket->getBestOf());
+
+        $user = Yii::$app->user->identity;
+
+        // captain: rausfinden, ob er im linken oder rechten Team managen darf.
+        $manageable1 = $bracket->isManageable($user, 1);
+        $manageable2 = $bracket->isManageable($user, 2);
+        $manageable = $manageable1 || $manageable2;
+
+        // wenn eines der beiden werte false ist, ist es false.
+        $editable = $editable && $manageable;
+        $confirmable = $confirmable && $manageable;
 
         return $this->render('editEncounterDetails',
             [
@@ -467,7 +479,7 @@ class RocketleagueController extends BaseController
                 'bracket_id' => $bracketId,
                 'encounterData' => $encounterData,
                 'encounterScreen' => $encounterScreen,
-                'editable' => true,
+                'editable' => $editable,
                 'confirmable' => $confirmable,
             ]);
     }
