@@ -56,8 +56,8 @@ class TournamentEncounterConfirm extends ActiveRecord {
 	{
 		$encounterConfirm = self::findOne(['tournament_id' => $tournament_id, 'bracket_id' => $bracket_id]);
 
-		if (count($encounterConfirm) == 0) {
-			return false;
+		if (NULL === $encounterConfirm) {
+			return true;
 		}
 
 		if ($left && $encounterConfirm->player_1_confirm === NULL) {
