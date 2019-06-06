@@ -253,7 +253,8 @@ $playerNameR = ($player_right  instanceof User) ? $player_right->getUsername() :
         </div>
         <?php if ($editable): ?>
             <div class="col-lg-4">
-                <?= Html::submitButton("Save Screens & Results", ['class' => 'btn']) ?>
+                <?php $attributes = ($confirmable) ? ['class' => 'btn'] : ['class' => 'btn', 'disabled' => 'disabled', 'onclick' => 'return false;']; ?>
+                <?= Html::submitButton("Save Screens & Results", $attributes) ?>
             </div>
 
             <div class="col-lg-3" style="text-align: right;">
