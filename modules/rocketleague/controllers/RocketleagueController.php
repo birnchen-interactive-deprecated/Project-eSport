@@ -471,7 +471,7 @@ class RocketleagueController extends BaseController
         $confirmable = $confirmable && $isConfirmeable;
 
         $isBothConfirmed = TournamentEncounterConfirm::isBothConfirmed($tournament_id, $bracketId);
-        $editable = $editable || !$isBothConfirmed;
+        $editable = $editable && !$isBothConfirmed;
 
         return $this->render('editEncounterDetails',
             [
@@ -524,7 +524,7 @@ class RocketleagueController extends BaseController
             if ($manageable2) {
                 $encounterConfirm->player_2_confirm = $user->getId();
             }
-            
+
             $encounterConfirm->update();
 
         } else {
