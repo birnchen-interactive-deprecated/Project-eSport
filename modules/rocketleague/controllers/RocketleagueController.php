@@ -435,6 +435,8 @@ class RocketleagueController extends BaseController
                     $encounterConfirm->update();
                 }
 
+                Alert::addSuccess('Screen and Results saved.<br>Please confirm to finish the bracket.');
+
             }
 
         }
