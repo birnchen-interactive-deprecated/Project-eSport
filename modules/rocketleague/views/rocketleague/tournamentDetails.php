@@ -293,7 +293,7 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
 
                                 $goals = TournamentEncounter::getGoals($tournament->getId(), $bracket->getId(), $bracket->getBestOf());
                             ?>
-                            <?php if ($participant1 != 'FREILOS' && $participant2 != 'FREILOS' && !$isAdmin) : ?>
+                            <?php if ($participant1 != 'FREILOS' && $participant2 != 'FREILOS') : ?>
                                 <span class="bracketEncounter">Bracket <?= $bracketEncounter; ?> | Gamename and Password: <?= $rundenInfo; ?></span>
                                 <?php if (Yii::$app->user->identity instanceOf User && Yii::$app->user->identity->getId() <= 4): ?>
                                     <div>
