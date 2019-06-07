@@ -221,6 +221,8 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
     <!-- Google Ads bereich -->
     <!-- Tournament Bracket -->
     <div align="center">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Tournament Bracket -->
         <ins class="adsbygoogle"
              style="display:inline-block;width:468px;height:60px"
              data-ad-client="ca-pub-8480651532892152"
