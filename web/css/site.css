@@ -25,20 +25,23 @@ ul, li {
     background-color: #040a2a;
 }
 
-.wrap > .leftBanner {
-    float: left;
-    margin: 150px 100px 0;
+.wrap .container .leftBanner {
+    position: absolute;
+    top: 61px;
+    left: -180px;
 }
 
-.wrap > .rightBanner {
-    float: right;
-    margin: 51px 0 0;
+.wrap .container .rightBanner {
+    position: absolute;
+    top: 61px;
+    right: -180px;
 }
 
 .wrap > .container {
     padding: 70px 15px 20px;
 
     /* captain */
+    position: relative;
     background-color: #fff;
 }
 /* captain */

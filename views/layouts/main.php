@@ -134,37 +134,40 @@ if (Yii::$app->user->isGuest) {
     NavBar::end();
     ?>
 
-    <div class="leftBanner">
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <!-- Main PeSp Skyscraper Left -->
-        <ins class="adsbygoogle"
-             style="display:inline-block;width:160px;height:600px"
-             data-ad-client="ca-pub-8480651532892152"
-             data-ad-slot="2457922706"></ins>
-        <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    </div>
-
     <div class="container <?= $containerClass; ?>">
+
+        <div class="leftBanner">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- Main PeSp Skyscraper Left -->
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:160px;height:600px"
+                 data-ad-client="ca-pub-8480651532892152"
+                 data-ad-slot="2457922706"></ins>
+            <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         <?php $this->render('@app/views/layouts/_alerts'); ?>
         <?= $content ?>
+
+        <div class="rightBanner">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- Main PeSp Skyscraper Right -->
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:160px;height:600px"
+                 data-ad-client="ca-pub-8480651532892152"
+                 data-ad-slot="4073216697"></ins>
+            <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+        
     </div>
 
-    <div class="rightBanner">
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <!-- Main PeSp Skyscraper Right -->
-        <ins class="adsbygoogle"
-             style="display:inline-block;width:160px;height:600px"
-             data-ad-client="ca-pub-8480651532892152"
-             data-ad-slot="4073216697"></ins>
-        <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    </div>
 
 </div>
 
