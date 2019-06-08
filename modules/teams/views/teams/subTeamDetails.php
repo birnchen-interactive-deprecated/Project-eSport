@@ -115,7 +115,7 @@ Yii::$app->MetaClass->writeMetaMainTeam($this, $teamDetails, $this->title);
                     ?>
                     <div class="col-lg-6 teamMembers"><?= Html::a($username, ['/user/details', 'id' => $userId]); ?>
                         (<?=\app\modules\teams\Module::t('teams', ($teamDetails->isUserSubstitute($userId) ? 'substitude' : 'player'))?>)
-                        <?php if (!$teamInfo['isOnRunningTournament'] && $teamInfo['isOwner'] || $teamInfo['isDeputy']) : ?>
+                        <?php if (!$teamInfo['isOnRunningTournament'] && $teamInfo['isOwner'] || !$teamInfo['isOnRunningTournament'] && $teamInfo['isDeputy']) : ?>
                         <?php
                             echo Html::a('',
                                 [
