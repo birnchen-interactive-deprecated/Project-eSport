@@ -134,6 +134,8 @@ if (Yii::$app->user->isGuest) {
     NavBar::end();
     ?>
 
+    <div class="leftBanner"></div>
+
     <div class="container <?= $containerClass; ?>">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
@@ -141,11 +143,12 @@ if (Yii::$app->user->isGuest) {
         <?php $this->render('@app/views/layouts/_alerts'); ?>
         <?= $content ?>
     </div>
+
+    <div class="rightBanner"></div>
+
 </div>
 
 <footer class="footer">
-
-    <div class="leftBanner"></div>
 
     <div class="container">
         <div class="col-sm-3 col-lg-3 left_side">
@@ -161,8 +164,6 @@ if (Yii::$app->user->isGuest) {
             <span><?= $discordLink; ?></span>
         </div>
     </div>
-
-    <div class="rightBanner"></div>
 
 </footer>
 
