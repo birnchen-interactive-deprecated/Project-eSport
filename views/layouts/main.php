@@ -145,7 +145,17 @@ if (Yii::$app->user->isGuest) {
 
 <footer class="footer">
 
-    <div class="leftBanner"></div>
+    <div class="leftBanner">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Main PeSp Skyscraper Left -->
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:160px;height:600px"
+             data-ad-client="ca-pub-8480651532892152"
+             data-ad-slot="2457922706"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
 
     <div class="container">
         <div class="col-sm-3 col-lg-3 left_side">
@@ -162,7 +172,17 @@ if (Yii::$app->user->isGuest) {
         </div>
     </div>
 
-    <div class="rightBanner"></div>
+    <div class="rightBanner">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Main PeSp Skyscraper Right -->
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:160px;height:600px"
+             data-ad-client="ca-pub-8480651532892152"
+             data-ad-slot="4073216697"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
 
 </footer>
 
