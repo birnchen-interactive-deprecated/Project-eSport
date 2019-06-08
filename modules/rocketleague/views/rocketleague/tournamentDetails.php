@@ -409,16 +409,16 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
             <!-- Tournament Bracket -->
             <div align="center">
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                    <!-- Project-eSport Header -->
-                    <ins class="adsbygoogle"
-                         style="display:block"
-                         data-ad-client="ca-pub-8480651532892152"
-                         data-ad-slot="4634006785"
-                         data-ad-format="auto"
-                         data-full-width-responsive="true"></ins>
-                    <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
+                <!-- Project-eSport Tournament Details -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-8480651532892152"
+                     data-ad-slot="4634006785"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             </div>
             <!-- Google Ads bereich -->
 

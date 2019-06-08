@@ -239,6 +239,20 @@ $this->title = 'RL Tournament Overview';
         </table>
     <?php endif; ?>
 
+    <!-- Google Ads bereich -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- Project-eSport Tournament Overview -->
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-8480651532892152"
+         data-ad-slot="1906218351"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+    <!-- Google Ads bereich -->
+
     <?php if (count($plannedTurnier) > 0): ?>
         <table class="turnierStatus foldable table table-bordered table-striped table-hover">
             <thead>
