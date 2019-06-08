@@ -12,6 +12,7 @@ use yii\db\ActiveRecord;
  * @property string $name
  * @property string $season
  * @property string $twitter_channel
+ * @property bool $is_running
  */
 class Cup extends ActiveRecord
 {
@@ -53,5 +54,13 @@ class Cup extends ActiveRecord
 	public function getTwitterChannel()
 	{
 		return $this->twitter_channel;
+	}
+
+	/**
+	 * @return bool is_running
+	 */
+	public function getIsRunning()
+	{
+		return $this->is_running;
 	}
 }
