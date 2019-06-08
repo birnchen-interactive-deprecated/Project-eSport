@@ -6,8 +6,10 @@ use Yii;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
+use app\modules\tournaments\models\Tournament;
 use app\modules\tournaments\models\TournamentMode;
 use app\modules\tournaments\models\TeamParticipating;
+use app\modules\tournaments\models\Cup;
 
 use app\modules\platformgames\models\Games;
 
@@ -293,6 +295,36 @@ class SubTeam extends ActiveRecord
         return false;
     }
 
+    public function getPlayedInRunningSeason()
+    {
+        $returnValue = 0;
+
+        $runningCups = Cup::findAll(['is_running' => true]);
+        //print_r($runningCups); die();
+
+
+        if(count($runningCups) > 0)
+        {
+            foreach ($runningCups as $cup) {
+
+                $runningTournaments = Tournament::findAll(['cup_id' => $cup->getId()]);
+
+                foreach ($runningTournaments as $tournament) {
+
+                    //$teamParticipating = $this->getTeamParticipating()->where(['tournament_id' => $tournaments->getId()]);
+
+                    $teamParticipating = $this->getCheckInStatus($tournament->getId());
+
+                    //print_r($teamParticipating); die();
+
+                    $returnValue = ($teamParticipating) ? true : $returnValue;
+                }
+            }
+        }
+
+        return $returnValue;
+    }
+
     /**
      * @return string team twitter account
      */
@@ -437,7 +469,11 @@ class SubTeam extends ActiveRecord
     {
         /** @var TeamParticipating $isParticipating */
         $isParticipating = $this->getTeamParticipating()->where('tournament_id = ' . $tournamentId)->one();
-        return $isParticipating->getIsCheckedin() != null;
+        
+        if($isParticipating != null)
+            return $isParticipating->getIsCheckedin() != null;
+        else
+            return false;
     }
 
     /**

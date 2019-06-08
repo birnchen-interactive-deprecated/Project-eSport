@@ -128,7 +128,8 @@ class TeamsController extends BaseController
             //'language' => $teamDetails->getHeadQuarterId(),
             //'nationality' => $teamDetails->getHeadQuarterId(),
             //'nationalityImg' => Yii::getAlias("@web") . '/images/nationality/' . $teamDetails->getHeadQuarterId() . '.png',
-            'teamImage' => Yii::getAlias("@web") . '/images/teams/subTeams/' . $teamDetails->getId()
+            'teamImage' => Yii::getAlias("@web") . '/images/teams/subTeams/' . $teamDetails->getId(),
+            'isOnRunningTournament' => $teamDetails->getPlayedInRunningSeason()
         ];
 
         /* Set Correct Image Path */
@@ -139,6 +140,8 @@ class TeamsController extends BaseController
         }
 
         $playerInfo = MainTeam::findOne(['id' => $teamDetails->getMainTeamId()])->getInvitableMembers($teamDetails->getTournamentModeId(),$teamDetails->getId(), $teamDetails->getGameId());
+
+        //$isParticipatingOnRunningTournament = $teamDetails->getPlayedInRunningSeason();
 
         return $this->render('subTeamDetails',
             [
