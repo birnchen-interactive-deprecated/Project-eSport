@@ -25,6 +25,16 @@ ul, li {
     background-color: #040a2a;
 }
 
+.wrap > .leftBanner {
+    float: left;
+    margin: 51px 0 0;
+}
+
+.wrap > .rightBanner {
+    float: right;
+    margin: 51px 0 0;
+}
+
 .wrap > .container {
     padding: 70px 15px 20px;
 

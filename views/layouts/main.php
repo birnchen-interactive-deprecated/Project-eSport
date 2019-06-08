@@ -144,6 +144,9 @@ if (Yii::$app->user->isGuest) {
 </div>
 
 <footer class="footer">
+
+    <div class="leftBanner"></div>
+
     <div class="container">
         <div class="col-sm-3 col-lg-3 left_side">
             <span><?= Html::a(Yii::t('app', 'imprint'), ['/company/imprint'], ['aria-label' => 'Imprint']); ?></span>
@@ -158,6 +161,9 @@ if (Yii::$app->user->isGuest) {
             <span><?= $discordLink; ?></span>
         </div>
     </div>
+
+    <div class="rightBanner"></div>
+
 </footer>
 
 <?php $this->endBody() ?>
