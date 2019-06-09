@@ -16,6 +16,68 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
     <main>
 
         <div class="col-lg-9 welcome">
+
+            <div class="newsContainer">
+                <div class="containerHeader">
+                    <span class="headerKategorie"><img src="../images/gameLogos/1.webp">Rocket League</span>
+                    <span class="headerTitle">Gerta Cup Season 3 3v3 Day 2</span>
+                    <span class="headerDate">26.05.2019</span>
+                </div>
+                <div class="containerBody clearfix">
+                    <div class="containerImage col-lg-3"><img src="../images/news/gerta-cup.webp" alt="" style="width: 100%; padding-top: 50px;"></div>
+                    <div class="containerText col-lg-9">
+                        Congratulations to <?= Html::a('Stealth7 eSports', ['/teams/sub-team-details', 'id' => '7']); ?> for the hardest win they ever had in our Seasons. First they must beat 7 other participating Teams to get to the Finals.<br>Then they must play <strong>10</strong>
+                        realy hard Games against <?= Html::a('Team Aspire', ['/teams/sub-team-details', 'id' => '66']); ?> to get her first 20 Points.<br>
+                        Nice Job!!
+                        <br><br>
+                        Second Place: <?= Html::a('Team Aspire', ['/teams/sub-team-details', 'id' => '66']); ?> with 17 Points<br>
+                        Third Place: <?= Html::a('FreezeUnit Team B', ['/teams/sub-team-details', 'id' => '57']); ?> with 15 Points<br>
+                    </div>
+                    <div class="containerAuthor">Birnchen</div>
+                </div>
+            </div>
+
+            <div class="newsContainer">
+                <div class="containerHeader">
+                    <span class="headerKategorie"><img src="../images/gameLogos/1.webp">Rocket League</span>
+                    <span class="headerTitle">Gerta Cup Season 3 2v2 Day 2</span>
+                    <span class="headerDate">08.06.2019</span>
+                </div>
+                <div class="containerBody clearfix">
+                    <div class="containerImage col-lg-3"><img src="../images/news/gerta-cup.webp" alt="" style="width: 100%;     padding-top: 40px;"></div>
+                    <div class="containerText col-lg-9">
+                        Congratulations to <?= Html::a('FreezeUnit 2v2', ['/teams/sub-team-details', 'id' => '69']); ?> for this win Today.<br>
+                        They beat 7 other participating Teams on the second Day of the new Season.<br>
+                        After three great Games against <?= Html::a('Timeout Gaming by S7 ', ['/teams/sub-team-details', 'id' => '10']); ?> they secured<br>
+                        the first victory in this season, and has now 20 Points
+                        <br><br>
+                        Second Place: <?= Html::a('Timeout Gaming by S7 ', ['/teams/sub-team-details', 'id' => '10']); ?> with 17 Points<br>
+                        Third Place: <?= Html::a('ILV | Titanium White', ['/teams/sub-team-details', 'id' => '42']); ?> with 15 Points<br>
+                    </div>
+                    <div class="containerAuthor">Birnchen</div>
+                </div>
+            </div>
+
+            <div class="newsContainer">
+                <div class="containerHeader">
+                    <span class="headerKategorie"><img src="../images/gameLogos/1.webp">Rocket League</span>
+                    <span class="headerTitle">Gerta Cup Season 3 1v1 Day 2</span>
+                    <span class="headerDate">07.06.2019</span>
+                </div>
+                <div class="containerBody clearfix">
+                    <div class="containerImage col-lg-3"><img src="../images/news/gerta-cup.webp" alt="" style="width: 100%;     padding-top: 33px;"></div>
+                    <div class="containerText col-lg-9">
+                        Congratulations to <?= Html::a('xer02rl', ['/user/details', 'id' => '156']); ?> for a second amazing win Today in 1v1. He beat six other participating Players on the second Day.<br>
+                        After <strong>nine</strong> fantastic Games against <?= Html::a('FlowZ ', ['/user/details', 'id' => '201']); ?>, he secured<br>
+                        the second victory in this season, and has now 40 Points
+                        <br><br>
+                        Second Place: <?= Html::a('FlowZ ', ['/user/details', 'id' => '201']); ?> with 17 Points<br>
+                        Third Place: <?= Html::a('P1st0lpr0 ', ['/user/details', 'id' => '22']); ?> with 15 Points<br>
+                    </div>
+                    <div class="containerAuthor">Birnchen</div>
+                </div>
+            </div>
+
             <div class="newsContainer">
                 <div class="containerHeader">
                     <span class="headerKategorie"><img src="../images/gameLogos/1.webp">Rocket League</span>
@@ -107,7 +169,7 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
         </div>
 
         <div class="col-lg-3">
-            <?= Html::a('Tweets by project-eSport', 'https://twitter.com/' . 'esport_project' . '?ref_src=twsrc%5Etfw', ['class' => 'twitter-timeline', 'target' => '_blank', 'rel' =>'noopener', 'aria-label' => 'twitter-timeline', 'label' => 'twitter-timeline', 'data-lang' => 'en', 'data-height' => '400', 'data-theme' => 'light']); ?>
+            
         </div>
 
     </main>
