@@ -26,7 +26,7 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
                 <div class="containerBody clearfix">
                     <div class="containerImage col-lg-3"><img src="../images/news/gerta-cup.webp" alt="" style="width: 100%; padding-top: 50px;"></div>
                     <div class="containerText col-lg-9">
-                        Congratulations to <?= Html::a('Stealth7 eSports', ['/teams/sub-team-details', 'id' => '7']); ?> for the hardest win they ever had in our Seasons. First they must beat 7 other participating Teams to get to the Finals.<br>Then they must play <strong>10</strong>
+                        Congratulations to <?= Html::a('Stealth7 eSports', ['/teams/sub-team-details', 'id' => '7']); ?> for the hardest win they ever had in our Seasons. First they must beat 7 other participating Teams to get to the Finals.<br>Then they must play <strong>9</strong>
                         realy hard Games against <?= Html::a('Team Aspire', ['/teams/sub-team-details', 'id' => '66']); ?> to get her first 20 Points.<br>
                         Nice Job!!
                         <br><br>
