@@ -108,7 +108,8 @@ $this->title = 'Mariokart 8 DX Tournament Overview';
             <tbody>
             <?php foreach ($runningTurnier as $tournament): ?>
                 <tr>
-                    <td><?= '[' . $tournament->getMode()->one()->getName() . '] ' . Html::a($tournament->showRealTournamentName(), ['/mariokartdeluxe/tournament-details', 'id' => $tournament->getId()]) ?>
+                    <td><?= '[' . $tournament->getMode()->one()->getName() . '] ' . $tournament->showRealTournamentName() ?>
+                    <!-- Html::a($tournament->showRealTournamentName(), ['/mariokartdeluxe/tournament-details', 'id' => $tournament->getId()]) ?> -->
                         <span class="badge"><?= count($tournament->getParticipants()->all()); ?></span></td>
                     <td><?= $tournament->getDtStartingTime(); ?></td>
                     <td><?= \app\modules\mariokartdeluxe\Module::t('overview', 'running', $siteLanguage->locale) ?></td>
