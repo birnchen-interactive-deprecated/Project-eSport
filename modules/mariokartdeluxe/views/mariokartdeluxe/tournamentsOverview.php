@@ -132,8 +132,8 @@ $this->title = 'Mariokart 8 DX Tournament Overview';
         <table class="turnierStatus table table-bordered table-striped table-hover">
             <thead>
             <tr class="bg-success">
-                <th class="namedHeader" colspan="4"><?= \app\modules\mariokartdeluxe\Module::t('overview', 'checkin', $siteLanguage->locale) ?><span
-                            class="badge"><?= (count($checkInTurnier) + count($preCheckInTurnier)); ?></span></th>
+                <th class="namedHeader" colspan="4"><?= \app\modules\mariokartdeluxe\Module::t('overview', 'checkin', $siteLanguage->locale) ?>
+                <span class="badge"><?= (count($checkInTurnier) + count($preCheckInTurnier)); ?></span></th>
             </tr>
             <tr class="bg-success">
                 <th><?= \app\modules\mariokartdeluxe\Module::t('overview', 'tournamentname', $siteLanguage->locale) ?></th>
@@ -150,7 +150,7 @@ $this->title = 'Mariokart 8 DX Tournament Overview';
                 ?>
                 <tr>
                     <td><?= '[' . $tournament->getMode()->one()->getName() . '] '  . $tournament->showRealTournamentName() ?>
-                    <!-- Html::a($tournament->showRealTournamentName(), ['/mariokartdeluxe/tournament-details', 'id' => $tournament->getId()]) ?> -->
+                    <!-- Html::a($tournament->showRealTournamentName(), ['/mariokartdeluxe/tournament-details', 'id' => $tournament->getId()]) ?> --></td>
                         <span class="badge"><?= count($tournament->getParticipants()->all()); ?></span></td>
                     <td><?= $checkInBegin->format('Y-m-d'); ?></td>
                     <td><?= $checkInBegin->format('H:i'); ?> - <?= $checkInEnd->format('H:i'); ?></td>
@@ -180,7 +180,7 @@ $this->title = 'Mariokart 8 DX Tournament Overview';
                 ?>
                 <tr>
                     <td><?= '[' . $tournament->getMode()->one()->getName() . '] ' . $tournament->showRealTournamentName() ?>
-                    <!-- Html::a($tournament->showRealTournamentName(), ['/mariokartdeluxe/tournament-details', 'id' => $tournament->getId()]) ?> -->
+                    <!-- Html::a($tournament->showRealTournamentName(), ['/mariokartdeluxe/tournament-details', 'id' => $tournament->getId()]) ?> --></td>
                     <span class="badge"><?= count($tournament->getParticipants()->all()); ?></span></td>
                     <td><?= $checkInBegin->format('Y-m-d'); ?></td>
                     <td><?= $checkInBegin->format('H:i'); ?> - <?= $checkInEnd->format('H:i'); ?></td>
@@ -259,7 +259,7 @@ $this->title = 'Mariokart 8 DX Tournament Overview';
             <?php foreach ($plannedTurnier as $tournament): ?>
                 <tr class="fold">
                     <td><?= '[' . $tournament->getMode()->one()->getName() . '] ' . $tournament->showRealTournamentName() ?>
-                    <!-- Html::a($tournament->showRealTournamentName(), ['/mariokartdeluxe/tournament-details', 'id' => $tournament->getId()]) ?> -->
+                    <!-- Html::a($tournament->showRealTournamentName(), ['/mariokartdeluxe/tournament-details', 'id' => $tournament->getId()]) ?> --></td>
                     </td>
                     <td><?= $tournament->getDtStartingTime(); ?></td>
                 </tr>
