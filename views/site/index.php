@@ -21,7 +21,7 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
                 <div class="containerHeader">
                     <span class="headerKategorie"><img src="../images/gameLogos/1.webp">Rocket League</span>
                     <span class="headerTitle">Gerta Cup Season 3 3v3 Day 2</span>
-                    <span class="headerDate">26.05.2019</span>
+                    <span class="headerDate">09.06.2019</span>
                 </div>
                 <div class="containerBody clearfix">
                     <div class="containerImage col-lg-3"><img src="../images/news/gerta-cup.webp" alt="" style="width: 100%; padding-top: 50px;"></div>
