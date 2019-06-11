@@ -387,8 +387,19 @@ class Tournament extends ActiveRecord
 
             $isParticipating = $this->checkTeamParticipating($subTeam);
 
-            $btnValue = ($isParticipating) ? 'Abmelden' : (1 == $subTeam->getIsTeamDisqualified()) ? 'DISQUALIFIED' : 'Registrieren';
-            $btnColor = ($isParticipating) ? 'btn-danger' : (1 == $subTeam->getIsTeamDisqualified()) ? 'btn-danger' :  'btn-success';
+            $btnValue = 'Registrieren';
+            $btnColor = 'btn-success';
+            if ($isParticipating) {
+                $btnValue = 'Abmelden';
+                $btnColor = 'btn-danger';
+            }
+            if (1 == $subTeam->getIsTeamDisqualified()) {
+                $btnValue = 'DISQUALIFIED';
+                $btnColor = 'btn-danger';
+            }
+
+            // $btnValue = ($isParticipating) ? 'Abmelden' : (1 == $subTeam->getIsTeamDisqualified()) ? 'DISQUALIFIED' : 'Registrieren';
+            // $btnColor = ($isParticipating) ? 'btn-danger' : (1 == $subTeam->getIsTeamDisqualified()) ? 'btn-danger' :  'btn-success';
 
             $retArr[] = array(
                 'type' => 'subTeam',
