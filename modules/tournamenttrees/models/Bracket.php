@@ -434,12 +434,27 @@ class Bracket extends ActiveRecord
 		
 		$refs = $this->getBracketRefs();
 
-		$bracket = reset($refs);
-		if (false === $bracket) {
+		$bracket1 = reset($refs);
+		if (false === $bracket1) {
 			return;
 		}
+		$bracket2 = next($refs);
 
-		if ($bracket['bracket']->getId() === $preBracketId) {
+		$set1 = true;
+		$set2 = true;
+		if ($bracket1['bracket']->getId() === $bracket2['bracket']->getId()) {
+
+			if ($this->user_1_id !== NULL || $this->team_1_id !== NULL) {
+				$set1 = false;
+			}
+
+			if ($this->user_2_id !== NULL || $this->team_2_id !== NULL) {
+				$set2 = false;
+			}
+
+		}
+
+		if ($bracket1['bracket']->getId() === $preBracketId && true === $set1) {
 			if ($type === 'user') {
 				$this->user_1_id = $id;
 			} else {
@@ -447,9 +462,7 @@ class Bracket extends ActiveRecord
 			}
 		}
 
-		$bracket = next($refs);
-
-		if ($bracket['bracket']->getId() === $preBracketId) {
+		if ($bracket2['bracket']->getId() === $preBracketId && true === $set2) {
 			if ($type === 'user') {
 				$this->user_2_id = $id;
 			} else {
