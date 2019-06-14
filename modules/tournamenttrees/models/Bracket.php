@@ -479,6 +479,14 @@ class Bracket extends ActiveRecord
 		$this->winner = $winnerNumber;
 		$this->update();
 
+		if ($this->tournament_round === 999) {
+			return;
+		}
+
+		if ($this->tournament_round === 998 && $winnerNumber == 1) {
+			return;
+		}
+
 		$winnerBracket = $this->getWinnerBracket()->one();
 		$looserBracket = $this->getLooserBracket()->one();
 
