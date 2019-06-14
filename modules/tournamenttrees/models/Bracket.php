@@ -560,13 +560,15 @@ class Bracket extends ActiveRecord
 			$firstLevel = ($bracket->getIsWinnerBracket()) ? 'winner' : 'looser';
 			$tRound = $bracket->getTournamentRound();
 			$secondLevel = ($tRound === 998) ? 'Finale' : $tRound;
-			$secondLevel = ($tRound === 999) ? 'Finale (optional)' : $tRound;
+			$secondLevel = ($secondLevel === 999) ? 'Finale (optional)' : $secondLevel;
 
 			if (!array_key_exists($secondLevel, $out[$firstLevel])) {
+
 				if ($tRound < 998) {
 					$tRound--;
 				}
 				$min = $tRound * 30;
+				
 				$interval = new \DateInterval('PT' . $min . 'M');
 				$startTime->add($interval);
 				$out[$firstLevel][$secondLevel] = ['startTime' => $startTime->format('H:i'), 'brackets' => []];
