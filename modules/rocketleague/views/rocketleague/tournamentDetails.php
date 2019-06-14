@@ -246,7 +246,7 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
                     <?php
                         $firstBracket = reset($roundBrackets);
 
-                        $min = ($round - 1) * 30;
+                        $min = (intval($round) - 1) * 30;
 
                         $roundStart = $turnierStart;
                         $roundStart->add(new DateInterval('PT' . $min . 'M'));
@@ -441,7 +441,7 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
                     <?php
                         $firstBracket = reset($roundBrackets);
 
-                        $min = ($round - 1) * 30;
+                        $min = (intval($round) - 1) * 30;
 
                         $roundStart = $turnierStart;
                         $roundStart->add(new DateInterval('PT' . $min . 'M'));
