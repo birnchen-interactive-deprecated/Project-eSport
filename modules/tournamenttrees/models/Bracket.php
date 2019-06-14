@@ -27,6 +27,7 @@ use yii\helpers\Html;
  * @property User|NULL $user_2_id
  * @property Bracket|NULL $winner_bracket
  * @property Bracket|NULL $looser_bracket
+ * @property winner int
  */
 class Bracket extends ActiveRecord
 {
@@ -164,6 +165,14 @@ class Bracket extends ActiveRecord
 	public function getLooserBracket()
 	{
 		return $this->hasOne(Bracket::className(), ['id' => 'looser_bracket']);
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getWinner()
+	{
+		return $this->winner;
 	}
 
 	/**
@@ -467,6 +476,9 @@ class Bracket extends ActiveRecord
 			$looserField = ('user' === $type) ? 'user_1_id' : 'team_1_id';
 		}
 
+		$this->winner = $winnerNumber;
+		$this->update();
+
 		$winnerBracket = $this->getWinnerBracket()->one();
 		$looserBracket = $this->getLooserBracket()->one();
 
@@ -482,6 +494,11 @@ class Bracket extends ActiveRecord
 	 */
 	public function checkisFinished()
 	{
+		$winner = $this->getWinner();
+		if ($winner !== NULL) {
+			return $winner;
+		}
+		
 		$type = (NULL !== $this->user_1_id) ? 'user' : 'team';
 		$winnerBracket = $this->getWinnerBracket()->one();
 		if (false === $winnerBracket || NULL === $winnerBracket) {
