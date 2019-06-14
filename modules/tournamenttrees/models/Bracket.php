@@ -567,7 +567,7 @@ class Bracket extends ActiveRecord
 					$tRound--;
 				}
 				$min = $tRound * 30;
-				$interval = new DateInterval('PT' . $min . 'M');
+				$interval = new \DateInterval('PT' . $min . 'M');
 				$startTime->add($interval);
 				$out[$firstLevel][$secondLevel] = ['startTime' => $startTime->format('H:i'), 'brackets' => []];
 				$startTime->sub($interval);
