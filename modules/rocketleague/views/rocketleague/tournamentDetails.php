@@ -241,15 +241,15 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
             <h1>Winner Bracket</h1>
             <div class="winnerBracket">
                 
-                <?php $round = 0; ?>
                 <?php foreach ($brackets['winner'] as $round => $roundBrackets): ?>
                     <?php
                         $firstBracket = reset($roundBrackets);
 
                         $min = (intval($round) - 1) * 30;
-
-                        $roundStart = $turnierStart;
-                        $roundStart->add(new DateInterval('PT' . $min . 'M'));
+                        if ($min >= 0) {
+                            $roundStart = $turnierStart;
+                            $roundStart->add(new DateInterval('PT' . $min . 'M'));
+                        }
                     ?>
 
 
@@ -436,15 +436,15 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
             <h1>Looser Bracket</h1> 
             <div class="looserBracket">
 
-                <?php $round = 0; ?>
                 <?php foreach ($brackets['looser'] as $round => $roundBrackets): ?>
                     <?php
                         $firstBracket = reset($roundBrackets);
 
                         $min = (intval($round) - 1) * 30;
-
-                        $roundStart = $turnierStart;
-                        $roundStart->add(new DateInterval('PT' . $min . 'M'));
+                        if ($min >= 0) {
+                            $roundStart = $turnierStart;
+                            $roundStart->add(new DateInterval('PT' . $min . 'M'));
+                        }
                     ?>
 
                     <div class="bracketRound">
