@@ -242,22 +242,13 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
             <div class="winnerBracket">
                 
                 <?php foreach ($brackets['winner'] as $round => $roundBrackets): ?>
-                    <?php
-                        $firstBracket = reset($roundBrackets);
-
-                        $min = (intval($round) - 1) * 30;
-                        if ($min >= 0) {
-                            $roundStart = $turnierStart;
-                            $roundStart->add(new DateInterval('PT' . $min . 'M'));
-                        }
-                    ?>
+                    <?php $firstBracket = reset($roundBrackets); ?>
 
 
                     <div class="bracketRound">
 
                         <div class="roundTitle">Round <?= $round; ?></div>
                         <div class="roundTitle">Best of <?= $firstBracket->getBestOf(); ?></div>
-                        <div class="roundTitle">Start: <?= $roundStart->format('H:i'); ?></div>
 
                         <?php foreach ($roundBrackets as $bracketKey => $bracket): ?>
                             <?php
@@ -437,21 +428,12 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
             <div class="looserBracket">
 
                 <?php foreach ($brackets['looser'] as $round => $roundBrackets): ?>
-                    <?php
-                        $firstBracket = reset($roundBrackets);
-
-                        $min = (intval($round) - 1) * 30;
-                        if ($min >= 0) {
-                            $roundStart = $turnierStart;
-                            $roundStart->add(new DateInterval('PT' . $min . 'M'));
-                        }
-                    ?>
+                    <?php $firstBracket = reset($roundBrackets); ?>
 
                     <div class="bracketRound">
 
                         <div class="roundTitle">Round <?= $round; ?></div>
                         <div class="roundTitle">Best of <?= $firstBracket->getBestOf(); ?></div>
-                        <div class="roundTitle">Start: <?= $roundStart->format('H:i'); ?></div>
 
                         <?php foreach ($roundBrackets as $bracketKey => $bracket): ?>
                             <?php
