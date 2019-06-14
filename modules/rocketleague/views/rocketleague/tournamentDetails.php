@@ -257,7 +257,7 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
 
                         <div class="roundTitle">Round <?= $round; ?></div>
                         <div class="roundTitle">Best of <?= $firstBracket->getBestOf(); ?></div>
-                        <div class="roundTitle">Start: <?= $roundStart->format('H:m'); ?></div>
+                        <div class="roundTitle">Start: <?= $roundStart->format('H:i'); ?></div>
 
                         <?php foreach ($roundBrackets as $bracketKey => $bracket): ?>
                             <?php
@@ -451,7 +451,7 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
 
                         <div class="roundTitle">Round <?= $round; ?></div>
                         <div class="roundTitle">Best of <?= $firstBracket->getBestOf(); ?></div>
-                        <div class="roundTitle">Start: <?= $roundStart->format('H:m'); ?></div>
+                        <div class="roundTitle">Start: <?= $roundStart->format('H:i'); ?></div>
 
                         <?php foreach ($roundBrackets as $bracketKey => $bracket): ?>
                             <?php
