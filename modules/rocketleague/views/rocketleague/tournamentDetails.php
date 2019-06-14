@@ -243,12 +243,21 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
                 
                 <?php $round = 0; ?>
                 <?php foreach ($brackets['winner'] as $round => $roundBrackets): ?>
-                    <?php $firstBracket = reset($roundBrackets); ?>
+                    <?php
+                        $firstBracket = reset($roundBrackets);
+
+                        $min = ($round - 1) * 30;
+
+                        $roundStart = $turnierStart;
+                        $roundStart->add(new DateInterval('PT' . $min . 'M'));
+                    ?>
+
 
                     <div class="bracketRound">
 
                         <div class="roundTitle">Round <?= $round; ?></div>
                         <div class="roundTitle">Best of <?= $firstBracket->getBestOf(); ?></div>
+                        <div class="roundTitle">Start: <?= $roundStart->format('H:m'); ?></div>
 
                         <?php foreach ($roundBrackets as $bracketKey => $bracket): ?>
                             <?php
@@ -429,12 +438,20 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
 
                 <?php $round = 0; ?>
                 <?php foreach ($brackets['looser'] as $round => $roundBrackets): ?>
-                    <?php $firstBracket = reset($roundBrackets); ?>
+                    <?php
+                        $firstBracket = reset($roundBrackets);
+
+                        $min = ($round - 1) * 30;
+
+                        $roundStart = $turnierStart;
+                        $roundStart->add(new DateInterval('PT' . $min . 'M'));
+                    ?>
 
                     <div class="bracketRound">
 
                         <div class="roundTitle">Round <?= $round; ?></div>
                         <div class="roundTitle">Best of <?= $firstBracket->getBestOf(); ?></div>
+                        <div class="roundTitle">Start: <?= $roundStart->format('H:m'); ?></div>
 
                         <?php foreach ($roundBrackets as $bracketKey => $bracket): ?>
                             <?php
