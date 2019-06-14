@@ -611,9 +611,11 @@ class Bracket extends ActiveRecord
 			return $out;
 		}
 
+		$bracketMode = $tournament->getBracketMode()->one();
+
 		$winnerKeys = array_keys($out['winner']);
 		$looserKeys = array_keys($out['looser']);
-		$maxLooserRound = max($looserKeys);
+		$maxLooserRound = ($bracketMode->getName() == 'Double Elimination') ? max($looserKeys) : max($winnerKeys);
 
 		$allKeys = array_merge($winnerKeys, $looserKeys);
 
