@@ -223,7 +223,7 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
         <?php if ($now->diff($turnierStart)->invert == 0 || $btnText === 'Brackets erstellen'): ?>
             <?= Html::a($btnText, ['/rocketleague/create-brackets', 'tournament_id' => $tournament->getId()], ['class' => 'btn btn-success']); ?>
         <?php else: ?>
-            <?= Html::a($btnText, ['/rocketleague/create-brackets', 'tournament_id' => $tournament->getId()], ['class' => 'btn btn-alert', 'onclick' => "return confirm('Brackets wirklich neu erstellen?');"]); ?>
+            <?= Html::a($btnText, ['/rocketleague/create-brackets', 'tournament_id' => $tournament->getId()], ['class' => 'btn btn-danger', 'onclick' => "return confirm('Brackets wirklich neu erstellen?');"]); ?>
         <?php endif; ?>
     <?php endif; ?>
 
