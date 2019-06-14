@@ -552,7 +552,7 @@ class Bracket extends ActiveRecord
 		$firstBracket = reset($brackets);
 		if (false !== $firstBracket) {
 			$tournament = $firstBracket->getTournament()->one();
-			$startTime = new DateTime($tournament->getDtStartingTime());
+			$startTime = new \DateTime($tournament->getDtStartingTime());
 		}
 
 		foreach ($brackets as $key => $bracket) {
