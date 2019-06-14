@@ -558,24 +558,46 @@ class Bracket extends ActiveRecord
 		foreach ($brackets as $key => $bracket) {
 
 			$firstLevel = ($bracket->getIsWinnerBracket()) ? 'winner' : 'looser';
-			$tRound = $bracket->getTournamentRound();
-			$secondLevel = ($tRound === 998) ? 'Finale' : $tRound;
+			$secondLevel = $bracket->getTournamentRound();
+			$secondLevel = ($secondLevel === 998) ? 'Finale' : $secondLevel;
 			$secondLevel = ($secondLevel === 999) ? 'Finale (optional)' : $secondLevel;
 
 			if (!array_key_exists($secondLevel, $out[$firstLevel])) {
-
-				if ($tRound < 998) {
-					$tRound--;
-				}
-				$min = $tRound * 30;
-				
-				$interval = new \DateInterval('PT' . $min . 'M');
-				$startTime->add($interval);
-				$out[$firstLevel][$secondLevel] = ['startTime' => $startTime->format('H:i'), 'brackets' => []];
-				$startTime->sub($interval);
+				$out[$firstLevel][$secondLevel] = ['startTime' => '', 'brackets' => []];
 			}
 
 			$out[$firstLevel][$secondLevel]['brackets'][] = $bracket;
+		}
+
+		$winnerKeys = array_keys($out['winner']);
+		$looserKeys = array_keys($out['looser']);
+		$maxLooserRound = max($looserKeys);
+
+		$allKeys = array_merge($winnerKeys, $looserKeys);
+
+		foreach ($allKeys as $key => $keyVal) {
+
+			if ($keyVal == 'Finale') {
+				$keyRound = $maxLooserRound + 1;
+			} else if ($keyVal == 'Finale (optional)') {
+				$keyRound = $maxLooserRound + 2;
+			} else {
+				$keyRound = $keyVal;
+			}
+
+			$keyRound--;
+
+			$min = $keyRound * 30;
+
+			$interval = new \DateInterval('PT' . $min . 'M');
+			$startTime->add($interval);
+			if (array_key_exists($keyVal, $out['winner'])) {
+				$out['winner'][$keyVal]['startTime'] = $startTime->format('H:i');
+			}
+			if (array_key_exists($keyVal, $out['looser'])) {
+				$out['looser'][$keyVal]['startTime'] = $startTime->format('H:i');
+			}
+			$startTime->sub($interval);
 		}
 
 		return $out;
