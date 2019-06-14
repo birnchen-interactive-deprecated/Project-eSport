@@ -498,7 +498,7 @@ class Bracket extends ActiveRecord
 		if ($winner !== NULL) {
 			return $winner;
 		}
-		
+
 		$type = (NULL !== $this->user_1_id) ? 'user' : 'team';
 		$winnerBracket = $this->getWinnerBracket()->one();
 		if (false === $winnerBracket || NULL === $winnerBracket) {
@@ -605,6 +605,13 @@ class Bracket extends ActiveRecord
 			$keyRound--;
 
 			$min = $keyRound * 30;
+
+			if ($keyVal == 'Finale') {
+				$min+= 15;
+			}
+			if ($keyVal == 'Finale (optional)') {
+				$min+= 30;
+			}
 
 			$interval = new \DateInterval('PT' . $min . 'M');
 			$startTime->add($interval);
