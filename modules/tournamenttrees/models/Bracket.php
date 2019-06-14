@@ -558,12 +558,19 @@ class Bracket extends ActiveRecord
 		foreach ($brackets as $key => $bracket) {
 
 			$firstLevel = ($bracket->getIsWinnerBracket()) ? 'winner' : 'looser';
-			$secondLevel = $bracket->getTournamentRound();
-			$secondLevel = ($secondLevel === 998) ? 'Finale' : $secondLevel;
-			$secondLevel = ($secondLevel === 999) ? 'Finale (optional)' : $secondLevel;
+			$tRound = $bracket->getTournamentRound();
+			$secondLevel = ($tRound === 998) ? 'Finale' : $tRound;
+			$secondLevel = ($tRound === 999) ? 'Finale (optional)' : $tRound;
 
 			if (!array_key_exists($secondLevel, $out[$firstLevel])) {
-				$out[$firstLevel][$secondLevel] = ['startTime' => 'xx:xx', 'brackets' => []];
+				if ($tRound < 998) {
+					$tRound--;
+				}
+				$min = $tRound * 30;
+				$interval = new DateInterval('PT' . $min . 'M');
+				$startTime->add($interval);
+				$out[$firstLevel][$secondLevel] = ['startTime' => $startTime->format('H:i'), 'brackets' => []];
+				$startTime->sub($interval);
 			}
 
 			$out[$firstLevel][$secondLevel]['brackets'][] = $bracket;
