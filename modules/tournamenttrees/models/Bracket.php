@@ -607,6 +607,10 @@ class Bracket extends ActiveRecord
 			$out[$firstLevel][$secondLevel]['brackets'][] = $bracket;
 		}
 
+		if (count($out['winner']) == 0) {
+			return $out;
+		}
+
 		$winnerKeys = array_keys($out['winner']);
 		$looserKeys = array_keys($out['looser']);
 		$maxLooserRound = max($looserKeys);
