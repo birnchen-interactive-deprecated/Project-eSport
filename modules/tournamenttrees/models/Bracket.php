@@ -548,6 +548,13 @@ class Bracket extends ActiveRecord
 			'looser' => [],
 		];
 
+		$startTime = NULL;
+		$firstBracket = reset($brackets);
+		if (false !== $firstBracket) {
+			$tournament = $firstBracket->getTournament()->one();
+			$startTime = new DateTime($tournament->getDtStartingTime());
+		}
+
 		foreach ($brackets as $key => $bracket) {
 
 			$firstLevel = ($bracket->getIsWinnerBracket()) ? 'winner' : 'looser';
@@ -556,10 +563,10 @@ class Bracket extends ActiveRecord
 			$secondLevel = ($secondLevel === 999) ? 'Finale (optional)' : $secondLevel;
 
 			if (!array_key_exists($secondLevel, $out[$firstLevel])) {
-				$out[$firstLevel][$secondLevel] = [];
+				$out[$firstLevel][$secondLevel] = ['startTime' => 'xx:xx', 'brackets' => []];
 			}
 
-			$out[$firstLevel][$secondLevel][] = $bracket;
+			$out[$firstLevel][$secondLevel]['brackets'][] = $bracket;
 		}
 
 		return $out;

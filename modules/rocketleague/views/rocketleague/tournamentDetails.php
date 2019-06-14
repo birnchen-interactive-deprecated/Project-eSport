@@ -242,15 +242,16 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
             <div class="winnerBracket">
                 
                 <?php foreach ($brackets['winner'] as $round => $roundBrackets): ?>
-                    <?php $firstBracket = reset($roundBrackets); ?>
+                    <?php $firstBracket = reset($roundBrackets['brackets']); ?>
 
 
                     <div class="bracketRound">
 
                         <div class="roundTitle">Round <?= $round; ?></div>
                         <div class="roundTitle">Best of <?= $firstBracket->getBestOf(); ?></div>
+                        <div class="roundTitle">Start: <?= $roundBrackets['startTime']; ?></div>
 
-                        <?php foreach ($roundBrackets as $bracketKey => $bracket): ?>
+                        <?php foreach ($roundBrackets['brackets'] as $bracketKey => $bracket): ?>
                             <?php
 
                                 $bracketFinished = $bracket->checkisFinished();
@@ -428,14 +429,15 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
             <div class="looserBracket">
 
                 <?php foreach ($brackets['looser'] as $round => $roundBrackets): ?>
-                    <?php $firstBracket = reset($roundBrackets); ?>
+                    <?php $firstBracket = reset($roundBrackets['brackets']); ?>
 
                     <div class="bracketRound">
 
                         <div class="roundTitle">Round <?= $round; ?></div>
                         <div class="roundTitle">Best of <?= $firstBracket->getBestOf(); ?></div>
+                        <div class="roundTitle">Start: <?= $roundBrackets['startTime']; ?></div>
 
-                        <?php foreach ($roundBrackets as $bracketKey => $bracket): ?>
+                        <?php foreach ($roundBrackets['brackets'] as $bracketKey => $bracket): ?>
                             <?php
 
                                 $bracketFinished = $bracket->checkisFinished();
