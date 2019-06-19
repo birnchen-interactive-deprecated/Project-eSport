@@ -17,6 +17,12 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
 
         <div class="col-lg-9 welcome">
 
+            <?php // wunsch von Niyari, immer hier oben lassen ?>
+            <div>
+                <img src="https://media.discordapp.net/attachments/502429157330780161/590281532040544317/Pesp_Masters_1_RL.png" alt="" style="width: 100%;">
+            </div>
+            <?php // wunsch von Niyari, immer hier oben lassen ?>
+
             <div class="newsContainer">
                 <div class="containerHeader">
                     <span class="headerKategorie"><img src="../images/gameLogos/1.webp">Rocket League</span>
