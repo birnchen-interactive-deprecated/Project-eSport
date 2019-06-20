@@ -701,6 +701,7 @@ class RocketleagueController extends BaseController
             $this->moveFirstRoundTickets($bracketArr);
             if (true === $doubleElimination) {
                 $this->stretchWinnerBracket($bracketArr, $tournament_id);
+                $this->changeLooserBracketsRotation($bracketArr, $tournament_id);
             }
 
         }
@@ -1110,6 +1111,46 @@ class RocketleagueController extends BaseController
             $bracket->tournament_round = $newRound;
             $bracket->update();
 
+        }
+
+    }
+
+    private function changeLooserBracketsRotation(&$bracketArr, $tournament_id) {
+
+        $rotateRound = 3;
+        $roundFound = true;
+        while ($roundFound) {
+
+            $roundFound = false;
+            $rotateBrackets = [];
+            $rotateBracketsRefs = [];
+
+            foreach ($bracketArr as $key => $bracket) {
+                
+                if ($bracket->getIsWinnerBracket()) {
+                    continue;
+                }
+
+                if ($bracket->getTournamentRound() != $rotateRound) {
+                    continue;
+                }
+
+                $roundFound = true;
+
+                $refs = $bracket->getBracketRefs();
+                array_push($rotateBrackets, $bracket);
+                array_push($rotateBracketsRefs, $refs[0]['bracket']);
+
+            }
+
+            while ($bracket = array_shift($rotateBrackets)) {
+                $ref = array_pop($rotateBracketsRefs);
+
+                $ref->looser_bracket = $bracket->getId();
+                $ref->update();
+            }
+
+            $rotateRound+= 4;
         }
 
     }
