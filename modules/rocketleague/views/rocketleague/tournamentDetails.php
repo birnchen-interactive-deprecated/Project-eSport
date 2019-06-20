@@ -467,21 +467,20 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
                                 $participant1 = $bracketParticipants[0];
                                 $participant2 = $bracketParticipants[1];
 
-                                if ($round === 2) {
-                                    $participant1Bracket = explode(' ', $participant1);
-                                    $search = array_pop($participant1Bracket);
-                                    if (in_array($search, $noWinnerBrackets)) {
-                                        $participant1 = 'FREILOS';
-                                    }
+                                $participant1Bracket = explode(' ', $participant1);
+                                $search = array_pop($participant1Bracket);
+                                if (in_array($search, $noWinnerBrackets)) {
+                                    $participant1 = 'FREILOS';
+                                }
 
-                                    $participant2Bracket = explode(' ', $participant2);
-                                    $search = array_pop($participant2Bracket);
-                                    if (in_array($search, $noWinnerBrackets)) {
-                                        $participant2 = 'FREILOS';
-                                    }
+                                $participant2Bracket = explode(' ', $participant2);
+                                $search = array_pop($participant2Bracket);
+                                if (in_array($search, $noWinnerBrackets)) {
+                                    $participant2 = 'FREILOS';
                                 }
 
                                 if ($participant1 === 'FREILOS' && $participant2 === 'FREILOS') {
+                                    $noWinnerBrackets[] = $bracket->getEncounterId();
                                     continue;
                                 }
 
