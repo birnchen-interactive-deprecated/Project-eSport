@@ -408,6 +408,14 @@ class User extends AbstractActiveRecord implements IdentityInterface
 
     /**
      * @return ActiveQuery
+     */
+    public function getSubTeamsDebuty()
+    {
+        return $this->hasMany(SubTeam::className(), ['deputy_id' => 'id'])->all();
+    }
+
+    /**
+     * @return ActiveQuery
      * @throws \yii\base\InvalidConfigException
      */
     public function getSubTeamsMembership()

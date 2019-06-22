@@ -20,6 +20,7 @@ if(Yii::$app->user->identity != null)
 {
     $user = Yii::$app->user->identity;
     $subTeams = $user->getSubTeamsOwnership();
+    $subTeams = array_merge($subTeams, $user->getSubTeamsDebuty());
 }
 
 
