@@ -29,7 +29,7 @@ $this->registerLinkTag(['rel' => 'canonical', 'href' => 'https://project-esport.
 Yii::$app->MetaClass->writeMetaUser($this, $model, $userInfo['nationality']);
 
 $isAdmin = false;
-if (Yii:$app->user->identity !== NULL) {
+if (Yii::$app->user->identity !== NULL) {
     $isAdmin = (Yii::$app->user->identity->getId() <= 4)? true : false;
 }
 
