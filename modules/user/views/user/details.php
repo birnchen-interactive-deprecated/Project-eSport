@@ -28,7 +28,10 @@ $this->registerLinkTag(['rel' => 'canonical', 'href' => 'https://project-esport.
 /** twitter/facebook/google Metatag */
 Yii::$app->MetaClass->writeMetaUser($this, $model, $userInfo['nationality']);
 
-$isAdmin = (Yii::$app->user->identity->getId() <= 4)? true : false;
+$isAdmin = false;
+if (Yii:$app->user->identity !== NULL) {
+    $isAdmin = (Yii::$app->user->identity->getId() <= 4)? true : false;
+}
 
 /** $synonym = ($gender_id == 1) ? 'synonym_m' : ($gender_id == 2) ? 'synonym_w' : 'synonym_d'; */
 ?>
