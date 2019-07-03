@@ -13,7 +13,7 @@ $dvisionLink = Html::a($dvisionImg, 'https://www.dvision-diner.com', ['target' =
 $holdiImg = Html::img('https://media.discordapp.net/attachments/509042339650600960/580745164486737920/my_logo.jpg?width=492&height=492',['height' => '50px', 'alt'=> 'twitter', 'aria-label' => 'twitter']);
 $holdiLink = Html::a($holdiImg, 'https://discord.gg/gqpfaQw', ['target' => '_blank', 'rel' => 'noopener', 'aria-label' => 'HoldieMoldie Discord']);
 
-$gamingAidImg = Html::img('https://media.discordapp.net/attachments/509042339650600960/580745164486737920/my_logo.jpg?width=492&height=492',['height' => '50px', 'alt'=> 'twitter', 'aria-label' => 'twitter']);
+$gamingAidImg = Html::img('../images/PeSpLogos/gaimingAid.png',['height' => '50px', 'alt'=> 'twitter', 'aria-label' => 'twitter']);
 $gamingAidLink = Html::a($gamingAidImg, 'https://gaming-aid.de/', ['target' => '_blank', 'rel' => 'noopener', 'aria-label' => 'Gaming Aid']);
 
 ?>
