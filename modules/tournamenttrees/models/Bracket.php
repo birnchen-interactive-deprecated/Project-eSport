@@ -479,7 +479,11 @@ class Bracket extends ActiveRecord
 	 */
 	public function movePlayersNextRound($winnerNumber) {
 
-		$type = (NULL !== $this->user_1_id) ? 'user' : 'team';
+		if ($winnerNumber === 1) {
+			$type = (NULL !== $this->user_1_id) ? 'user' : 'team';
+		} else {
+			$type = (NULL !== $this->user_2_id) ? 'user' : 'team';
+		}
 
 		if ($winnerNumber == 1) {
 			$winnerField = ('user' === $type) ? 'user_1_id' : 'team_1_id';
