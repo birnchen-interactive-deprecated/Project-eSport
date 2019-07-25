@@ -19,7 +19,7 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
 
             <?php // wunsch von Niyari, immer hier oben lassen ?>
             <div>
-                <img src="https://cdn.discordapp.com/attachments/369622834126913550/595709829343870986/Pesp_Masters_1_RL.png" alt="" style="width: 100%;">
+                <img src="https://cdn.discordapp.com/attachments/600965985540898816/602973085087563776/Pesp_Masters_1_RL.png" alt="" style="width: 100%;">
             </div>
             <?php // wunsch von Niyari, immer hier oben lassen ?>
 
