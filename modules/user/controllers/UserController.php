@@ -153,6 +153,41 @@ class UserController extends BaseController
             ]);
     }
 
+    /**
+     * Change password action.
+     *
+     * @return string
+     * @throws \Throwable
+     */
+    public function actionPasswordChange()
+    {
+        $model = new PasswordChangeForm();
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->saveNewPassword()) {
+            return $this->goBack();
+        }
+
+        return $this->render('password_change', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionPasswordReset()
+    {
+        $model = new PasswordResetForm();
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            /** @var User $user */
+            $user = User::find()->where(['and', ['username' => $model->username], ['email' => $model->email]])->one();
+            UserController::resetPassword($user->user_id);
+            return $this->redirect(["login"]);
+        }
+
+        return $this->render('password_reset', [
+            'model' => $model,
+        ]);
+    }
+
     public function actionDetails($id)
     {
         /** Check if User ID my own User ID */
