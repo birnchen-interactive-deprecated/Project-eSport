@@ -36,7 +36,7 @@ $this->title = 'RL Teams Overview';
                 <?php foreach ($hierarchy['subTeams'] as $tournamentMode => $subTeams): ?>
                     
                     <div class="col-sm-6 col-lg-6 modeContainer">
-                        <div class="modeName"><?= \app\modules\rocketleague\Module::t('overview', 'tournamentmode', $siteLanguage->locale) ?> <?= $tournamentMode; ?></div>
+                        <div class="modeName"><?= $tournamentMode; ?></div>
                         <?php foreach ($subTeams as $key => $subHierarchy):
                 			$subTeam = $subHierarchy['subTeam'];
                 			$subTeamName = $subTeam->getTeamName();
