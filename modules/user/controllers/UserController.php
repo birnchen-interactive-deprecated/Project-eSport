@@ -4,6 +4,8 @@ namespace app\modules\user\controllers;
 
 use app\components\BaseController;
 
+use app\models\PasswordChangeForm;
+use app\models\PasswordResetForm;
 use app\modules\platformgames\models\Games;
 use app\modules\platformgames\models\Platforms;
 use app\modules\platformgames\models\UserGames;
