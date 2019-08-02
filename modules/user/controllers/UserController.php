@@ -4,8 +4,9 @@ namespace app\modules\user\controllers;
 
 use app\components\BaseController;
 
-use app\models\PasswordChangeForm;
-use app\models\PasswordResetForm;
+
+use app\modules\user\models\formModels\PasswordChangeForm;
+use app\modules\user\models\formModels\PasswordResetForm;
 use app\modules\platformgames\models\Games;
 use app\modules\platformgames\models\Platforms;
 use app\modules\platformgames\models\UserGames;
@@ -31,6 +32,7 @@ use DateTime;
 use Yii;
 
 use yii\filters\AccessControl;
+use yii\web\BadRequestHttpException;
 use yii\web\Response;
 use yii\web\UploadedFile;
 use yii\data\Pagination;
@@ -181,13 +183,39 @@ class UserController extends BaseController
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             /** @var User $user */
             $user = User::find()->where(['and', ['username' => $model->username], ['email' => $model->email]])->one();
-            UserController::resetPassword($user->user_id);
+            UserController::resetPassword($model->username, $model->email);
             return $this->redirect(["login"]);
         }
 
         return $this->render('password_reset', [
             'model' => $model,
         ]);
+    }
+
+    public static function resetPassword($username, $email)
+    {
+        /** @var User $user */
+        $user = User::find()->where(['and', ['username' => $username], ['email' => $email]])->one();
+        if (!$user) {
+            throw new BadRequestHttpException("Invalid user id $id");
+        }
+
+        $password = self::generatePassword();
+
+        $user->setPassword($password);
+        $user->is_password_change_required = 1;
+
+        if ($user->save()) {
+            Yii::$app->mailer->compose('passwordChange', ['user' => $user, 'password' => $password])
+        //        ->setFrom('ÄNDERN')
+                ->setTo($user->getEmail())
+                ->setSubject(Yii::t('app', 'Your BW account password was reset'))
+                ->send();
+        }
+    }
+
+    public function generatePassword(){
+        return "test";
     }
 
     public function actionDetails($id)
