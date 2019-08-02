@@ -207,7 +207,7 @@ class UserController extends BaseController
 
         if ($user->save()) {
             Yii::$app->mailer->compose('passwordChange', ['user' => $user, 'password' => $password])
-        //        ->setFrom('ÄNDERN')
+                ->setFrom('noreply@project-esport.gg')
                 ->setTo($user->getEmail())
                 ->setSubject(Yii::t('app', 'Your BW account password was reset'))
                 ->send();
@@ -215,7 +215,7 @@ class UserController extends BaseController
     }
 
     public function generatePassword(){
-        return "test";
+        return str_shuffle(substr(str_shuffle('abcdefghjkmnpqrstuvwxyz'), 0, 4) . substr(str_shuffle('!$%&=?*-:;.,+~@_'), 0, 1) . substr(str_shuffle('123456789'), 0, 1));
     }
 
     public function actionDetails($id)
