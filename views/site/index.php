@@ -26,13 +26,63 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
             <div class="newsContainer">
                 <div class="containerHeader">
                     <span class="headerKategorie"><img src="../images/gameLogos/1.webp">Rocket League</span>
+                    <span class="headerTitle">Gerta Cup Season 3 3v3 Day 3</span>
+                    <span class="headerDate">23.06.2019</span>
+                </div>
+                <div class="containerBody clearfix">
+                    <div class="containerImage col-lg-3"><img src="../images/news/gerta-cup.webp" alt="" style="width: 100%; padding-top: 50px;"></div>
+                    <div class="containerText col-lg-9">
+                        Congratulations to <?= Html::a('Team Aspire', ['/teams/sub-team-details', 'id' => '66']); ?> for this win today. First they must beat six other participating Teams to get to the Finals.<br>Then, after <strong>three</strong>
+                        realy close Games against <?= Html::a('Stealth7 eSports', ['/teams/sub-team-details', 'id' => '66']); ?> they secured his win for this Day.
+                    </div>
+                    <div class="containerAuthor">Birnchen</div>
+                </div>
+            </div>
+
+            <div class="newsContainer">
+                <div class="containerHeader">
+                    <span class="headerKategorie"><img src="../images/gameLogos/1.webp">Rocket League</span>
+                    <span class="headerTitle">Gerta Cup Season 3 2v2 Day 3</span>
+                    <span class="headerDate">22.06.2019</span>
+                </div>
+                <div class="containerBody clearfix">
+                    <div class="containerImage col-lg-3"><img src="../images/news/gerta-cup.webp" alt="" style="width: 100%;     padding-top: 40px;"></div>
+                    <div class="containerText col-lg-9">
+                        Congratulations to <?= Html::a('Stealth7 eSports', ['/teams/sub-team-details', 'id' => '9']); ?> for this win Today.<br>
+                        Unfortunately only one other team made it to the check-in today.<br>
+                        After three great Games against <?= Html::a('Captain Viper ', ['/teams/sub-team-details', 'id' => '3']); ?> they secured his win for this Day.
+                    </div>
+                    <div class="containerAuthor">Birnchen</div>
+                </div>
+            </div>
+
+            <div class="newsContainer">
+                <div class="containerHeader">
+                    <span class="headerKategorie"><img src="../images/gameLogos/1.webp">Rocket League</span>
+                    <span class="headerTitle">Gerta Cup Season 3 1v1 Day 3</span>
+                    <span class="headerDate">21.06.2019</span>
+                </div>
+                <div class="containerBody clearfix">
+                    <div class="containerImage col-lg-3"><img src="../images/news/gerta-cup.webp" alt="" style="width: 100%;     padding-top: 33px;"></div>
+                    <div class="containerText col-lg-9">
+                        Congratulations to <?= Html::a('Flowz', ['/user/details', 'id' => '201']); ?> for a second amazing win Today in 1v1. He beat three other participating Players on the third Day.<br>
+                        After <strong>three</strong> fantastic Games against <?= Html::a('Captain Salty ', ['/user/details', 'id' => '4']); ?>, he secured<br>
+                        the first victory in this season.
+                    </div>
+                    <div class="containerAuthor">Birnchen</div>
+                </div>
+            </div>
+
+            <div class="newsContainer">
+                <div class="containerHeader">
+                    <span class="headerKategorie"><img src="../images/gameLogos/1.webp">Rocket League</span>
                     <span class="headerTitle">Gerta Cup Season 3 3v3 Day 2</span>
                     <span class="headerDate">09.06.2019</span>
                 </div>
                 <div class="containerBody clearfix">
                     <div class="containerImage col-lg-3"><img src="../images/news/gerta-cup.webp" alt="" style="width: 100%; padding-top: 50px;"></div>
                     <div class="containerText col-lg-9">
-                        Congratulations to <?= Html::a('Stealth7 eSports', ['/teams/sub-team-details', 'id' => '7']); ?> for the hardest win they ever had in our Seasons. First they must beat 7 other participating Teams to get to the Finals.<br>Then they must play <strong>9</strong>
+                        Congratulations to <?= Html::a('Stealth7 eSports', ['/teams/sub-team-details', 'id' => '7']); ?> for the hardest win they ever had in our Seasons. First they must beat 7 other participating Teams to get to the Finals.<br>Then they must play <strong>nine</strong>
                         realy hard Games against <?= Html::a('Team Aspire', ['/teams/sub-team-details', 'id' => '66']); ?> to get her first 20 Points.<br>
                         Nice Job!!
                         <br><br>
@@ -53,7 +103,7 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
                     <div class="containerImage col-lg-3"><img src="../images/news/gerta-cup.webp" alt="" style="width: 100%;     padding-top: 40px;"></div>
                     <div class="containerText col-lg-9">
                         Congratulations to <?= Html::a('FreezeUnit 2v2', ['/teams/sub-team-details', 'id' => '69']); ?> for this win Today.<br>
-                        They beat 7 other participating Teams on the second Day of the new Season.<br>
+                        They beat seven other participating Teams on the second Day of the new Season.<br>
                         After three great Games against <?= Html::a('Timeout Gaming by S7 ', ['/teams/sub-team-details', 'id' => '10']); ?> they secured<br>
                         the first victory in this season, and has now 20 Points
                         <br><br>
@@ -114,7 +164,7 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
                     <div class="containerImage col-lg-3"><img src="../images/news/gerta-cup.webp" alt="" style="width: 100%;     padding-top: 40px;"></div>
                     <div class="containerText col-lg-9">
                         Congratulations to <?= Html::a('Stealth 7 eSports', ['/teams/sub-team-details', 'id' => '9']); ?> for this amazing win Today in 2v2.<br>
-                        They beat 8 other participating Teams on the first Day of the new Season.<br>
+                        They beat eight other participating Teams on the first Day of the new Season.<br>
                         After a long Fight they gets the First 20 Points for the 600€ Season Price Pool.
                         <br><br>
                         Second Place: <?= Html::a('ILV | Titanium White', ['/teams/sub-team-details', 'id' => '42']); ?> with 17 Points<br>
