@@ -26,7 +26,7 @@ use yii\helpers\Html;
         </tr>
         <tr>
             <td>
-                <a href= <?= Yii::$app->urlManager->createAbsoluteUrl(['site/login']); ?>>Link</a><br><br>
+                <a href= <?= Yii::$app->urlManager->createAbsoluteUrl(['user/login']); ?>>Link</a><br><br>
             </td>
         </tr>
         <tr>
