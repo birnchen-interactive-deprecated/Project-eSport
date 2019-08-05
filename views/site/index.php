@@ -25,6 +25,175 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
 
             <div class="newsContainer">
                 <div class="containerHeader">
+                    <span class="headerKategorie"><img src="../images/PeSpLogos/pesp.png">Website</span>
+                    <span class="headerTitle">Finaly the Bug is Fixed</span>
+                    <span class="headerDate">05.08.2019</span>
+                </div>
+                <div class="containerBody clearfix">
+                    <div class="containerImage col-lg-3"><img src="../images/news/technic.webp" alt="" style="width: 100%; padding-top: 60px;"></div>
+                    <div class="containerText col-lg-9">
+                        It's done!!!<br>                  
+                        The password forgotten function is live again and works.<br>
+                        <br>
+                        We apologize for this inconvenience and hope that all players will be able to log in again.
+                        <br>
+                    </div>
+                    <div class="containerAuthor">Birnchen</div>
+                </div>
+            </div>
+
+            <div class="newsContainer">
+                <div class="containerHeader">
+                    <span class="headerKategorie"><img src="../images/gameLogos/1.webp">Rocket League</span>
+                    <span class="headerTitle">Gerta Cup Season 3 3v3 Day 6</span>
+                    <span class="headerDate">04.08.2019</span>
+                </div>
+                <div class="containerBody clearfix">
+                    <div class="containerImage col-lg-3"><img src="../images/news/gerta-cup.webp" alt="" style="width: 100%; padding-top: 50px;"></div>
+                    <div class="containerText col-lg-9">
+                        Congratulations to <?= Html::a('Team Aspire', ['/teams/sub-team-details', 'id' => '66']); ?> for this win today. First they must beat three other participating Teams to get to the Finals.<br>Then, after <strong>three</strong>
+                        realy close Games against <?= Html::a('Stealth7 eSports', ['/teams/sub-team-details', 'id' => '7']); ?> they secured this hard win for the Day.
+                    </div>
+                    <div class="containerAuthor">Birnchen</div>
+                </div>
+            </div>
+
+            <div class="newsContainer">
+                <div class="containerHeader">
+                    <span class="headerKategorie"><img src="../images/gameLogos/1.webp">Rocket League</span>
+                    <span class="headerTitle">Gerta Cup Season 3 2v2 Day 6</span>
+                    <span class="headerDate">03.08.2019</span>
+                </div>
+                <div class="containerBody clearfix">
+                    <div class="containerImage col-lg-3"><img src="../images/news/gerta-cup.webp" alt="" style="width: 100%;     padding-top: 40px;"></div>
+                    <div class="containerText col-lg-9">
+                        Congratulations to <?= Html::a('Stealth7 eSports', ['/teams/sub-team-details', 'id' => '9']); ?> for this win Today.<br>
+                        They beat One other participating Teams on the last Day of the new Season.<br>
+                        After three great Games against <?= Html::a('Robotic Elite Clan ', ['/teams/sub-team-details', 'id' => '1']); ?> they secured his win for this Day.
+                    </div>
+                    <div class="containerAuthor">Birnchen</div>
+                </div>
+            </div>
+
+            <div class="newsContainer">
+                <div class="containerHeader">
+                    <span class="headerKategorie"><img src="../images/gameLogos/1.webp">Rocket League</span>
+                    <span class="headerTitle">Gerta Cup Season 3 1v1 Day 6</span>
+                    <span class="headerDate">02.08.2019</span>
+                </div>
+                <div class="containerBody clearfix">
+                    <div class="containerImage col-lg-3"><img src="../images/news/gerta-cup.webp" alt="" style="width: 100%;     padding-top: 33px;"></div>
+                    <div class="containerText col-lg-9">
+                        Congratulations to <?= Html::a('Cordae', ['/user/details', 'id' => '161']); ?> for the win Today in 1v1. He beat three other participating Players on the fourth Day.<br>
+                        After <strong>five</strong> fantastic Games against <?= Html::a('FlowZ ', ['/user/details', 'id' => '201']); ?>, he secured<br>
+                        his win in this season.
+                    </div>
+                    <div class="containerAuthor">Birnchen</div>
+                </div>
+            </div>
+
+            <div class="newsContainer">
+                <div class="containerHeader">
+                    <span class="headerKategorie"><img src="../images/gameLogos/1.webp">Rocket League</span>
+                    <span class="headerTitle">Gerta Cup Season 3 3v3 Day 5</span>
+                    <span class="headerDate">21.07.2019</span>
+                </div>
+                <div class="containerBody clearfix">
+                    <div class="containerImage col-lg-3"><img src="../images/news/gerta-cup.webp" alt="" style="width: 100%; padding-top: 50px;"></div>
+                    <div class="containerText col-lg-9">
+                        Congratulations to <?= Html::a('Team Aspire', ['/teams/sub-team-details', 'id' => '7']); ?> for this win today. First they must beat four other participating Teams to get to the Finals.<br>Then, after <strong>three</strong>
+                        realy close Games against <?= Html::a('Esport BERG', ['/teams/sub-team-details', 'id' => '23']); ?> they secured this win for the Day.
+                    </div>
+                    <div class="containerAuthor">Birnchen</div>
+                </div>
+            </div>
+
+            <div class="newsContainer">
+                <div class="containerHeader">
+                    <span class="headerKategorie"><img src="../images/gameLogos/1.webp">Rocket League</span>
+                    <span class="headerTitle">Gerta Cup Season 3 2v2 Day 5</span>
+                    <span class="headerDate">20.07.2019</span>
+                </div>
+                <div class="containerBody clearfix">
+                    <div class="containerImage col-lg-3"><img src="../images/news/gerta-cup.webp" alt="" style="width: 100%;     padding-top: 40px;"></div>
+                    <div class="containerText col-lg-9">
+                        Congratulations to <?= Html::a('Stealth7 eSports', ['/teams/sub-team-details', 'id' => '9']); ?> for this win Today.<br>
+                        They beat three other participating Teams on the fourth Day of the new Season.<br>
+                        After three great Games against <?= Html::a('Captain Viper ', ['/teams/sub-team-details', 'id' => '3']); ?> they secured his win for this Day.
+                    </div>
+                    <div class="containerAuthor">Birnchen</div>
+                </div>
+            </div>
+
+            <div class="newsContainer">
+                <div class="containerHeader">
+                    <span class="headerKategorie"><img src="../images/gameLogos/1.webp">Rocket League</span>
+                    <span class="headerTitle">Gerta Cup Season 3 1v1 Day 5</span>
+                    <span class="headerDate">19.07.2019</span>
+                </div>
+                <div class="containerBody clearfix">
+                    <div class="containerImage col-lg-3"><img src="../images/news/gerta-cup.webp" alt="" style="width: 100%;     padding-top: 33px;"></div>
+                    <div class="containerText col-lg-9">
+                        Congratulations to <?= Html::a('xer02rl', ['/user/details', 'id' => '156']); ?> for a fourth amazing win Today in 1v1. He beat two other participating Players on the fourth Day.<br>
+                        After <strong>four</strong> fantastic Games against <?= Html::a('P1st0lpr0 ', ['/user/details', 'id' => '22']); ?>, he secured<br>
+                        his fourth win in this season.
+                    </div>
+                    <div class="containerAuthor">Birnchen</div>
+                </div>
+            </div>
+
+            <div class="newsContainer">
+                <div class="containerHeader">
+                    <span class="headerKategorie"><img src="../images/gameLogos/1.webp">Rocket League</span>
+                    <span class="headerTitle">Gerta Cup Season 3 3v3 Day 4</span>
+                    <span class="headerDate">07.07.2019</span>
+                </div>
+                <div class="containerBody clearfix">
+                    <div class="containerImage col-lg-3"><img src="../images/news/gerta-cup.webp" alt="" style="width: 100%; padding-top: 50px;"></div>
+                    <div class="containerText col-lg-9">
+                        Congratulations to <?= Html::a('Stealth7 eSports', ['/teams/sub-team-details', 'id' => '7']); ?> for this win today. First they must beat six other participating Teams to get to the Finals.<br>Then, after <strong>10</strong>
+                        realy close Games against <?= Html::a('Esport BERG', ['/teams/sub-team-details', 'id' => '23']); ?> and a Bracket reset, they secured this hard win for the Day.
+                    </div>
+                    <div class="containerAuthor">Birnchen</div>
+                </div>
+            </div>
+
+            <div class="newsContainer">
+                <div class="containerHeader">
+                    <span class="headerKategorie"><img src="../images/gameLogos/1.webp">Rocket League</span>
+                    <span class="headerTitle">Gerta Cup Season 3 2v2 Day 4</span>
+                    <span class="headerDate">06.07.2019</span>
+                </div>
+                <div class="containerBody clearfix">
+                    <div class="containerImage col-lg-3"><img src="../images/news/gerta-cup.webp" alt="" style="width: 100%;     padding-top: 40px;"></div>
+                    <div class="containerText col-lg-9">
+                        Congratulations to <?= Html::a('Stealth7 eSports', ['/teams/sub-team-details', 'id' => '9']); ?> for this win Today.<br>
+                        They beat four other participating Teams on the fourth Day of the new Season.<br>
+                        After four great Games against <?= Html::a('FreezeUnit 2v2 ', ['/teams/sub-team-details', 'id' => '69']); ?> they secured his win for this Day.
+                    </div>
+                    <div class="containerAuthor">Birnchen</div>
+                </div>
+            </div>
+
+            <div class="newsContainer">
+                <div class="containerHeader">
+                    <span class="headerKategorie"><img src="../images/gameLogos/1.webp">Rocket League</span>
+                    <span class="headerTitle">Gerta Cup Season 3 1v1 Day 4</span>
+                    <span class="headerDate">05.07.2019</span>
+                </div>
+                <div class="containerBody clearfix">
+                    <div class="containerImage col-lg-3"><img src="../images/news/gerta-cup.webp" alt="" style="width: 100%;     padding-top: 33px;"></div>
+                    <div class="containerText col-lg-9">
+                        Congratulations to <?= Html::a('xer02rl', ['/user/details', 'id' => '156']); ?> for a third amazing win Today in 1v1. He beat two other participating Players on the fourth Day.<br>
+                        After <strong>four</strong> fantastic Games against <?= Html::a('FlowZ ', ['/user/details', 'id' => '201']); ?>, he secured<br>
+                        his third win in this season.
+                    </div>
+                    <div class="containerAuthor">Birnchen</div>
+                </div>
+            </div>
+
+            <div class="newsContainer">
+                <div class="containerHeader">
                     <span class="headerKategorie"><img src="../images/gameLogos/1.webp">Rocket League</span>
                     <span class="headerTitle">Gerta Cup Season 3 3v3 Day 3</span>
                     <span class="headerDate">23.06.2019</span>
@@ -65,7 +234,7 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
                 <div class="containerBody clearfix">
                     <div class="containerImage col-lg-3"><img src="../images/news/gerta-cup.webp" alt="" style="width: 100%;     padding-top: 33px;"></div>
                     <div class="containerText col-lg-9">
-                        Congratulations to <?= Html::a('Flowz', ['/user/details', 'id' => '201']); ?> for a second amazing win Today in 1v1. He beat three other participating Players on the third Day.<br>
+                        Congratulations to <?= Html::a('FlowZ', ['/user/details', 'id' => '201']); ?> for a second amazing win Today in 1v1. He beat three other participating Players on the third Day.<br>
                         After <strong>three</strong> fantastic Games against <?= Html::a('Captain Salty ', ['/user/details', 'id' => '4']); ?>, he secured<br>
                         the first victory in this season.
                     </div>
