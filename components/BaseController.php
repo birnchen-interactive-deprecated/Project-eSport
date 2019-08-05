@@ -24,7 +24,7 @@ class BaseController extends Controller
         }
 
         if (!Yii::$app->user->isGuest && Yii::$app->user->getIdentity()->is_password_change_required == 1 && Yii::$app->controller->action->id !== 'password-change') {
-            return $this->redirect(['/site/password-change']);
+            return $this->redirect(['/user/password-change']);
         }
 
         return true;
