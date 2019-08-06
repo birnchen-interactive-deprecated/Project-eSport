@@ -5,7 +5,7 @@ return [
     'player' => 'Spieler',
     'teams' => 'Teams',
     'tournaments' => 'Turniere',
-    'jobs' => 'Jobs',
+    'partner' => 'Partner',
     'events' => 'Events',
     'login' => 'Anmeldung',
     'account' => 'Profil',
@@ -15,5 +15,6 @@ return [
     'imprint' => 'Impressum',
     'gtc' => 'AGB',
     'privacy' => 'Datenschutz',
+    'jobs' => 'Jobs',
     'trademark' => 'Project-eSport ist eine Marke der Birnchen Interactive.',
 ];

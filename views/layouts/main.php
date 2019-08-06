@@ -67,6 +67,7 @@ $navigation = array(
         array('label' => 'Mariokart 8', 'url' => ['/mariokartdeluxe/tournaments'], 'linkOptions' =>  ['aria-label' => 'Mariokart 8 Delye Button']),
     )),
     array('label' => Yii::t('app', 'events'), 'url' => ['/events/overview'], 'linkOptions' => ['aria-label' => 'Events Button', 'style' => 'color: #a0ce4e']),
+    array('label' => Yii::t('app', 'partner'), 'url' => ['/partner/overview'], 'linkOptions' => ['aria-label' => 'Partner Button']),
 
 );
 if (Yii::$app->user->isGuest) {
