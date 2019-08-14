@@ -5,7 +5,7 @@ return [
     'player' => 'Player',
     'teams' => 'Teams',
     'tournaments' => 'Tournaments',
-    'jobs' => 'Jobs',
+    'partner' => 'Partners',
     'events' => 'Events',
     'login' => 'Login',
     'account' => 'Profile',
@@ -15,5 +15,6 @@ return [
     'imprint' => 'Imprint',
     'gtc' => 'GTC',
     'privacy' => 'Privacy',
+    'jobs' => 'Jobs',
     'trademark' => 'Project-eSport is a Trademark Marke of Birnchen Interactive.',
 ];
