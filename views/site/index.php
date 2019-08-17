@@ -30,7 +30,7 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
                     <span class="headerDate">16.08.2019</span>
                 </div>
                 <div class="containerBody clearfix">
-                    <div class="containerImage col-lg-3"><img src="../images/news/news.webp" alt="" style="width: 100%; padding-top: 11px;"></div>
+                    <div class="containerImage col-lg-3"><img src="../images/news/news.webp" alt="" style="width: 100%; padding-top: 36px;"></div>
                     <div class="containerText col-lg-9">
                         What an Amazng Group Stage<br>                  
                         25 teams have started and the 16 best teams have passed the group stage<br>
