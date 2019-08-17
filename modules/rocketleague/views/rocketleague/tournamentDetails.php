@@ -441,7 +441,7 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
                         <div class="bracketRound">
 
                             <div class="roundTitle">Round <?= $round; ?></div>
-                            <?php if($tournament->getId() != 39) : ?>
+                            <?php if($tournament->getId() != 38) : ?>
                                 <div class="roundTitle">Best of <?= $firstBracket->getBestOf(); ?></div>
                             <?php else: ?>
                                 <div class="roundTitle">Best of 1 ?></div>
