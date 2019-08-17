@@ -32,7 +32,7 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
                 <div class="containerBody clearfix">
                     <div class="containerImage col-lg-3"><img src="../images/news/news.webp" alt="" style="width: 100%; padding-top: 36px;"></div>
                     <div class="containerText col-lg-9">
-                        What an Amazng Group Stage<br>                  
+                        What an Amazing Group Stage<br>                  
                         25 teams have started and the 16 best teams have passed the group stage<br>
                         and are moving into the round of 16 on Saturday.
                         <br>
