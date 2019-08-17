@@ -445,7 +445,7 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
                                 <div class="roundTitle">Best of <?= $firstBracket->getBestOf(); ?></div>
                             <?php else: ?>
                                 <div class="roundTitle">Best of 1 ?></div>
-                            <php endif; ?>
+                            <?php endif; ?>
                             <div class="roundTitle">Start: <?= $roundBrackets['startTime']; ?></div>
 
                             <?php foreach ($roundBrackets['brackets'] as $bracketKey => $bracket): ?>
