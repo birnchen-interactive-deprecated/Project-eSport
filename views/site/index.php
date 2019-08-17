@@ -25,6 +25,26 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
 
             <div class="newsContainer">
                 <div class="containerHeader">
+                    <span class="headerKategorie"><img src="../images/PeSpLogos/pesp.png">Stealth 7 Cup</span>
+                    <span class="headerTitle">First Day is Done</span>
+                    <span class="headerDate">16.08.2019</span>
+                </div>
+                <div class="containerBody clearfix">
+                    <div class="containerImage col-lg-3"><img src="../images/news/news.webp" alt="" style="width: 100%; padding-top: 11px;"></div>
+                    <div class="containerText col-lg-9">
+                        What an Amazng Group Stage<br>                  
+                        25 teams have started and the 16 best teams have passed the group stage<br>
+                        and are moving into the round of 16 on Saturday.
+                        <br>
+                        This will be a Great Day for such a tournament.
+                        <br>
+                    </div>
+                    <div class="containerAuthor">Birnchen</div>
+                </div>
+            </div>
+
+            <div class="newsContainer">
+                <div class="containerHeader">
                     <span class="headerKategorie"><img src="../images/PeSpLogos/pesp.png">Website</span>
                     <span class="headerTitle">Finaly the Bug is Fixed</span>
                     <span class="headerDate">05.08.2019</span>
