@@ -611,11 +611,9 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
     <?php endif; ?>
 
     <?php 
-        if($tournament->getId() == 38)
-        {
+        if($tournament->getId() == 38) : ?>
             <iframe src="https://challonge.com/de/stealth7cup/module" width="100%" height="500" frameborder="0" scrolling="auto" allowtransparency="true"></iframe>
-        }
-    ?>
+    <?php endif; ?>
 
     <!-- <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdo7W8BCQxO0ZglrrFiAHvSZtsu3GoIyq5mNa3Eeuuwdbfdpg/viewform?embedded=true" width="1055" height="1010" frameborder="0" marginheight="0" marginwidth="0">Wird geladen...</iframe>
     <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScNl-8L9WKZwcHmawQLwnIzj_GfqbyAVlHw4BCZ6dlE-M9Fcw/viewform?embedded=true" width="1055" height="1340" frameborder="0" marginheight="0" marginwidth="0">Wird geladen...</iframe> -->
