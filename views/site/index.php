@@ -36,8 +36,11 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
                         25 teams have started and the 16 best teams have passed the group stage<br>
                         and are moving into the round of 16 on Saturday.
                         <br>
+                        <br>
                         This will be a Great Day for such a tournament.
                         <br>
+                        <br>
+                        More infos: <?= Html::a('Stealth 7 Cup', ['/rocketleague/tournament-details', 'id' => '38']); ?>
                     </div>
                     <div class="containerAuthor">Birnchen</div>
                 </div>
