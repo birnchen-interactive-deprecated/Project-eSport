@@ -430,7 +430,7 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
                 </script>
             </div>
             <!-- Google Ads bereich -->
-            
+
             <?php if($tournament->getId() != 39) : ?>
                 <h1>Looser Bracket</h1> 
                 <div class="looserBracket">
@@ -441,7 +441,7 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
                         <div class="bracketRound">
 
                             <div class="roundTitle">Round <?= $round; ?></div>
-                            <div class="roundTitle">Best of <?= $firstBracket->getBestOf(); ?></div>
+                            <div class="roundTitle">Best of <?= if($tournament->getId() != 39) ? $firstBracket->getBestOf() : '1'; ?></div>
                             <div class="roundTitle">Start: <?= $roundBrackets['startTime']; ?></div>
 
                             <?php foreach ($roundBrackets['brackets'] as $bracketKey => $bracket): ?>
@@ -612,9 +612,7 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
         <b>!!!</b> Hier erscheint nach Turnierstart der Turnierbaum <b>!!!</b>
     <?php endif; ?>
 
-    <?php if($tournament->getId() == 38) : ?>
-            <iframe src="https://challonge.com/de/stealth7cup/module" width="100%" height="500" frameborder="0" scrolling="auto" allowtransparency="true"></iframe>
-    <?php endif; ?>
+    <!-- <iframe src="https://challonge.com/de/stealth7cup/module" width="100%" height="500" frameborder="0" scrolling="auto" allowtransparency="true"></iframe> -->
 
     <!-- <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdo7W8BCQxO0ZglrrFiAHvSZtsu3GoIyq5mNa3Eeuuwdbfdpg/viewform?embedded=true" width="1055" height="1010" frameborder="0" marginheight="0" marginwidth="0">Wird geladen...</iframe>
     <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScNl-8L9WKZwcHmawQLwnIzj_GfqbyAVlHw4BCZ6dlE-M9Fcw/viewform?embedded=true" width="1055" height="1340" frameborder="0" marginheight="0" marginwidth="0">Wird geladen...</iframe> -->
