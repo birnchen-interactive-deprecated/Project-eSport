@@ -430,7 +430,7 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
                 </script>
             </div>
             <!-- Google Ads bereich -->
-
+            <?php if($tournament->getId() != 39) : ?>
             <h1>Looser Bracket</h1> 
             <div class="looserBracket">
 
@@ -602,16 +602,16 @@ $this->title = \app\modules\rocketleague\Module::t('details', 'tournamentdetails
 
                     </div>
 
-                <?php endforeach; ?>
+                <?php endforeach; ?>   
             </div>
+            <?php endif; ?>
         </div>
 
     <?php else: ?>
         <b>!!!</b> Hier erscheint nach Turnierstart der Turnierbaum <b>!!!</b>
     <?php endif; ?>
 
-    <?php 
-        if($tournament->getId() == 38) : ?>
+    <?php if($tournament->getId() == 38) : ?>
             <iframe src="https://challonge.com/de/stealth7cup/module" width="100%" height="500" frameborder="0" scrolling="auto" allowtransparency="true"></iframe>
     <?php endif; ?>
 
