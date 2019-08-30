@@ -16,13 +16,6 @@ Yii::$app->MetaClass->writeMetaIndex($this, $this->title);
     <main>
 
         <div class="col-lg-9 welcome">
-
-            <?php // wunsch von Niyari, immer hier oben lassen ?>
-            <div>
-                <img src="https://cdn.discordapp.com/attachments/600965985540898816/602973085087563776/Pesp_Masters_1_RL.png" alt="" style="width: 100%;">
-            </div>
-            <?php // wunsch von Niyari, immer hier oben lassen ?>
-
             <div class="newsContainer">
                 <div class="containerHeader">
                     <span class="headerKategorie"><img src="../images/PeSpLogos/pesp.png">Website</span>

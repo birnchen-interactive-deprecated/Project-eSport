@@ -64,9 +64,9 @@ $navigation = array(
     )),
     array('label' => Yii::t('app', 'tournaments'), 'linkOptions' =>  ['aria-label' => 'Tournaments button'], 'items' => array(
         array('label' => 'Rocket League', 'url' => ['/rocketleague/tournaments'], 'linkOptions' =>  ['aria-label' => 'RL Tournaments Button']),
-        array('label' => 'Mariokart 8', 'url' => ['/mariokartdeluxe/tournaments'], 'linkOptions' =>  ['aria-label' => 'Mariokart 8 Delye Button']),
+        array('label' => 'Mariokart 8', 'url' => ['/mariokartdeluxe/tournaments'], 'linkOptions' =>  ['aria-label' => 'Mariokart 8 Delyxe Button']),
     )),
-    array('label' => Yii::t('app', 'events'), 'url' => ['/events/overview'], 'linkOptions' => ['aria-label' => 'Events Button', 'style' => 'color: #a0ce4e']),
+    //array('label' => Yii::t('app', 'events'), 'url' => ['/events/overview'], 'linkOptions' => ['aria-label' => 'Events Button', 'style' => 'color: #a0ce4e']),
     array('label' => Yii::t('app', 'partner'), 'url' => ['/partner/overview'], 'linkOptions' => ['aria-label' => 'Partner Button']),
 
 );
