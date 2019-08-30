@@ -226,7 +226,6 @@ if (Yii::$app->user->identity !== NULL) {
                 <div class="col-xs-12 col-sm-6">
                     <div class="mainTeam">
                         <?= \app\modules\user\Module::t('account', 'clans', $siteLanguage->locale) ?>
-                        Main Team:
                         <?php if ($userInfo['isMySelfe']) : ?>
                         <?php
                             echo Html::a('',
