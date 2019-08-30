@@ -220,7 +220,7 @@ if (Yii::$app->user->identity !== NULL) {
 
             <!-- Teams where the user is member -->
             <div class="clearfix">
-                <div class="col-lg-12 teamHeader">My Team & Sub-Teams</div>
+                <div class="col-lg-12 teamHeader"><?= \app\modules\user\Module::t('clans', 'games', $siteLanguage->locale) ?></div>
             </div>
             <div class="teamBody clearfix">
                 <div class="col-xs-12 col-sm-6">
