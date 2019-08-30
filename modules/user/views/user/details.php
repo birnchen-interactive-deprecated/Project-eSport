@@ -225,6 +225,7 @@ if (Yii::$app->user->identity !== NULL) {
             <div class="teamBody clearfix">
                 <div class="col-xs-12 col-sm-6">
                     <div class="mainTeam">
+                        <?= \app\modules\user\Module::t('account', 'clans', $siteLanguage->locale) ?>
                         Main Team:
                         <?php if ($userInfo['isMySelfe']) : ?>
                         <?php
@@ -265,7 +266,7 @@ if (Yii::$app->user->identity !== NULL) {
                 </div>
 
                 <div class="col-xs-12 col-sm-6">
-                    <div class="mainTeam">Sub Teams:</div>
+                    <div class="mainTeam"><?= \app\modules\user\Module::t('account', 'teams', $siteLanguage->locale) ?></div>
                     <?php foreach ($subTeams as $key => $subTeam): ?>
                         <div class="teamEntry clearfix">
                             <div class="col-lg-12"><?= Html::a($subTeam['team']->getTeamName(), ['/teams/sub-team-details', 'id' => $subTeam['team']->getId()]) . " (" . $subTeam['team']->getTournamentMode()->one()->getName() . ")"; ?>
