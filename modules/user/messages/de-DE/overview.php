@@ -3,8 +3,8 @@
 return [
 	'avatar' => 'Avatar',
 	'username' => 'Benutzername',
-	'mainteam' => 'Main Team',
-	'subteam' => 'Sub Team',
+	'mainteam' => 'Clan\'s',
+	'subteam' => 'Team\'s',
 	'games' => 'Games',
 
 

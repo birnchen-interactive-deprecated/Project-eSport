@@ -11,6 +11,7 @@ return [
 	'language' => 'Sprache',
 	'city' => 'Ort',
 	'games' => 'Meine Spiele und Id\'s',
+	'games' => 'Meine Clans und Teams\'s',
 	'twitter_account' => 'Twitter',
 	'twitter_channel' => 'Twitter Kanal',
 	'discord_account' => 'Discord Name',
