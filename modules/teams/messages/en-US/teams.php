@@ -28,10 +28,10 @@ return [
     'player' => 'Player',
 
     /** team details change */
-    'DetailsHead' => 'Change Sub Team Details',
+    'DetailsHead' => 'Change Team Details',
 
     /** Default informations */
-    'main_team' => 'Main Team',        /** done */
+    'main_team' => 'Clan',        /** done */
     'headquater_id' => 'Nationality', /** done */
     'language_id' => 'Language',        /** done */
 
@@ -46,7 +46,7 @@ return [
     'name' => 'Team Name',
     'short_code' => 'Tag',
     'mixed' => 'Mixed Tag',
-    'main_short_code' => 'Main Team Tag',
+    'main_short_code' => 'Clan Tag',
     'description' => 'Description',
 
     /** Social Media Informations */
