@@ -23,7 +23,8 @@ return [
     'description' => 'Description',
 
     /** Team Mitglieder Bereich */
-    'team_member' => 'Clan Member',
+    'team_member' => 'Team Member',
+    'clan_member' => 'Clan Member',
     'substitude' => 'Substitude',
     'player' => 'Player',
 

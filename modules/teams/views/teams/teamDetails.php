@@ -144,7 +144,7 @@ Yii::$app->MetaClass->writeMetaMainTeam($this, $teamDetails, $this->title);
             </div>
         </div>
         <div class="entry entryMembers clearfix">
-            <div class="col-xs-5 col-sm-3 col-lg-3"><?=\app\modules\teams\Module::t('teams', 'team_member')?></div>
+            <div class="col-xs-5 col-sm-3 col-lg-3"><?=\app\modules\teams\Module::t('teams', 'clan_member')?></div>
             <div class="col-xs-7 col-sm-9 col-lg-9 context">
                 <?php foreach($teamDetails->getTeamMemberWithOwner() as $userKey => $user): ?>
                     <?php
