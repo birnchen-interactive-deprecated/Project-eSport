@@ -23,7 +23,7 @@ return [
     'description' => 'Beschreibung',
 
     /** Team Mitglieder Bereich */
-    'team_member' => 'Team Mitglieder',
+    'team_member' => 'Clan Mitglieder',
     'substitude' => 'Ersatz Spieler',
     'player' => 'Spieler',
 
@@ -43,7 +43,7 @@ return [
 
     /** Team Informations */
     'isInTournament' => '',
-    'name' => 'Team Name',
+    'name' => 'Clan Name',
     'short_code' => 'Kürzel',
     'mixed' => 'Mixed Kürzel',
     'main_short_code' => 'Clan Kürzel',
@@ -56,5 +56,8 @@ return [
 
     /** team member details change */
     'DetailsMemberHead' => 'Change Spieler Settings',
+
+    /** div **/
+    'teams' => 'Teams',
 
 ];

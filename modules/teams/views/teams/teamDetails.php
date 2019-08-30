@@ -101,7 +101,7 @@ Yii::$app->MetaClass->writeMetaMainTeam($this, $teamDetails, $this->title);
         </div>
         <div class="entry entrySubTeams clearfix">
             <div class="col-xs-5 col-sm-3 col-lg-3">
-                Sub Teams
+                <?=\app\modules\teams\Module::t('teams', 'teams')?>
                 <?php if ($teamInfo['isOwner'] || $teamInfo['isDeputy']) : ?>
                     <?php
                         echo Html::a('',
@@ -110,7 +110,7 @@ Yii::$app->MetaClass->writeMetaMainTeam($this, $teamDetails, $this->title);
                                 'teamId' => $teamDetails->getId()
                             ],
                             ['class' => "glyphicon glyphicon-new-window",
-                                'title' => "Add Sub Team"
+                                'title' => "Add Team"
                             ]
                         )
                     ?>

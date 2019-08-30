@@ -23,7 +23,7 @@ return [
     'description' => 'Description',
 
     /** Team Mitglieder Bereich */
-    'team_member' => 'Team Member',
+    'team_member' => 'Clan Member',
     'substitude' => 'Substitude',
     'player' => 'Player',
 
@@ -43,7 +43,7 @@ return [
 
     /** Team Informations */
     'isInTournament' => '',
-    'name' => 'Team Name',
+    'name' => 'Clan Name',
     'short_code' => 'Tag',
     'mixed' => 'Mixed Tag',
     'main_short_code' => 'Clan Tag',
@@ -56,5 +56,8 @@ return [
 
     /** team member details change */
     'DetailsMemberHead' => 'Change Member Settings',
+
+    /** div **/
+    'teams' => 'Teams',
 
 ];

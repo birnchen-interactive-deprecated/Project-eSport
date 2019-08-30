@@ -13,7 +13,7 @@ return [
 	'games' => 'Meine Spiele und Id\'s',
 	'clans' => 'Meine Clan\'s und Teams\'s',
 	'clan' => 'Clan\'s:',
-	'team' => 'Teams\'s:',
+	'team' => 'Team\'s:',
 	'twitter_account' => 'Twitter',
 	'twitter_channel' => 'Twitter Kanal',
 	'discord_account' => 'Discord Name',
